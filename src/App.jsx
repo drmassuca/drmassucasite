@@ -31,6 +31,7 @@ import { faqRouteObjects } from './routes/faqRoutes.jsx';
 
 /* >>> IA MÉDICA: Lazy load das páginas de IA */
 const IAMedica = lazy(() => import('./pages/ia-medica'));
+const ArticleDetail = lazy(() => import('./pages/ia-medica/ArticleDetail'));
 const StableDiffusion3DFetal = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal'));
 const SDInstalacao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/instalacao'));
 const SDConfiguracao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/configuracao'));
@@ -150,6 +151,7 @@ function App() {
 
             {/* >>> ROTAS DA IA MÉDICA */}
             <Route path="/ia-medica" element={<IAMedica />} />
+            <Route path="/ia-medica/artigo/:id" element={<ArticleDetail />} />
             <Route path="/ia-medica/stable-diffusion-3d-fetal" element={<StableDiffusion3DFetal />} />
             <Route path="/ia-medica/stable-diffusion-3d-fetal/instalacao" element={<SDInstalacao />} />
             <Route path="/ia-medica/stable-diffusion-3d-fetal/configuracao" element={<SDConfiguracao />} />

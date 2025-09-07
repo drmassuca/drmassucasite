@@ -37,18 +37,27 @@ const Header = () => {
 
   // Destaca o item ativo inclusive em rotas filhas (/faq/slug, /exames/algum-exame)
   const isActive = path => location.pathname === path || location.pathname.startsWith(`${path}/`);
+  
+  // Detecta se está na seção IA Médica
+  const isIAMedicaSection = location.pathname.startsWith('/ia-medica');
+  
+  // Define cores do header baseado na seção
+  const headerBg = isIAMedicaSection ? 'linear-gradient(135deg, #4c1d95 0%, #3730a3 100%)' : 'green.900';
+  const textColor = 'white'; // Sempre branco para contraste
 
   return (
     <Flex
       as="header"
-      bg="green.900"
-      color="white"
+      bg={isIAMedicaSection ? undefined : "green.900"}
+      bgGradient={isIAMedicaSection ? "linear(135deg, #4c1d95 0%, #3730a3 100%)" : undefined}
+      color={textColor}
       p={4}
       align="center"
       position="sticky"
       top="0"
       zIndex="1000"
       boxShadow="md"
+      transition="all 0.3s ease"
     >
       {/* Logo e Nome */}
       <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
@@ -149,7 +158,11 @@ const Header = () => {
       {/* Drawer mobile */}
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent bg="green.900" color="white">
+        <DrawerContent 
+          bg={isIAMedicaSection ? undefined : "green.900"}
+          bgGradient={isIAMedicaSection ? "linear(135deg, #4c1d95 0%, #3730a3 100%)" : undefined}
+          color={textColor}
+        >
           <DrawerCloseButton />
           <DrawerBody>
             <Stack spacing={4} mt={10}>

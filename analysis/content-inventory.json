@@ -1,0 +1,253 @@
+{
+  "project": "Dr. Massuca - Ultrassom Website",
+  "analysisDate": "2025-08-16",
+  "contentStructure": {
+    "mainPages": {
+      "home": {
+        "path": "/",
+        "title": "Home",
+        "component": "src/pages/home.jsx",
+        "description": "Página inicial"
+      },
+      "about": {
+        "path": "/sobre",
+        "title": "Sobre",
+        "component": "src/pages/about.jsx",
+        "description": "Sobre o Dr. Massuca"
+      },
+      "exams": {
+        "path": "/exames",
+        "title": "Exames",
+        "component": "src/pages/exams.jsx",
+        "description": "Lista de todos os exames disponíveis"
+      },
+      "patientArea": {
+        "path": "/area-do-paciente",
+        "title": "Área do Paciente",
+        "component": "src/pages/patient-area.jsx",
+        "description": "Área dedicada aos pacientes"
+      },
+      "forDoctors": {
+        "path": "/para-medicos",
+        "title": "Para Médicos",
+        "component": "src/pages/for-doctors.jsx",
+        "description": "Informações para médicos"
+      },
+      "testimonials": {
+        "path": "/depoimentos",
+        "title": "Depoimentos",
+        "component": "src/pages/testimonials.jsx",
+        "description": "Depoimentos de pacientes"
+      },
+      "contact": {
+        "path": "/contato",
+        "title": "Contato",
+        "component": "src/pages/contact.jsx",
+        "description": "Informações de contato"
+      },
+      "ultrassom3d": {
+        "path": "/ultrassom-3d",
+        "title": "Ultrassom 3D/4D",
+        "component": "src/pages/ultrassom-3d.jsx",
+        "description": "Informações sobre ultrassom 3D e 4D"
+      },
+      "privacyPolicy": {
+        "path": "/privacy-policy",
+        "title": "Política de Privacidade",
+        "component": "src/pages/privacy-policy.jsx",
+        "description": "Política de privacidade"
+      }
+    },
+    "examDetails": {
+      "total": 24,
+      "categories": {
+        "obstetricos": [
+          "obstetrico-de-rotina",
+          "morfologico-primeiro-trimestre",
+          "morfologico-segundo-trimestre",
+          "doppler-obstetrico",
+          "ecocardiografia-fetal"
+        ],
+        "ginecologicos": [
+          "endovaginal",
+          "pelvico-via-abdominal",
+          "pesquisa-de-endometriose-com-preparo",
+          "monitorizacao-da-ovulacao",
+          "pesquisa-de-puberdade-precoce",
+          "inferior"
+        ],
+        "gerais": [
+          "total",
+          "superior",
+          "parede-abdominal",
+          "rins-e-vias-urinarias",
+          "ultrassonografia-de-tireoide-com-ou-sem-doppler",
+          "ultrassonografia-cervical-com-ou-sem-doppler",
+          "ultrassonografia-partes-moles",
+          "mamas"
+        ],
+        "masculinos": [
+          "via-abdominal",
+          "via-transretal",
+          "bolsa-escrotal-e-testiculos"
+        ],
+        "especializados": [
+          "transfontanela",
+          "avaliacao-pre-cirurgia-plastica"
+        ]
+      }
+    },
+    "faqPages": {
+      "total": 45,
+      "basePath": "/faq",
+      "categories": {
+        "funcionamento": [
+          "qual-e-a-funcao-do-ultrassom",
+          "como-o-ultrassom-age-no-corpo",
+          "como-mexer-no-ultrassom",
+          "modos-ultrassom-b-m-doppler",
+          "quanto-tempo-o-ultrassom-faz-efeito"
+        ],
+        "tipos": [
+          "como-se-chama-um-ultrassom-normal",
+          "ultrassom-mais-completo",
+          "qual-ultrassom-e-mais-importante",
+          "qual-o-tipo-de-ultrassom-que-ve-todos-os-orgaos",
+          "quais-sao-os-tipos-de-aparelhos-de-ultrassom",
+          "qual-ultrassom-e-mais-caro"
+        ],
+        "preparo": [
+          "precisa-de-jejum-para-fazer-ultrassonografia",
+          "o-que-e-necessario-para-se-preparar-para-um-ultrassom-abdominal",
+          "qual-o-preparo-para-fazer-ultrassonografia-abdominal-total",
+          "pode-ter-relacao-antes-de-fazer-ultrassonografia"
+        ],
+        "diagnostico": [
+          "quais-doencas-o-ultrassom-detecta",
+          "o-que-a-ultrassonografia-identifica",
+          "o-que-o-ultrassom-avalia",
+          "o-que-o-ultrassom-abdominal-total-detecta",
+          "o-que-o-ultrassom-total-pode-mostrar",
+          "quais-sao-os-4-tipos-de-ecogenicidade-na-ultrassonografia"
+        ],
+        "seguranca": [
+          "quais-sao-os-riscos-da-ultrassonografia",
+          "quais-sao-as-contraindicacoes-do-ultrassom",
+          "quais-sao-as-vantagens-do-ultrassom",
+          "o-ultrassom-e-100-confiavel"
+        ],
+        "procedimento": [
+          "como-e-feito-um-ultrassom-abdominal",
+          "em-quais-partes-do-corpo-se-faz-ultrassonografia",
+          "o-resultado-da-ultrassonografia-sai-na-hora",
+          "o-resultado-da-ultrassonografia-sai-na-hora-3",
+          "quantos-dias-vale-um-ultrassom",
+          "qual-o-momento-certo-para-fazer-ultrassonografia"
+        ],
+        "profissional": [
+          "qual-o-nome-do-medico-que-faz-ultrassonografia",
+          "qual-o-nome-do-ultrassonografista-para-ver-o-bebe"
+        ],
+        "acesso": [
+          "e-possivel-fazer-ultrassom-sem-pedido-medico",
+          "precisa-de-pedido-medico-para-fazer-ultrassom-morfologico",
+          "qual-ultrassom-e-feito-pelo-sus"
+        ],
+        "gravidez": [
+          "qual-ultrassom-indica-gravidez",
+          "quando-fazer-a-primeira-ultrassonografia",
+          "qual-ultrassom-fazer-com-6-semanas",
+          "quais-exames-de-ultrassonografia-na-gravidez",
+          "qual-a-melhor-semana-para-fazer-ultrassonografia-3d",
+          "o-que-e-um-ultrassom-obstetrico-normal",
+          "qual-o-primeiro-ultrassom-que-deve-ser-feito",
+          "o-que-um-ultrassom-de-4-semanas-pode-indicar"
+        ]
+      }
+    },
+    "chatbot": {
+      "knowledgeBase": "src/components/Chatbot/KNOWLEDGE_BASE.md",
+      "categories": 15,
+      "totalQuestions": 48,
+      "topics": [
+        "AGENDAMENTO E CONTATO",
+        "RESULTADOS E LAUDOS",
+        "PAGAMENTO",
+        "LOCALIZAÇÃO E ACESSO",
+        "SEGURANÇA DO ULTRASSOM",
+        "TIPOS DE ULTRASSOM",
+        "PREPAROS PARA EXAMES",
+        "OBSTETRÍCIA E GESTAÇÃO",
+        "TIPOS DE EXAMES ESPECÍFICOS",
+        "CONFORTO E PROCEDIMENTO",
+        "SITUAÇÕES ESPECIAIS",
+        "POLÍTICAS DA CLÍNICA"
+      ]
+    },
+    "seo": {
+      "centralComponent": "src/components/SEO.jsx",
+      "features": [
+        "React Helmet Async",
+        "Canonical URLs",
+        "Open Graph tags",
+        "Twitter Cards",
+        "Schema.org structured data",
+        "Hreflang tags",
+        "Geo meta tags"
+      ],
+      "note": "ESTRUTURA SEO NÃO PODE SER MUDADA"
+    },
+    "assets": {
+      "images": {
+        "formats": ["webp", "png", "jpg"],
+        "examImages": "/img-exams-webp/",
+        "icons": "/icons/",
+        "assets": "/assets/"
+      },
+      "theme": {
+        "colors": {
+          "primary": "green.700 (#0f3d2e)",
+          "secondary": "gold (#d4af37)",
+          "background": "olive texture"
+        }
+      }
+    },
+    "whatsapp": {
+      "behavior": "Link fixo abaixo do input de mensagem",
+      "number": "5562996602117",
+      "note": "NÃO inserir link direto no texto do chatbot"
+    },
+    "routes": {
+      "static": [
+        "/",
+        "/sobre",
+        "/exames",
+        "/area-do-paciente",
+        "/para-medicos",
+        "/depoimentos",
+        "/contato",
+        "/ultrassom-3d",
+        "/privacy-policy",
+        "/faq"
+      ],
+      "dynamic": [
+        "/exames/:slug",
+        "/faq/:question"
+      ]
+    }
+  },
+  "recommendations": {
+    "opportunities": [
+      "Consolidar FAQ em estrutura baseada em dados (JSON/MD)",
+      "Unificar componentes de exames com template único",
+      "Implementar sitemap.xml dinâmico",
+      "Adicionar breadcrumbs para melhor navegação",
+      "Implementar lazy loading de imagens"
+    ],
+    "duplications": [
+      "Múltiplas importações de SEO em algumas páginas FAQ",
+      "Estrutura repetitiva em páginas de exames",
+      "FAQ com 2 páginas similares sobre resultado na hora"
+    ]
+  }
+}

@@ -1,0 +1,230 @@
+[
+  {
+    "slug": "doppler-obstetrico",
+    "title": "Ultrassom Doppler Obstétrico",
+    "image": "/img-exams-webp/dopplerobstetrico.webp",
+    "paragraphs": [
+      "O <strong>Ultrassom Doppler Obstétrico</strong> avalia, de forma detalhada, o fluxo sanguíneo entre mãe, placenta e bebê. Ele analisa a circulação nas artérias uterinas, no cordão umbilical e em vasos fetais, como a artéria cerebral média e a aorta fetal.",
+      "O exame fornece informações essenciais sobre oxigenação e nutrição do bebê, ajudando a detectar precocemente <strong>insuficiência placentária</strong>, <strong>restrição de crescimento intrauterino (RCIU)</strong> e risco aumentado para <strong>pré-eclâmpsia</strong>."
+    ]
+  },
+  {
+    "slug": "ecocardiografia-fetal",
+    "title": "Ultrassom Ecocardiografia Fetal",
+    "image": "/img-exams-webp/ecocardiografia_fetal.webp",
+    "paragraphs": [
+      "A <strong>Ultrassom Ecocardiografia Fetal</strong> avalia, de forma detalhada, a estrutura, função e circulação do coração do feto, utilizando imagens bidimensionais e Doppler colorido.",
+      "É recomendada entre a <strong>20ª e a 30ª semanas</strong> de gestação, podendo ser realizada em outros momentos do pré-natal conforme indicação médica."
+    ]
+  },
+  {
+    "slug": "endovaginal",
+    "title": "Ultrassom Ginecológico – Endovaginal",
+    "image": "/img-exams-webp/pelvicofeminino.webp",
+    "paragraphs": [
+      "Avaliação interna detalhada de útero, ovários, endométrio e colo, através de sonda vaginal, com suporte Doppler para análise de lesões e fluxo.",
+      "Normalmente não exige preparo; recomenda-se bexiga vazia. Na pesquisa de endometriose, pode ser necessário preparo intestinal.",
+      "O exame dura entre <strong>10 e 30 minutos</strong>, habitualmente cerca de 15 min."
+    ]
+  },
+  {
+    "slug": "inferior",
+    "title": "Ultrassom de Abdome Inferior / Pelve",
+    "image": "/img-exams-webp/pelvicofeminino.webp",
+    "paragraphs": [
+      "Avalia útero, ovários, bexiga e vias urinárias baixas para investigação de dor, sangramentos, alterações urinárias ou controle ginecológico.",
+      "Ingerir <strong>≈ 1 L de água</strong> uma hora antes e não urinar. Bexiga cheia melhora a janela acústica.",
+      "Duração média de <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "mamas",
+    "title": "Ultrassom de Mamas",
+    "image": "/img-exams-webp/mama.webp",
+    "paragraphs": [
+      "Avalia tecidos mamários para identificar cistos, nódulos, assimetrias e sinais de inflamação ou lesões suspeitas.",
+      "• Detecção precoce de alterações benignas ou suspeitas;<br />• Complemento seguro (sem radiação) à mamografia;<br />• Orienta seguimento clínico individualizado.",
+      "Sem preparo; recomenda-se pele limpa, sem cremes ou desodorantes.",
+      "Geralmente <strong>15 – 30 minutos</strong>, conforme complexidade."
+    ]
+  },
+  {
+    "slug": "monitorizacao-da-ovulacao",
+    "title": "Ultrassom Monitorização da Ovulação",
+    "image": "/img-exams-webp/monitorizacao.webp",
+    "paragraphs": [
+      "Série de ultrassons transvaginais ao longo do ciclo para acompanhar crescimento folicular, rompimento (ovulação), endométrio e corpo lúteo.",
+      "Inicia-se entre o <strong>10º e 12º dia</strong> do ciclo, com <strong>3 a 4 exames</strong> alternados.",
+      "Sem preparo especial; bexiga vazia para conforto.",
+      "Cada sessão dura <strong>10 – 15 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "morfologico-primeiro-trimestre",
+    "title": "Ultrassom Morfológico – 1º Trimestre",
+    "image": "/img-exams-webp/morfologico.webp",
+    "paragraphs": [
+      "Realizado entre <strong>11 e 14 semanas</strong> (ideal 12–13 s), avalia anatomia fetal inicial, <strong>translucência nucal</strong> e risco de pré-eclâmpsia.",
+      "Bexiga moderadamente cheia; sem jejum.",
+      "Duração média <strong>20 – 40 minutos</strong>, podendo chegar a 1 h se incluir Doppler."
+    ]
+  },
+  {
+    "slug": "morfologico-segundo-trimestre",
+    "title": "Ultrassom Morfológico – 2º Trimestre",
+    "image": "/img-exams-webp/morfologico.webp",
+    "paragraphs": [
+      "Avalia minuciosamente formação anatômica, crescimento, placenta e líquido entre <strong>20 – 24 semanas</strong> (ideal 22–23 s).",
+      "Sem preparo; pode ser realizado com bexiga vazia.",
+      "Dura <strong>30 – 50 minutos</strong>, podendo variar se incluir Doppler."
+    ]
+  },
+  {
+    "slug": "obstetrico-de-rotina",
+    "title": "Ultrassom Obstétrico de Rotina",
+    "image": "/img-exams-webp/obstetrico.webp",
+    "paragraphs": [
+      "Monitoriza crescimento fetal, bem-estar (FCF, movimentação), placenta e líquido amniótico.",
+      "Realizar entre <strong>15–19 s</strong> e novamente entre <strong>26–40 s</strong>.",
+      "Sem preparo específico; dura <strong>20 – 40 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "parede-abdominal",
+    "title": "Ultrassom da Parede Abdominal",
+    "image": "/img-exams-webp/parede.webp",
+    "paragraphs": [
+      "Avaliação de músculos, fáscias e camadas superficiais para hérnias, nódulos, traumas ou pós-operatório.",
+      "Sem preparo; roupas que facilitem exposição do abdome.",
+      "Dura <strong>10 – 20 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "pelvico-via-abdominal",
+    "title": "Ultrassom Pélvico – Via Abdominal",
+    "image": "/img-exams-webp/pelvicofeminino.webp",
+    "paragraphs": [
+      "Avalia útero, ovários e bexiga via abdominal, útil em miomas, cistos, DIU e endometriose.",
+      "Ingerir <strong>500 ml – 1 L de água</strong> e não urinar até o exame.",
+      "Duração <strong>15 – 30 minutos</strong> (pode estender com Doppler)."
+    ]
+  },
+  {
+    "slug": "pesquisa-de-endometriose-com-preparo",
+    "title": "Ultrassom – Pesquisa de Endometriose (com preparo)",
+    "image": "/img-exams-webp/endometriose.webp",
+    "paragraphs": [
+      "Ultrassom transvaginal com preparo intestinal para mapear endometriose profunda em intestino, bexiga, trompas e ovários.",
+      "Exame dura <strong>40 – 60 minutos</strong> (até 2 h em casos complexos)."
+    ]
+  },
+  {
+    "slug": "pesquisa-de-puberdade-precoce",
+    "title": "Ultrassom – Pesquisa de Puberdade Precoce (Meninas)",
+    "image": "/img-exams-webp/puberdade.webp",
+    "paragraphs": [
+      "Avalia útero, ovários e endométrio para sinais de ativação hormonal precoce.",
+      "Ingerir água para bexiga cheia; dura <strong>15 – 40 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "superior",
+    "title": "Ultrassom de Abdome Superior",
+    "image": "/img-exams-webp/abdomesup.webp",
+    "paragraphs": [
+      "Investiga fígado, vesícula, pâncreas e baço em jejum.",
+      "Jejum <strong>6 – 8 horas</strong>; dura <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "total",
+    "title": "Ultrassom de Abdome Total",
+    "image": "/img-exams-webp/abdometotal.webp",
+    "paragraphs": [
+      "Avalia todos os órgãos abdominais (superior e inferior) em um único exame.",
+      "Jejum <strong>6 – 8 horas</strong> + bexiga cheia se incluir pelve.",
+      "Dura <strong>20 – 30 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "transfontanela",
+    "title": "Ultrassom Transfontanelar",
+    "image": "/img-exams-webp/transfontanela.webp",
+    "paragraphs": [
+      "Avalia cérebro de recém-nascidos pela fontanela anterior para detecção de hemorragias, hidrocefalia e malformações.",
+      "Sem preparo; dura <strong>15 – 40 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "avaliacao-pre-cirurgia-plastica",
+    "title": "Ultrassom Avaliação Pré Cirurgia Plástica",
+    "image": "/img-exams-webp/cirurgiaplastica.webp",
+    "paragraphs": [
+      "Mapeia gordura, musculatura e hérnias, auxiliando no planejamento cirúrgico estético.",
+      "Exame personalizado; dura <strong>20 – 40 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "bolsa-escrotal-e-testiculos",
+    "title": "Ultrassom Bolsa Escrotal e Testículos",
+    "image": "/img-exams-webp/testiculos.webp",
+    "paragraphs": [
+      "Avalia testículos, epidídimos, varicocele, torção e hidrocele.",
+      "Sem preparo; dura <strong>15 – 30 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "ultrassonografia-cervical-com-ou-sem-doppler",
+    "title": "Ultrassom Cervical (com ou sem Doppler)",
+    "image": "/img-exams-webp/cervical.webp",
+    "paragraphs": [
+      "Avalia linfonodos e glândulas do pescoço; Doppler para fluxo quando indicado.",
+      "Sem preparo; dura <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "ultrassonografia-de-tireoide-com-ou-sem-doppler",
+    "title": "Ultrassom da Tireoide (com ou sem Doppler)",
+    "image": "/img-exams-webp/tireoide.webp",
+    "paragraphs": [
+      "Avalia nódulos, padrão inflamatório e fluxo da glândula tireoide.",
+      "Sem preparo; dura <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "ultrassonografia-partes-moles",
+    "title": "Ultrassom de Partes Moles",
+    "image": "/img-exams-webp/partesmoles.webp",
+    "paragraphs": [
+      "Investiga caroços, hérnias, glândulas e linfonodos superficiais em qualquer região do corpo.",
+      "Sem preparo; dura <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "rins-e-vias-urinarias",
+    "title": "Ultrassom de Rins e Vias Urinárias",
+    "image": "/img-exams-webp/viasurinarias.webp",
+    "paragraphs": [
+      "Avalia rins, ureteres proximais e bexiga para cálculos, hidronefrose e infecções.",
+      "Bexiga cheia (≈1 L de água); dura <strong>15 – 25 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "via-abdominal",
+    "title": "Ultrassom da Próstata por Via Abdominal",
+    "image": "/img-exams-webp/prostata.webp",
+    "paragraphs": [
+      "Avalia volume e contornos prostáticos via bexiga cheia; método não invasivo.",
+      "Bexiga cheia (1 L de água); dura <strong>10 – 20 minutos</strong>."
+    ]
+  },
+  {
+    "slug": "via-transretal",
+    "title": "Ultrassom da Próstata por Via Transretal",
+    "image": "/img-exams-webp/prostata.webp",
+    "paragraphs": [
+      "Avalia próstata com alta resolução e guia biópsias quando necessário.",
+      "Enema retal no dia do exame; dura <strong>15 – 30 minutos</strong>."
+    ]
+  }
+]

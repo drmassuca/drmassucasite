@@ -1,0 +1,75 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(to right, #f7fdf7, #e9f9f2);
+    color: #222;
+}
+
+a {
+    color: #007f5f;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button, .chakra-button {
+    transition: all 0.3s ease;
+}
+
+button:hover, .chakra-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+header {
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+footer {
+    background-color: #111;
+    color: white;
+    padding: 40px 20px;
+}
+
+footer a {
+    color: #00d084;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00a86b;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+}
+
+.top-button:hover {
+    background-color: #007f5f;
+}

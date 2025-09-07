@@ -1,0 +1,241 @@
+// Service Worker personalizado - Dr. Massuca Site
+// Cache estratégico para máxima performance
+
+const CACHE_NAME = 'drmassuca-v1.2';
+const STATIC_CACHE = 'drmassuca-static-v1.2';
+const DYNAMIC_CACHE = 'drmassuca-dynamic-v1.2';
+
+// Recursos para cache imediato (críticos)
+const STATIC_ASSETS = [
+  '/',
+  '/index.html',
+  '/manifest.webmanifest',
+  '/foto-home.webp',
+  '/logo.webp',
+  '/assets/texture_olive_dark_seamless.webp',
+  '/icons/favicon-192.png',
+  '/icons/favicon-512.png',
+];
+
+// Estratégias de cache por tipo de recurso
+const CACHE_STRATEGIES = {
+  // Páginas HTML - Network First (sempre atualizadas)
+  html: 'network-first',
+  // Imagens - Cache First (raramente mudam)
+  images: 'cache-first',
+  // CSS/JS - Stale While Revalidate (performance + atualização)
+  assets: 'stale-while-revalidate',
+  // APIs externas - Network First com fallback
+  api: 'network-first',
+};
+
+// URLs que sempre devem ir para a rede (não cachear)
+const NETWORK_ONLY = [
+  /\/api\//,
+  /analytics/,
+  /gtag/,
+  /google-analytics/,
+  /googletagmanager/,
+];
+
+// Install Event
+self.addEventListener('install', event => {
+  console.log('[SW] Installing...');
+  
+  event.waitUntil(
+    caches.open(STATIC_CACHE)
+      .then(cache => {
+        console.log('[SW] Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      })
+      .then(() => {
+        console.log('[SW] Installation completed');
+        return self.skipWaiting();
+      })
+      .catch(error => {
+        console.error('[SW] Installation failed:', error);
+      })
+  );
+});
+
+// Activate Event
+self.addEventListener('activate', event => {
+  console.log('[SW] Activating...');
+  
+  event.waitUntil(
+    caches.keys()
+      .then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => {
+            if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
+              console.log('[SW] Deleting old cache:', cacheName);
+              return caches.delete(cacheName);
+            }
+          })
+        );
+      })
+      .then(() => {
+        console.log('[SW] Activation completed');
+        return self.clients.claim();
+      })
+  );
+});
+
+// Fetch Event - Estratégias de cache inteligentes
+self.addEventListener('fetch', event => {
+  const { request } = event;
+  const url = new URL(request.url);
+  
+  // Pular requisições que não devem ser cacheadas
+  if (NETWORK_ONLY.some(pattern => pattern.test(url.pathname))) {
+    return;
+  }
+  
+  // Determinar estratégia baseada no tipo de recurso
+  if (request.method === 'GET') {
+    if (request.destination === 'document') {
+      // HTML - Network First com fallback para cache
+      event.respondWith(networkFirstStrategy(request));
+    } else if (request.destination === 'image') {
+      // Imagens - Cache First
+      event.respondWith(cacheFirstStrategy(request));
+    } else if (request.destination === 'script' || request.destination === 'style') {
+      // CSS/JS - Stale While Revalidate
+      event.respondWith(staleWhileRevalidateStrategy(request));
+    } else {
+      // Outros recursos - Network First
+      event.respondWith(networkFirstStrategy(request));
+    }
+  }
+});
+
+// Estratégia Network First
+async function networkFirstStrategy(request) {
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(DYNAMIC_CACHE);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.log('[SW] Network failed, trying cache:', error);
+    const cachedResponse = await caches.match(request);
+    
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+    
+    // Fallback para página offline (se existir)
+    if (request.destination === 'document') {
+      return caches.match('/index.html');
+    }
+    
+    throw error;
+  }
+}
+
+// Estratégia Cache First
+async function cacheFirstStrategy(request) {
+  const cachedResponse = await caches.match(request);
+  
+  if (cachedResponse) {
+    return cachedResponse;
+  }
+  
+  try {
+    const networkResponse = await fetch(request);
+    
+    if (networkResponse.ok) {
+      const cache = await caches.open(DYNAMIC_CACHE);
+      cache.put(request, networkResponse.clone());
+    }
+    
+    return networkResponse;
+  } catch (error) {
+    console.error('[SW] Cache First failed:', error);
+    throw error;
+  }
+}
+
+// Estratégia Stale While Revalidate
+async function staleWhileRevalidateStrategy(request) {
+  const cachedResponse = await caches.match(request);
+  
+  const fetchPromise = fetch(request).then(networkResponse => {
+    if (networkResponse.ok) {
+      const cache = caches.open(DYNAMIC_CACHE);
+      cache.then(c => c.put(request, networkResponse.clone()));
+    }
+    return networkResponse;
+  }).catch(error => {
+    console.log('[SW] Network update failed:', error);
+    return cachedResponse;
+  });
+  
+  return cachedResponse || fetchPromise;
+}
+
+// Background Sync para ações offline (futuro)
+self.addEventListener('sync', event => {
+  if (event.tag === 'background-sync') {
+    console.log('[SW] Background sync triggered');
+    // Implementar sync de dados quando necessário
+  }
+});
+
+// Push Notifications (futuro)
+self.addEventListener('push', event => {
+  if (event.data) {
+    const data = event.data.json();
+    console.log('[SW] Push received:', data);
+    
+    event.waitUntil(
+      self.registration.showNotification(data.title, {
+        body: data.body,
+        icon: '/icons/favicon-192.png',
+        badge: '/icons/favicon-32.png',
+        data: data.url,
+      })
+    );
+  }
+});
+
+// Notification Click
+self.addEventListener('notificationclick', event => {
+  event.notification.close();
+  
+  if (event.notification.data) {
+    event.waitUntil(
+      clients.openWindow(event.notification.data)
+    );
+  }
+});
+
+// Cleanup de cache antigo periodicamente
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'CLEAN_CACHE') {
+    cleanupOldCache();
+  }
+});
+
+async function cleanupOldCache() {
+  const cache = await caches.open(DYNAMIC_CACHE);
+  const requests = await cache.keys();
+  
+  // Remove entradas antigas (mais de 30 dias)
+  const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+  
+  for (const request of requests) {
+    const response = await cache.match(request);
+    if (response) {
+      const dateHeader = response.headers.get('date');
+      if (dateHeader && new Date(dateHeader).getTime() < thirtyDaysAgo) {
+        await cache.delete(request);
+        console.log('[SW] Cleaned old cache entry:', request.url);
+      }
+    }
+  }
+}

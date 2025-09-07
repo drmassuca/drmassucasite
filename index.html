@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Metas essenciais: devem vir primeiro -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Massuca | Ultrassom Itaberaí-GO | CRM-GO 17475 | Pós-Graduado</title>
+
+    <!-- Resource hints para melhorar performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//wa.me">
+    <link rel="dns-prefetch" href="//instagram.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//google-analytics.com">
+    
+    <!-- Prefetch de rotas importantes -->
+    <link rel="prefetch" href="/sobre">
+    <link rel="prefetch" href="/exames">
+    <link rel="prefetch" href="/contato">
+    
+    <!-- Critical CSS inline para eliminar render-blocking -->
+    <style>
+      /* Reset básico e estilo crítico para evitar FOUC */
+      * { box-sizing: border-box; }
+      body { 
+        margin: 0; 
+        padding: 0; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #0f3d2e;
+        color: white;
+      }
+      #root { 
+        min-height: 100vh; 
+        display: flex; 
+        flex-direction: column;
+        background-image: url('/assets/texture_olive_dark_seamless.webp');
+        background-repeat: repeat;
+        background-size: auto;
+        background-attachment: fixed;
+      }
+      /* Hero section crítico */
+      .hero-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2.5rem 1rem;
+        min-height: 600px;
+      }
+      .hero-text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .hero-title {
+        font-size: 3rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0 0 1rem 0;
+        min-height: 110px;
+      }
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        min-height: 672px;
+        width: 480px;
+        max-width: 480px;
+      }
+      .hero-image img {
+        width: 100%;
+        height: 672px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        aspect-ratio: 479 / 672;
+      }
+      /* Header crítico */
+      .header {
+        background: #0f3d2e;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .logo {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        aspect-ratio: 1 / 1;
+      }
+      /* Loading spinner */
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px;
+      }
+      .spinner {
+        width: 3rem;
+        height: 3rem;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-left-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      /* Mobile responsivo */
+      @media (max-width: 768px) {
+        .hero-container {
+          flex-direction: column;
+          padding: 2rem 1rem;
+          min-height: auto;
+        }
+        .hero-title {
+          font-size: 2.5rem;
+          text-align: center;
+        }
+        .hero-image {
+          width: 100%;
+          max-width: 360px;
+          min-height: 400px;
+        }
+        .hero-image img {
+          height: 400px;
+        }
+      }
+    </style>
+    
+    <!-- Preload apenas da imagem principal (condicional) -->
+    <link rel="preload" href="/foto-home.webp" as="image" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
+    
+    <!-- Ícones & PWA -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="/icons/favicon-180.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#d4af37" />
+
+    <!-- Meta principal -->
+    <meta
+      name="description"
+      content="Ultrassom em Itaberaí-GO com Dr. Massuca (CRM-GO 17475). Mais de 20 anos de experiência, pós-graduado em ultrassonografia geral e ecocardiografia fetal. Agende seu exame!"
+    />
+    <meta name="keywords" content="ultrassom Itaberaí, ultrassonografia Itaberaí GO, Dr Massuca, CRM-GO 17475, exame ultrassom, ultrassom obstétrico, ecocardiografia fetal, ultrassonografia geral" />
+    <meta name="author" content="Dr. Antonio Massucatti Neto" />
+    <meta name="geo.region" content="BR-GO" />
+    <meta name="geo.placename" content="Itaberaí" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://drmassuca.com.br" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dr. Massuca | Ultrassom Itaberaí-GO | CRM-GO 17475" />
+    <meta
+      property="og:description"
+      content="Ultrassom em Itaberaí-GO com Dr. Massuca. Mais de 20 anos de experiência, pós-graduado em ultrassonografia geral e ecocardiografia fetal."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://drmassuca.com.br" />
+    <meta property="og:image" content="https://drmassuca.com.br/logo-pe.webp" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Consent Strict: nada carrega antes do aceite -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+
+      gtag('consent', 'default', {
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted'
+      });
+
+      // Carrega GTM somente após aceitar
+      window.__GTM_ID = 'GTM-PPH3NLG6';
+      window.__gtmLoaded = false;
+      window.__loadGTM = function (id) {
+        if (!id || window.__gtmLoaded) return;
+        window.__gtmLoaded = true;
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', id);
+      };
+
+      window.__acceptAnalytics = function () {
+        gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted'
+        });
+        window.__loadGTM && window.__loadGTM(window.__GTM_ID);
+        dataLayer.push({ event: 'consent_updated', consent: 'granted' });
+      };
+
+      window.__denyAnalytics = function () {
+        gtag('consent', 'update', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+        dataLayer.push({ event: 'consent_updated', consent: 'denied' });
+      };
+    </script>
+
+    <!-- Dados estruturados Schema.org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalClinic",
+        "name": "Dr. Massuca - Ultrassonografia",
+        "description": "Ultrassom em Itaberaí-GO. Dr. Massuca, ultrassonografia obstétrica, geral e ecocardiografia fetal.",
+        "image": "https://drmassuca.com.br/logo-pe.webp",
+        "url": "https://drmassuca.com.br",
+        "telephone": "+55-62-99660-2117",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua 19 Qd 33, Lt 01 - Vila Leonor, Itaberaí - GO",
+          "addressLocality": "Itaberaí",
+          "addressRegion": "GO",
+          "postalCode": "76630-000",
+          "addressCountry": "BR"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:00",
+            "closes": "12:00"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Entrada Vite (dev) -->
+    <script type="module" src="/src/main.jsx"></script>
+  </head>
+
+  <body>
+    <div id="root">
+      <!-- Loading inline para melhorar perceived performance -->
+      <div class="loading">
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <noscript>
+      <div style="text-align:center; padding:20px; font-family:sans-serif;">
+        <h1>Dr. Massuca – Ultrassom em Itaberaí-GO</h1>
+        <p>Ultrassonografia obstétrica, geral e ecocardiografia fetal.</p>
+        <p>Para agendar seu exame ou obter mais informações, por favor habilite o JavaScript no seu navegador.</p>
+      </div>
+    </noscript>
+  </body>
+</html>

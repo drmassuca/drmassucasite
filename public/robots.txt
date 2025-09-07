@@ -1,0 +1,38 @@
+# Robots.txt para Dr. Massuca
+# Última atualização: 2025-08-16
+
+# Regras gerais para todos os bots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dist/
+Disallow: /.git/
+
+# Otimização para crawlers específicos
+User-agent: Googlebot
+Crawl-delay: 0
+Allow: /
+
+User-agent: Bingbot
+Crawl-delay: 1
+Allow: /
+
+# Bloquear bots ruins conhecidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap
+Sitemap: https://drmassuca.com.br/sitemap.xml
+
+# Velocidade de crawl (opcional)
+Crawl-delay: 1

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, Calendar, Tag, TrendingUp, Users, Brain, Stethoscope, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../../components/SEOHead';
-import './IAMedica.css';
+import './IAMedica.css?v=2';
 
 const IAMedica = () => {
   const navigate = useNavigate();
@@ -241,13 +241,12 @@ const IAMedica = () => {
                 }}
               >
                 <div className="card-category">{article.category}</div>
-                <div className="card-content">
-                  <h3 className="card-title">{article.title}</h3>
-                  <p className="card-excerpt">{article.excerpt}</p>
-                  
+                
+                {/* Highlights lateralizados */}
+                <div className="card-highlights">
                   {article.investment && (
                     <div className="card-highlight">
-                      💰 Investimento: {article.investment}
+                      💰 {article.investment}
                     </div>
                   )}
                   
@@ -262,6 +261,11 @@ const IAMedica = () => {
                       🏥 {article.patients} pacientes
                     </div>
                   )}
+                </div>
+                
+                <div className="card-content">
+                  <h3 className="card-title">{article.title}</h3>
+                  <p className="card-excerpt">{article.excerpt}</p>
 
                   <div className="card-tags">
                     {article.tags.slice(0, 3).map((tag, index) => (

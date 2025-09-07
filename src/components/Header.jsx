@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { FaWhatsapp, FaInstagram, FaBars } from 'react-icons/fa';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const menuItems = [
   { name: 'Início', path: '/' },
@@ -34,6 +35,7 @@ const menuItems = [
 const Header = () => {
   const location = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [currentIALogo, setCurrentIALogo] = useState(1);
 
   // Destaca o item ativo inclusive em rotas filhas (/faq/slug, /exames/algum-exame)
   const isActive = path => location.pathname === path || location.pathname.startsWith(`${path}/`);
@@ -44,6 +46,19 @@ const Header = () => {
   // Define cores do header baseado na seção
   const headerBg = isIAMedicaSection ? 'linear-gradient(135deg, #4c1d95 0%, #3730a3 100%)' : 'green.900';
   const textColor = 'white'; // Sempre branco para contraste
+  
+  // Rotação automática dos logos IA a cada 5 segundos
+  useEffect(() => {
+    if (isIAMedicaSection) {
+      const interval = setInterval(() => {
+        setCurrentIALogo(prev => (prev % 3) + 1);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isIAMedicaSection]);
+  
+  // Seleciona o logo baseado na seção
+  const logoSrc = isIAMedicaSection ? `/logo-ia-${currentIALogo}.webp` : '/logo.webp';
 
   return (
     <Flex
@@ -63,8 +78,8 @@ const Header = () => {
       <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
         <HStack spacing={4}>
           <Image
-            src="/logo.webp"
-            alt="Logo Dr. Massuca"
+            src={logoSrc}
+            alt={isIAMedicaSection ? "Logo IA Médica" : "Logo Dr. Massuca"}
             // Dimensões explícitas e fixas para zero CLS
             width="70"
             height="70"
@@ -76,6 +91,7 @@ const Header = () => {
             objectFit="cover"
             loading="eager"
             decoding="sync"
+            transition="all 0.5s ease"
             // CSS inline para garantir zero layout shift
             style={{
               aspectRatio: '1 / 1',

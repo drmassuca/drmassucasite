@@ -99,13 +99,22 @@ function usePageTracking() {
 
 function App() {
   usePageTracking();
+  const location = useLocation();
+  
+  // Determina se estamos em uma página de IA
+  const isIAPage = location.pathname.startsWith('/ia-medica');
+  
+  // Seleciona o background baseado na rota
+  const backgroundImage = isIAPage 
+    ? "url('/assets/seamless-neon.webp')"
+    : "url('/assets/texture_olive_dark_seamless.webp')";
 
   return (
     <Box
       minHeight="100vh"
       display="flex"
       flexDirection="column"
-      bgImage="url('/assets/texture_olive_dark_seamless.webp')"
+      bgImage={backgroundImage}
       bgRepeat="repeat"
       bgSize="auto"
       bgAttachment="fixed"

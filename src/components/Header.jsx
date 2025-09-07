@@ -24,7 +24,7 @@ const menuItems = [
   { name: 'Sobre', path: '/sobre' },
   { name: 'Ultrassonografias', path: '/exames' },
   { name: 'Área do Paciente', path: '/area-do-paciente' },
-  { name: 'Para Médicos', path: '/para-medicos' },
+  { name: 'IA Médica', path: '/ia-medica' },
   { name: 'Depoimentos', path: '/depoimentos' },
   // >>> NOVO item do menu
   { name: 'FAQ', path: '/faq' },

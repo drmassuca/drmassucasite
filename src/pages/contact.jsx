@@ -221,8 +221,8 @@ function Contact() {
             </Box>
           </VStack>
 
-          {/* CTA WhatsApp */}
-          <Box textAlign="center" mt={10}>
+          {/* CTAs */}
+          <VStack spacing={6} mt={10} textAlign="center">
             <Button
               as="a"
               href="https://wa.me/5562996602117"
@@ -240,7 +240,28 @@ function Contact() {
             >
               Fale Agora pelo WhatsApp
             </Button>
-          </Box>
+            
+            {/* Link para Médicos */}
+            <Box>
+              <Text fontSize="md" color="gray.600" mb={2}>
+                🩺 Você é médico?
+              </Text>
+              <Button
+                as="a"
+                href="/para-medicos"
+                variant="outline"
+                borderColor="#d4af37"
+                color="#d4af37"
+                _hover={{ bg: "#d4af37", color: "white", transform: "scale(1.05)" }}
+                borderRadius="full"
+                px={6}
+                py={3}
+                fontWeight="bold"
+              >
+                Contato para Médicos
+              </Button>
+            </Box>
+          </VStack>
         </Box>
       </Box>
     </>

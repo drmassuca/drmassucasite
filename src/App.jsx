@@ -29,6 +29,14 @@ const FaqIndex = lazy(() => import('./pages/faq'));
 /* >>> NOVO: rotas das 48 subpáginas do FAQ (geradas no pacote) */
 import { faqRouteObjects } from './routes/faqRoutes.jsx';
 
+/* >>> IA MÉDICA: Lazy load das páginas de IA */
+const IAMedica = lazy(() => import('./pages/ia-medica'));
+const StableDiffusion3DFetal = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal'));
+const SDInstalacao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/instalacao'));
+const SDConfiguracao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/configuracao'));
+const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
+const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
+
 /* Lazy load para TODOS os exames - reduz bundle inicial */
 const ObstetricoDeRotina = lazy(() => import('./pages/exam-details/obstetrico-de-rotina'));
 const MorfologicoPrimeiroTrimestre = lazy(
@@ -139,6 +147,14 @@ function App() {
             {faqRouteObjects.map(r => (
               <Route key={r.path} path={r.path} element={r.element} />
             ))}
+
+            {/* >>> ROTAS DA IA MÉDICA */}
+            <Route path="/ia-medica" element={<IAMedica />} />
+            <Route path="/ia-medica/stable-diffusion-3d-fetal" element={<StableDiffusion3DFetal />} />
+            <Route path="/ia-medica/stable-diffusion-3d-fetal/instalacao" element={<SDInstalacao />} />
+            <Route path="/ia-medica/stable-diffusion-3d-fetal/configuracao" element={<SDConfiguracao />} />
+            <Route path="/ia-medica/stable-diffusion-3d-fetal/exemplos" element={<SDExemplos />} />
+            <Route path="/ia-medica/stable-diffusion-3d-fetal/problemas" element={<SDProblemas />} />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
             <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />

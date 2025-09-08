@@ -15,6 +15,7 @@ import {
   Heart,
 } from 'lucide-react';
 import SEOHead from '../../components/SEOHead';
+import FloatingAccessibilityMenu from '../../components/FloatingAccessibilityMenu';
 import './ArticleDetail.css';
 
 const ArticleDetail = () => {
@@ -1102,6 +1103,9 @@ const ArticleDetail = () => {
             Voltar para IA Médica
           </button>
         </div>
+
+        {/* Menu Flutuante de Acessibilidade */}
+        <FloatingAccessibilityMenu content={article.content} />
 
         {/* Imagem do Artigo - Agora no topo */}
         <div className="article-image-container">

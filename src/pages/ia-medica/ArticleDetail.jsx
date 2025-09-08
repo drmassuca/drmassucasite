@@ -630,129 +630,139 @@ const ArticleDetail = () => {
     },
     7: {
       id: 7,
-      title: 'Brasil Lidera Agenda de IA na Saúde no BRICS 2025',
+      title: 'Ministério da Saúde Apresenta Hospital Inteligente do SUS ao BRICS',
       subtitle:
-        'Presidência brasileira prioriza cooperação internacional em IA médica e governança de dados em saúde',
+        'Projeto de US$ 320 milhões para o primeiro hospital inteligente do SUS foi apresentado ao Novo Banco de Desenvolvimento',
       excerpt:
-        'Presidência brasileira prioriza cooperação internacional em IA médica e governança de dados em saúde.',
+        'Ministério da Saúde apresenta ao banco do BRICS projeto para construção do primeiro hospital inteligente do SUS com investimento de US$ 320 milhões.',
       category: 'Internacional',
-      date: '2025-05-30',
+      date: '2025-07-07',
       readTime: '6 min',
       author: 'Dr. Massuca',
-      tags: ['BRICS', 'Cooperação', 'Saúde Digital', 'Internacional'],
-      featured: false,
+      tags: ['BRICS', 'Hospital Inteligente', 'SUS', 'ITMI-Brasil', 'USP'],
+      featured: true,
       image: '/images/ia-medica/brics-saude-bg.jpg',
-      likes: 145,
-      shares: 71,
+      investment: 'US$ 320 milhões',
+      location: 'Hospital das Clínicas - USP/SP',
+      likes: 245,
+      shares: 89,
       content: `
-        <h2>Liderança Global em Saúde Digital</h2>
+        <h2>Marco Histórico para o SUS</h2>
         
-        <p>Durante a presidência brasileira do BRICS em 2025, o Brasil estabeleceu a inteligência artificial na saúde como prioridade estratégica do bloco. A iniciativa busca criar um marco de cooperação entre Brasil, Rússia, Índia, China e África do Sul para o desenvolvimento de soluções de IA médica.</p>
+        <p>O <strong>Ministério da Saúde</strong> apresentou oficialmente ao Novo Banco do Desenvolvimento (NDB), o banco do BRICS, o projeto para construção do primeiro hospital inteligente do Sistema Único de Saúde. O protocolo para financiamento de <strong>US$ 320 milhões</strong> foi entregue pelo ministro Alexandre Padilha à presidenta do banco, Dilma Rousseff.</p>
 
         <div class="highlight-box">
-          <h3>🌍 Agenda BRICS Saúde Digital</h3>
+          <h3>🏥 Instituto Tecnológico de Medicina Inteligente (ITMI-Brasil)</h3>
           <ul>
-            <li><strong>Compartilhamento tecnológico</strong> entre países membros</li>
-            <li><strong>Padrões éticos</strong> comuns para IA médica</li>
-            <li><strong>Governança de dados</strong> em saúde pública</li>
-            <li><strong>Capacitação conjunta</strong> de profissionais</li>
+            <li><strong>Localização:</strong> Hospital das Clínicas da USP, São Paulo</li>
+            <li><strong>Investimento:</strong> US$ 320 milhões aprovados pela Cofiex</li>
+            <li><strong>Área:</strong> 150 mil m² com padrões internacionais</li>
+            <li><strong>Parceria:</strong> Ministério da Saúde e Universidade de São Paulo</li>
           </ul>
         </div>
 
-        <h3>Iniciativas Estratégicas</h3>
+        <h3>Tecnologias Revolucionárias</h3>
         
-        <p>O Brasil propôs um conjunto abrangente de ações para fortalecer a cooperação em saúde digital:</p>
+        <p>O ITMI-Brasil será um centro de excelência em saúde digital, integrando as mais avançadas tecnologias:</p>
         
-        <div class="process-steps">
-          <div class="step">
-            <span class="step-number">1</span>
-            <div>
-              <h4>🤝 Rede de Cooperação</h4>
-              <p>Criação de rede permanente de instituições de pesquisa em IA médica</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">2</span>
-            <div>
-              <h4>📊 Base de Dados Conjunta</h4>
-              <p>Desenvolvimento de repositório compartilhado de dados para treinamento de IA</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">3</span>
-            <div>
-              <h4>⚖️ Marcos Regulatórios</h4>
-              <p>Harmonização de normas éticas e regulatórias entre países</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">4</span>
-            <div>
-              <h4>🎓 Programa de Capacitação</h4>
-              <p>Intercâmbio de conhecimento e formação de especialistas</p>
-            </div>
-          </div>
+        <h4>🧠 Inteligência Artificial Aplicada</h4>
+        <p>Sistemas de IA para diagnóstico, prognóstico e gestão assistencial automatizada, otimizando tomadas de decisão médica.</p>
+
+        <h4>🚑 Ambulâncias Conectadas 5G</h4>
+        <p>Comunicação em tempo real entre ambulâncias e hospital, permitindo preparo antecipado da equipe médica.</p>
+
+        <h4>📱 Telessaúde Integrada</h4>
+        <p>Plataforma completa de telemedicina com consultas remotas e monitoramento contínuo de pacientes.</p>
+
+        <h4>🏥 Automação Hospitalar</h4>
+        <p>Integração total com prontuários eletrônicos e sistemas preditivos de gestão assistencial para alta eficiência operacional.</p>
+
+        <div class="quote-box">
+          <blockquote>
+            "Apresentamos ao banco dos BRICS o projeto para o desenvolvimento de um hospital inteligente que use toda a tecnologia da informação e inteligência artificial, com base em experiências que estão acontecendo na China. É um grande passo para o Brasil entrar nessa revolução tecnológica."
+            <cite>— Alexandre Padilha, Ministro da Saúde</cite>
+          </blockquote>
         </div>
 
-        <div class="startup-metrics">
-          <div class="metric">
-            <span class="metric-number">5</span>
-            <span class="metric-label">Países Membros</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">3.2B</span>
-            <span class="metric-label">População Total</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">42%</span>
-            <span class="metric-label">PIB Global</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">15+</span>
-            <span class="metric-label">Projetos Conjuntos</span>
-          </div>
-        </div>
+        <h3>Cooperação Internacional BRICS</h3>
+        
+        <p>O projeto representa um marco na cooperação entre os países do BRICS, unindo Brasil, China e demais membros em uma iniciativa que promove:</p>
 
         <div class="benefits-grid">
           <div class="benefit-item">
-            <strong>🌍 Escala Global</strong>
-            <p>Acesso a populações diversas para desenvolvimento de IA inclusiva</p>
+            <strong>🤝 Intercâmbio Tecnológico</strong>
+            <p>Transferência de tecnologia e conhecimento entre países do BRICS</p>
           </div>
           <div class="benefit-item">
-            <strong>💰 Recursos Compartilhados</strong>
-            <p>Otimização de investimentos em pesquisa e desenvolvimento</p>
+            <strong>🎓 Ensino e Pesquisa</strong>
+            <p>Centro de formação em medicina inteligente e inovação</p>
           </div>
           <div class="benefit-item">
-            <strong>🎯 Soluções Adaptadas</strong>
-            <p>Tecnologias adequadas às realidades dos países em desenvolvimento</p>
+            <strong>🌍 Padrões Globais</strong>
+            <p>Adoção de práticas internacionais em sustentabilidade e segurança</p>
           </div>
           <div class="benefit-item">
-            <strong>🔄 Transferência Tecnológica</strong>
-            <p>Aceleração da inovação através do compartilhamento</p>
+            <strong>⚡ Eficiência Operacional</strong>
+            <p>Regulação inteligente de leitos e redução do tempo de permanência</p>
           </div>
         </div>
 
         <div class="quote-box">
           <blockquote>
-            "A liderança brasileira no BRICS representa uma oportunidade única de posicionar o país na vanguarda da saúde digital global, beneficiando milhões de pessoas."
-            <cite>— Ministério da Saúde</cite>
+            "O projeto que está em análise pelo NDB simboliza o futuro da saúde pública global, baseado na cooperação internacional, na transferência de tecnologia e na aplicação da ciência e da inovação em benefício das populações."
+            <cite>— Dilma Rousseff, Presidenta do Banco do BRICS</cite>
           </blockquote>
         </div>
 
-        <div class="investor-spotlight">
-          <h4>🎆 Resultados Esperados</h4>
-          <p>A cooperação BRICS em IA médica promete acelerar o desenvolvimento de soluções inovadoras, reduzir custos de pesquisa e democratizar o acesso a tecnologias de ponta.</p>
+        <h3>Rede de UTIs Inteligentes</h3>
+        
+        <p>Além do hospital principal, o projeto inclui a estruturação de uma <strong>rede de 10 UTIs inteligentes</strong> espalhadas pelo país, modernizando e qualificando o cuidado intensivo no SUS.</p>
+
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div>
+              <h4>🏥 Modernização</h4>
+              <p>Atualização tecnológica de UTIs existentes em hospitais do SUS</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div>
+              <h4>🔗 Integração Digital</h4>
+              <p>Conectividade e suporte de telessaúde para cuidado em rede</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div>
+              <h4>🚀 Expansão Nacional</h4>
+              <p>Ampliação progressiva para mais unidades em todo o território</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">4</span>
+            <div>
+              <h4>🏭 Setor Industrial</h4>
+              <p>Fortalecimento da relação com setores de desenvolvimento tecnológico</p>
+            </div>
+          </div>
         </div>
 
-        <div class="future-outlook">
-          <h4>🚀 Projetos Futuros</h4>
-          <p>Os países BRICS plannejam lançar centro conjunto de excelência em IA médica e programa de intercâmbio de pesquisadores em 2026.</p>
+        <div class="investor-spotlight">
+          <h4>🏗️ Características do Projeto</h4>
+          <p>O novo edifício seguirá padrões internacionais de sustentabilidade, com foco em logística interna avançada, redução de infecções hospitalares e preparação para desastres e pandemias. A estrutura será climaticamente otimizada e humanizada.</p>
+        </div>
+
+        <div class="call-to-action">
+          <h4>🔮 Futuro da Saúde Pública</h4>
+          <p>O ITMI-Brasil representará uma revolução na saúde pública brasileira, combinando inovação tecnológica, cooperação internacional e excelência em atendimento para beneficiar milhões de brasileiros.</p>
         </div>
       `,
       sources: [
         {
-          title: 'BRICS Brasil 2025 - Saúde Digital',
-          url: 'https://www.brics2025.gov.br/saude-digital-inteligencia-artificial',
+          title: 'Ministério da Saúde - Hospital Inteligente do SUS',
+          url: 'https://www.gov.br/saude/pt-br/assuntos/noticias/2025/julho/ministerio-da-saude-apresenta-ao-banco-do-brics-projeto-para-construcao-do-primeiro-hospital-inteligente-do-sus',
           type: 'Fonte Oficial',
         },
       ],

@@ -76,17 +76,21 @@ const ConfigurationPage = () => {
   return (
     <Container maxW="6xl" py={8}>
       <VStack spacing={8} align="stretch">
-        <Box>
-          <Heading size="xl" mb={4} color="#667eea">
-            Configuração Golden Standard
-          </Heading>
-          <Text fontSize="lg" color="gray.600">
-            Configure o Stable Diffusion com os parâmetros validados para imagens obstétricas 3D
-          </Text>
-          <Badge colorScheme="green" mt={2} fontSize="sm">
-            ⭐ 100% de Sucesso em Testes
-          </Badge>
-        </Box>
+        <Card>
+          <CardBody>
+            <VStack spacing={4} align="start">
+              <Heading size="xl" color="#667eea">
+                Configuração Golden Standard
+              </Heading>
+              <Text fontSize="lg" color="gray.600">
+                Configure o Stable Diffusion com os parâmetros validados para imagens obstétricas 3D
+              </Text>
+              <Badge colorScheme="green" fontSize="sm">
+                ⭐ 100% de Sucesso em Testes
+              </Badge>
+            </VStack>
+          </CardBody>
+        </Card>
 
         {/* Quick Setup Alert */}
         <Alert status="success">

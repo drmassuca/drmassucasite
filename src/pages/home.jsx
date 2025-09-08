@@ -4,8 +4,12 @@ import { Box, Heading, Text, Button, Image, VStack, Stack } from '@chakra-ui/rea
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { Link as RouterLink } from 'react-router-dom';
 import Chatbot from '../components/Chatbot'; // Agora usando Claude
+import { useScrollToTop } from '../utils/useScrollToTop';
 
 function Home() {
+  // Hook para garantir scroll to top
+  useScrollToTop();
+
   return (
     <>
       {/* ➜ SEO base */}

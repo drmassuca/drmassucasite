@@ -2,12 +2,16 @@ import { Helmet } from 'react-helmet-async';
 import SEO from '../components/SEO';
 import { Box, Heading, Text, VStack, SimpleGrid, Icon, Button } from '@chakra-ui/react';
 import { FaHeart, FaBullseye, FaFileAlt, FaComments, FaWhatsapp } from 'react-icons/fa';
+import { useScrollToTop } from '../utils/useScrollToTop';
 
 /**
  * Página "Sobre o Dr. Antonio Massucatti Neto"
  * ➡️ Ajustada para o novo padrão SEO / Schema.
  */
 function About() {
+  // Hook para garantir scroll to top
+  useScrollToTop();
+
   return (
     <>
       {/* SEO base */}

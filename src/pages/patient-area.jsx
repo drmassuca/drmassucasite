@@ -16,12 +16,16 @@ import {
   AccordionIcon,
 } from '@chakra-ui/react';
 import { FaCheckCircle, FaWhatsapp } from 'react-icons/fa';
+import { useScrollToTop } from '../utils/useScrollToTop';
 
 /**
  * Página "Área do Paciente"
  * ➜ Padronizada para Ultrassom + SEO + FAQPage schema + links seguros.
  */
 function PatientArea() {
+  // Hook para garantir scroll to top
+  useScrollToTop();
+
   /* FAQ para gerar JSON-LD --------------------------- */
   const faqs = [
     {

@@ -20,8 +20,12 @@ import {
   FaInstagram,
   FaClock,
 } from 'react-icons/fa';
+import { useScrollToTop } from '../utils/useScrollToTop';
 
 function Contact() {
+  // Hook para garantir scroll to top
+  useScrollToTop();
+
   return (
     <>
       {/* ➜ SEO base */}

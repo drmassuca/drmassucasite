@@ -5,6 +5,7 @@ import CookieConsent from 'react-cookie-consent';
 
 import Header from './components/header';
 import Footer from './components/footer';
+import ScrollToTop from './components/ScrollToTop';
 import AdvancedAnalytics from './components/AdvancedAnalytics';
 import LinkOptimizer from './components/LinkOptimizer';
 // import PerformanceMonitoring from './components/PerformanceMonitoring';
@@ -122,6 +123,7 @@ function App() {
       bgAttachment="fixed"
     >
       <Header />
+      <ScrollToTop />
 
       <Box flex="1" p={4}>
         <Suspense

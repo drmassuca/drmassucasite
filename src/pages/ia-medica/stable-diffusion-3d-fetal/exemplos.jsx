@@ -81,17 +81,21 @@ const ExamplesPage = () => {
   return (
     <Container maxW="7xl" py={8}>
       <VStack spacing={8} align="stretch">
-        <Box>
-          <Heading size="xl" mb={4} color="#667eea">
-            Exemplos de Resultados
-          </Heading>
-          <Text fontSize="lg" color="gray.600" mb={4}>
-            Veja os resultados reais obtidos com a configuração Golden Standard
-          </Text>
-          <Badge colorScheme="green" fontSize="md" p={2}>
-            100% de Sucesso - 4 casos validados
-          </Badge>
-        </Box>
+        <Card>
+          <CardBody>
+            <VStack spacing={4} align="start">
+              <Heading size="xl" color="#667eea">
+                Exemplos de Resultados
+              </Heading>
+              <Text fontSize="lg" color="gray.600">
+                Veja os resultados reais obtidos com a configuração Golden Standard
+              </Text>
+              <Badge colorScheme="green" fontSize="md" p={2}>
+                100% de Sucesso - 4 casos validados
+              </Badge>
+            </VStack>
+          </CardBody>
+        </Card>
 
         {/* Success Alert */}
         <Alert status="success">

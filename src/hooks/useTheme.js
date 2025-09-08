@@ -7,24 +7,24 @@ export const useTheme = () => {
     if (savedTheme) {
       return savedTheme;
     }
-    
+
     // Fallback para preferência do sistema
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
-    
+
     return 'light';
   });
 
   useEffect(() => {
     // Salvar no localStorage
     localStorage.setItem('article-theme', theme);
-    
+
     // Aplicar classe no documento
     const root = document.documentElement;
     root.classList.remove('theme-light', 'theme-dark');
     root.classList.add(`theme-${theme}`);
-    
+
     // Aplicar variáveis CSS
     if (theme === 'dark') {
       root.style.setProperty('--article-bg-primary', '#1a1a2e');
@@ -56,7 +56,7 @@ export const useTheme = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
   const isDark = theme === 'dark';
@@ -65,6 +65,6 @@ export const useTheme = () => {
     theme,
     isDark,
     toggleTheme,
-    setTheme
+    setTheme,
   };
 };

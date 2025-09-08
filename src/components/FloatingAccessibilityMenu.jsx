@@ -1,5 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Settings, X, Volume2, Type, Sun, Moon, Play, Pause, Square, Minus, Plus, RotateCcw } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import {
+  Settings,
+  X,
+  Volume2,
+  Type,
+  Sun,
+  Moon,
+  Play,
+  Pause,
+  Square,
+  Minus,
+  Plus,
+  RotateCcw,
+} from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import { useFontSize } from '../hooks/useFontSize';
 import { useTextToSpeech } from '../hooks/useTextToSpeech';
@@ -9,17 +23,17 @@ const FloatingAccessibilityMenu = ({ content }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeControl, setActiveControl] = useState(null);
   const menuRef = useRef(null);
-  
+
   // Hooks de funcionalidade
   const { isDark, toggleTheme } = useTheme();
-  const { 
-    currentSize, 
-    fontSizeConfig, 
-    increaseFontSize, 
-    decreaseFontSize, 
+  const {
+    currentSize,
+    fontSizeConfig,
+    increaseFontSize,
+    decreaseFontSize,
     resetFontSize,
-    canIncrease, 
-    canDecrease 
+    canIncrease,
+    canDecrease,
   } = useFontSize();
   const {
     isSupported: ttsSupported,
@@ -29,7 +43,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
     loadText,
     play,
     pause,
-    stop
+    stop,
   } = useTextToSpeech();
 
   // Debug: Verificar se as variáveis CSS estão sendo aplicadas
@@ -39,10 +53,12 @@ const FloatingAccessibilityMenu = ({ content }) => {
       scale: fontSizeConfig.scale,
       canIncrease,
       canDecrease,
-      cssVariable: getComputedStyle(document.documentElement).getPropertyValue('--article-font-scale'),
-      htmlClass: document.documentElement.className
+      cssVariable: getComputedStyle(document.documentElement).getPropertyValue(
+        '--article-font-scale'
+      ),
+      htmlClass: document.documentElement.className,
     });
-    
+
     // Forçar uma atualização visual para garantir que as mudanças sejam aplicadas
     document.documentElement.style.setProperty('--article-font-debug', fontSizeConfig.scale);
   }, [currentSize, fontSizeConfig, canIncrease, canDecrease]);
@@ -56,7 +72,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
 
   // Fechar ao clicar fora
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
         setActiveControl(null);
@@ -76,7 +92,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
 
   // Fechar com ESC
   useEffect(() => {
-    const handleEscape = (event) => {
+    const handleEscape = event => {
       if (event.key === 'Escape') {
         setIsOpen(false);
         setActiveControl(null);
@@ -99,7 +115,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
     }
   };
 
-  const handleControlClick = (controlType) => {
+  const handleControlClick = controlType => {
     setActiveControl(activeControl === controlType ? null : controlType);
   };
 
@@ -132,7 +148,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
           >
             {isPlaying ? <Pause size={18} /> : <Play size={18} />}
           </button>
-          
+
           <button
             className="tts-btn-simple stop"
             onClick={stop}
@@ -144,10 +160,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
 
           <div className="tts-progress-simple">
             <div className="progress-bar">
-              <div 
-                className="progress-fill" 
-                style={{ width: `${progress}%` }}
-              />
+              <div className="progress-fill" style={{ width: `${progress}%` }} />
             </div>
             <span className="progress-text">{Math.round(progress)}%</span>
           </div>
@@ -174,9 +187,11 @@ const FloatingAccessibilityMenu = ({ content }) => {
       <div className="simple-font">
         <div className="font-info">
           <Type className="font-icon" />
-          <span className="font-current">{fontSizeConfig.name} ({fontSizeConfig.scale}x)</span>
+          <span className="font-current">
+            {fontSizeConfig.name} ({fontSizeConfig.scale}x)
+          </span>
         </div>
-        
+
         <div className="font-controls-simple">
           <button
             className={`font-btn-simple decrease ${!canDecrease ? 'disabled' : ''}`}
@@ -187,16 +202,13 @@ const FloatingAccessibilityMenu = ({ content }) => {
             <Minus size={16} />
             <span>A-</span>
           </button>
-          
+
           <div className="font-scale">
             <div className="scale-bar">
-              <div 
-                className="scale-fill" 
-                style={{ width: `${fontSizeConfig.scale * 60}%` }}
-              />
+              <div className="scale-fill" style={{ width: `${fontSizeConfig.scale * 60}%` }} />
             </div>
           </div>
-          
+
           <button
             className={`font-btn-simple increase ${!canIncrease ? 'disabled' : ''}`}
             onClick={handleIncrease}
@@ -206,12 +218,8 @@ const FloatingAccessibilityMenu = ({ content }) => {
             <span>A+</span>
             <Plus size={16} />
           </button>
-          
-          <button
-            className="font-btn-simple reset"
-            onClick={handleReset}
-            title="Resetar"
-          >
+
+          <button className="font-btn-simple reset" onClick={handleReset} title="Resetar">
             <RotateCcw size={16} />
           </button>
         </div>
@@ -228,22 +236,16 @@ const FloatingAccessibilityMenu = ({ content }) => {
         title={isDark ? 'Modo Claro' : 'Modo Escuro'}
       >
         <div className="theme-icon-container">
-          {isDark ? (
-            <Moon className="theme-icon" />
-          ) : (
-            <Sun className="theme-icon" />
-          )}
+          {isDark ? <Moon className="theme-icon" /> : <Sun className="theme-icon" />}
         </div>
-        
+
         <div className="theme-switch">
           <div className={`switch-track ${isDark ? 'dark' : 'light'}`}>
             <div className="switch-thumb" />
           </div>
         </div>
-        
-        <span className="theme-label">
-          {isDark ? 'Modo Escuro' : 'Modo Claro'}
-        </span>
+
+        <span className="theme-label">{isDark ? 'Modo Escuro' : 'Modo Claro'}</span>
       </button>
     </div>
   );
@@ -254,26 +256,26 @@ const FloatingAccessibilityMenu = ({ content }) => {
       label: 'Leitor de Texto',
       icon: Volume2,
       component: <TTSPanel />,
-      shortLabel: 'Áudio'
+      shortLabel: 'Áudio',
     },
     {
       id: 'font',
       label: 'Tamanho da Fonte',
       icon: Type,
       component: <FontPanel />,
-      shortLabel: 'Fonte'
+      shortLabel: 'Fonte',
     },
     {
       id: 'theme',
       label: 'Tema da Página',
       icon: isDark ? Moon : Sun,
       component: <ThemePanel />,
-      shortLabel: 'Tema'
-    }
+      shortLabel: 'Tema',
+    },
   ];
 
   return (
-    <div 
+    <div
       ref={menuRef}
       className={`floating-accessibility-menu ${isOpen ? 'open' : ''}`}
       role="dialog"
@@ -288,11 +290,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
         title="Acessibilidade"
       >
         <div className="fab-icon">
-          {isOpen ? (
-            <X className="icon" />
-          ) : (
-            <Settings className="icon" />
-          )}
+          {isOpen ? <X className="icon" /> : <Settings className="icon" />}
         </div>
         <span className="fab-pulse"></span>
       </button>
@@ -302,13 +300,13 @@ const FloatingAccessibilityMenu = ({ content }) => {
         <>
           {/* Overlay para móvel */}
           <div className="menu-overlay" onClick={() => setIsOpen(false)} />
-          
+
           {/* Container dos Controles */}
           <div className="controls-container">
             {controls.map((control, index) => {
               const IconComponent = control.icon;
               const isActive = activeControl === control.id;
-              
+
               return (
                 <div
                   key={control.id}
@@ -340,9 +338,7 @@ const FloatingAccessibilityMenu = ({ content }) => {
                           <X className="close-icon" />
                         </button>
                       </div>
-                      <div className="panel-content">
-                        {control.component}
-                      </div>
+                      <div className="panel-content">{control.component}</div>
                     </div>
                   )}
                 </div>
@@ -353,6 +349,10 @@ const FloatingAccessibilityMenu = ({ content }) => {
       )}
     </div>
   );
+};
+
+FloatingAccessibilityMenu.propTypes = {
+  content: PropTypes.string.isRequired,
 };
 
 export default FloatingAccessibilityMenu;

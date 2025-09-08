@@ -3,21 +3,21 @@ import { useFontSize } from '../hooks/useFontSize';
 import './FontSizeControls.css';
 
 const FontSizeControls = () => {
-  const { 
-    fontSizeConfig, 
-    increaseFontSize, 
-    decreaseFontSize, 
+  const {
+    fontSizeConfig,
+    increaseFontSize,
+    decreaseFontSize,
     resetFontSize,
-    canIncrease, 
-    canDecrease 
+    canIncrease,
+    canDecrease,
   } = useFontSize();
 
   return (
     <div className="font-controls">
       <div className="font-controls-group">
         <Type className="font-controls-icon" />
-        
-        <button 
+
+        <button
           className={`font-btn decrease ${!canDecrease ? 'disabled' : ''}`}
           onClick={decreaseFontSize}
           disabled={!canDecrease}
@@ -27,18 +27,15 @@ const FontSizeControls = () => {
           <Minus className="font-btn-icon" />
           <span className="font-btn-label">A-</span>
         </button>
-        
+
         <div className="font-current">
           <span className="font-current-label">{fontSizeConfig.name}</span>
           <div className="font-scale-indicator">
-            <span 
-              className="font-scale-bar" 
-              style={{ width: `${fontSizeConfig.scale * 60}%` }}
-            />
+            <span className="font-scale-bar" style={{ width: `${fontSizeConfig.scale * 60}%` }} />
           </div>
         </div>
-        
-        <button 
+
+        <button
           className={`font-btn increase ${!canIncrease ? 'disabled' : ''}`}
           onClick={increaseFontSize}
           disabled={!canIncrease}
@@ -48,8 +45,8 @@ const FontSizeControls = () => {
           <span className="font-btn-label">A+</span>
           <Plus className="font-btn-icon" />
         </button>
-        
-        <button 
+
+        <button
           className="font-btn reset"
           onClick={resetFontSize}
           aria-label="Resetar fonte"

@@ -32,91 +32,356 @@ const ArticleDetail = () => {
       id: 1,
       title: 'ITMI-Brasil: Primeiro Hospital Público Inteligente do País',
       subtitle:
-        'Ministério da Saúde anuncia marco tecnológico que promete revolucionar o atendimento no SUS',
+        'Projeto revolucionário de US$ 320 milhões transformará o atendimento emergencial no SUS com IA, 5G e telessaúde',
       excerpt:
-        'Ministério da Saúde anuncia hospital com 800 leitos que reduzirá tempo de espera de 17h para 2h usando IA e 5G.',
+        'Marco histórico na saúde pública: hospital com 800 leitos que reduzirá tempo de espera de 17h para 2h usando IA, 5G e uma rede nacional de UTIs inteligentes.',
       category: 'Infraestrutura',
-      date: '2025-09-07',
-      readTime: '5 min',
+      date: '2025-09-04',
+      readTime: '15 min',
       author: 'Dr. Massuca',
-      tags: ['SUS', 'Hospital Inteligente', '5G', 'Emergência', 'IA Médica'],
+      tags: ['ITMI-Brasil', 'Hospital Inteligente', '5G', 'IA Médica', 'SUS', 'BRICS', 'USP', 'HCFMUSP'],
       featured: true,
       image: '/images/ia-medica/hospital-bg.jpg',
       investment: 'US$ 320 milhões',
       location: 'Hospital das Clínicas - USP/SP',
-      likes: 247,
-      shares: 89,
+      patients: '16 milhões potenciais',
+      likes: 347,
+      shares: 129,
       content: `
-        <h2>Uma Nova Era na Saúde Pública Brasileira</h2>
+        <h2>Uma Revolução na Saúde Pública Brasileira</h2>
         
-        <p>O Brasil está prestes a dar um salto tecnológico sem precedentes na área da saúde pública. O <strong>Instituto Tecnológico de Medicina Inteligente (ITMI-Brasil)</strong> representa muito mais que um hospital – é o símbolo de uma transformação digital que promete revolucionar o atendimento médico no país.</p>
+        <p>O <strong>Instituto Tecnológico de Medicina Inteligente (ITMI-Brasil)</strong> representa o mais ambicioso projeto de transformação digital já concebido para o Sistema Único de Saúde. Mais que um hospital, é um marco histórico que posicionará o Brasil na vanguarda mundial da medicina inteligente.</p>
+
+        <p>Localizado no complexo do Hospital das Clínicas da FMUSP, em São Paulo, este empreendimento de <strong>US$ 320 milhões</strong> financiado pelo Novo Banco de Desenvolvimento (NDB-BRICS) promete revolucionar o atendimento de emergência no país, integrando tecnologias de ponta como inteligência artificial, conectividade 5G, Internet das Coisas (IoT) e telessaúde em uma unidade de 800 leitos voltada para emergências de alta complexidade.</p>
 
         <div class="highlight-box">
-          <h3>🏥 Números Impressionantes</h3>
+          <h3>🏥 ITMI-Brasil em Números</h3>
           <ul>
-            <li><strong>800 leitos</strong> especializados em emergências críticas</li>
-            <li><strong>Redução de 17h para 2h</strong> no tempo de espera</li>
-            <li><strong>US$ 320 milhões</strong> em investimento dos BRICS</li>
-            <li><strong>Previsão de inauguração:</strong> 2027</li>
+            <li><strong>800 leitos</strong> especializados em emergências neurológicas e cardíacas</li>
+            <li><strong>150.000 m²</strong> de área construída com padrões internacionais</li>
+            <li><strong>Redução de 17h para 2h</strong> no tempo de atendimento crítico</li>
+            <li><strong>US$ 320 milhões</strong> do NDB + contrapartida nacional (~R$ 400 milhões)</li>
+            <li><strong>10 UTIs inteligentes</strong> conectadas em capitais brasileiras</li>
+            <li><strong>Inauguração prevista:</strong> final de 2027</li>
+            <li><strong>Início das obras:</strong> 2026</li>
           </ul>
         </div>
 
-        <h3>Tecnologias Revolucionárias</h3>
+        <h3>Cronologia de um Marco Histórico</h3>
         
-        <p>O ITMI-Brasil integrará um ecossistema tecnológico completo:</p>
+        <p>O projeto ITMI-Brasil ganhou forma através de uma série de eventos decisivos que demonstram o comprometimento do governo brasileiro com a inovação em saúde:</p>
         
-        <h4>🚑 Ambulâncias Conectadas 5G</h4>
-        <p>Sistema de comunicação em tempo real entre ambulâncias e hospital, permitindo que a equipe médica receba dados vitais do paciente antes mesmo de sua chegada, otimizando o preparo para o atendimento.</p>
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">Jun/2025</span>
+            <div>
+              <h4>📋 Aprovação COFIEX</h4>
+              <p>A Comissão de Financiamentos Externos autoriza preparação do projeto e financiamento de US$ 320 milhões junto ao NDB-BRICS</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">Jul/2025</span>
+            <div>
+              <h4>🤝 Apresentação ao BRICS</h4>
+              <p>Ministros da Saúde e MCTI apresentam formalmente o projeto à presidenta do NDB, Dilma Rousseff, iniciando análise técnica detalhada</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">Set/2025</span>
+            <div>
+              <h4>✍️ Acordo de Cooperação</h4>
+              <p>Assinatura oficial do ACT entre Ministério da Saúde, USP e Governo de SP, formalizando o consórcio para implementação</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2026</span>
+            <div>
+              <h4>🏗️ Início das Obras</h4>
+              <p>Começo da construção e implementação das 10 UTIs inteligentes piloto em hospitais das capitais selecionadas</p>
+            </div>
+          </div>
+        </div>
 
-        <h4>🧠 Inteligência Artificial Diagnóstica</h4>
-        <p>Algoritmos avançados auxiliarão médicos na tomada de decisões, analisando exames, histórico do paciente e sintomas para sugerir diagnósticos mais rápidos e precisos.</p>
-
-        <h4>🏥 UTIs Preditivas</h4>
-        <p>Sistemas de IA monitorarão constantemente pacientes críticos, identificando sinais precoces de complicações como sepse ou choque, permitindo intervenções preventivas.</p>
-
-        <h4>📱 Plataformas de Telessaúde</h4>
-        <p>Integração completa com consultas remotas, monitoramento domiciliar e acompanhamento pós-alta, expandindo o cuidado além das paredes do hospital.</p>
-
-        <h3>Impacto no SUS</h3>
+        <h3>Arquitetura Tecnológica Revolucionária</h3>
         
-        <p>Além de melhorar dramaticamente a eficiência no atendimento, o ITMI-Brasil funcionará como um <strong>centro de inovação e formação</strong> em saúde digital. A iniciativa promete:</p>
+        <p>O ITMI-Brasil foi concebido como um ecossistema tecnológico integrado que redefine os padrões de atendimento hospitalar:</p>
+        
+        <h4>🧠 Inteligência Artificial Aplicada</h4>
+        <p>O hospital incorporará modelos de IA em múltiplos contextos assistenciais, incluindo:</p>
+        <ul>
+          <li><strong>Triagem inteligente:</strong> Análise de sinais vitais e sintomas para estratificação de risco no protocolo de Manchester</li>
+          <li><strong>Diagnóstico por imagem:</strong> Algoritmos para detecção de AVC em tomografias e infarto em eletrocardiogramas</li>
+          <li><strong>UTI preditiva:</strong> Sistemas que analisam centenas de variáveis para prever deterioração clínica e sepse horas antes dos sinais tradicionais</li>
+          <li><strong>Assistentes virtuais:</strong> Apoio à decisão médica baseado em diretrizes e dados do paciente</li>
+        </ul>
+
+        <h4>📡 Conectividade 5G Integral</h4>
+        <p>Infraestrutura 5G de ponta a ponta garantirá:</p>
+        <ul>
+          <li><strong>Ambulâncias conectadas:</strong> Transmissão contínua de dados clínicos e videoconferência durante o transporte</li>
+          <li><strong>Cobertura interna completa:</strong> Antenas 5G em todo o edifício para comunicação instantânea</li>
+          <li><strong>Redundância de conectividade:</strong> Links de fibra óptica integrados à RNDS do Ministério da Saúde</li>
+        </ul>
+
+        <h4>🏥 Telessaúde e Regulação Inteligente</h4>
+        <p>Central de telemedicina para suporte remoto que incluirá:</p>
+        <ul>
+          <li><strong>Tele-UTI:</strong> Especialistas acompanharão em tempo real pacientes críticos nas 10 UTIs remotas parceiras</li>
+          <li><strong>Regulação de leitos:</strong> Sistema inteligente com IA preditiva para otimizar transferências e reduzir tempo de espera</li>
+          <li><strong>Teleconsultas especializadas:</strong> Suporte remoto para unidades básicas de saúde</li>
+        </ul>
+
+        <h4>🔒 Segurança e Interoperabilidade</h4>
+        <p>Padrão zero trust de segurança com:</p>
+        <ul>
+          <li><strong>Conformidade LGPD:</strong> Controle de acesso granular e logs de auditoria invioláveis</li>
+          <li><strong>Integração nacional:</strong> Compatibilidade com RNDS, Conecte SUS e Meu SUS Digital</li>
+          <li><strong>Padrões internacionais:</strong> HL7 FHIR, terminologias CID-10, LOINC e SNOMED CT</li>
+        </ul>
+
+        <div class="startup-metrics">
+          <div class="metric">
+            <span class="metric-number">800</span>
+            <span class="metric-label">Leitos Especializados</span>
+          </div>
+          <div class="metric">
+            <span class="metric-number">90%</span>
+            <span class="metric-label">Redução no Tempo</span>
+          </div>
+          <div class="metric">
+            <span class="metric-number">10</span>
+            <span class="metric-label">UTIs Conectadas</span>
+          </div>
+          <div class="metric">
+            <span class="metric-number">R$ 2 bi</span>
+            <span class="metric-label">Investimento Total</span>
+          </div>
+        </div>
+
+        <h3>Rede Nacional de UTIs Inteligentes</h3>
+        
+        <p>Uma das inovações mais impactantes do projeto é a criação de uma rede interligada de UTIs inteligentes. Serão implantadas UTIs com monitoramento intensivo por IA em <strong>10 capitais brasileiras</strong>: Belém, Brasília, Belo Horizonte, Fortaleza, Porto Alegre, Rio de Janeiro, Recife, Salvador, São Paulo e Teresina.</p>
+
+        <p>Essas unidades estarão conectadas ao HUB do HCFMUSP, permitindo:</p>
+        <ul>
+          <li><strong>Tele-UTI em tempo real:</strong> Monitoramento remoto 24/7 por especialistas</li>
+          <li><strong>Segunda opinião instantânea:</strong> Consultoria especializada para casos complexos</li>
+          <li><strong>Regulação ágil:</strong> Otimização de transferências entre unidades da rede</li>
+          <li><strong>Capacitação contínua:</strong> Treinamento remoto de equipes locais</li>
+        </ul>
 
         <div class="benefits-grid">
           <div class="benefit-item">
-            <strong>⚡ Diagnósticos Mais Rápidos</strong>
-            <p>IA auxiliará na interpretação de exames e na identificação precoce de patologias</p>
+            <strong>⚡ Tempo Porta-Agulha</strong>
+            <p>Redução drástica no tempo crítico para AVC e infarto através de regulação inteligente</p>
           </div>
           <div class="benefit-item">
-            <strong>🎯 Terapias Personalizadas</strong>
-            <p>Tratamentos adaptados ao perfil individual de cada paciente</p>
+            <strong>🎯 Medicina Personalizada</strong>
+            <p>IA auxilia na personalização de tratamentos baseados no perfil do paciente</p>
           </div>
           <div class="benefit-item">
-            <strong>🔮 Medicina Preditiva</strong>
-            <p>Antecipação de complicações e prevenção de agravamentos</p>
+            <strong>📊 Gestão Baseada em Dados</strong>
+            <p>Análise preditiva de demandas e vigilância epidemiológica aprimorada</p>
           </div>
           <div class="benefit-item">
-            <strong>📚 Formação Médica</strong>
-            <p>Centro de treinamento para profissionais em tecnologias de saúde</p>
+            <strong>🌍 Padrão Internacional</strong>
+            <p>Alinhamento com melhores práticas globais em sustentabilidade e segurança</p>
           </div>
+        </div>
+
+        <h3>Parceria Estratégica e Governança</h3>
+        
+        <p>O ITMI-Brasil resulta de uma parceria inovadora entre múltiplas instituições:</p>
+        
+        <div class="quote-box">
+          <blockquote>
+            "O hospital inteligente fortalece o SUS, alia tecnologia de ponta ao cuidado humanizado, proporcionando ao paciente um cuidado mais rápido, eficaz e humano."
+            <cite>— Alexandre Padilha, Ministro da Saúde</cite>
+          </blockquote>
+        </div>
+
+        <h4>🏛️ Atores Principais:</h4>
+        <ul>
+          <li><strong>Ministério da Saúde:</strong> Proponente e líder do projeto, coordenação geral e gestão do financiamento</li>
+          <li><strong>Universidade de São Paulo:</strong> Parceira acadêmica, pesquisa, inovação e formação profissional</li>
+          <li><strong>Governo do Estado de SP:</strong> Cessão do terreno e integração com rede estadual</li>
+          <li><strong>HCFMUSP:</strong> Executor local e operação integrada à estrutura existente</li>
+          <li><strong>MCTI:</strong> Apoio técnico-científico e investimento em P&D via Finep/FNDCT</li>
+          <li><strong>NDB-BRICS:</strong> Financiador principal com foco em cooperação internacional</li>
+        </ul>
+
+        <div class="quote-box">
+          <blockquote>
+            "Primeiros passos de um futuro em que o cuidado será mais ágil, preciso e humano, graças à ciência e responsabilidade pública."
+            <cite>— Prof. Paulo Pêgo, HC-FMUSP</cite>
+          </blockquote>
+        </div>
+
+        <h3>Aspectos Financeiros e Sustentabilidade</h3>
+        
+        <p>O projeto conta com estrutura financeira robusta e diversificada:</p>
+
+        <h4>💰 Composição do Financiamento:</h4>
+        <ul>
+          <li><strong>NDB-BRICS:</strong> US$ 320 milhões (~R$ 1,7 bilhão) - 80% do projeto</li>
+          <li><strong>Contrapartida Nacional:</strong> ~R$ 400 milhões (20%) - União e Estado de SP</li>
+          <li><strong>MCTI Complementar:</strong> Recursos via Nova Indústria Brasil para P&D</li>
+          <li><strong>Valor total estimado:</strong> Aproximadamente R$ 2 bilhões</li>
+        </ul>
+
+        <p>O financiamento do NDB oferece condições favoráveis e representa um marco na cooperação Sul-Sul, enquanto a contrapartida nacional garante o comprometimento e sustentabilidade do projeto.</p>
+
+        <h3>Tecnologia Nacional e Transferência de Conhecimento</h3>
+        
+        <p>O ITMI-Brasil funcionará como catalisador para o desenvolvimento tecnológico nacional:</p>
+        
+        <ul>
+          <li><strong>Formação de ecossistema:</strong> Estímulo a startups e empresas de healthtech</li>
+          <li><strong>Pesquisa aplicada:</strong> Parcerias com universidades para desenvolvimento de soluções</li>
+          <li><strong>Transferência tecnológica:</strong> Cooperação internacional, especialmente com a China</li>
+          <li><strong>Capacitação profissional:</strong> Centro de excelência em saúde digital e segurança cibernética</li>
+        </ul>
+
+        <div class="quote-box">
+          <blockquote>
+            "O projeto simboliza o futuro da saúde pública global, baseado na cooperação internacional e transferência de tecnologia."
+            <cite>— Dilma Rousseff, Presidenta do NDB-BRICS</cite>
+          </blockquote>
+        </div>
+
+        <h3>Desafios e Gestão de Riscos</h3>
+        
+        <p>Como todo projeto inovador de grande escala, o ITMI-Brasil enfrenta desafios que estão sendo ativamente gerenciados:</p>
+
+        <h4>🛡️ Mitigação de Riscos:</h4>
+        <ul>
+          <li><strong>Regulatórios:</strong> Alinhamento contínuo com normativas da Anvisa, CFM e ANPD</li>
+          <li><strong>Tecnológicos:</strong> Fase intensiva de testes de interoperabilidade antes da inauguração</li>
+          <li><strong>Operacionais:</strong> Programas de capacitação e gestão de mudança para profissionais</li>
+          <li><strong>Financeiros:</strong> Gestão do risco cambial e reservas de contingência</li>
+          <li><strong>Cibersegurança:</strong> Equipes especializadas 24/7 e protocolos de resposta a incidentes</li>
+        </ul>
+
+        <h3>Impacto Social e Econômico</h3>
+        
+        <p>O ITMI-Brasil gerará benefícios que transcendem o setor saúde:</p>
+
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <strong>👥 Vidas Salvas</strong>
+            <p>Diagnósticos precoces e intervenções rápidas salvarão milhares de vidas anualmente</p>
+          </div>
+          <div class="benefit-item">
+            <strong>💡 Inovação Tecnológica</strong>
+            <p>Atração de investimentos e desenvolvimento do ecossistema de healthtech nacional</p>
+          </div>
+          <div class="benefit-item">
+            <strong>🎓 Formação Profissional</strong>
+            <p>Capacitação de uma nova geração de profissionais em saúde digital</p>
+          </div>
+          <div class="benefit-item">
+            <strong>🌍 Referência Global</strong>
+            <p>Posicionamento do Brasil como líder em medicina inteligente na América Latina</p>
+          </div>
+        </div>
+
+        <h3>Cronograma de Implementação</h3>
+        
+        <p>A execução do projeto segue cronograma rigorosamente planejado:</p>
+
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">2025</span>
+            <div>
+              <h4>📊 Finalização</h4>
+              <p>Aprovação final do empréstimo NDB, contratação pela União e autorização do Senado Federal</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2026</span>
+            <div>
+              <h4>🏗️ Construção</h4>
+              <p>Início das obras civis, implementação das UTIs piloto e desenvolvimento de sistemas de IA</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2027</span>
+            <div>
+              <h4>⚙️ Integração</h4>
+              <p>Instalação tecnológica, testes de sistemas, treinamento de equipes e preparação operacional</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">Q4/2027</span>
+            <div>
+              <h4>🎉 Inauguração</h4>
+              <p>Entrada em operação plena, início do atendimento a pacientes e funcionamento da rede de UTIs</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>Coordenação Clínica de Excelência</h3>
+        
+        <p>O projeto conta com liderança médica de primeira linha. A <strong>Dra. Ludhmila Hajjar</strong>, coordenadora clínica do ITMI-Brasil e professora de Emergências Clínicas da FMUSP, destaca que a iniciativa "reduzirá substancialmente o tempo médio de acesso ao atendimento especializado, de cerca de 17 horas para aproximadamente 2 horas".</p>
+
+        <p>A coordenação clínica foca na humanização da tecnologia, garantindo que os avanços digitais ampliem - nunca substituam - a relação médico-paciente, mantendo o cuidado humanizado como pilar central do atendimento.</p>
+
+        <h3>Compliance e Boas Práticas</h3>
+        
+        <p>O ITMI-Brasil estabelece novos padrões de compliance em saúde digital:</p>
+
+        <ul>
+          <li><strong>LGPD:</strong> Conformidade total com análise de impacto e DPO dedicado</li>
+          <li><strong>ISO 27001/27799:</strong> Certificação em segurança da informação para sistemas críticos</li>
+          <li><strong>HL7 FHIR:</strong> Interoperabilidade garantida com padrões internacionais</li>
+          <li><strong>Governança de IA:</strong> Comitê multidisciplinar para ética e transparência algorítmica</li>
+          <li><strong>CFM 2314/2022:</strong> Compliance total com diretrizes de telemedicina</li>
+        </ul>
+
+        <div class="call-to-action">
+          <h4>🚀 O Futuro da Medicina Já Começou</h4>
+          <p>O ITMI-Brasil não é apenas um projeto de infraestrutura - é a materialização de uma visão de futuro onde tecnologia e humanismo convergem para salvar vidas. Representa o primeiro passo em direção a uma rede nacional de hospitais inteligentes que colocará o Brasil na vanguarda mundial da medicina digital.</p>
+          
+          <p>Ao combinar investimento internacional, expertise acadêmica, inovação tecnológica e compromisso com o SUS, o ITMI-Brasil inaugura uma nova era onde cada segundo conta, cada dado importa e cada vida é preservada através da inteligência aplicada à medicina.</p>
         </div>
 
         <div class="quote-box">
           <blockquote>
-            "O ITMI-Brasil representa um marco tecnológico e de assistência, prometendo diagnósticos mais rápidos, terapias personalizadas e UTIs conectadas que preveem riscos em tempo real."
-            <cite>— Ministério da Saúde</cite>
+            "O ITMI-Brasil fortalece o SUS e alia tecnologia de ponta ao cuidado humanizado, proporcionando ao paciente um cuidado mais rápido, eficaz e humano. A tecnologia a serviço do médico e do paciente."
+            <cite>— Declaração Oficial do Ministério da Saúde</cite>
           </blockquote>
-        </div>
-
-        <div class="call-to-action">
-          <h4>🚀 O Que Esperar Até 2027?</h4>
-          <p>Acompanhe o desenvolvimento do ITMI-Brasil e prepare-se para uma revolução na saúde pública brasileira. A medicina do futuro está chegando, e ela fala português.</p>
         </div>
       `,
       sources: [
         {
-          title: 'Ministério da Saúde - Anúncio Oficial',
+          title: 'Ministério da Saúde - Anúncio Oficial ITMI-Brasil',
           url: 'https://www.gov.br/saude/pt-br/assuntos/noticias/2025/setembro/ministerio-da-saude-anuncia-criacao-do-primeiro-hospital-publico-inteligente-do-brasil',
           type: 'Fonte Oficial',
+        },
+        {
+          title: 'MCTI - Brasil apresenta projeto do 1º hospital inteligente do SUS ao banco do BRICS',
+          url: 'https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2025/07/brasil-apresenta-projeto-do-1o-hospital-inteligente-do-sus-ao-banco-do-brics',
+          type: 'Fonte Oficial',
+        },
+        {
+          title: 'Diário Oficial da União - Resolução COFIEX nº 57/2025',
+          url: 'https://www.escavador.com/diarios/6084221/DOU/secao-1/2025-07-04?page=310',
+          type: 'Documento Legal',
+        },
+        {
+          title: 'Jornal da USP - Brasil terá seu primeiro hospital inteligente',
+          url: 'https://jornal.usp.br/institucional/brasil-tera-seu-primeiro-hospital-inteligente-no-complexo-do-hospital-das-clinicas/',
+          type: 'Fonte Acadêmica',
+        },
+        {
+          title: 'Futuro da Saúde - Primeiro hospital inteligente do Brasil será construído em SP',
+          url: 'https://futurodasaude.com.br/hospital-inteligente-usp/',
+          type: 'Mídia Especializada',
+        },
+        {
+          title: 'Terra - O que se sabe sobre o primeiro hospital público inteligente do Brasil',
+          url: 'https://www.terra.com.br/noticias/o-que-se-sabe-sobre-o-primeiro-hospital-publico-inteligente-do-brasil',
+          type: 'Mídia Nacional',
         },
       ],
     },

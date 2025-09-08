@@ -140,8 +140,6 @@ const IAMedica = () => {
     { id: 'Internacional', name: 'Internacional', icon: Calendar },
   ];
 
-
-
   useEffect(() => {
     let filtered = articles;
 
@@ -179,55 +177,21 @@ const IAMedica = () => {
       />
 
       <div className="ia-medica-container">
-        {/* Hero Section */}
+        {/* Hero Section - IA Themed */}
         <section className="hero-section">
           <div className="hero-content">
             <div className="hero-text">
               <h1>
-                🩺 <span className="gradient-text">IA Médica</span> - Dr. Massuca
+                <div className="title-stack">
+                  <span className="gradient-text">IA Médica</span>
+                </div>
               </h1>
-              <p className="hero-description">
-                Médico Ultrassonografista compartilhando conhecimento sobre<br />
-                Inteligência Artificial aplicada à Medicina
-              </p>
+              
               <div className="content-types">
-                <span className="content-type">Notícias</span>
+                <span className="content-type">Notícias IA</span>
                 <span className="separator">•</span>
                 <span className="content-type">Tutoriais</span>
-                <span className="separator">•</span>
-                <span className="content-type">Análises</span>
-                <span className="separator">•</span>
-                <span className="content-type">Experiências Práticas</span>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Search and Filter Section */}
-        <section className="search-section">
-          <div className="search-container">
-            <div className="search-box">
-              <Search className="search-icon" />
-              <input
-                type="text"
-                placeholder="Buscar artigos sobre IA médica..."
-                value={searchTerm}
-                onChange={e => setSearchTerm(e.target.value)}
-                className="search-input"
-              />
-            </div>
-
-            <div className="category-filters">
-              {categories.map(category => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
-                >
-                  <category.icon className="category-icon" />
-                  {category.name}
-                </button>
-              ))}
             </div>
           </div>
         </section>
@@ -300,6 +264,35 @@ const IAMedica = () => {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        {/* Search and Filter Section */}
+        <section className="search-section">
+          <div className="search-container">
+            <div className="search-box">
+              <Search className="search-icon" />
+              <input
+                type="text"
+                placeholder="Buscar artigos sobre IA médica..."
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                className="search-input"
+              />
+            </div>
+
+            <div className="category-filters">
+              {categories.map(category => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
+                >
+                  <category.icon className="category-icon" />
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -376,7 +369,7 @@ const IAMedica = () => {
           <div className="upcoming-content">
             <h2>🔮 Em Breve</h2>
             <p>Próximos conteúdos sobre IA médica com Dr. Massuca</p>
-            
+
             <div className="upcoming-grid">
               <div className="upcoming-item">
                 <span className="upcoming-icon">🎥</span>
@@ -399,25 +392,25 @@ const IAMedica = () => {
             <div className="social-section">
               <p className="social-text">Acompanhe nas redes sociais:</p>
               <div className="social-links">
-                <a 
-                  href="https://instagram.com/drmassuca" 
-                  target="_blank" 
+                <a
+                  href="https://instagram.com/drmassuca"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="social-link instagram"
                 >
                   📸 Instagram
                 </a>
-                <a 
-                  href="https://wa.me/5562999999999" 
-                  target="_blank" 
+                <a
+                  href="https://wa.me/5562999999999"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="social-link whatsapp"
                 >
                   💬 WhatsApp
                 </a>
-                <a 
-                  href="https://x.com/drmassuca" 
-                  target="_blank" 
+                <a
+                  href="https://x.com/drmassuca"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="social-link twitter"
                 >

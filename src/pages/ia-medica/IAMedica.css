@@ -19,9 +19,9 @@
   pointer-events: none;
 }
 
-/* Hero Section */
+/* Hero Section - Clean & Centered */
 .hero-section {
-  padding: 80px 20px 60px;
+  padding: 40px 20px 30px;
   position: relative;
   z-index: 1;
 }
@@ -32,35 +32,47 @@
   text-align: center;
 }
 
+/* Título Principal */
 .hero-text h1 {
-  font-size: 3rem;
+  font-size: 4.2rem;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 20px;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #00f5ff 0%, #9370db 100%);
+  background: linear-gradient(135deg, #00f5ff 0%, #9370db 50%, #ff6b9d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+  font-size: 1em;
+  line-height: 1;
 }
 
-.hero-description {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 25px;
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .content-types {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .content-type {
@@ -568,24 +580,16 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-section {
-    padding: 60px 20px 40px;
+    padding: 35px 20px 25px;
   }
   
   .hero-text h1 {
-    font-size: 2.2rem;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
+    font-size: 3.2rem;
   }
   
   .content-types {
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .separator {
-    display: none;
+    flex-wrap: nowrap;
+    gap: 6px;
   }
   
   .category-filters {
@@ -643,15 +647,16 @@
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 50px 20px 30px;
+    padding: 30px 20px 20px;
   }
   
   .hero-text h1 {
-    font-size: 1.8rem;
+    font-size: 2.6rem;
   }
   
-  .hero-description {
-    font-size: 0.9rem;
+  .content-types {
+    flex-wrap: nowrap;
+    gap: 4px;
   }
   
   .featured-card {

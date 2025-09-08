@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Play, Pause, Square, Volume2, Settings } from 'lucide-react';
 import { useTextToSpeech } from '../hooks/useTextToSpeech';
 import './TextToSpeechPlayer.css';
@@ -18,7 +19,7 @@ const TextToSpeechPlayer = ({ content }) => {
     pause,
     stop,
     changeRate,
-    changeVoice
+    changeVoice,
   } = useTextToSpeech();
 
   // Carregar texto quando o componente monta ou content muda
@@ -51,11 +52,11 @@ const TextToSpeechPlayer = ({ content }) => {
     { value: 1.0, label: '1x' },
     { value: 1.25, label: '1.25x' },
     { value: 1.5, label: '1.5x' },
-    { value: 2.0, label: '2x' }
+    { value: 2.0, label: '2x' },
   ];
 
-  const portugueseVoices = voices.filter(voice => 
-    voice.lang.startsWith('pt') || voice.lang.includes('pt-BR')
+  const portugueseVoices = voices.filter(
+    voice => voice.lang.startsWith('pt') || voice.lang.includes('pt-BR')
   );
 
   return (
@@ -67,11 +68,7 @@ const TextToSpeechPlayer = ({ content }) => {
           aria-label={isPlaying ? 'Pausar leitura' : 'Iniciar leitura'}
           title={isPlaying ? 'Pausar' : 'Reproduzir'}
         >
-          {isPlaying ? (
-            <Pause className="tts-icon" />
-          ) : (
-            <Play className="tts-icon" />
-          )}
+          {isPlaying ? <Pause className="tts-icon" /> : <Play className="tts-icon" />}
         </button>
 
         <button
@@ -86,10 +83,7 @@ const TextToSpeechPlayer = ({ content }) => {
 
         <div className="tts-progress">
           <div className="tts-progress-bar">
-            <div 
-              className="tts-progress-fill" 
-              style={{ width: `${progress}%` }}
-            />
+            <div className="tts-progress-fill" style={{ width: `${progress}%` }} />
           </div>
           <span className="tts-progress-text">{Math.round(progress)}%</span>
         </div>
@@ -131,7 +125,7 @@ const TextToSpeechPlayer = ({ content }) => {
               <select
                 className="tts-voice-select"
                 value={selectedVoice?.name || ''}
-                onChange={(e) => {
+                onChange={e => {
                   const voice = voices.find(v => v.name === e.target.value);
                   if (voice) changeVoice(voice);
                 }}
@@ -148,6 +142,10 @@ const TextToSpeechPlayer = ({ content }) => {
       )}
     </div>
   );
+};
+
+TextToSpeechPlayer.propTypes = {
+  content: PropTypes.string.isRequired,
 };
 
 export default TextToSpeechPlayer;

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import TextToSpeechPlayer from './TextToSpeechPlayer';
 import FontSizeControls from './FontSizeControls';
 import ThemeToggle from './ThemeToggle';
@@ -11,12 +12,12 @@ const ArticleControls = ({ content }) => {
         <div className="controls-section left">
           <TextToSpeechPlayer content={content} />
         </div>
-        
+
         {/* Seção Centro - Controles de Fonte */}
         <div className="controls-section center">
           <FontSizeControls />
         </div>
-        
+
         {/* Seção Direita - Toggle de Tema */}
         <div className="controls-section right">
           <ThemeToggle />
@@ -24,6 +25,10 @@ const ArticleControls = ({ content }) => {
       </div>
     </div>
   );
+};
+
+ArticleControls.propTypes = {
+  content: PropTypes.string.isRequired,
 };
 
 export default ArticleControls;

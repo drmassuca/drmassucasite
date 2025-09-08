@@ -22,6 +22,21 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 9,
+      title: 'Stable Diffusion 3D Fetal: IA Revoluciona Ultrassom Obstétrico',
+      excerpt:
+        'Tecnologia de IA generativa transforma imagens 3D fetais com qualidade cinematográfica, preservando 100% da anatomia médica.',
+      category: 'Aplicação Clínica',
+      date: '2025-09-07',
+      readTime: '8 min',
+      tags: ['Ultrassom 3D', 'IA Generativa', 'Stable Diffusion', 'Obstetrícia'],
+      featured: true,
+      image: '/imagens-3d/antesedepois1.2.png',
+      enhancement: '150% qualidade visual',
+      preservation: '100% anatomia',
+      link: '/ia-medica/stable-diffusion-3d-fetal',
+    },
+    {
       id: 1,
       title: 'ITMI-Brasil: Primeiro Hospital Público Inteligente do País',
       excerpt:
@@ -37,17 +52,17 @@ const IAMedica = () => {
     },
     {
       id: 2,
-      title: 'Voa Health: IA Generativa Revoluciona Prontuários Médicos',
+      title: 'Voa Health: A Trajetória da Startup que Revoluciona a Documentação Médica com IA',
       excerpt:
-        'Startup brasileira recebe US$ 3 milhões e reduz em 80% o tempo de documentação clínica com 20 mil médicos cadastrados.',
+        'Fundada por dois médicos brasileiros em 2023, cresceu de US$ 300 mil para US$ 3 milhões em investimentos da Prosus Ventures, atendendo 20+ mil profissionais.',
       category: 'Startups',
-      date: '2025-03-15',
-      readTime: '4 min',
-      tags: ['Prontuário Eletrônico', 'IA Generativa', 'Voa Health', 'Unimed'],
+      date: '2025-08-30',
+      readTime: '8 min',
+      tags: ['Voa Health', 'IA Médica', 'Prontuário Eletrônico', 'Prosus Ventures', 'Healthtech'],
       featured: true,
       image: '/images/ia-medica/voa-health-bg.jpg',
-      users: '20.000 médicos',
-      consultations: '80.000 consultas/mês',
+      users: '20.000+ médicos',
+      consultations: '80.000+ consultas/mês',
     },
     {
       id: 3,
@@ -62,20 +77,6 @@ const IAMedica = () => {
       image: '/images/ia-medica/chestfinder.svg',
       accuracy: 'Alta acurácia',
       availability: 'Código Aberto',
-    },
-    {
-      id: 4,
-      title: 'CEREIA: Hapvida-UFC Aplica IA em 16 Milhões de Pacientes',
-      excerpt:
-        'Centro de referência atinge 72% de precisão na prevenção de doença renal contra 22% dos métodos tradicionais.',
-      category: 'Aplicação Clínica',
-      date: '2025-08-10',
-      readTime: '7 min',
-      tags: ['Prevenção', 'Doença Renal', 'Hapvida', 'UFC'],
-      featured: true,
-      image: '/images/ia-medica/cereia-bg.jpg',
-      investment: 'R$ 17,5 milhões',
-      patients: '16 milhões',
     },
     {
       id: 5,
@@ -124,23 +125,8 @@ const IAMedica = () => {
       date: '2025-08-05',
       readTime: '5 min',
       tags: ['Legislação', 'PL 2338/23', 'Câmara', 'Segurança'],
-      featured: false,
-      image: '/images/ia-medica/camara-debate.svg',
-    },
-    {
-      id: 9,
-      title: 'Stable Diffusion 3D Fetal: IA Revoluciona Ultrassom Obstétrico',
-      excerpt:
-        'Tecnologia de IA generativa transforma imagens 3D fetais com qualidade cinematográfica, preservando 100% da anatomia médica.',
-      category: 'Aplicação Clínica',
-      date: '2025-09-07',
-      readTime: '8 min',
-      tags: ['Ultrassom 3D', 'IA Generativa', 'Stable Diffusion', 'Obstetrícia'],
       featured: true,
-      image: '/imagens-3d/antesedepois1.2.png',
-      enhancement: '150% qualidade visual',
-      preservation: '100% anatomia',
-      link: '/ia-medica/stable-diffusion-3d-fetal',
+      image: '/images/ia-medica/camara-debate-bg.jpg',
     },
   ];
 
@@ -154,12 +140,7 @@ const IAMedica = () => {
     { id: 'Internacional', name: 'Internacional', icon: Calendar },
   ];
 
-  const stats = [
-    { label: 'Investimentos em 2025', value: 'US$ 326,5 mi', icon: TrendingUp },
-    { label: 'Médicos Impactados', value: '20.000+', icon: Users },
-    { label: 'Pacientes Beneficiados', value: '16 milhões', icon: Activity },
-    { label: 'Projetos Ativos', value: '8+', icon: Brain },
-  ];
+
 
   useEffect(() => {
     let filtered = articles;
@@ -203,32 +184,20 @@ const IAMedica = () => {
           <div className="hero-content">
             <div className="hero-text">
               <h1>
-                <span className="gradient-text">Inteligência Artificial</span>
-                <br />
-                na Medicina Brasileira
+                🩺 <span className="gradient-text">IA Médica</span> - Dr. Massuca
               </h1>
               <p className="hero-description">
-                Acompanhe as últimas inovações, pesquisas e aplicações da IA transformando a saúde
-                no Brasil. Notícias atualizadas e análises especializadas para profissionais da área
-                médica.
+                Médico Ultrassonografista compartilhando conhecimento sobre<br />
+                Inteligência Artificial aplicada à Medicina
               </p>
-              <div className="hero-stats">
-                {stats.map((stat, index) => (
-                  <div key={index} className="stat-item">
-                    <stat.icon className="stat-icon" />
-                    <div>
-                      <div className="stat-value">{stat.value}</div>
-                      <div className="stat-label">{stat.label}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="hero-visual">
-              <div className="floating-card">
-                <Brain className="card-icon" />
-                <h3>IA em Ação</h3>
-                <p>Redução de 17h para 2h no tempo de espera hospitalar</p>
+              <div className="content-types">
+                <span className="content-type">Notícias</span>
+                <span className="separator">•</span>
+                <span className="content-type">Tutoriais</span>
+                <span className="separator">•</span>
+                <span className="content-type">Análises</span>
+                <span className="separator">•</span>
+                <span className="content-type">Experiências Práticas</span>
               </div>
             </div>
           </div>
@@ -402,16 +371,60 @@ const IAMedica = () => {
           )}
         </section>
 
-        {/* Newsletter Section */}
-        <section className="newsletter-section">
-          <div className="newsletter-content">
-            <h2>📧 Newsletter IA Médica</h2>
-            <p>Receba as últimas novidades sobre Inteligência Artificial na medicina brasileira</p>
-            <div className="newsletter-form">
-              <input type="email" placeholder="Seu e-mail profissional" />
-              <button>Assinar Gratuitamente</button>
+        {/* Próximos Conteúdos Section */}
+        <section className="upcoming-section">
+          <div className="upcoming-content">
+            <h2>🔮 Em Breve</h2>
+            <p>Próximos conteúdos sobre IA médica com Dr. Massuca</p>
+            
+            <div className="upcoming-grid">
+              <div className="upcoming-item">
+                <span className="upcoming-icon">🎥</span>
+                <span>Novos tutoriais de IA</span>
+              </div>
+              <div className="upcoming-item">
+                <span className="upcoming-icon">🔬</span>
+                <span>Análises de casos reais</span>
+              </div>
+              <div className="upcoming-item">
+                <span className="upcoming-icon">⚡</span>
+                <span>Reviews de tecnologias</span>
+              </div>
+              <div className="upcoming-item">
+                <span className="upcoming-icon">🩺</span>
+                <span>Experiências práticas</span>
+              </div>
             </div>
-            <small>Enviamos apenas conteúdo relevante, sem spam. Cancele quando quiser.</small>
+
+            <div className="social-section">
+              <p className="social-text">Acompanhe nas redes sociais:</p>
+              <div className="social-links">
+                <a 
+                  href="https://instagram.com/drmassuca" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-link instagram"
+                >
+                  📸 Instagram
+                </a>
+                <a 
+                  href="https://wa.me/5562999999999" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-link whatsapp"
+                >
+                  💬 WhatsApp
+                </a>
+                <a 
+                  href="https://x.com/drmassuca" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="social-link twitter"
+                >
+                  🐦 X.com
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </div>

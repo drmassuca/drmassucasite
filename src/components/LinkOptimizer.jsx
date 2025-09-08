@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 /**
  * 🎯 COMPONENTE PARA OTIMIZAR LINKS EXISTENTES COM DATA ATTRIBUTES
  * Adiciona tracking automático para todos os links de conversão
+ *
+ * ✅ Versão silenciosa - sem console.logs desnecessários
  */
 
 const LinkOptimizer = () => {
@@ -31,7 +33,10 @@ const LinkOptimizer = () => {
           link.setAttribute('data-link-id', `whatsapp-${index + 1}`);
           link.dataset.tracked = 'true';
 
-          console.log(`📱 WhatsApp link optimized: ${location}`);
+          // 🔇 Log apenas em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`📱 WhatsApp link optimized: ${location}`);
+          }
         }
       });
 
@@ -45,7 +50,10 @@ const LinkOptimizer = () => {
           link.setAttribute('data-link-id', `instagram-${index + 1}`);
           link.dataset.tracked = 'true';
 
-          console.log(`📸 Instagram link optimized`);
+          // 🔇 Log apenas em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`📸 Instagram link optimized`);
+          }
         }
       });
 
@@ -61,7 +69,10 @@ const LinkOptimizer = () => {
           link.setAttribute('data-link-id', `phone-${index + 1}`);
           link.dataset.tracked = 'true';
 
-          console.log(`📞 Phone link optimized`);
+          // 🔇 Log apenas em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`📞 Phone link optimized`);
+          }
         }
       });
 
@@ -75,7 +86,10 @@ const LinkOptimizer = () => {
           link.setAttribute('data-link-id', `email-${index + 1}`);
           link.dataset.tracked = 'true';
 
-          console.log(`📧 Email link optimized`);
+          // 🔇 Log apenas em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`📧 Email link optimized`);
+          }
         }
       });
 
@@ -90,7 +104,10 @@ const LinkOptimizer = () => {
           link.setAttribute('data-link-id', `exam-${index + 1}`);
           link.dataset.tracked = 'true';
 
-          console.log(`🔬 Exam link optimized: ${examName}`);
+          // 🔇 Log apenas em desenvolvimento
+          if (process.env.NODE_ENV === 'development') {
+            console.log(`🔬 Exam link optimized: ${examName}`);
+          }
         }
       });
     };

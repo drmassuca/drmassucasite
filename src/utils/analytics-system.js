@@ -1,9 +1,11 @@
 // ============================================================================
 // 📈 SISTEMA COMPLETO DE ANALYTICS E CONVERSÃO - DR. MASSUCA
+// ✅ Versão Otimizada - Evita múltiplas inicializações e logs excessivos
 // ============================================================================
 
-// 🎯 1. SISTEMA DE EVENTS AVANÇADO
-// ----------------------------------------------------------------------------
+// 🔒 Singleton para evitar múltiplas instâncias
+let analyticsInstance = null;
+let isInitializing = false;
 
 /**
  * Sistema central de tracking de eventos
@@ -11,23 +13,37 @@
  */
 class DrMassucaAnalytics {
   constructor() {
+    // Evita múltiplas instâncias
+    if (analyticsInstance) {
+      return analyticsInstance;
+    }
+
     this.gtmId = 'GTM-PPH3NLG6';
     this.ga4Id = 'G-T14CXNTC7V';
     this.initialized = false;
     this.events = [];
+    this.isDebugMode = process.env.NODE_ENV === 'development';
 
-    this.init();
+    analyticsInstance = this;
+    return this;
   }
 
   init() {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || this.initialized || isInitializing) return;
+
+    isInitializing = true;
 
     // Aguarda o GTM carregar
     this.waitForGTM(() => {
       this.initialized = true;
+      isInitializing = false;
       this.setupEventListeners();
       this.trackPageLoad();
-      console.log('🎯 DrMassuca Analytics initialized');
+
+      // Log apenas em desenvolvimento
+      if (this.isDebugMode) {
+        console.log('🎯 DrMassuca Analytics initialized');
+      }
     });
   }
 
@@ -37,7 +53,9 @@ class DrMassucaAnalytics {
     } else if (attempts < 50) {
       setTimeout(() => this.waitForGTM(callback, attempts + 1), 100);
     } else {
-      console.warn('⚠️ GTM não carregou - usando fallback');
+      if (this.isDebugMode) {
+        console.warn('⚠️ GTM não carregou - usando fallback');
+      }
       callback();
     }
   }
@@ -64,7 +82,9 @@ class DrMassucaAnalytics {
       exam_context: examType,
     });
 
-    console.log('📱 WhatsApp click tracked:', location);
+    if (this.isDebugMode) {
+      console.log('📱 WhatsApp click tracked:', location);
+    }
   }
 
   // 📊 TRACK DE ENGAJAMENTO (INSTAGRAM)
@@ -78,7 +98,10 @@ class DrMassucaAnalytics {
     };
 
     this.sendEvent(eventData);
-    console.log('📸 Instagram click tracked:', location);
+
+    if (this.isDebugMode) {
+      console.log('📸 Instagram click tracked:', location);
+    }
   }
 
   // 📊 TRACK DE CONTATOS (TELEFONE/EMAIL)
@@ -93,7 +116,10 @@ class DrMassucaAnalytics {
     };
 
     this.sendEvent(eventData);
-    console.log(`📞 ${method} click tracked:`, value);
+
+    if (this.isDebugMode) {
+      console.log(`📞 ${method} click tracked:`, value);
+    }
   }
 
   // 📊 TRACK DE NAVEGAÇÃO (EXAMES)
@@ -108,7 +134,10 @@ class DrMassucaAnalytics {
     };
 
     this.sendEvent(eventData);
-    console.log('🔬 Exam view tracked:', examName);
+
+    if (this.isDebugMode) {
+      console.log('🔬 Exam view tracked:', examName);
+    }
   }
 
   // 📊 TRACK DE COMPORTAMENTO (SCROLL, TEMPO)
@@ -207,7 +236,9 @@ class DrMassucaAnalytics {
 
       localStorage.setItem('drmassuca_events', JSON.stringify(stored));
     } catch (e) {
-      console.warn('Não foi possível salvar evento localmente:', e);
+      if (this.isDebugMode) {
+        console.warn('Não foi possível salvar evento localmente:', e);
+      }
     }
   }
 
@@ -222,6 +253,10 @@ class DrMassucaAnalytics {
 
   // 🎧 EVENT LISTENERS AUTOMÁTICOS
   setupEventListeners() {
+    // Evita múltiplas configurações
+    if (this.listenersSetup) return;
+    this.listenersSetup = true;
+
     // Auto-track de links WhatsApp
     document.addEventListener('click', e => {
       const link = e.target.closest('a');
@@ -299,6 +334,9 @@ class DrMassucaAnalytics {
   }
 
   setupScrollTracking() {
+    if (this.scrollTrackerSetup) return;
+    this.scrollTrackerSetup = true;
+
     let tracked = new Set();
 
     window.addEventListener('scroll', () => {
@@ -314,6 +352,9 @@ class DrMassucaAnalytics {
   }
 
   setupTimeTracking() {
+    if (this.timeTrackerSetup) return;
+    this.timeTrackerSetup = true;
+
     const startTime = Date.now();
 
     setInterval(() => {
@@ -343,7 +384,9 @@ class DrMassucaAnalytics {
       top_click_locations: this.getTopLocations(events),
     };
 
-    console.table(report);
+    if (this.isDebugMode) {
+      console.table(report);
+    }
     return report;
   }
 
@@ -530,7 +573,9 @@ class HeatmapTracker {
 
       localStorage.setItem('drmassuca_heatmap', JSON.stringify(data));
     } catch (e) {
-      console.warn('Could not save heatmap data:', e);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('Could not save heatmap data:', e);
+      }
     }
   }
 
@@ -553,9 +598,11 @@ class HeatmapTracker {
 
   generateHeatmapVisualization() {
     const data = this.getHeatmapData();
-    console.log('🔥 Heatmap Data:', data);
 
-    // Em uma implementação real, isso renderizaria um heatmap visual
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🔥 Heatmap Data:', data);
+    }
+
     return data;
   }
 }
@@ -633,7 +680,9 @@ class ConversionGoals {
     // Envia para analytics
     window.drMassucaAnalytics?.sendEvent(conversionData);
 
-    console.log('🎯 Goal triggered:', goalId, conversionData);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🎯 Goal triggered:', goalId, conversionData);
+    }
   }
 }
 
@@ -645,8 +694,14 @@ class ConversionGoals {
 function initDrMassucaAnalytics() {
   if (typeof window === 'undefined') return;
 
+  // ✅ Evita múltiplas inicializações
+  if (window.drMassucaAnalyticsInitialized) {
+    return;
+  }
+
   // Analytics principal
   window.drMassucaAnalytics = new DrMassucaAnalytics();
+  window.drMassucaAnalytics.init();
 
   // A/B Testing
   window.drMassucaAB = new ABTesting();
@@ -664,10 +719,16 @@ function initDrMassucaAnalytics() {
   window.trackInstagram = location => window.drMassucaAnalytics.trackInstagramClick(location);
   window.triggerGoal = (goalId, value) => window.drMassucaGoals.triggerConversion(goalId, value);
 
-  console.log('🚀 Dr. Massuca Analytics System fully initialized!');
+  // Marca como inicializado
+  window.drMassucaAnalyticsInitialized = true;
+
+  // Log apenas em desenvolvimento
+  if (process.env.NODE_ENV === 'development') {
+    console.log('🚀 Dr. Massuca Analytics System fully initialized!');
+  }
 }
 
-// Auto-inicializar quando DOM carregar
+// Auto-inicializar quando DOM carregar (apenas uma vez)
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initDrMassucaAnalytics);
 } else {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Container,
@@ -28,7 +28,7 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { FaEye, FaExpandArrowsAlt, FaCog, FaQuestionCircle } from 'react-icons/fa';
+import { FaEye, FaExpandArrowsAlt, FaQuestionCircle } from 'react-icons/fa';
 
 const ExamplesPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -74,7 +74,7 @@ const ExamplesPage = () => {
     onOpen();
   };
 
-  const renderStars = (count) => {
+  const renderStars = count => {
     return '⭐'.repeat(count);
   };
 
@@ -82,7 +82,7 @@ const ExamplesPage = () => {
     <Container maxW="7xl" py={8}>
       <VStack spacing={8} align="stretch">
         <Box>
-          <Heading size="xl" mb={4} color="#0f3d2e">
+          <Heading size="xl" mb={4} color="#667eea">
             Exemplos de Resultados
           </Heading>
           <Text fontSize="lg" color="gray.600" mb={4}>
@@ -99,7 +99,7 @@ const ExamplesPage = () => {
           <VStack align="start" spacing={1} flex="1">
             <Text fontWeight="semibold">Resultados Comprovados</Text>
             <Text fontSize="sm">
-              Todos os casos apresentaram qualidade ⭐⭐⭐⭐⭐ em: preservação anatômica, 
+              Todos os casos apresentaram qualidade ⭐⭐⭐⭐⭐ em: preservação anatômica,
               naturalidade, textura realística e utilidade clínica para apresentação aos pais.
             </Text>
           </VStack>
@@ -107,7 +107,7 @@ const ExamplesPage = () => {
 
         {/* Examples Grid */}
         <Grid templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }} gap={8}>
-          {examples.map((example) => (
+          {examples.map(example => (
             <GridItem key={example.id}>
               <Card>
                 <CardHeader>
@@ -248,15 +248,25 @@ const ExamplesPage = () => {
           <CardBody>
             <Grid templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }} gap={6}>
               <Box>
-                <Heading size="md" mb={3} color="#0f3d2e">
+                <Heading size="md" mb={3} color="#667eea">
                   Melhorias Observadas
                 </Heading>
                 <VStack align="start" spacing={2}>
-                  <Text fontSize="sm">• <strong>Textura da Pele:</strong> +150% de realismo</Text>
-                  <Text fontSize="sm">• <strong>Profundidade 3D:</strong> +150% de volume</Text>
-                  <Text fontSize="sm">• <strong>Definição Facial:</strong> +100% de clareza</Text>
-                  <Text fontSize="sm">• <strong>Iluminação:</strong> Cinematográfica e suave</Text>
-                  <Text fontSize="sm">• <strong>Naturalidade:</strong> Transformação dramática</Text>
+                  <Text fontSize="sm">
+                    • <strong>Textura da Pele:</strong> +150% de realismo
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Profundidade 3D:</strong> +150% de volume
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Definição Facial:</strong> +100% de clareza
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Iluminação:</strong> Cinematográfica e suave
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Naturalidade:</strong> Transformação dramática
+                  </Text>
                 </VStack>
               </Box>
 
@@ -265,11 +275,21 @@ const ExamplesPage = () => {
                   Preservação Anatômica
                 </Heading>
                 <VStack align="start" spacing={2}>
-                  <Text fontSize="sm">• <strong>Características Faciais:</strong> 100% preservadas</Text>
-                  <Text fontSize="sm">• <strong>Proporções:</strong> Mantidas com precisão</Text>
-                  <Text fontSize="sm">• <strong>Estrutura:</strong> Anatomicamente correta</Text>
-                  <Text fontSize="sm">• <strong>Informação Médica:</strong> Totalmente preservada</Text>
-                  <Text fontSize="sm">• <strong>Utilidade Clínica:</strong> Aprimorada</Text>
+                  <Text fontSize="sm">
+                    • <strong>Características Faciais:</strong> 100% preservadas
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Proporções:</strong> Mantidas com precisão
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Estrutura:</strong> Anatomicamente correta
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Informação Médica:</strong> Totalmente preservada
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Utilidade Clínica:</strong> Aprimorada
+                  </Text>
                 </VStack>
               </Box>
 
@@ -278,11 +298,21 @@ const ExamplesPage = () => {
                   Benefícios Clínicos
                 </Heading>
                 <VStack align="start" spacing={2}>
-                  <Text fontSize="sm">• <strong>Apresentação aos Pais:</strong> Qualidade superior</Text>
-                  <Text fontSize="sm">• <strong>Engajamento:</strong> Maior conexão emocional</Text>
-                  <Text fontSize="sm">• <strong>Compreensão:</strong> Melhor visualização</Text>
-                  <Text fontSize="sm">• <strong>Satisfação:</strong> Experiência aprimorada</Text>
-                  <Text fontSize="sm">• <strong>Diferencial:</strong> Tecnologia de ponta</Text>
+                  <Text fontSize="sm">
+                    • <strong>Apresentação aos Pais:</strong> Qualidade superior
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Engajamento:</strong> Maior conexão emocional
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Compreensão:</strong> Melhor visualização
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Satisfação:</strong> Experiência aprimorada
+                  </Text>
+                  <Text fontSize="sm">
+                    • <strong>Diferencial:</strong> Tecnologia de ponta
+                  </Text>
                 </VStack>
               </Box>
             </Grid>
@@ -295,8 +325,8 @@ const ExamplesPage = () => {
           <VStack align="start" spacing={1} flex="1">
             <Text fontWeight="semibold">Configuração Utilizada</Text>
             <Text fontSize="sm">
-              Todos os exemplos foram gerados usando a configuração Golden Standard: 
-              RealisticVision V5.1 + Dual-ControlNet (depth_zoe + depth_midas) + parâmetros otimizados.
+              Todos os exemplos foram gerados usando a configuração Golden Standard: RealisticVision
+              V5.1 + Dual-ControlNet (depth_zoe + depth_midas) + parâmetros otimizados.
             </Text>
           </VStack>
         </Alert>
@@ -317,7 +347,13 @@ const ExamplesPage = () => {
               />
             </ModalBody>
             <ModalFooter>
-              <Button bg="#0f3d2e" color="white" _hover={{ bg: "#1a5c42" }} mr={3} onClick={onClose}>
+              <Button
+                bg="#667eea"
+                color="white"
+                _hover={{ bg: '#764ba2' }}
+                mr={3}
+                onClick={onClose}
+              >
                 Fechar
               </Button>
             </ModalFooter>
@@ -326,10 +362,21 @@ const ExamplesPage = () => {
 
         {/* Navigation */}
         <HStack justify="space-between">
-          <Button as={RouterLink} to="/ia-medica/stable-diffusion-3d-fetal/configuracao" variant="outline">
+          <Button
+            as={RouterLink}
+            to="/ia-medica/stable-diffusion-3d-fetal/configuracao"
+            variant="outline"
+          >
             ← Configuração
           </Button>
-          <Button as={RouterLink} to="/ia-medica/stable-diffusion-3d-fetal/problemas" bg="#0f3d2e" color="white" _hover={{ bg: "#1a5c42" }} rightIcon={<Icon as={FaQuestionCircle} />}>
+          <Button
+            as={RouterLink}
+            to="/ia-medica/stable-diffusion-3d-fetal/problemas"
+            bg="#0f3d2e"
+            color="white"
+            _hover={{ bg: '#1a5c42' }}
+            rightIcon={<Icon as={FaQuestionCircle} />}
+          >
             Problemas Comuns →
           </Button>
         </HStack>

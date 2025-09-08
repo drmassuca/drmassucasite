@@ -39,14 +39,13 @@ const Header = () => {
 
   // Destaca o item ativo inclusive em rotas filhas (/faq/slug, /exames/algum-exame)
   const isActive = path => location.pathname === path || location.pathname.startsWith(`${path}/`);
-  
+
   // Detecta se está na seção IA Médica
   const isIAMedicaSection = location.pathname.startsWith('/ia-medica');
-  
+
   // Define cores do header baseado na seção
-  const headerBg = isIAMedicaSection ? 'linear-gradient(135deg, #4c1d95 0%, #3730a3 100%)' : 'green.900';
   const textColor = 'white'; // Sempre branco para contraste
-  
+
   // Rotação automática dos logos IA a cada 5 segundos
   useEffect(() => {
     if (isIAMedicaSection) {
@@ -56,15 +55,15 @@ const Header = () => {
       return () => clearInterval(interval);
     }
   }, [isIAMedicaSection]);
-  
+
   // Seleciona o logo baseado na seção
   const logoSrc = isIAMedicaSection ? `/logo-ia-${currentIALogo}.webp` : '/logo.webp';
 
   return (
     <Flex
       as="header"
-      bg={isIAMedicaSection ? undefined : "green.900"}
-      bgGradient={isIAMedicaSection ? "linear(135deg, #4c1d95 0%, #3730a3 100%)" : undefined}
+      bg={isIAMedicaSection ? undefined : 'green.900'}
+      bgGradient={isIAMedicaSection ? 'linear(135deg, #4c1d95 0%, #3730a3 100%)' : undefined}
       color={textColor}
       p={4}
       align="center"
@@ -79,7 +78,7 @@ const Header = () => {
         <HStack spacing={4}>
           <Image
             src={logoSrc}
-            alt={isIAMedicaSection ? "Logo IA Médica" : "Logo Dr. Massuca"}
+            alt={isIAMedicaSection ? 'Logo IA Médica' : 'Logo Dr. Massuca'}
             // Dimensões explícitas e fixas para zero CLS
             width="70"
             height="70"
@@ -174,9 +173,9 @@ const Header = () => {
       {/* Drawer mobile */}
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent 
-          bg={isIAMedicaSection ? undefined : "green.900"}
-          bgGradient={isIAMedicaSection ? "linear(135deg, #4c1d95 0%, #3730a3 100%)" : undefined}
+        <DrawerContent
+          bg={isIAMedicaSection ? undefined : 'green.900'}
+          bgGradient={isIAMedicaSection ? 'linear(135deg, #4c1d95 0%, #3730a3 100%)' : undefined}
           color={textColor}
         >
           <DrawerCloseButton />

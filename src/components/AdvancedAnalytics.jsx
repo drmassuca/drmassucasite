@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 /**
  * 🎯 COMPONENTE DE ANALYTICS AVANÇADO - DR. MASSUCA
  * Integra com o sistema completo de tracking, A/B testing e heatmaps
+ * ✅ Versão otimizada - redução de logs e melhor performance
  */
 
 const AdvancedAnalytics = () => {
@@ -14,6 +15,7 @@ const AdvancedAnalytics = () => {
     clickEvents: 0,
     timeThresholds: new Set(),
   });
+  const isDebugMode = process.env.NODE_ENV === 'development';
 
   // Inicializar sistema de analytics
   useEffect(() => {
@@ -35,9 +37,14 @@ const AdvancedAnalytics = () => {
           initDrMassucaAnalytics();
         }
 
-        console.log('🎯 Advanced Analytics initialized for:', location.pathname);
+        // Log apenas em desenvolvimento
+        if (isDebugMode) {
+          console.log('🎯 Advanced Analytics initialized for:', location.pathname);
+        }
       } catch (error) {
-        console.error('Analytics initialization error:', error);
+        if (isDebugMode) {
+          console.error('Analytics initialization error:', error);
+        }
       }
     };
 

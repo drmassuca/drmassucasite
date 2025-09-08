@@ -19,55 +19,44 @@ import {
   Badge,
   Divider,
   Icon,
-  Flex
+  Flex,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { FaDownload, FaWindows, FaLinux, FaApple, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import { FaWindows, FaLinux, FaApple, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
 
 export default function Instalacao() {
   return (
-    <Box minHeight="100vh" bg="linear-gradient(135deg, #0f3d2e 0%, #1a5c42 100%)">
+    <Box minHeight="100vh" bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
       <Container maxW="5xl" py={20}>
         {/* Header */}
         <VStack spacing={6} textAlign="center" mb={12}>
-          <Badge 
-            colorScheme="yellow" 
-            fontSize="md" 
-            px={4} 
-            py={2} 
+          <Badge
+            colorScheme="yellow"
+            fontSize="md"
+            px={4}
+            py={2}
             borderRadius="full"
-            bg="#d4af37"
-            color="#0f3d2e"
+            bg="#a855f7"
+            color="white"
             fontWeight="bold"
           >
             📥 Guia de Instalação
           </Badge>
-          
-          <Heading 
-            as="h1" 
-            size="2xl" 
-            color="white" 
-            textAlign="center"
-            fontWeight="bold"
-          >
+
+          <Heading as="h1" size="2xl" color="white" textAlign="center" fontWeight="bold">
             Instalação do Stable Diffusion
           </Heading>
-          
-          <Text 
-            fontSize="lg" 
-            color="gray.200" 
-            maxW="3xl" 
-            textAlign="center"
-            lineHeight="tall"
-          >
-            Guia completo para instalar e configurar o Stable Diffusion para geração de imagens de ultrassom 3D fetal.
+
+          <Text fontSize="lg" color="gray.200" maxW="3xl" textAlign="center" lineHeight="tall">
+            Guia completo para instalar e configurar o Stable Diffusion para geração de imagens de
+            ultrassom 3D fetal.
           </Text>
         </VStack>
 
         {/* Requisitos do Sistema */}
         <Card bg="rgba(255,255,255,0.95)" borderRadius="2xl" mb={8} boxShadow="xl">
           <CardHeader>
-            <Heading size="lg" color="#0f3d2e">
+            <Heading size="lg" color="#667eea">
               📋 Requisitos do Sistema
             </Heading>
           </CardHeader>
@@ -77,7 +66,9 @@ export default function Instalacao() {
               <Box>
                 <HStack mb={3}>
                   <Icon as={FaWindows} color="#0078d4" boxSize={6} />
-                  <Heading size="md" color="#0f3d2e">Windows</Heading>
+                  <Heading size="md" color="#667eea">
+                    Windows
+                  </Heading>
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
@@ -105,7 +96,9 @@ export default function Instalacao() {
               <Box>
                 <HStack mb={3}>
                   <Icon as={FaLinux} color="#fcc624" boxSize={6} />
-                  <Heading size="md" color="#0f3d2e">Linux</Heading>
+                  <Heading size="md" color="#0f3d2e">
+                    Linux
+                  </Heading>
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
@@ -129,7 +122,9 @@ export default function Instalacao() {
               <Box>
                 <HStack mb={3}>
                   <Icon as={FaApple} color="#000000" boxSize={6} />
-                  <Heading size="md" color="#0f3d2e">macOS</Heading>
+                  <Heading size="md" color="#0f3d2e">
+                    macOS
+                  </Heading>
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
@@ -164,7 +159,8 @@ export default function Instalacao() {
                 <Box>
                   <AlertTitle>Método Recomendado</AlertTitle>
                   <AlertDescription>
-                    Vamos usar o AUTOMATIC1111 WebUI, a interface mais popular e estável para Stable Diffusion.
+                    Vamos usar o AUTOMATIC1111 WebUI, a interface mais popular e estável para Stable
+                    Diffusion.
                   </AlertDescription>
                 </Box>
               </Alert>
@@ -172,7 +168,7 @@ export default function Instalacao() {
               <OrderedList spacing={4}>
                 <ListItem>
                   <VStack align="stretch" spacing={3}>
-                    <Text fontWeight="bold" color="#0f3d2e">
+                    <Text fontWeight="bold" color="#667eea">
                       1. Instalar Python 3.10.6
                     </Text>
                     <Text color="gray.600">
@@ -195,9 +191,7 @@ export default function Instalacao() {
                     <Text fontWeight="bold" color="#0f3d2e">
                       2. Instalar Git
                     </Text>
-                    <Text color="gray.600">
-                      Download do Git para Windows:
-                    </Text>
+                    <Text color="gray.600">Download do Git para Windows:</Text>
                     <Code p={3} borderRadius="md" bg="gray.100">
                       https://git-scm.com/download/win
                     </Code>
@@ -209,11 +203,9 @@ export default function Instalacao() {
                     <Text fontWeight="bold" color="#0f3d2e">
                       3. Baixar Stable Diffusion WebUI
                     </Text>
-                    <Text color="gray.600">
-                      Abra o terminal/prompt de comando e execute:
-                    </Text>
+                    <Text color="gray.600">Abra o terminal/prompt de comando e execute:</Text>
                     <Code p={3} borderRadius="md" bg="gray.100" whiteSpace="pre-wrap">
-{`git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+                      {`git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 cd stable-diffusion-webui`}
                     </Code>
                   </VStack>
@@ -228,16 +220,13 @@ cd stable-diffusion-webui`}
                       Execute o script de instalação (pode demorar 15-30 minutos):
                     </Text>
                     <Code p={3} borderRadius="md" bg="gray.100">
-                      # Windows
-                      webui-user.bat
-                      
-                      # Linux/macOS  
-                      ./webui.sh
+                      # Windows webui-user.bat # Linux/macOS ./webui.sh
                     </Code>
                     <Alert status="info" size="sm">
                       <AlertIcon />
                       <Text fontSize="sm">
-                        💡 Na primeira execução, o sistema baixará automaticamente todas as dependências.
+                        💡 Na primeira execução, o sistema baixará automaticamente todas as
+                        dependências.
                       </Text>
                     </Alert>
                   </VStack>
@@ -248,9 +237,7 @@ cd stable-diffusion-webui`}
                     <Text fontWeight="bold" color="#0f3d2e">
                       5. Acessar a Interface
                     </Text>
-                    <Text color="gray.600">
-                      Após a instalação, abra seu navegador e acesse:
-                    </Text>
+                    <Text color="gray.600">Após a instalação, abra seu navegador e acesse:</Text>
                     <Code p={3} borderRadius="md" bg="gray.100">
                       http://localhost:7860
                     </Code>
@@ -277,16 +264,17 @@ cd stable-diffusion-webui`}
           <CardBody>
             <VStack align="stretch" spacing={4}>
               <Box>
-                <Text fontWeight="bold" color="#0f3d2e" mb={2}>
+                <Text fontWeight="bold" color="#667eea" mb={2}>
                   Erro: &ldquo;Python não encontrado&rdquo;
                 </Text>
                 <Text color="gray.600" mb={2}>
-                  Solução: Reinstale o Python marcando &ldquo;Add to PATH&rdquo; ou adicione manualmente.
+                  Solução: Reinstale o Python marcando &ldquo;Add to PATH&rdquo; ou adicione
+                  manualmente.
                 </Text>
               </Box>
-              
+
               <Divider />
-              
+
               <Box>
                 <Text fontWeight="bold" color="#0f3d2e" mb={2}>
                   Erro: &ldquo;CUDA out of memory&rdquo;
@@ -298,9 +286,9 @@ cd stable-diffusion-webui`}
                   set COMMANDLINE_ARGS=--lowvram
                 </Code>
               </Box>
-              
+
               <Divider />
-              
+
               <Box>
                 <Text fontWeight="bold" color="#0f3d2e" mb={2}>
                   Interface web não carrega
@@ -321,19 +309,19 @@ cd stable-diffusion-webui`}
             variant="outline"
             borderColor="white"
             color="white"
-            _hover={{ bg: "rgba(255,255,255,0.1)" }}
+            _hover={{ bg: 'rgba(255,255,255,0.1)' }}
             size="lg"
             borderRadius="xl"
           >
             ← Voltar
           </Button>
-          
+
           <Button
             as={RouterLink}
             to="/ia-medica/stable-diffusion-3d-fetal/configuracao"
-            bg="#d4af37"
-            color="#0f3d2e"
-            _hover={{ bg: "#b8941f" }}
+            bg="#a855f7"
+            color="white"
+            _hover={{ bg: '#9333ea' }}
             size="lg"
             borderRadius="xl"
             fontWeight="bold"

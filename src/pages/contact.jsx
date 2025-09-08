@@ -240,7 +240,7 @@ function Contact() {
             >
               Fale Agora pelo WhatsApp
             </Button>
-            
+
             {/* Link para Médicos */}
             <Box>
               <Text fontSize="md" color="gray.600" mb={2}>
@@ -252,7 +252,7 @@ function Contact() {
                 variant="outline"
                 borderColor="#d4af37"
                 color="#d4af37"
-                _hover={{ bg: "#d4af37", color: "white", transform: "scale(1.05)" }}
+                _hover={{ bg: '#d4af37', color: 'white', transform: 'scale(1.05)' }}
                 borderRadius="full"
                 px={6}
                 py={3}

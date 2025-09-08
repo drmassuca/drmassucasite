@@ -34,7 +34,9 @@ const IAMedica = lazy(() => import('./pages/ia-medica'));
 const ArticleDetail = lazy(() => import('./pages/ia-medica/ArticleDetail'));
 const StableDiffusion3DFetal = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal'));
 const SDInstalacao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/instalacao'));
-const SDConfiguracao = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/configuracao'));
+const SDConfiguracao = lazy(
+  () => import('./pages/ia-medica/stable-diffusion-3d-fetal/configuracao')
+);
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 
@@ -100,12 +102,12 @@ function usePageTracking() {
 function App() {
   usePageTracking();
   const location = useLocation();
-  
+
   // Determina se estamos em uma página de IA
   const isIAPage = location.pathname.startsWith('/ia-medica');
-  
+
   // Seleciona o background baseado na rota
-  const backgroundImage = isIAPage 
+  const backgroundImage = isIAPage
     ? "url('/assets/seamless-neon.webp')"
     : "url('/assets/texture_olive_dark_seamless.webp')";
 
@@ -161,11 +163,23 @@ function App() {
             {/* >>> ROTAS DA IA MÉDICA */}
             <Route path="/ia-medica" element={<IAMedica />} />
             <Route path="/ia-medica/artigo/:id" element={<ArticleDetail />} />
-            <Route path="/ia-medica/stable-diffusion-3d-fetal" element={<StableDiffusion3DFetal />} />
-            <Route path="/ia-medica/stable-diffusion-3d-fetal/instalacao" element={<SDInstalacao />} />
-            <Route path="/ia-medica/stable-diffusion-3d-fetal/configuracao" element={<SDConfiguracao />} />
+            <Route
+              path="/ia-medica/stable-diffusion-3d-fetal"
+              element={<StableDiffusion3DFetal />}
+            />
+            <Route
+              path="/ia-medica/stable-diffusion-3d-fetal/instalacao"
+              element={<SDInstalacao />}
+            />
+            <Route
+              path="/ia-medica/stable-diffusion-3d-fetal/configuracao"
+              element={<SDConfiguracao />}
+            />
             <Route path="/ia-medica/stable-diffusion-3d-fetal/exemplos" element={<SDExemplos />} />
-            <Route path="/ia-medica/stable-diffusion-3d-fetal/problemas" element={<SDProblemas />} />
+            <Route
+              path="/ia-medica/stable-diffusion-3d-fetal/problemas"
+              element={<SDProblemas />}
+            />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
             <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />

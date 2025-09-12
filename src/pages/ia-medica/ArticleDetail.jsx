@@ -39,7 +39,16 @@ const ArticleDetail = () => {
       date: '2025-09-04',
       readTime: '15 min',
       author: 'Dr. Massuca',
-      tags: ['ITMI-Brasil', 'Hospital Inteligente', '5G', 'IA Médica', 'SUS', 'BRICS', 'USP', 'HCFMUSP'],
+      tags: [
+        'ITMI-Brasil',
+        'Hospital Inteligente',
+        '5G',
+        'IA Médica',
+        'SUS',
+        'BRICS',
+        'USP',
+        'HCFMUSP',
+      ],
       featured: true,
       image: '/images/ia-medica/hospital-bg.jpg',
       investment: 'US$ 320 milhões',
@@ -359,7 +368,8 @@ const ArticleDetail = () => {
           type: 'Fonte Oficial',
         },
         {
-          title: 'MCTI - Brasil apresenta projeto do 1º hospital inteligente do SUS ao banco do BRICS',
+          title:
+            'MCTI - Brasil apresenta projeto do 1º hospital inteligente do SUS ao banco do BRICS',
           url: 'https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/noticias/2025/07/brasil-apresenta-projeto-do-1o-hospital-inteligente-do-sus-ao-banco-do-brics',
           type: 'Fonte Oficial',
         },
@@ -605,314 +615,9 @@ const ArticleDetail = () => {
         },
       ],
     },
-    3: {
-      id: 3,
-      title: 'ChestFinder: IA da UFF Detecta Câncer de Pulmão Precocemente',
-      subtitle:
-        'Ferramenta open source desenvolvida na UFF identifica enfisema e câncer pulmonar em tomografias com alta precisão',
-      excerpt:
-        'Ferramenta open source desenvolvida na UFF identifica enfisema e câncer pulmonar em tomografias com alta precisão.',
-      category: 'Pesquisa',
-      date: '2025-07-20',
-      readTime: '6 min',
-      author: 'Dr. Massuca',
-      tags: ['Diagnóstico', 'Câncer', 'UFF', 'Open Source'],
-      featured: false,
-      image: '/images/ia-medica/chestfinder-bg.jpg',
-      accuracy: 'Alta acurácia',
-      availability: 'Código Aberto',
-      likes: 156,
-      shares: 42,
-      content: `
-        <h2>Revolução no Diagnóstico Pulmonar</h2>
-        
-        <p>A Universidade Federal Fluminense (UFF) desenvolveu uma ferramenta de inteligência artificial que promete revolucionar o diagnóstico precoce de câncer de pulmão. O <strong>ChestFinder</strong> representa um avanço significativo na medicina diagnóstica, oferecendo precisão excepcional na análise de tomografias computadorizadas do tórax.</p>
 
-        <div class="highlight-box">
-          <h3>🎯 Capacidades do ChestFinder</h3>
-          <ul>
-            <li><strong>Detecção precoce</strong> de nódulos pulmonares suspeitos</li>
-            <li><strong>Identificação de enfisema</strong> em estágios iniciais</li>
-            <li><strong>Análise automatizada</strong> de tomografias em segundos</li>
-            <li><strong>Código aberto</strong> para uso global</li>
-          </ul>
-        </div>
 
-        <h3>Tecnologia Avançada</h3>
-        
-        <p>O sistema utiliza redes neurais convolucionais treinadas com milhares de imagens de tomografias, permitindo identificar padrões que podem passar despercebidos pelo olho humano. A ferramenta é especialmente eficaz na detecção de:</p>
-        
-        <h4>🫁 Nódulos Pulmonares</h4>
-        <p>Identificação automática de nódulos suspeitos, incluindo aqueles de pequenas dimensões que podem indicar câncer em estágio inicial.</p>
 
-        <h4>🌬️ Enfisema Pulmonar</h4>
-        <p>Detecção precoce de alterações no parênquima pulmonar características do enfisema, permitindo intervenção médica antes da progressão da doença.</p>
-
-        <h4>📊 Análise Quantitativa</h4>
-        <p>Fornece métricas precisas sobre densidade pulmonar, volume e outras características importantes para o diagnóstico.</p>
-
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <strong>⚡ Velocidade</strong>
-            <p>Análise completa em segundos, acelerando o fluxo de trabalho radiológico</p>
-          </div>
-          <div class="benefit-item">
-            <strong>🎯 Precisão</strong>
-            <p>Alta sensibilidade na detecção de lesões suspeitas</p>
-          </div>
-          <div class="benefit-item">
-            <strong>🌍 Acessibilidade</strong>
-            <p>Código aberto permite uso em hospitais públicos e privados</p>
-          </div>
-          <div class="benefit-item">
-            <strong>📚 Educação</strong>
-            <p>Ferramenta de apoio ao ensino médico e residência</p>
-          </div>
-        </div>
-
-        <div class="quote-box">
-          <blockquote>
-            "O ChestFinder representa um marco na democratização do diagnóstico por imagem, oferecendo tecnologia de ponta de forma gratuita para toda a comunidade médica."
-            <cite>— Equipe de Pesquisa UFF</cite>
-          </blockquote>
-        </div>
-
-        <div class="call-to-action">
-          <h4>🔬 Impacto na Saúde Pública</h4>
-          <p>Com o código aberto, hospitais em todo o Brasil podem implementar esta tecnologia, melhorando significativamente a capacidade diagnóstica e salvando vidas através da detecção precoce.</p>
-        </div>
-      `,
-      sources: [
-        {
-          title: 'UFF - Desenvolvimento ChestFinder',
-          url: 'https://www.uff.br/pesquisa/chestfinder-ia-diagnostico-pulmonar',
-          type: 'Fonte Acadêmica',
-        },
-      ],
-    },
-    4: {
-      id: 4,
-      title: 'CEREIA: Hapvida-UFC Aplica IA em 16 Milhões de Pacientes',
-      subtitle:
-        'Centro de referência atinge 72% de precisão na prevenção de doença renal contra 22% dos métodos tradicionais',
-      excerpt:
-        'Centro de referência atinge 72% de precisão na prevenção de doença renal contra 22% dos métodos tradicionais.',
-      category: 'Aplicação Clínica',
-      date: '2025-08-10',
-      readTime: '7 min',
-      author: 'Dr. Massuca',
-      tags: ['Prevenção', 'Doença Renal', 'Hapvida', 'UFC'],
-      featured: true,
-      image: '/images/ia-medica/cereia-bg.jpg',
-      investment: 'R$ 17,5 milhões',
-      patients: '16 milhões',
-      likes: 203,
-      shares: 78,
-      content: `
-        <h2>Revolução na Prevenção de Doenças Renais</h2>
-        
-        <p>O <strong>Centro de Referência em Engenharia de Inteligência Artificial (CEREIA)</strong>, fruto da parceria entre Hapvida e Universidade Federal do Ceará (UFC), estabelece um novo paradigma na medicina preventiva. Com investimento de R$ 17,5 milhões, o centro já impacta a vida de 16 milhões de pacientes.</p>
-
-        <div class="startup-metrics">
-          <div class="metric">
-            <span class="metric-number">72%</span>
-            <span class="metric-label">Precisão na Prevenção</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">16M</span>
-            <span class="metric-label">Pacientes Beneficiados</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">R$ 17,5M</span>
-            <span class="metric-label">Investimento Total</span>
-          </div>
-          <div class="metric">
-            <span class="metric-number">22%</span>
-            <span class="metric-label">Métodos Tradicionais</span>
-          </div>
-        </div>
-
-        <h3>Tecnologia Preditiva Avançada</h3>
-        
-        <p>O CEREIA utiliza algoritmos de machine learning para analisar padrões em dados clínicos, identificando pacientes com alto risco de desenvolver doença renal antes mesmo dos primeiros sintomas aparecerem.</p>
-        
-        <div class="process-steps">
-          <div class="step">
-            <span class="step-number">1</span>
-            <div>
-              <h4>📊 Coleta de Dados</h4>
-              <p>Sistema integra dados de exames, histórico médico e fatores de risco do paciente</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">2</span>
-            <div>
-              <h4>🧠 Análise Preditiva</h4>
-              <p>Algoritmos processam informações para calcular probabilidade de doença renal</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">3</span>
-            <div>
-              <h4>⚠️ Alertas Precoces</h4>
-              <p>Sistema gera alertas para médicos quando identifica risco elevado</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">4</span>
-            <div>
-              <h4>🎯 Intervenção Preventiva</h4>
-              <p>Equipe médica implementa protocolos de prevenção personalizados</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <strong>🕰️ Detecção Precoce</strong>
-            <p>Identificação de riscos até 5 anos antes dos sintomas</p>
-          </div>
-          <div class="benefit-item">
-            <strong>💰 Economia de Recursos</strong>
-            <p>Redução significativa nos custos de tratamento</p>
-          </div>
-          <div class="benefit-item">
-            <strong>🎯 Medicina Personalizada</strong>
-            <p>Protocolos de prevenção adaptados ao perfil individual</p>
-          </div>
-          <div class="benefit-item">
-            <strong>📈 Melhores Resultados</strong>
-            <p>Aumento drástico na eficácia preventiva</p>
-          </div>
-        </div>
-
-        <div class="quote-box">
-          <blockquote>
-            "A parceria entre Hapvida e UFC demonstra como a colaboração público-privada pode gerar inovações que salvam vidas e otimizam recursos na saúde."
-            <cite>— CEREIA</cite>
-          </blockquote>
-        </div>
-
-        <div class="investor-spotlight">
-          <h4>🎆 Expansão Nacional</h4>
-          <p>O sucesso do CEREIA no Nordeste abre caminho para replicação em outras regiões do Brasil, democratizando o acesso à medicina preditiva de alta qualidade.</p>
-        </div>
-      `,
-      sources: [
-        {
-          title: 'Hapvida - CEREIA Resultados',
-          url: 'https://www.hapvida.com.br/cereia-inteligencia-artificial-prevencao',
-          type: 'Fonte Empresarial',
-        },
-      ],
-    },
-    5: {
-      id: 5,
-      title: 'Rebec@: Fiocruz Lança IA para Pesquisas Clínicas',
-      subtitle:
-        'Primeira ferramenta mundial de IA generativa para registros de ensaios clínicos reduz aprovação para 48h',
-      excerpt:
-        'Primeira ferramenta mundial de IA generativa para registros de ensaios clínicos reduz aprovação para 48h.',
-      category: 'Pesquisa',
-      date: '2025-03-25',
-      readTime: '5 min',
-      author: 'Dr. Massuca',
-      tags: ['Ensaios Clínicos', 'Fiocruz', 'Rebec', 'OMS'],
-      featured: false,
-      image: '/images/ia-medica/rebec-bg.jpg',
-      approval: '48 horas',
-      scope: 'Mundial',
-      likes: 134,
-      shares: 56,
-      content: `
-        <h2>Pioneirismo Global em Pesquisa Clínica</h2>
-        
-        <p>A Fundação Oswaldo Cruz (Fiocruz) lançou uma ferramenta revolucionária que coloca o Brasil na vanguarda mundial da pesquisa clínica. O <strong>Rebec@</strong> é a primeira plataforma do mundo a utilizar inteligência artificial generativa para automatizar registros de ensaios clínicos.</p>
-
-        <div class="highlight-box">
-          <h3>🌍 Impacto Global</h3>
-          <ul>
-            <li><strong>Primeira ferramenta mundial</strong> de IA para ensaios clínicos</li>
-            <li><strong>Redução drástica</strong> no tempo de aprovação: de semanas para 48h</li>
-            <li><strong>Reconhecimento da OMS</strong> como inovação prioritária</li>
-            <li><strong>Democratização</strong> do acesso à pesquisa clínica</li>
-          </ul>
-        </div>
-
-        <h3>Revolução na Documentação Científica</h3>
-        
-        <p>Tradicionalmente, o registro de ensaios clínicos é um processo moroso e complexo que pode levar semanas ou meses. O Rebec@ transforma essa realidade:</p>
-        
-        <div class="process-steps">
-          <div class="step">
-            <span class="step-number">1</span>
-            <div>
-              <h4>📝 Inserção de Dados</h4>
-              <p>Pesquisador insere informações básicas sobre o estudo proposto</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">2</span>
-            <div>
-              <h4>🧠 Processamento IA</h4>
-              <p>Sistema gera automaticamente documentação completa e protocolos</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">3</span>
-            <div>
-              <h4>⚙️ Revisão Automatizada</h4>
-              <p>Validação automática de conformidade com normas nacionais e internacionais</p>
-            </div>
-          </div>
-          <div class="step">
-            <span class="step-number">4</span>
-            <div>
-              <h4>✅ Aprovação Rápida</h4>
-              <p>Registro aprovado e publicado em plataformas globais em 48 horas</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="benefits-grid">
-          <div class="benefit-item">
-            <strong>⚡ Agilidade</strong>
-            <p>Redução de 90% no tempo de registro de ensaios clínicos</p>
-          </div>
-          <div class="benefit-item">
-            <strong>🌍 Padronização</strong>
-            <p>Conformidade automática com padrões internacionais da OMS</p>
-          </div>
-          <div class="benefit-item">
-            <strong>💰 Economia</strong>
-            <p>Redução significativa nos custos administrativos de pesquisa</p>
-          </div>
-          <div class="benefit-item">
-            <strong>📈 Qualidade</strong>
-            <p>Melhoria na qualidade e consistência da documentação</p>
-          </div>
-        </div>
-
-        <div class="quote-box">
-          <blockquote>
-            "O Rebec@ representa um marco na democratização da pesquisa clínica, permitindo que mais instituições brasileiras participem de estudos internacionais."
-            <cite>— Fiocruz</cite>
-          </blockquote>
-        </div>
-
-        <div class="future-outlook">
-          <h4>🚀 Próximas Etapas</h4>
-          <p>A Fiocruz planeja expandir o Rebec@ para incluir análise preditiva de resultados de ensaios e integração com bases de dados internacionais de pesquisa clínica.</p>
-        </div>
-      `,
-      sources: [
-        {
-          title: 'Fiocruz - Lançamento Rebec@',
-          url: 'https://portal.fiocruz.br/rebec-inteligencia-artificial-ensaios-clinicos',
-          type: 'Fonte Oficial',
-        },
-      ],
-    },
     6: {
       id: 6,
       title: 'CFM Debate Ética e Regulamentação da IA Médica',

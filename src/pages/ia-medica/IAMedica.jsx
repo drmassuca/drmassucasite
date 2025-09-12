@@ -65,34 +65,6 @@ const IAMedica = () => {
       consultations: '80.000+ consultas/mês',
     },
     {
-      id: 3,
-      title: 'ChestFinder: IA da UFF Detecta Câncer de Pulmão Precocemente',
-      excerpt:
-        'Ferramenta open source desenvolvida na UFF identifica enfisema e câncer pulmonar em tomografias com alta precisão.',
-      category: 'Pesquisa',
-      date: '2025-07-20',
-      readTime: '6 min',
-      tags: ['Diagnóstico', 'Câncer', 'UFF', 'Open Source'],
-      featured: false,
-      image: '/images/ia-medica/chestfinder.svg',
-      accuracy: 'Alta acurácia',
-      availability: 'Código Aberto',
-    },
-    {
-      id: 5,
-      title: 'Rebec@: Fiocruz Lança IA para Pesquisas Clínicas',
-      excerpt:
-        'Primeira ferramenta mundial de IA generativa para registros de ensaios clínicos reduz aprovação para 48h.',
-      category: 'Pesquisa',
-      date: '2025-03-25',
-      readTime: '5 min',
-      tags: ['Ensaios Clínicos', 'Fiocruz', 'Rebec', 'OMS'],
-      featured: false,
-      image: '/images/ia-medica/rebec.svg',
-      approval: '48 horas',
-      scope: 'Mundial',
-    },
-    {
       id: 6,
       title: 'CFM Debate Ética e Regulamentação da IA Médica',
       excerpt:
@@ -134,7 +106,6 @@ const IAMedica = () => {
     { id: 'todas', name: 'Todas', icon: Activity },
     { id: 'Infraestrutura', name: 'Infraestrutura', icon: Brain },
     { id: 'Startups', name: 'Startups', icon: TrendingUp },
-    { id: 'Pesquisa', name: 'Pesquisa', icon: Stethoscope },
     { id: 'Aplicação Clínica', name: 'Aplicação Clínica', icon: Users },
     { id: 'Regulamentação', name: 'Regulamentação', icon: Tag },
     { id: 'Internacional', name: 'Internacional', icon: Calendar },
@@ -186,7 +157,7 @@ const IAMedica = () => {
                   <span className="gradient-text">IA Médica</span>
                 </div>
               </h1>
-              
+
               <div className="content-types">
                 <span className="content-type">Notícias IA</span>
                 <span className="separator">•</span>
@@ -362,63 +333,6 @@ const IAMedica = () => {
               <p>Tente ajustar sua busca ou selecionar uma categoria diferente.</p>
             </div>
           )}
-        </section>
-
-        {/* Próximos Conteúdos Section */}
-        <section className="upcoming-section">
-          <div className="upcoming-content">
-            <h2>🔮 Em Breve</h2>
-            <p>Próximos conteúdos sobre IA médica com Dr. Massuca</p>
-
-            <div className="upcoming-grid">
-              <div className="upcoming-item">
-                <span className="upcoming-icon">🎥</span>
-                <span>Novos tutoriais de IA</span>
-              </div>
-              <div className="upcoming-item">
-                <span className="upcoming-icon">🔬</span>
-                <span>Análises de casos reais</span>
-              </div>
-              <div className="upcoming-item">
-                <span className="upcoming-icon">⚡</span>
-                <span>Reviews de tecnologias</span>
-              </div>
-              <div className="upcoming-item">
-                <span className="upcoming-icon">🩺</span>
-                <span>Experiências práticas</span>
-              </div>
-            </div>
-
-            <div className="social-section">
-              <p className="social-text">Acompanhe nas redes sociais:</p>
-              <div className="social-links">
-                <a
-                  href="https://instagram.com/drmassuca"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link instagram"
-                >
-                  📸 Instagram
-                </a>
-                <a
-                  href="https://wa.me/5562999999999"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link whatsapp"
-                >
-                  💬 WhatsApp
-                </a>
-                <a
-                  href="https://x.com/drmassuca"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-link twitter"
-                >
-                  🐦 X.com
-                </a>
-              </div>
-            </div>
-          </div>
         </section>
       </div>
     </>

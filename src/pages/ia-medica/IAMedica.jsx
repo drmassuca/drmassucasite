@@ -22,6 +22,20 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 10,
+      title: 'IA Ajuda Pacientes com Dor Lombar a se Tratarem Melhor em Casa',
+      excerpt:
+        'Sistema AI-HEALS combina inteligência artificial e aplicativo de mensagens para revolucionar o autogerenciamento da dor lombar não-específica, problema que afeta milhões.',
+      category: 'Aplicação Clínica',
+      date: '2025-10-02',
+      readTime: '10 min',
+      tags: ['Dor Lombar', 'IA Médica', 'AI-HEALS', 'Autogerenciamento', 'Telemedicina'],
+      featured: true,
+      image: '/images/ia-medica/ai-dor-lombar-bg.webp',
+      patients: '74 participantes',
+      duration: '3 meses + 9 meses',
+    },
+    {
       id: 9,
       title: 'Stable Diffusion 3D Fetal: IA Revoluciona Ultrassom Obstétrico',
       excerpt:

@@ -243,7 +243,7 @@ function Chatbot() {
       const newInteractionCount = interactionCount + 1;
       setInteractionCount(newInteractionCount);
 
-      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
       // Prepara o contexto da conversa para evitar repetições
       const conversationContext = messages

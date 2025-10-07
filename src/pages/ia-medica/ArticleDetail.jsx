@@ -1101,6 +1101,150 @@ const ArticleDetail = () => {
         },
       ],
     },
+    11: {
+      id: 11,
+      title:
+        'EUA Investem US$ 100 Milhões em IA para Câncer Pediátrico: O Que o Brasil Pode Aprender',
+      subtitle:
+        'Executive Order de Trump duplica funding da Childhood Cancer Data Initiative, mas surge em contexto de cortes bilionários no NIH. Análise das implicações para o Brasil, que investe 100x menos na área.',
+      excerpt:
+        'Ordem executiva americana de setembro/2025 estabelece maior iniciativa global de IA aplicada ao câncer pediátrico, com US$ 100 milhões anuais. Brasil possui base científica forte mas enfrenta gap de 10-15 anos em infraestrutura de dados.',
+      category: 'Internacional',
+      date: '2025-10-07',
+      readTime: '8 min',
+      author: 'Dr. Massuca',
+      tags: [
+        'Câncer Pediátrico',
+        'IA Médica',
+        'Trump Executive Order',
+        'CCDI',
+        'NIH',
+        'Pesquisa Oncológica',
+        'Brasil-EUA',
+        'Política de Saúde',
+      ],
+      featured: true,
+      image: '/images/ia-medica/trump-ai-cancer-pediatrico-bg.jpg',
+      investment: 'US$ 100 milhões/ano',
+      patients: '7.930 casos/ano no Brasil',
+      gap: '100x menos investimento BR',
+      likes: 15,
+      shares: 10,
+      content: `
+        <h2>Uma Revolução na Pesquisa de Câncer Pediátrico</h2>
+        
+        <p>Em 30 de setembro de 2025, o presidente Donald Trump assinou a <strong>Executive Order 14247 "Unlocking Cures for Pediatric Cancer with Artificial Intelligence"</strong>, duplicando o financiamento federal para pesquisa de câncer pediátrico com IA de US$ 50 milhões para <strong>US$ 100 milhões anuais</strong> até 2029. A iniciativa estabelece a maior aplicação coordenada de inteligência artificial ao câncer infantil no mundo, direcionando múltiplas agências federais americanas a integrar IA em três áreas prioritárias: infraestrutura de dados oncológicos, modelagem preditiva de resposta terapêutica e otimização de ensaios clínicos.</p>
+
+        <p>Contudo, a ordem executiva surge em contexto profundamente contraditório. Enquanto anuncia US$ 50 milhões adicionais para uma iniciativa específica, a administração Trump simultaneamente propôs cortar o orçamento do NIH em <strong>US$ 18 bilhões (redução de 40%)</strong> e o orçamento do National Cancer Institute em <strong>mais de 37%</strong>, de US$ 7,2 bilhões para US$ 4,5 bilhões. O resultado: <strong>seis trials clínicos em câncer cerebral pediátrico pararam de recrutar pacientes</strong>, o Pediatric Brain Tumor Consortium perdeu todo financiamento após 25 anos, e pesquisadores de elite enfrentam suspensão de grants pontuados nos 7% melhores do NIH.</p>
+
+        <div class="highlight-box">
+          <h3>🏥 Executive Order 14247 em Números</h3>
+          <ul>
+            <li><strong>US$ 100 milhões/ano</strong> para Childhood Cancer Data Initiative (CCDI) até 2029</li>
+            <li><strong>Duplicação de funding</strong> de US$ 50M para US$ 100M anuais</li>
+            <li><strong>Três áreas prioritárias:</strong> dados, modelagem biológica e trials clínicos</li>
+            <li><strong>Integração EHR/claims:</strong> dados de prontuários e seguradoras para pesquisa</li>
+            <li><strong>Controle do paciente:</strong> famílias controlam suas informações de saúde</li>
+            <li><strong>Contexto paradoxal:</strong> US$ 18 bilhões cortados do NIH simultaneamente</li>
+          </ul>
+        </div>
+
+        <h3>O Contexto Epidemiológico que Justifica a Urgência</h3>
+        
+        <p>O câncer pediátrico permanece a <strong>principal causa de morte relacionada a doença</strong> em crianças e adolescentes de 1 a 19 anos nos Estados Unidos. A incidência aumentou mais de <strong>40% desde 1975</strong>, e embora 85% das crianças sejam curadas, quase <strong>60% dos sobreviventes experimentam complicações graves e potencialmente fatais na vida adulta</strong> devido às terapias agressivas necessárias.</p>
+
+        <p>No Brasil, a situação é igualmente crítica. O INCA estima <strong>7.930 novos casos de câncer pediátrico anualmente</strong> (faixa etária 0-19 anos), com taxa de sobrevida de aproximadamente <strong>64% - significativamente inferior aos 80%+ de países desenvolvidos</strong>. Mais alarmante: <strong>58% dos pacientes de câncer do SUS iniciam tratamento em estágios avançados</strong>, contribuindo para piores desfechos e custos 100x maiores que tratamento em estágio inicial.</p>
+
+        <h3>As Três Áreas Prioritárias da Executive Order</h3>
+        
+        <p>A ordem executiva estabelece mandato claro para o Secretário de HHS, Diretor do NIH, Diretor do NCI e a MAHA Commission implementarem IA em três domínios específicos:</p>
+        
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">1</span>
+            <div>
+              <h4>🗄️ Infraestrutura de Dados AI-Ready</h4>
+              <p>Consolidação de dados de múltiplas fontes (registros hospitalares, trials clínicos, dados genômicos, prontuários eletrônicos, claims de seguradoras) em plataformas unificadas. O CCDI Data Ecosystem inclui CCDI Hub, Childhood Cancer Data Catalog, Clinical Data Commons, National Childhood Cancer Registry e APIs de federação de dados. A Molecular Characterization Initiative fornece sequenciamento exômico, ensaios de fusão de RNA e arrays de metilação em ambiente CLIA-certified com resultados em 21 dias.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">2</span>
+            <div>
+              <h4>🧬 Análise de Sistemas Biológicos Complexos</h4>
+              <p>Ferramentas de IA para modelagem preditiva radical de resposta do paciente, progressão da doença e toxicidade do tratamento. Transformação de dados multi-ômicos (genômicos, transcriptômicos, proteômicos, metabolômicos) e de imagem em biomarcadores diagnósticos, prognósticos e terapêuticos novos. Objetivo: medicina personalizada baseada em perfil molecular individual da criança.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-number">3</span>
+            <div>
+              <h4>🔬 Design e Outcomes de Trials Clínicos</h4>
+              <p>Incorporação de dados multimodais para maximizar informação extraída de cada trial. IA para melhorar seleção de participantes (matching paciente-tratamento), acessibilidade (identificar barreiras geográficas/socioeconômicas), recrutamento (predição de elegibilidade), administração (monitoramento de adesão) e interpretação de resultados (análise de subgrupos).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="call-to-action">
+          <h4>🚀 O Imperativo Moral e a Janela de Oportunidade</h4>
+          <p>O câncer pediátrico brasileiro, com 7.930 casos novos anuais e sobrevida de 64% (versus 80%+ em países desenvolvidos), representa <strong>1.000-1.500 vidas evitáveis por ano</strong> se alcançarmos padrões internacionais. Cada ano de atraso na implementação de IA para detecção precoce e tratamento otimizado custa centenas de vidas jovens e milhões em tratamentos evitáveis.</p>
+          
+          <p>A Executive Order americana demonstra que vontade política pode mobilizar recursos e instituições rapidamente. O Brasil possui capacidade científica (pesquisadores publicando em Cell, Nature), infraestrutura inicial (RNDS, centros de excelência acadêmica) e imperativo moral para replicar e adapar este modelo. O que falta é <strong>decisão política e coordenação estratégica</strong> para transformar potencial em realidade clínica que salva vidas de crianças brasileiras.</p>
+        </div>
+      `,
+      sources: [
+        {
+          title: 'White House - Executive Order: Unlocking Cures for Pediatric Cancer with AI',
+          url: 'https://www.whitehouse.gov/presidential-actions/2025/09/unlocking-cures-for-pediatric-cancer-with-artificial-intelligence/',
+          type: 'Fonte Oficial',
+        },
+        {
+          title: 'White House - Fact Sheet: Trump Prioritizes AI Innovation for Pediatric Cancer',
+          url: 'https://www.whitehouse.gov/fact-sheets/2025/09/fact-sheet-president-donald-j-trump-prioritizes-harnessing-american-ai-innovation-to-unlock-cures-for-pediatric-cancer/',
+          type: 'Fonte Oficial',
+        },
+        {
+          title: 'HHS - HHS Doubles AI-Backed Childhood Cancer Research Funding',
+          url: 'https://www.hhs.gov/press-room/hhs-doubles-ai-backed-childhood-cancer-research-funding.html',
+          type: 'Fonte Oficial',
+        },
+        {
+          title: 'NIH - HHS Doubles AI-Backed Childhood Cancer Research Funding',
+          url: 'https://www.nih.gov/news-events/news-releases/hhs-doubles-ai-backed-childhood-cancer-research-funding',
+          type: 'Fonte Oficial',
+        },
+        {
+          title:
+            'Reuters - Trump executive order aims to use AI to boost childhood cancer research',
+          url: 'https://www.reuters.com/business/healthcare-pharmaceuticals/trump-executive-order-aims-use-ai-boost-childhood-cancer-research-2025-09-30/',
+          type: 'Mídia Internacional',
+        },
+        {
+          title: 'Axios - Trump orders $50M for AI in pediatric cancer research',
+          url: 'https://www.axios.com/2025/09/30/trump-ai-pediatric-cancer-research',
+          type: 'Mídia Especializada',
+        },
+        {
+          title:
+            'CNN - After cuts to research funding, Trump pledges millions for pediatric cancer',
+          url: 'https://www.cnn.com/2025/09/30/health/pediatric-cancer-initiative-ai',
+          type: 'Mídia Nacional',
+        },
+        {
+          title: 'FierceBiotech - White House pledges $100M for pediatric cancer data initiative',
+          url: 'https://www.fiercebiotech.com/biotech/amid-funding-cuts-white-house-pledges-100m-pediatric-cancer-data-initiative',
+          type: 'Mídia Setorial',
+        },
+        {
+          title: 'INCA - Estatísticas para câncer infantil no Brasil',
+          url: 'https://www.gov.br/inca/pt-br/assuntos/cancer/numeros',
+          type: 'Fonte Oficial Brasil',
+        },
+        {
+          title: 'Ministério da Saúde - Câncer infantil: sinais de alerta e tratamentos no SUS',
+          url: 'https://www.gov.br/saude/pt-br/assuntos/noticias/2023/fevereiro/cancer-infantil-conheca-os-sinais-de-alerta-e-os-tratamentos-ofertados-pelo-sus',
+          type: 'Fonte Oficial Brasil',
+        },
+      ],
+    },
     8: {
       id: 8,
       title: 'Câmara Debate PL 2338/23 para Regulamentação da IA',

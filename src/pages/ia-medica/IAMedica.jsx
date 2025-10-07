@@ -22,6 +22,21 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 11,
+      title: 'EUA Investem US$ 100M em IA para Câncer Pediátrico',
+      excerpt:
+        'Iniciativa americana duplica funding para pesquisa com IA em câncer infantil. Brasil enfrenta gap de investimento.',
+      category: 'Internacional',
+      date: '2025-10-07',
+      readTime: '8 min',
+      tags: ['Câncer Pediátrico', 'IA Médica', 'CCDI', 'NIH', 'Brasil-EUA'],
+      featured: true,
+      image: '/images/ia-medica/trump-ai-cancer-pediatrico-bg.jpg',
+      investment: 'US$ 100 milhões/ano',
+      patients: '7.930 casos/ano no Brasil',
+      gap: '100x menos investimento BR',
+    },
+    {
       id: 10,
       title: 'IA Ajuda Pacientes com Dor Lombar a se Tratarem Melhor em Casa',
       excerpt:

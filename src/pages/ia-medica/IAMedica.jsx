@@ -22,6 +22,21 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 12,
+      title: 'A Promessa dos 100 Mil: Anatomia de um Golpe na Medicina Digital',
+      excerpt:
+        'Investigação revela como sistemas de IA médica são vendidos com promessas irreais de faturamento.',
+      category: 'Ética',
+      date: '2025-10-14',
+      readTime: '12 min',
+      tags: ['Ética Médica', 'IA Médica', 'Marketing Médico', 'Golpes', 'CFM'],
+      featured: true,
+      image: '/images/ia-medica/100porcento.webp',
+      promise: 'R$ 100 mil/mês',
+      reality: 'Sem comprovação',
+      victims: 'Médicos vulneráveis',
+    },
+    {
       id: 11,
       title: 'EUA Investem US$ 100M em IA para Câncer Pediátrico',
       excerpt:
@@ -138,6 +153,7 @@ const IAMedica = () => {
     { id: 'Aplicação Clínica', name: 'Aplicação Clínica', icon: Users },
     { id: 'Regulamentação', name: 'Regulamentação', icon: Tag },
     { id: 'Internacional', name: 'Internacional', icon: Calendar },
+    { id: 'Ética', name: 'Ética', icon: Stethoscope },
   ];
 
   useEffect(() => {
@@ -223,15 +239,19 @@ const IAMedica = () => {
 
                 {/* Highlights lateralizados */}
                 <div className="card-highlights">
+                  {article.promise && <div className="card-highlight">💸 {article.promise}</div>}
+
+                  {article.reality && <div className="card-highlight">⚠️ {article.reality}</div>}
+
+                  {article.victims && <div className="card-highlight">🎯 {article.victims}</div>}
+
                   {article.investment && (
                     <div className="card-highlight">💰 {article.investment}</div>
                   )}
 
                   {article.users && <div className="card-highlight">👥 {article.users}</div>}
 
-                  {article.patients && (
-                    <div className="card-highlight">🏥 {article.patients} pacientes</div>
-                  )}
+                  {article.patients && <div className="card-highlight">🏥 {article.patients}</div>}
 
                   {article.enhancement && (
                     <div className="card-highlight">✨ {article.enhancement}</div>

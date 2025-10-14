@@ -1,327 +1,622 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ==================== PÁGINAS PRINCIPAIS ==================== -->
   
-  <!-- Página Principal -->
   <url>
     <loc>https://drmassuca.com.br/</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://drmassuca.com.br/foto-home.webp</image:loc>
-      <image:title>Dr. Massuca realizando exame de ultrassom</image:title>
-    </image:image>
   </url>
 
-  <!-- Páginas Principais -->
   <url>
     <loc>https://drmassuca.com.br/sobre</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/exames</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/area-do-paciente</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/para-medicos</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/depoimentos</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/contato</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/ultrassom-3d</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- FAQ Principal -->
   <url>
     <loc>https://drmassuca.com.br/faq</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Exames Obstétricos -->
   <url>
-    <loc>https://drmassuca.com.br/exames/obstetrico-de-rotina</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/privacy-policy</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ==================== IA MÉDICA ==================== -->
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/11</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/exames/morfologico-primeiro-trimestre</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/10</loc>
+    <lastmod>2025-10-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/exames/morfologico-segundo-trimestre</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/ia-medica/stable-diffusion-3d-fetal</loc>
+    <lastmod>2025-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/1</loc>
+    <lastmod>2025-09-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/2</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/6</loc>
+    <lastmod>2025-08-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/7</loc>
+    <lastmod>2025-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/ia-medica/artigo/8</loc>
+    <lastmod>2025-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ==================== EXAMES ==================== -->
 
   <url>
     <loc>https://drmassuca.com.br/exames/doppler-obstetrico</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/exames/ecocardiografia-fetal</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Exames Ginecológicos -->
   <url>
     <loc>https://drmassuca.com.br/exames/endovaginal</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/pelvico-via-abdominal</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/pesquisa-de-endometriose-com-preparo</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/monitorizacao-da-ovulacao</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/pesquisa-de-puberdade-precoce</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Exames Gerais -->
-  <url>
-    <loc>https://drmassuca.com.br/exames/total</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/superior</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/exames/inferior</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/parede-abdominal</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/rins-e-vias-urinarias</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/ultrassonografia-de-tireoide-com-ou-sem-doppler</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/ultrassonografia-cervical-com-ou-sem-doppler</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://drmassuca.com.br/exames/ultrassonografia-partes-moles</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/exames/mamas</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Exames Masculinos -->
-  <url>
-    <loc>https://drmassuca.com.br/exames/via-abdominal</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/exames/via-transretal</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/exames/monitorizacao-da-ovulacao</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/exames/bolsa-escrotal-e-testiculos</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/exames/morfologico-primeiro-trimestre</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Exames Especializados -->
+  <url>
+    <loc>https://drmassuca.com.br/exames/morfologico-segundo-trimestre</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/obstetrico-de-rotina</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/parede-abdominal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/pelvico-via-abdominal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/pesquisa-de-endometriose-com-preparo</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/pesquisa-de-puberdade-precoce</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/superior</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/total</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://drmassuca.com.br/exames/transfontanela</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/exames/avaliacao-pre-cirurgia-plastica</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- FAQ - Top 10 mais importantes -->
+  <url>
+    <loc>https://drmassuca.com.br/exames/bolsa-escrotal-e-testiculos</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/ultrassonografia-cervical-com-ou-sem-doppler</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/ultrassonografia-de-tireoide-com-ou-sem-doppler</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/ultrassonografia-partes-moles</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/rins-e-vias-urinarias</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/via-abdominal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/exames/via-transretal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ==================== FAQ - TODAS AS 46 PERGUNTAS ==================== -->
+
   <url>
     <loc>https://drmassuca.com.br/faq/qual-e-a-funcao-do-ultrassom</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/quais-doencas-o-ultrassom-detecta</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/faq/quando-fazer-a-primeira-ultrassonografia</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/faq/em-quais-partes-do-corpo-se-faz-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/faq/precisa-de-jejum-para-fazer-ultrassonografia</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/faq/o-que-o-ultrassom-total-pode-mostrar</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/pode-ter-relacao-antes-de-fazer-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-nome-do-medico-que-faz-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/o-resultado-da-ultrassonografia-sai-na-hora</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/como-mexer-no-ultrassom</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/como-e-feito-um-ultrassom-abdominal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-que-o-ultrassom-avalia</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/quais-sao-os-riscos-da-ultrassonografia</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quais-sao-as-contraindicacoes-do-ultrassom</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quais-sao-as-vantagens-do-ultrassom</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/ultrassom-mais-completo</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/modos-ultrassom-b-m-doppler</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-que-a-ultrassonografia-identifica</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quais-sao-os-4-tipos-de-ecogenicidade-na-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-ultrassom-e-mais-importante</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-tipo-de-ultrassom-que-ve-todos-os-orgaos</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quais-sao-os-tipos-de-aparelhos-de-ultrassom</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-que-o-ultrassom-abdominal-total-detecta</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/como-se-chama-um-ultrassom-normal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-preparo-para-fazer-ultrassonografia-abdominal-total</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/qual-ultrassom-indica-gravidez</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://drmassuca.com.br/faq/qual-a-melhor-semana-para-fazer-ultrassonografia-3d</loc>
-    <lastmod>2025-08-16</lastmod>
+    <loc>https://drmassuca.com.br/faq/qual-ultrassom-e-feito-pelo-sus</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-ultrassom-e-mais-caro</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/e-possivel-fazer-ultrassom-sem-pedido-medico</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quando-fazer-a-primeira-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-resultado-da-ultrassonografia-sai-na-hora-3</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-nome-do-ultrassonografista-para-ver-o-bebe</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-ultrassom-fazer-com-6-semanas</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quantos-dias-vale-um-ultrassom</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quais-exames-de-ultrassonografia-na-gravidez</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-a-melhor-semana-para-fazer-ultrassonografia-3d</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-que-e-um-ultrassom-obstetrico-normal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/precisa-de-pedido-medico-para-fazer-ultrassom-morfologico</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-momento-certo-para-fazer-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://drmassuca.com.br/faq/o-ultrassom-e-100-confiavel</loc>
-    <lastmod>2025-08-16</lastmod>
+    <lastmod>2025-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Política de Privacidade -->
   <url>
-    <loc>https://drmassuca.com.br/privacy-policy</loc>
-    <lastmod>2025-08-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://drmassuca.com.br/faq/o-que-e-necessario-para-se-preparar-para-um-ultrassom-abdominal</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/quanto-tempo-o-ultrassom-faz-efeito</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/qual-o-primeiro-ultrassom-que-deve-ser-feito</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/precisa-de-jejum-para-fazer-ultrassonografia</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/como-o-ultrassom-age-no-corpo</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://drmassuca.com.br/faq/o-que-um-ultrassom-de-4-semanas-pode-indicar</loc>
+    <lastmod>2025-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

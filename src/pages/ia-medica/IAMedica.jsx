@@ -22,6 +22,27 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 13,
+      title: 'Quando a IA Erra, Quem Paga a Conta?',
+      excerpt:
+        '83% de taxa de erro em diagnósticos pediátricos, tratamentos perigosos recomendados e nenhum culpado identificado. Quando a IA médica falha, quem realmente assume a responsabilidade?',
+      category: 'Ética',
+      date: '2025-10-20',
+      readTime: '15 min',
+      tags: [
+        'Erros Médicos',
+        'IA Médica',
+        'Responsabilidade Legal',
+        'The Guardian',
+        'CFM',
+        'Ética Médica',
+      ],
+      featured: true,
+      image: '/images/ia-medica/responsabilidade-ia-medica.jpg',
+      errorRate: '83% taxa de erro',
+      responsibility: 'Zona cinza legal',
+    },
+    {
       id: 12,
       title: 'A Promessa dos 100 Mil: Anatomia de um Golpe na Medicina Digital',
       excerpt:
@@ -239,6 +260,14 @@ const IAMedica = () => {
 
                 {/* Highlights lateralizados */}
                 <div className="card-highlights">
+                  {article.errorRate && (
+                    <div className="card-highlight">❌ {article.errorRate}</div>
+                  )}
+
+                  {article.responsibility && (
+                    <div className="card-highlight">⚠️ {article.responsibility}</div>
+                  )}
+
                   {article.promise && <div className="card-highlight">💸 {article.promise}</div>}
 
                   {article.reality && <div className="card-highlight">⚠️ {article.reality}</div>}
@@ -260,6 +289,16 @@ const IAMedica = () => {
                   {article.preservation && (
                     <div className="card-highlight">🎯 {article.preservation}</div>
                   )}
+
+                  {article.gap && <div className="card-highlight">📉 {article.gap}</div>}
+
+                  {article.duration && <div className="card-highlight">⏰ {article.duration}</div>}
+
+                  {article.consultations && (
+                    <div className="card-highlight">📋 {article.consultations}</div>
+                  )}
+
+                  {article.location && <div className="card-highlight">📍 {article.location}</div>}
                 </div>
 
                 <div className="card-content">

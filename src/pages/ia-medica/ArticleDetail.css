@@ -571,25 +571,65 @@
 
 /* Call to Action */
 .call-to-action {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #5568d3 0%, #6b3fa0 100%);
   color: white;
   padding: 32px;
   border-radius: 16px;
   margin: 40px 0;
-  text-align: center;
+  text-align: left;
   box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+.call-to-action h3,
 .call-to-action h4 {
   color: white;
   font-size: 1.5rem;
   margin-bottom: 16px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .call-to-action p {
-  color: rgba(255, 255, 255, 0.9);
+  color: white;
   font-size: 1.1rem;
-  margin: 0;
+  margin: 0 0 16px 0;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  line-height: 1.6;
+}
+
+.call-to-action strong {
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.call-to-action ul {
+  margin: 16px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.call-to-action ul li {
+  color: white;
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  line-height: 1.6;
+  position: relative;
+  padding-left: 28px;
+}
+
+.call-to-action ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Perspectiva futura */

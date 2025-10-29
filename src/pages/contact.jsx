@@ -158,7 +158,7 @@ function Contact() {
                 Localização
               </Heading>
               <Link
-                href="https://www.google.com/maps/place/Premium+Centro+Clinico/@-16.0242365,-49.8019895,17z"
+                href="https://maps.app.goo.gl/yERHkLaxiicVrKH27"
                 isExternal
                 color="green.700"
                 fontWeight="bold"

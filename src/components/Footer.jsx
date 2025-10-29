@@ -51,7 +51,7 @@ const Footer = () => {
           {/* Endereço */}
           <VStack align="start" spacing={0}>
             <ChakraLink
-              href="https://www.google.com/maps/place/Premium+Centro+Clinico/@-16.0242365,-49.8019895,17z"
+              href="https://maps.app.goo.gl/yERHkLaxiicVrKH27"
               isExternal
               color="white"
               display="flex"

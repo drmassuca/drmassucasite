@@ -22,6 +22,19 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 14,
+      title: "GPT-4o 'Acerta' Diagnósticos Igual a Residentes, Mas Alucina em 75% dos Achados",
+      excerpt: '82% de acurácia, 75% de alucinação em radiologia.',
+      category: 'Aplicação Clínica',
+      date: '2025-10-29',
+      readTime: '12 min',
+      tags: ['GPT-4o', 'Radiologia', 'IA Médica', 'Alucinações', 'Tomografia', 'Diagnóstico'],
+      featured: true,
+      image: '/images/ia-medica/gpt4o-radiologia-bg.webp',
+      accuracy: '82% acurácia',
+      hallucination: '75% alucinação',
+    },
+    {
       id: 13,
       title: 'Quando a IA Erra, Quem Paga a Conta?',
       excerpt:
@@ -299,6 +312,16 @@ const IAMedica = () => {
                   )}
 
                   {article.location && <div className="card-highlight">📍 {article.location}</div>}
+
+                  {article.accuracy && <div className="card-highlight">✅ {article.accuracy}</div>}
+
+                  {article.hallucination && (
+                    <div className="card-highlight">⚠️ {article.hallucination}</div>
+                  )}
+
+                  {article.comparison && (
+                    <div className="card-highlight">🏥 {article.comparison}</div>
+                  )}
                 </div>
 
                 <div className="card-content">

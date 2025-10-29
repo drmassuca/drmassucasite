@@ -1,23 +1,34 @@
 # ========================================
-# .htaccess SIMPLIFICADO - Dr. Massuca
-# Para resolver erros de CSP com Google Analytics
+# Dr. Massuca - Configuração Apache
 # ========================================
 
-# Remove qualquer Content Security Policy existente
+# Segurança - Content Security Policy (Permissivo)
 <IfModule mod_headers.c>
-    Header unset Content-Security-Policy
-    Header unset X-Content-Security-Policy
+    Header set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: blob:; font-src 'self' data: https:; connect-src 'self' https:; frame-src 'self' https:; object-src 'none'; media-src 'self' https:; worker-src 'self' blob:; child-src 'self' blob: https:; manifest-src 'self'; base-uri 'self'; form-action 'self' https:;"
     
-    # CSP permissivo para Google Analytics funcionar
-    Header set Content-Security-Policy "default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;"
-    
-    # Headers de segurança básicos
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "SAMEORIGIN"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Rewrite para SPA
+# Compressão
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Cache
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# SPA - Redireciona tudo para index.html
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
@@ -27,26 +38,24 @@
     RewriteRule . /index.html [L]
 </IfModule>
 
-# Cache básico
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType image/webp "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType text/css "access plus 1 week"
-    ExpiresByType application/javascript "access plus 1 week"
-</IfModule>
+# Bloqueia arquivos sensíveis
+<FilesMatch "\.(env|git|gitignore)$">
+    Require all denied
+</FilesMatch>
 
-# GZIP
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
-</IfModule>
+# Permite manifest
+<FilesMatch "manifest\.webmanifest$">
+    Require all granted
+</FilesMatch>
 
-# Charset UTF-8
+# UTF-8
 AddDefaultCharset UTF-8
 
 # MIME types
-AddType application/javascript .js
-AddType application/json .json
-AddType application/manifest+json .webmanifest
-AddType image/webp .webp
+<IfModule mod_mime.c>
+    AddType application/javascript .js
+    AddType application/json .json
+    AddType application/manifest+json .webmanifest
+    AddType text/css .css
+    AddType image/webp .webp
+</IfModule>

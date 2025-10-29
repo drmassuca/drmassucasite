@@ -28,14 +28,25 @@ const ArticleDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Usar import.meta.glob para pre-carregar todos os artigos (Vite-specific)
+  const articleModules = import.meta.glob('./articles/article-*.json');
+
   // Função para carregar um artigo específico
   const loadArticle = async articleId => {
     try {
       setLoading(true);
       setError(null);
 
-      // Importar o JSON do artigo dinamicamente
-      const articleData = await import(`./articles/article-${articleId}.json`);
+      // Construir o caminho do arquivo
+      const modulePath = `./articles/article-${articleId}.json`;
+
+      // Verificar se o módulo existe
+      if (!articleModules[modulePath]) {
+        throw new Error(`Artigo ${articleId} não encontrado`);
+      }
+
+      // Carregar o módulo
+      const articleData = await articleModules[modulePath]();
       return articleData.default || articleData;
     } catch (err) {
       console.error(`Erro ao carregar artigo ${articleId}:`, err);
@@ -45,8 +56,13 @@ const ArticleDetail = () => {
 
   // Função para carregar todos os IDs de artigos disponíveis
   const getAvailableArticleIds = () => {
-    // IDs dos artigos existentes
-    return [1, 2, 6, 7, 8, 10, 11, 12, 13];
+    // Extrair IDs dos caminhos dos módulos
+    return Object.keys(articleModules)
+      .map(path => {
+        const match = path.match(/article-(\d+)\.json/);
+        return match ? parseInt(match[1]) : null;
+      })
+      .filter(id => id !== null);
   };
 
   useEffect(() => {
@@ -63,7 +79,7 @@ const ArticleDetail = () => {
           .slice(0, 3); // Pegar apenas 3 relacionados
 
         const relatedPromises = relatedIds.map(relatedId =>
-          loadArticle(relatedId).catch(err => null)
+          loadArticle(relatedId).catch(() => null)
         );
 
         const relatedData = await Promise.all(relatedPromises);
@@ -207,7 +223,12 @@ const ArticleDetail = () => {
             </div>
 
             {/* Métricas especiais (se houver) */}
-            {(article.investment || article.users || article.patients) && (
+            {(article.investment ||
+              article.users ||
+              article.patients ||
+              article.accuracy ||
+              article.hallucination ||
+              article.comparison) && (
               <div className="article-highlights">
                 {article.investment && (
                   <div className="highlight-item">
@@ -242,6 +263,33 @@ const ArticleDetail = () => {
                     <div>
                       <span className="highlight-label">Local</span>
                       <span className="highlight-value">{article.location}</span>
+                    </div>
+                  </div>
+                )}
+                {article.accuracy && (
+                  <div className="highlight-item">
+                    <Activity className="highlight-icon" />
+                    <div>
+                      <span className="highlight-label">Acurácia</span>
+                      <span className="highlight-value">{article.accuracy}</span>
+                    </div>
+                  </div>
+                )}
+                {article.hallucination && (
+                  <div className="highlight-item">
+                    <Activity className="highlight-icon" />
+                    <div>
+                      <span className="highlight-label">Alucinação</span>
+                      <span className="highlight-value">{article.hallucination}</span>
+                    </div>
+                  </div>
+                )}
+                {article.comparison && (
+                  <div className="highlight-item">
+                    <Users className="highlight-icon" />
+                    <div>
+                      <span className="highlight-label">Comparação</span>
+                      <span className="highlight-value">{article.comparison}</span>
                     </div>
                   </div>
                 )}

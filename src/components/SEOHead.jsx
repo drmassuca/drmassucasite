@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import PropTypes from 'prop-types';
+import { getAbsoluteUrl, getCanonicalUrl, SITE_CONFIG } from '../config/site';
 
 const SEOHead = ({
   title = '',
@@ -35,10 +36,13 @@ const SEOHead = ({
 
   const allKeywords = [...defaultKeywords, ...keywords].join(', ');
 
-  const defaultImage = '/images/dr-massuca-og-image.jpg';
-  const seoImage = image || defaultImage;
+  // Processar imagem para URL absoluta (CRÍTICO para WhatsApp/Facebook/Twitter)
+  const seoImage = getAbsoluteUrl(image || SITE_CONFIG.defaultImage);
 
-  const currentUrl = canonical || (typeof window !== 'undefined' ? window.location.href : '');
+  // Processar URL canônica
+  const currentUrl = canonical 
+    ? getCanonicalUrl(canonical) 
+    : (typeof window !== 'undefined' ? window.location.href : SITE_CONFIG.baseUrl);
 
   return (
     <Helmet>
@@ -60,6 +64,11 @@ const SEOHead = ({
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={seoDescription} />
       <meta property="og:image" content={seoImage} />
+      <meta property="og:image:secure_url" content={seoImage} />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:width" content={SITE_CONFIG.ogImage.width} />
+      <meta property="og:image:height" content={SITE_CONFIG.ogImage.height} />
+      <meta property="og:image:alt" content={title || 'Dr. Massuca - Medicina Inteligente'} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:site_name" content="Dr. Massuca" />
       <meta property="og:locale" content="pt_BR" />
@@ -69,8 +78,9 @@ const SEOHead = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={seoDescription} />
       <meta name="twitter:image" content={seoImage} />
-      <meta name="twitter:creator" content="@drmassuca" />
-      <meta name="twitter:site" content="@drmassuca" />
+      <meta name="twitter:image:alt" content={title || 'Dr. Massuca - Medicina Inteligente'} />
+      <meta name="twitter:creator" content={SITE_CONFIG.social.twitter} />
+      <meta name="twitter:site" content={SITE_CONFIG.social.twitter} />
 
       {/* Para artigos - dados estruturados */}
       {article && (

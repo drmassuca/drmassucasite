@@ -40,9 +40,11 @@ const SEOHead = ({
   const seoImage = getAbsoluteUrl(image || SITE_CONFIG.defaultImage);
 
   // Processar URL canônica
-  const currentUrl = canonical 
-    ? getCanonicalUrl(canonical) 
-    : (typeof window !== 'undefined' ? window.location.href : SITE_CONFIG.baseUrl);
+  const currentUrl = canonical
+    ? getCanonicalUrl(canonical)
+    : typeof window !== 'undefined'
+      ? window.location.href
+      : SITE_CONFIG.baseUrl;
 
   return (
     <Helmet>

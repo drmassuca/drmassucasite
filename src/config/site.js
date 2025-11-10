@@ -6,24 +6,25 @@
 export const SITE_CONFIG = {
   // URL base do site (IMPORTANTE: sem barra no final)
   baseUrl: 'https://drmassuca.com.br',
-  
+
   // Informações do site
   siteName: 'Dr. Massuca',
-  siteDescription: 'Acompanhe as últimas inovações em Inteligência Artificial na medicina brasileira. Notícias, pesquisas e análises especializadas sobre IA médica.',
-  
+  siteDescription:
+    'Acompanhe as últimas inovações em Inteligência Artificial na medicina brasileira. Notícias, pesquisas e análises especializadas sobre IA médica.',
+
   // Imagens padrão
   defaultImage: '/images/dr-massuca-og-image.jpg',
   defaultLogo: '/images/dr-massuca-logo.png',
-  
+
   // Redes sociais
   social: {
     twitter: '@drmassuca',
     facebook: 'drmassuca',
   },
-  
+
   // Autor padrão
   author: 'Dr. Massuca',
-  
+
   // Dimensões recomendadas para Open Graph
   ogImage: {
     width: 1200,
@@ -36,17 +37,17 @@ export const SITE_CONFIG = {
  * @param {string} path - Caminho relativo (ex: /images/foto.jpg)
  * @returns {string} URL absoluta (ex: https://drmassuca.com.br/images/foto.jpg)
  */
-export const getAbsoluteUrl = (path) => {
+export const getAbsoluteUrl = path => {
   // Se não tem path, retorna imagem padrão
   if (!path) {
     return SITE_CONFIG.baseUrl + SITE_CONFIG.defaultImage;
   }
-  
+
   // Se já é URL absoluta (começa com http ou https), retorna como está
   if (path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
-  
+
   // Se é URL relativa, adiciona o baseUrl
   // Garante que não tem barra duplicada
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
@@ -68,7 +69,7 @@ export const getValidImagePath = (imagePath, fallback = SITE_CONFIG.defaultImage
  * @param {string} path - Caminho da página (ex: /ia-medica/artigo/14)
  * @returns {string} URL canônica completa
  */
-export const getCanonicalUrl = (path) => {
+export const getCanonicalUrl = path => {
   if (!path) return SITE_CONFIG.baseUrl;
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return SITE_CONFIG.baseUrl + cleanPath;

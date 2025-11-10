@@ -22,6 +22,35 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 16,
+      title: 'IA em AVC: Quando a Tecnologia Realmente Salva Vidas',
+      excerpt:
+        'De 58 minutos para 7: algoritmos detectam AVC com 93% de precisão, reduzem tempo de atendimento em 44% e já estão salvando vidas em 2.000+ hospitais.',
+      category: 'Aplicação Clínica',
+      date: '2025-11-11T12:00:00',  // Forçando meio-dia para evitar problema de fuso
+      readTime: '9 min',
+      tags: ['AVC', 'diagnóstico', 'neurologia', 'emergência', 'RapidAI', 'Viz.ai'],
+      featured: true,
+      image: '/images/ia-medica/ai-stroke-detection.jpg',
+      accuracy: '93% precisão',
+      timeReduction: '58min → 7min',
+      hospitals: '2.000+ hospitais',
+    },
+    {
+      id: 15,
+      title: 'Chatbots de Saúde Mental Violam Padrões Éticos',
+      excerpt:
+        'Mais de 1 milhão de pessoas conversam semanalmente com ChatGPT sobre suicídio. Pesquisa mostra 15 padrões éticos violados.',
+      category: 'Ética',
+      date: '2025-11-05',
+      readTime: '8 min',
+      tags: ['chatbots', 'ética', 'saúde mental'],
+      featured: true,
+      image: '/images/ia-medica/chatbot-mental-health-ethics.jpg',
+      users: '1M+ usuários/semana',
+      violations: '15 violações éticas',
+    },
+    {
       id: 14,
       title: "GPT-4o 'Acerta' Diagnósticos Igual a Residentes, Mas Alucina em 75% dos Achados",
       excerpt: '82% de acurácia, 75% de alucinação em radiologia.',
@@ -321,6 +350,18 @@ const IAMedica = () => {
 
                   {article.comparison && (
                     <div className="card-highlight">🏥 {article.comparison}</div>
+                  )}
+
+                  {article.violations && (
+                    <div className="card-highlight">🚨 {article.violations}</div>
+                  )}
+
+                  {article.timeReduction && (
+                    <div className="card-highlight">⏱️ {article.timeReduction}</div>
+                  )}
+
+                  {article.hospitals && (
+                    <div className="card-highlight">🏥 {article.hospitals}</div>
                   )}
                 </div>
 

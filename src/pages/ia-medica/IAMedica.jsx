@@ -22,12 +22,36 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 17,
+      title:
+        'Rio Grande do Sul Publica Primeira Regulação de IA na Medicina do Brasil. O Resto do País? Ainda Esperando.',
+      excerpt:
+        "Rio Grande do Sul publica primeira resolução brasileira regulamentando IA na medicina. É histórica, mas só vale no RS. CFM promete norma nacional 'para breve' enquanto 17% dos médicos já usam IA sem regulação.",
+      category: 'Regulamentação',
+      date: '2025-11-18T12:00:00',
+      readTime: '12 min',
+      tags: [
+        'CREMERS',
+        'Regulamentação',
+        'IA Médica',
+        'CFM',
+        'Rio Grande do Sul',
+        'Resolução 6/2025',
+        'LGPD',
+        'Ética',
+      ],
+      featured: true,
+      image: '/images/ia-medica/cremers-resolucao-ia.jpg',
+      regulation: 'Primeira do Brasil',
+      scope: 'Só Rio Grande do Sul',
+    },
+    {
       id: 16,
       title: 'IA em AVC: Quando a Tecnologia Realmente Salva Vidas',
       excerpt:
         'De 58 minutos para 7: algoritmos detectam AVC com 93% de precisão, reduzem tempo de atendimento em 44% e já estão salvando vidas em 2.000+ hospitais.',
       category: 'Aplicação Clínica',
-      date: '2025-11-11T12:00:00',  // Forçando meio-dia para evitar problema de fuso
+      date: '2025-11-11T12:00:00', // Forçando meio-dia para evitar problema de fuso
       readTime: '9 min',
       tags: ['AVC', 'diagnóstico', 'neurologia', 'emergência', 'RapidAI', 'Viz.ai'],
       featured: true,
@@ -302,6 +326,12 @@ const IAMedica = () => {
 
                 {/* Highlights lateralizados */}
                 <div className="card-highlights">
+                  {article.regulation && (
+                    <div className="card-highlight">📜 {article.regulation}</div>
+                  )}
+
+                  {article.scope && <div className="card-highlight">📍 {article.scope}</div>}
+
                   {article.errorRate && (
                     <div className="card-highlight">❌ {article.errorRate}</div>
                   )}

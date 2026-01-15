@@ -27,7 +27,6 @@ const FloatingAccessibilityMenu = ({ content }) => {
   // Hooks de funcionalidade
   const { isDark, toggleTheme } = useTheme();
   const {
-    currentSize,
     fontSizeConfig,
     increaseFontSize,
     decreaseFontSize,
@@ -45,23 +44,6 @@ const FloatingAccessibilityMenu = ({ content }) => {
     pause,
     stop,
   } = useTextToSpeech();
-
-  // Debug: Verificar se as variáveis CSS estão sendo aplicadas
-  useEffect(() => {
-    console.log('🔍 Font Size Debug:', {
-      currentSize,
-      scale: fontSizeConfig.scale,
-      canIncrease,
-      canDecrease,
-      cssVariable: getComputedStyle(document.documentElement).getPropertyValue(
-        '--article-font-scale'
-      ),
-      htmlClass: document.documentElement.className,
-    });
-
-    // Forçar uma atualização visual para garantir que as mudanças sejam aplicadas
-    document.documentElement.style.setProperty('--article-font-debug', fontSizeConfig.scale);
-  }, [currentSize, fontSizeConfig, canIncrease, canDecrease]);
 
   // Carregar texto quando o componente monta
   useEffect(() => {

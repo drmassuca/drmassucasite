@@ -38,3 +38,8 @@ vite.config.js.timestamp-*
 
 # Large video files
 public/videos/tutorialsd.mp4
+
+# Backup files
+**/backup/
+**/*-backup.*
+**/*-original.*

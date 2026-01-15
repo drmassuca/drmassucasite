@@ -74,7 +74,13 @@ const Header = () => {
       transition="all 0.3s ease"
     >
       {/* Logo e Nome */}
-      <Link as={RouterLink} to="/" _hover={{ textDecoration: 'none' }}>
+      <Link
+        as={RouterLink}
+        to="/"
+        _hover={{ textDecoration: 'none' }}
+        zIndex="10"
+        position="relative"
+      >
         <HStack spacing={4}>
           <Image
             src={logoSrc}

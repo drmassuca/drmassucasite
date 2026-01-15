@@ -22,6 +22,53 @@ const IAMedica = () => {
   // Dados dos artigos baseados na pesquisa
   const articles = [
     {
+      id: 19,
+      title:
+        'O FDA Já Aprovou 1.200 Dispositivos de IA Médica. Esses São os Que Realmente Salvam Vidas',
+      excerpt:
+        'O FDA aprovou mais de 1.200 dispositivos de IA médica. A maioria? Ninguém nunca ouviu falar. Conheça os cinco que realmente mudam desfechos clínicos.',
+      category: 'Aplicação Clínica',
+      date: '2025-12-01T12:00:00',
+      readTime: '11 min',
+      tags: [
+        'FDA',
+        'dispositivos médicos',
+        'IA diagnóstico',
+        'retinopatia diabética',
+        'câncer',
+        'colonoscopia',
+        'fibrilação atrial',
+        'aprovação regulatória',
+      ],
+      featured: true,
+      image: '/images/ia-medica/fda-ai-devices.jpg',
+      promise: '1.200+ aprovados',
+      reality: 'Poucos com evidência',
+    },
+    {
+      id: 18,
+      title: 'O SUS Quer IA, Mas Ainda Não Tem Nem Prontuário Unificado',
+      excerpt:
+        'Governo promete R$ 4,5 bilhões em hospitais inteligentes enquanto 55% dos estabelecimentos ainda guardam dados em papel',
+      category: 'Infraestrutura',
+      date: '2025-11-26T12:00:00',
+      readTime: '12 min',
+      tags: [
+        'SUS',
+        'inteligência artificial',
+        'infraestrutura',
+        'RNDS',
+        'prontuário eletrônico',
+        'hospital inteligente',
+        'PBIA',
+        'saúde digital',
+      ],
+      featured: true,
+      image: '/images/ia-medica/hospital-tecnologia-contraste.jpg',
+      promise: 'R$ 4,5 bi prometidos',
+      reality: '55% usa papel',
+    },
+    {
       id: 17,
       title:
         'Rio Grande do Sul Publica Primeira Regulação de IA na Medicina do Brasil. O Resto do País? Ainda Esperando.',

@@ -41,6 +41,9 @@ const SDConfiguracao = lazy(
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 
+/* >>> ADMIN: Lazy load do painel administrativo */
+const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
+
 /* Lazy load para TODOS os exames - reduz bundle inicial */
 const ObstetricoDeRotina = lazy(() => import('./pages/exam-details/obstetrico-de-rotina'));
 const MorfologicoPrimeiroTrimestre = lazy(
@@ -104,6 +107,51 @@ function App() {
   usePageTracking();
   const location = useLocation();
 
+  // Verifica se estamos no painel admin
+  const isAdminPage = location.pathname.startsWith('/admin');
+
+  // Debug log
+  console.log('App render - pathname:', location.pathname, 'isAdminPage:', isAdminPage);
+
+  // Se for página admin, renderiza apenas as rotas do admin (sem header/footer do site)
+  if (isAdminPage) {
+    console.log('Renderizando AdminRoutes...');
+    return (
+      <>
+        <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+                background: '#f8fafc',
+                flexDirection: 'column',
+                gap: '1rem',
+              }}
+            >
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  border: '3px solid #e2e8f0',
+                  borderTopColor: '#22d3ee',
+                  borderRadius: '50%',
+                  animation: 'spin 1s linear infinite',
+                }}
+              />
+              <p style={{ color: '#64748b' }}>Carregando painel admin...</p>
+            </div>
+          }
+        >
+          <AdminRoutes />
+        </Suspense>
+      </>
+    );
+  }
+
   // Determina se estamos em uma página de IA
   const isIAPage = location.pathname.startsWith('/ia-medica');
 
@@ -164,7 +212,7 @@ function App() {
 
             {/* >>> ROTAS DA IA MÉDICA */}
             <Route path="/ia-medica" element={<IAMedica />} />
-            <Route path="/ia-medica/artigo/:id" element={<ArticleDetail />} />
+            <Route path="/ia-medica/artigo/:slug" element={<ArticleDetail />} />
             <Route
               path="/ia-medica/stable-diffusion-3d-fetal"
               element={<StableDiffusion3DFetal />}

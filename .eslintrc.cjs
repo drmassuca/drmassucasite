@@ -54,5 +54,14 @@ module.exports = {
 
     // Desativa regra obsoleta para React 17+
     'react/react-in-jsx-scope': 'off',
+
+    // Desativa prop-types (usar TypeScript para isso em projetos futuros)
+    'react/prop-types': 'off',
+
+    // Desativa display-name para componentes memo/forwardRef
+    'react/display-name': 'off',
+
+    // Permite blocos catch vazios
+    'no-empty': ['error', { allowEmptyCatch: true }],
   },
 };

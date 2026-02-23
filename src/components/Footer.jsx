@@ -115,7 +115,11 @@ const Footer = () => {
       </Flex>
 
       <Text textAlign="center" mt={4} fontSize="sm">
-        © 2025 Dr. Antonio Massucatti Neto - CRM-GO 17475. Todos os direitos reservados.
+        © 2026{' '}
+        <ChakraLink href="https://xdiag.com.br" isExternal color="white" textDecoration="underline" _hover={{ color: 'yellow.300' }}>
+          Xdiag Tecnologias Ltda.
+        </ChakraLink>
+        {' '}Todos os direitos reservados.
       </Text>
     </Box>
   );

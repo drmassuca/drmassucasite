@@ -17,8 +17,19 @@ import { FaTimes, FaPaperPlane } from 'react-icons/fa';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Configuração da API do Gemini
-const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyCU4iqRmMfF3n36SbTt6loieQWDDgZm1W8';
-const genAI = new GoogleGenerativeAI(API_KEY);
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+
+// Validação da API Key
+if (!API_KEY) {
+  console.error('❌ ERRO: VITE_GEMINI_API_KEY não encontrada no arquivo .env');
+  console.error('📝 Siga os passos:');
+  console.error('   1. Acesse: https://aistudio.google.com/app/apikey');
+  console.error('   2. Crie uma nova API key');
+  console.error('   3. Adicione no arquivo .env: VITE_GEMINI_API_KEY=sua_chave_aqui');
+  console.error('   4. Reinicie o servidor de desenvolvimento (npm run dev)');
+}
+
+const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
 
 const SYSTEM_PROMPT = `Você é o assistente virtual do Dr. Antonio Massucatti Neto (Dr. Massuca), CRM-GO 17475.
 
@@ -215,6 +226,26 @@ function Chatbot() {
   const sendMessage = async () => {
     if (!inputMessage.trim()) return;
 
+    // Validação crítica da API Key
+    if (!API_KEY || !genAI) {
+      toast({
+        title: 'Erro de Configuração',
+        description: 'API Key do Gemini não configurada. Verifique o console para instruções.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'bot',
+          content:
+            '❌ Desculpe, o chatbot está temporariamente indisponível. Por favor, entre em contato pelo WhatsApp: (62) 99660-2117',
+        },
+      ]);
+      return;
+    }
+
     // Bloqueia novas interações após 5 respostas
     if (interactionCount >= 5) {
       toast({
@@ -234,11 +265,6 @@ function Chatbot() {
     setIsTyping(true);
 
     try {
-      // Verificar se a API key está presente
-      if (!API_KEY || API_KEY === 'YOUR_API_KEY_HERE') {
-        throw new Error('API Key não configurada');
-      }
-
       // Incrementa o contador de interações
       const newInteractionCount = interactionCount + 1;
       setInteractionCount(newInteractionCount);
@@ -272,30 +298,46 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
 
       setMessages(prev => [...prev, { role: 'bot', content: text }]);
     } catch (error) {
-      console.error('Erro detalhado:', error);
-      console.error('API Key presente?', !!API_KEY);
-      console.error('Mensagem de erro:', error.message);
+      console.error('❌ Erro detalhado:', {
+        message: error.message,
+        status: error.status,
+        statusText: error.statusText,
+        stack: error.stack,
+      });
 
-      // Mensagem de erro mais específica
+      // Mensagem de erro específica baseada no código HTTP
       let errorMessage = 'Desculpe, ocorreu um erro. ';
+      let toastTitle = 'Erro na comunicação';
 
-      if (error.message?.includes('API_KEY')) {
-        errorMessage += 'Problema com a configuração da API. ';
+      if (error.status === 403) {
+        errorMessage =
+          '🔒 Acesso negado à API do Gemini. A chave pode estar inválida ou excedeu o limite. ';
+        toastTitle = 'Erro 403: Acesso Negado';
+        console.error('🔴 Possíveis causas:');
+        console.error('   - API key revogada ou inválida');
+        console.error('   - Quota excedida');
+        console.error('   - Restrições de domínio configuradas');
+      } else if (error.status === 429) {
+        errorMessage = '⏱️ Muitas requisições. Aguarde alguns instantes e tente novamente. ';
+        toastTitle = 'Erro 429: Limite Excedido';
+      } else if (error.status === 404) {
+        errorMessage = '❓ Modelo não encontrado. Verifique a configuração. ';
+        toastTitle = 'Erro 404: Não Encontrado';
       } else if (error.message?.includes('quota')) {
-        errorMessage += 'Limite de uso da API atingido. ';
+        errorMessage = '📊 Limite de uso da API atingido. ';
+        toastTitle = 'Limite de Quota';
       } else if (error.message?.includes('network')) {
-        errorMessage += 'Erro de conexão. ';
-      } else if (error.message?.includes('404')) {
-        errorMessage = 'Serviço temporariamente indisponível. Tente novamente em alguns instantes.';
+        errorMessage = '🌐 Erro de conexão com a internet. ';
+        toastTitle = 'Erro de Rede';
       }
 
-      errorMessage += ' Por favor, entre em contato pelo WhatsApp: (62) 99660-2117';
+      errorMessage += 'Por favor, entre em contato pelo WhatsApp: (62) 99660-2117';
 
       toast({
-        title: 'Erro na comunicação',
-        description: 'Não foi possível processar sua mensagem. Tente novamente.',
+        title: toastTitle,
+        description: errorMessage,
         status: 'error',
-        duration: 3000,
+        duration: 5000,
         isClosable: true,
       });
 

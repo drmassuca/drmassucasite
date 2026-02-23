@@ -19,6 +19,7 @@ import {
   Cloud,
   CloudOff,
   Layout,
+  FileJson,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { ContentEditor } from '../components/Editor';
@@ -75,6 +76,8 @@ const PostEditor = () => {
   const [tagInput, setTagInput] = useState('');
   const [activeTab, setActiveTab] = useState('content');
   const [showAIAssistant, setShowAIAssistant] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [importJson, setImportJson] = useState('');
 
   // New source form
   const [newSource, setNewSource] = useState({ title: '', url: '', type: 'Estudo' });
@@ -306,6 +309,96 @@ const PostEditor = () => {
     setTimeout(() => setSuccess(''), 3000);
   };
 
+  // Import JSON from Grok
+  const handleImportJson = () => {
+    let data;
+    try {
+      data = JSON.parse(importJson);
+    } catch {
+      setError('JSON inválido. Verifique a formatação e tente novamente.');
+      setTimeout(() => setError(''), 5000);
+      return;
+    }
+
+    const filledFields = [];
+    const updates = {};
+
+    // Direct mappings
+    if (data.title) {
+      updates.title = data.title;
+      updates.slug = generateSlug(data.title);
+      filledFields.push('Título', 'Slug');
+    }
+    if (data.subtitle) {
+      updates.subtitle = data.subtitle;
+      filledFields.push('Subtítulo');
+    }
+    if (data.excerpt) {
+      updates.excerpt = data.excerpt;
+      filledFields.push('Resumo');
+    }
+    if (data.content) {
+      updates.content = data.content;
+      filledFields.push('Conteúdo');
+    }
+    if (data.author) {
+      updates.author = data.author;
+      filledFields.push('Autor');
+    }
+    if (data.tags && Array.isArray(data.tags)) {
+      updates.tags = data.tags;
+      filledFields.push('Tags');
+    }
+    if (typeof data.featured === 'boolean') {
+      updates.featured = data.featured;
+      filledFields.push('Destaque');
+    }
+    if (data.sources && Array.isArray(data.sources)) {
+      updates.sources = data.sources;
+      filledFields.push('Fontes');
+    }
+
+    // Renamed fields
+    if (data.readTime) {
+      updates.read_time = data.readTime;
+      filledFields.push('Tempo de leitura');
+    }
+    if (data.date) {
+      updates.published_at = data.date;
+      filledFields.push('Data de publicação');
+    }
+
+    // Category lookup by name
+    if (data.category) {
+      const match = categories.find(
+        cat => cat.name.toLowerCase() === data.category.toLowerCase()
+      );
+      if (match) {
+        updates.category_id = match.id;
+        filledFields.push(`Categoria (${match.name})`);
+      } else {
+        filledFields.push(`⚠️ Categoria "${data.category}" não encontrada`);
+      }
+    }
+
+    // Image: store description as metadata (it's not a URL)
+    if (data.image) {
+      updates.metadata = {
+        ...formData.metadata,
+        image_description: data.image,
+      };
+      filledFields.push('Descrição da imagem (metadados)');
+    }
+
+    // Apply all updates
+    setFormData(prev => ({ ...prev, ...updates }));
+
+    setSuccess(`JSON importado! Campos: ${filledFields.join(', ')}`);
+    setTimeout(() => setSuccess(''), 8000);
+    setShowImportModal(false);
+    setImportJson('');
+  };
+
   // Tags handling
   const handleAddTag = () => {
     if (tagInput.trim() && !formData.tags.includes(tagInput.trim())) {
@@ -454,6 +547,15 @@ const PostEditor = () => {
               )}
             </div>
           )}
+
+          <button
+            onClick={() => setShowImportModal(true)}
+            className="btn btn-secondary"
+            title="Importar JSON do Grok"
+          >
+            <FileJson size={18} />
+            <span>Importar JSON</span>
+          </button>
 
           {isAIConfigured() && (
             <button
@@ -974,6 +1076,50 @@ const PostEditor = () => {
         onInsertContent={handleAIInsertContent}
         categories={categories}
       />
+
+      {/* Import JSON Modal */}
+      {showImportModal && (
+        <div className="import-modal-overlay" onClick={() => setShowImportModal(false)}>
+          <div className="import-modal" onClick={e => e.stopPropagation()}>
+            <div className="import-modal-header">
+              <h2>
+                <FileJson size={20} />
+                Importar JSON
+              </h2>
+              <button onClick={() => setShowImportModal(false)} className="btn btn-icon">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="import-modal-body">
+              <p className="import-modal-description">
+                Cole o JSON gerado pelo Grok AI. Os campos serão mapeados automaticamente para o
+                formulário.
+              </p>
+              <textarea
+                className="form-input import-json-textarea"
+                rows={15}
+                value={importJson}
+                onChange={e => setImportJson(e.target.value)}
+                placeholder='{"title": "...", "content": "...", ...}'
+                autoFocus
+              />
+            </div>
+            <div className="import-modal-footer">
+              <button onClick={() => setShowImportModal(false)} className="btn btn-secondary">
+                Cancelar
+              </button>
+              <button
+                onClick={handleImportJson}
+                className="btn btn-primary"
+                disabled={!importJson.trim()}
+              >
+                <Check size={18} />
+                Importar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

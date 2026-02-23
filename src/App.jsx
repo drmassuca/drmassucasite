@@ -3,8 +3,8 @@ import { Box } from '@chakra-ui/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CookieConsent from 'react-cookie-consent';
 
-import Header from './components/header';
-import Footer from './components/footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import AdvancedAnalytics from './components/AdvancedAnalytics';
 import LinkOptimizer from './components/LinkOptimizer';

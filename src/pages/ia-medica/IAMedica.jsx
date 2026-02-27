@@ -16,7 +16,7 @@ import { getPublishedArticles } from '../../lib/articles';
 import './IAMedica.css?v=2';
 
 // Helper para formatar data com segurança
-const formatDate = (dateValue) => {
+const formatDate = dateValue => {
   if (!dateValue) return 'Data não disponível';
   try {
     const date = new Date(dateValue);
@@ -360,7 +360,8 @@ const IAMedica = () => {
             id: 'stable-diffusion-3d-fetal',
             slug: 'stable-diffusion-3d-fetal',
             title: 'Stable Diffusion 3D Fetal: IA Revoluciona Ultrassom Obstétrico',
-            excerpt: 'Tecnologia de IA generativa transforma imagens 3D fetais com qualidade cinematográfica, preservando 100% da anatomia médica.',
+            excerpt:
+              'Tecnologia de IA generativa transforma imagens 3D fetais com qualidade cinematográfica, preservando 100% da anatomia médica.',
             category: 'Aplicação Clínica',
             date: '2025-09-07T12:00:00',
             readTime: '8 min',
@@ -618,9 +619,7 @@ const IAMedica = () => {
                   >
                     <div className="article-header">
                       <div className="article-category">{article.category}</div>
-                      <div className="article-date">
-                        {formatDate(article.date)}
-                      </div>
+                      <div className="article-date">{formatDate(article.date)}</div>
                     </div>
 
                     <h3 className="article-title">{article.title}</h3>

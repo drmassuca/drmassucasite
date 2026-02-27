@@ -116,10 +116,16 @@ const Footer = () => {
 
       <Text textAlign="center" mt={4} fontSize="sm">
         © 2026{' '}
-        <ChakraLink href="https://xdiag.com.br" isExternal color="white" textDecoration="underline" _hover={{ color: 'yellow.300' }}>
+        <ChakraLink
+          href="https://xdiag.com.br"
+          isExternal
+          color="white"
+          textDecoration="underline"
+          _hover={{ color: 'yellow.300' }}
+        >
           Xdiag Tecnologias Ltda.
-        </ChakraLink>
-        {' '}Todos os direitos reservados.
+        </ChakraLink>{' '}
+        Todos os direitos reservados.
       </Text>
     </Box>
   );

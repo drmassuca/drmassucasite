@@ -137,6 +137,91 @@ const ObstetricoDeRotina = () => {
             </Box>
           </VStack>
 
+          {/* ── Orientações e diferenciais ────────────────────────── */}
+          <Box mt={8}>
+            <Heading as="h2" fontSize="2xl" mb={3}>
+              Como funciona o exame com o Dr. Massuca
+            </Heading>
+            <Text fontSize="lg" mb={4}>
+              Mesmo sendo um exame de acompanhamento, o obstétrico de rotina exige atenção a
+              detalhes importantes como crescimento fetal, placenta e líquido amniótico. Para
+              garantir a melhor avaliação, a clínica segue algumas orientações:
+            </Text>
+          </Box>
+
+          <Box>
+            <Heading as="h3" fontSize="xl" mb={2}>
+              🎥 Filmagem e registro de imagens
+            </Heading>
+            <Text fontSize="lg">
+              Não é permitido filmar com celular durante a avaliação para não interferir na
+              concentração do médico. Quando o bebê colabora, o próprio Dr. Massuca registra imagens
+              e vídeos pelo sistema do aparelho — com qualidade superior — e entrega para você ao
+              final.
+            </Text>
+          </Box>
+
+          <Box>
+            <Heading as="h3" fontSize="xl" mb={2}>
+              👶 Acompanhantes e crianças
+            </Heading>
+            <Text fontSize="lg">
+              Para manter o ambiente silencioso e focado no diagnóstico, não é permitida a entrada
+              de crianças na sala de exame. Caso precise trazer seu filho(a), peça para um
+              acompanhante aguardar com ele na recepção.
+            </Text>
+          </Box>
+
+          <Box>
+            <Heading as="h3" fontSize="xl" mb={2}>
+              ⏰ Pontualidade
+            </Heading>
+            <Text fontSize="lg">
+              A agenda é organizada para que cada gestante receba atenção exclusiva. Um atraso
+              compromete o exame das pacientes seguintes. Por respeito a todas, pedimos que chegue
+              no horário agendado. Em caso de imprevisto, entre em contato pelo WhatsApp para
+              remarcar sem custo.
+            </Text>
+          </Box>
+
+          <Box>
+            <Heading as="h3" fontSize="xl" mb={2}>
+              🎉 Revelação de sexo
+            </Heading>
+            <Text fontSize="lg">
+              Planejando um chá revelação? Converse com a secretária para combinar. O Dr. Massuca
+              pode receber uma pessoa de confiança antes do exame apenas para identificar o sexo,
+              sem custo extra. Assim, no dia do ultrassom, a tela fica ligada o tempo todo e você
+              mantém a surpresa intacta para a sua festa.
+            </Text>
+          </Box>
+
+          <Box>
+            <Heading as="h3" fontSize="xl" mb={2}>
+              🖼️ Imagens 3D — um bônus, não um produto
+            </Heading>
+            <Text fontSize="lg">
+              Quando a posição fetal e a idade gestacional permitem, o Dr. Massuca faz imagens 3D do
+              rostinho como cortesia — sem custo adicional. Esse registro depende exclusivamente da
+              colaboração do bebê no momento do exame.
+            </Text>
+          </Box>
+
+          <Box
+            bg="green.50"
+            p={5}
+            borderRadius="md"
+            borderLeft="4px solid"
+            borderColor="green.600"
+            mt={4}
+          >
+            <Text fontSize="lg" fontWeight="medium" textAlign="center">
+              Todas essas orientações existem por um único motivo: garantir que o acompanhamento do
+              seu bebê seja feito com o máximo de precisão. É esse compromisso que faz do Dr.
+              Massuca referência em ultrassonografia há mais de 20 anos.
+            </Text>
+          </Box>
+
           {/* Botões -------------------------------------------------------------- */}
           <HStack justify="center" spacing={4} mt={10}>
             <Button

@@ -370,9 +370,7 @@ const PostEditor = () => {
 
     // Category lookup by name
     if (data.category) {
-      const match = categories.find(
-        cat => cat.name.toLowerCase() === data.category.toLowerCase()
-      );
+      const match = categories.find(cat => cat.name.toLowerCase() === data.category.toLowerCase());
       if (match) {
         updates.category_id = match.id;
         filledFields.push(`Categoria (${match.name})`);
@@ -446,7 +444,9 @@ const PostEditor = () => {
         ...formData,
         status: publishNow ? 'published' : formData.status,
         published_at: publishNow
-          ? (formData.published_at ? new Date(formData.published_at).toISOString() : new Date().toISOString())
+          ? formData.published_at
+            ? new Date(formData.published_at).toISOString()
+            : new Date().toISOString()
           : formData.published_at
             ? new Date(formData.published_at).toISOString()
             : null,

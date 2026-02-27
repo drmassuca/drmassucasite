@@ -45,9 +45,9 @@ ArticleImage.propTypes = {
 };
 
 const ArticleMeta = memo(function ArticleMeta({ article }) {
-  const formatDate = (dateValue) => {
+  const formatDate = dateValue => {
     if (!dateValue) return 'Data não disponível';
-    
+
     try {
       const date = new Date(dateValue);
       // Verifica se a data é válida
@@ -57,7 +57,7 @@ const ArticleMeta = memo(function ArticleMeta({ article }) {
       return date.toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'short',
-        year: 'numeric'
+        year: 'numeric',
       });
     } catch (error) {
       console.error('Erro ao formatar data:', error);
@@ -156,9 +156,9 @@ ArticleHighlights.propTypes = {
 };
 
 const RelatedCard = memo(function RelatedCard({ article, onClick }) {
-  const formatDate = (dateValue) => {
+  const formatDate = dateValue => {
     if (!dateValue) return 'Data não disponível';
-    
+
     try {
       const date = new Date(dateValue);
       if (isNaN(date.getTime())) {
@@ -167,7 +167,7 @@ const RelatedCard = memo(function RelatedCard({ article, onClick }) {
       return date.toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: 'short',
-        year: 'numeric'
+        year: 'numeric',
       });
     } catch (error) {
       return 'Data inválida';

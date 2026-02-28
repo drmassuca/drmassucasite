@@ -139,9 +139,12 @@ const MorfologicoPrimeiroTrimestre = () => {
               Como funciona o exame com o Dr. Massuca
             </Heading>
             <Text fontSize="lg" mb={4}>
-              O morfológico do primeiro trimestre é uma avaliação precoce e delicada, que exige
-              máxima concentração para medir estruturas muito pequenas como a translucência nucal e
-              o osso nasal. Para garantir a precisão, a clínica segue um protocolo rigoroso. Entenda
+              O morfológico do primeiro trimestre é uma avaliação precoce e delicada. Seguimos o
+              protocolo da ISUOG (International Society of Ultrasound in Obstetrics and Gynecology),
+              que define os marcadores de cromossomopatias e riscos a serem rastreados nesta fase —
+              como a translucência nucal e o osso nasal. Isso não significa que seja possível
+              visualizar absolutamente tudo, mas que o exame segue os critérios internacionais de
+              rastreamento. Para garantir a precisão, a clínica segue um protocolo rigoroso. Entenda
               o porquê de cada orientação:
             </Text>
           </Box>
@@ -152,9 +155,10 @@ const MorfologicoPrimeiroTrimestre = () => {
             </Heading>
             <Text fontSize="lg">
               As medidas deste exame são milimétricas e qualquer distração pode comprometer o
-              resultado. Por isso, não é permitido filmar com celular durante a avaliação. Quando
-              possível, o próprio médico registra imagens pelo sistema do aparelho — com qualidade
-              superior — e entrega para você ao final.
+              resultado. Por isso, não é permitido filmar com celular durante a avaliação. Se você
+              deseja imagens ou vídeos do bebê, avise a secretária na recepção e solicite ao médico
+              durante o exame. Quando as condições técnicas permitem, o Dr. Massuca registra pelo
+              próprio sistema do aparelho — com qualidade superior à de um celular.
             </Text>
           </Box>
 
@@ -174,10 +178,11 @@ const MorfologicoPrimeiroTrimestre = () => {
               ⏰ Pontualidade
             </Heading>
             <Text fontSize="lg">
-              Este exame pode durar de 20 a 40 minutos, e a agenda é organizada para que cada
-              gestante receba atenção exclusiva. Um atraso compromete o exame das pacientes
-              seguintes. Por respeito a todas, pedimos que chegue no horário agendado. Em caso de
-              imprevisto, entre em contato pelo WhatsApp para remarcar sem custo.
+              Este exame pode durar de 20 a 40 minutos e pode se prolongar dependendo das condições
+              encontradas. A agenda é organizada para que cada gestante receba atenção exclusiva —
+              por isso, não há tolerância para atrasos. Pedimos que chegue no horário agendado. Caso
+              precise reagendar, entre em contato pelo WhatsApp com pelo menos um dia de
+              antecedência; remarcações no mesmo dia não são possíveis.
             </Text>
           </Box>
 

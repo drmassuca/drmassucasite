@@ -142,10 +142,12 @@ function MorfologicoSegundoTrimestre() {
               Como funciona o exame com o Dr. Massuca
             </Heading>
             <Text fontSize="lg" mb={4}>
-              O morfológico é o exame mais importante da gestação — é nele que cada órgão, cada
-              artéria e cada estrutura do seu bebê são avaliados em detalhe. Para garantir a máxima
-              precisão diagnóstica, a clínica segue um protocolo rigoroso. Entenda o porquê de cada
-              orientação:
+              O morfológico é um dos exames mais importantes da gestação. Seguimos o protocolo da
+              ISUOG (International Society of Ultrasound in Obstetrics and Gynecology), que define
+              quais estruturas devem ser avaliadas em cada fase. Isso não significa que seja
+              possível visualizar absolutamente tudo — significa que o exame segue os critérios
+              internacionais de rastreamento. Para garantir a máxima precisão, a clínica segue um
+              protocolo rigoroso. Entenda o porquê de cada orientação:
             </Text>
           </Box>
 
@@ -155,10 +157,11 @@ function MorfologicoSegundoTrimestre() {
             </Heading>
             <Text fontSize="lg">
               Durante o exame, o Dr. Massuca precisa de concentração total para identificar detalhes
-              milimétricos. Por isso, não é permitido filmar com celular durante a avaliação. Mas
-              fique tranquila: quando o bebê colabora, o próprio médico registra imagens e vídeos
-              pelo sistema do aparelho — com qualidade muito superior à de um celular — e entrega
-              para você ao final.
+              milimétricos. Por isso, não é permitido filmar com celular durante a avaliação. Se
+              você deseja imagens 3D (baby face) ou vídeos do bebê, avise a secretária na recepção e
+              solicite ao médico durante o exame. Quando as condições técnicas permitem, o Dr.
+              Massuca registra pelo próprio sistema do aparelho — com qualidade muito superior à de
+              um celular.
             </Text>
           </Box>
 
@@ -179,10 +182,11 @@ function MorfologicoSegundoTrimestre() {
               ⏰ Pontualidade
             </Heading>
             <Text fontSize="lg">
-              Cada morfológico pode durar de 30 a 50 minutos, e a agenda é organizada para que cada
-              gestante receba atenção exclusiva. Um atraso compromete o exame das pacientes
-              seguintes. Por respeito a todas, pedimos que chegue no horário agendado. Em caso de
-              imprevisto, entre em contato pelo WhatsApp para remarcar sem custo.
+              Cada morfológico pode durar de 30 a 50 minutos e pode se prolongar dependendo das
+              condições encontradas. A agenda é organizada para que cada gestante receba atenção
+              exclusiva — por isso, não há tolerância para atrasos. Pedimos que chegue no horário
+              agendado. Caso precise reagendar, entre em contato pelo WhatsApp com pelo menos um dia
+              de antecedência; remarcações no mesmo dia não são possíveis.
             </Text>
           </Box>
 
@@ -191,10 +195,11 @@ function MorfologicoSegundoTrimestre() {
               🖼️ Ultrassom 3D — um bônus, não um produto
             </Heading>
             <Text fontSize="lg">
-              O objetivo do morfológico é avaliar a saúde do bebê. Quando a posição fetal permite, o
-              Dr. Massuca faz imagens 3D do rostinho e grava vídeos como cortesia — sem custo
-              adicional. Esse registro depende exclusivamente da colaboração do bebê no momento do
-              exame.
+              O objetivo do morfológico é avaliar a saúde do bebê. As imagens 3D (baby face) e
+              vídeos são uma cortesia — sem custo adicional — mas dependem de diversos fatores
+              técnicos: posição fetal, posição da placenta, qualidade da janela acústica, atenuação
+              do feixe sonoro, cirurgias abdominais anteriores e idade gestacional. Nem sempre é
+              possível obtê-las, mesmo com o bebê em boa posição.
             </Text>
           </Box>
 
@@ -203,11 +208,10 @@ function MorfologicoSegundoTrimestre() {
               🎉 Revelação de sexo
             </Heading>
             <Text fontSize="lg">
-              Planejando um chá revelação? Converse com a secretária para combinar. O Dr. Massuca
-              pode receber uma pessoa de confiança antes do exame apenas para identificar o sexo,
-              sem custo extra. Assim, no dia do morfológico, a tela fica ligada o tempo todo e o
-              médico avalia todas as estruturas sem restrições — e você mantém a surpresa intacta
-              para a sua festa.
+              Planejando um chá revelação? Avise a secretária na recepção antes do exame. Durante a
+              avaliação, o Dr. Massuca toma todos os cuidados para não revelar o sexo. A informação
+              do sexo constará no resultado do exame, para que você mostre apenas a quem desejar e
+              mantenha a surpresa intacta para a sua festa.
             </Text>
           </Box>
 

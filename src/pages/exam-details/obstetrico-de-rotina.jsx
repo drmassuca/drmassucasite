@@ -155,9 +155,10 @@ const ObstetricoDeRotina = () => {
             </Heading>
             <Text fontSize="lg">
               Não é permitido filmar com celular durante a avaliação para não interferir na
-              concentração do médico. Quando o bebê colabora, o próprio Dr. Massuca registra imagens
-              e vídeos pelo sistema do aparelho — com qualidade superior — e entrega para você ao
-              final.
+              concentração do médico. Se você deseja imagens 3D (baby face) ou vídeos do bebê, avise
+              a secretária na recepção e solicite ao médico durante o exame. Quando as condições
+              técnicas permitem, o Dr. Massuca registra pelo próprio sistema do aparelho — com
+              qualidade muito superior à de um celular.
             </Text>
           </Box>
 
@@ -177,10 +178,10 @@ const ObstetricoDeRotina = () => {
               ⏰ Pontualidade
             </Heading>
             <Text fontSize="lg">
-              A agenda é organizada para que cada gestante receba atenção exclusiva. Um atraso
-              compromete o exame das pacientes seguintes. Por respeito a todas, pedimos que chegue
-              no horário agendado. Em caso de imprevisto, entre em contato pelo WhatsApp para
-              remarcar sem custo.
+              A agenda é organizada para que cada gestante receba atenção exclusiva — por isso, não
+              há tolerância para atrasos. Pedimos que chegue no horário agendado. Caso precise
+              reagendar, entre em contato pelo WhatsApp com pelo menos um dia de antecedência;
+              remarcações no mesmo dia não são possíveis.
             </Text>
           </Box>
 
@@ -189,10 +190,10 @@ const ObstetricoDeRotina = () => {
               🎉 Revelação de sexo
             </Heading>
             <Text fontSize="lg">
-              Planejando um chá revelação? Converse com a secretária para combinar. O Dr. Massuca
-              pode receber uma pessoa de confiança antes do exame apenas para identificar o sexo,
-              sem custo extra. Assim, no dia do ultrassom, a tela fica ligada o tempo todo e você
-              mantém a surpresa intacta para a sua festa.
+              Planejando um chá revelação? Avise a secretária na recepção antes do exame. Durante a
+              avaliação, o Dr. Massuca toma todos os cuidados para não revelar o sexo. A informação
+              do sexo constará no resultado do exame, para que você mostre apenas a quem desejar e
+              mantenha a surpresa intacta para a sua festa.
             </Text>
           </Box>
 
@@ -201,9 +202,10 @@ const ObstetricoDeRotina = () => {
               🖼️ Imagens 3D — um bônus, não um produto
             </Heading>
             <Text fontSize="lg">
-              Quando a posição fetal e a idade gestacional permitem, o Dr. Massuca faz imagens 3D do
-              rostinho como cortesia — sem custo adicional. Esse registro depende exclusivamente da
-              colaboração do bebê no momento do exame.
+              As imagens 3D (baby face) e vídeos são uma cortesia — sem custo adicional — mas
+              dependem de diversos fatores técnicos: posição fetal, posição da placenta, qualidade
+              da janela acústica, atenuação do feixe sonoro, cirurgias abdominais anteriores e idade
+              gestacional. Nem sempre é possível obtê-las, mesmo com o bebê em boa posição.
             </Text>
           </Box>
 

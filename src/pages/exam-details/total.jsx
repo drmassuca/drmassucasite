@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'total';
 
 function Total() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/total';
-
-  /* ➜ SEO */
   const title = 'Abdome Total – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom de abdome total avalia fígado, vesícula, rins, pâncreas e pelve em um único exame. Atendimento em Itaberaí-GO com Dr. Massuca.';
@@ -35,10 +31,7 @@ function Total() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -57,8 +50,8 @@ function Total() {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -69,20 +62,11 @@ function Total() {
           >
             Ultrassom de Abdome Total
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/abdometotal.webp"
             alt="Ultrassom de Abdome Total"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
@@ -93,7 +77,6 @@ function Total() {
                 rastreio de cálculos, tumores, inflamações e controle de doenças crônicas.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -103,7 +86,6 @@ function Total() {
                 aproximadamente 1 litro de água uma hora antes e não urinar.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -113,7 +95,6 @@ function Total() {
                 paciente.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -125,22 +106,10 @@ function Total() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'pelvico-via-abdominal';
 
 function PelvicoViaAbdominal() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/pelvico-via-abdominal';
-
-  /* ➜ SEO */
   const title = 'Pélvico Via Abdominal – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom pélvico via abdominal avalia útero, ovários e bexiga com clareza e segurança. Exame em Itaberaí-GO com o Dr. Massuca.';
@@ -32,10 +28,7 @@ function PelvicoViaAbdominal() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -54,8 +47,8 @@ function PelvicoViaAbdominal() {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -66,20 +59,11 @@ function PelvicoViaAbdominal() {
           >
             Ultrassom Pélvico – Via Abdominal
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/pelvicofeminino.webp"
             alt="Ultrassom Pélvico Via Abdominal"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
@@ -91,7 +75,6 @@ function PelvicoViaAbdominal() {
                 endometriose, posicionamento de DIU, entre outros.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -101,7 +84,6 @@ function PelvicoViaAbdominal() {
                 manter a bexiga cheia e melhorar a qualidade das imagens.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -111,7 +93,6 @@ function PelvicoViaAbdominal() {
                 avaliação Doppler.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -123,23 +104,10 @@ function PelvicoViaAbdominal() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

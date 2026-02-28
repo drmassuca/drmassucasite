@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'parede-abdominal';
 
 function ParedeAbdominal() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/parede-abdominal';
-
-  /* ➜ SEO */
   const title = 'Parede Abdominal – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom da parede abdominal avalia hérnias, músculos e fáscias, auxiliando diagnósticos precisos em Itaberaí-GO com o Dr. Massuca.';
@@ -32,10 +28,7 @@ function ParedeAbdominal() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -54,8 +47,8 @@ function ParedeAbdominal() {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -66,20 +59,11 @@ function ParedeAbdominal() {
           >
             Ultrassom da Parede Abdominal
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/parede.webp"
             alt="Ultrassom Parede Abdominal"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
@@ -90,7 +74,6 @@ function ParedeAbdominal() {
                 hérnias ou acompanhamento pós-operatório.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -99,7 +82,6 @@ function ParedeAbdominal() {
                 Não há preparo específico. Use roupas que facilitem a exposição do abdome.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -108,7 +90,6 @@ function ParedeAbdominal() {
                 Entre <strong>10 e 20 minutos</strong>.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -120,22 +101,10 @@ function ParedeAbdominal() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

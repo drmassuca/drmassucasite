@@ -1,23 +1,26 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
-import { Box, Heading, Text, Button, VStack, HStack, Image } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
+import {
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'ecocardiografia-fetal';
 
 const EcocardiografiaFetal = () => {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/ecocardiografia-fetal';
-
-  /* ➜ SEO */
   const title = 'Ecocardiografia Fetal – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom Ecocardiografia Fetal avalia a estrutura e circulação do coração do bebê com alta precisão. Exame em Itaberaí-GO, Dr. Massuca.';
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest (sem alumniOf) */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -36,8 +39,8 @@ const EcocardiografiaFetal = () => {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -49,86 +52,62 @@ const EcocardiografiaFetal = () => {
             Ecocardiografia Fetal
           </Heading>
 
-          {/* Imagem */}
-          <Box mb={8} display="flex" justifyContent="center">
-            <Box w={['90%', '70%', '50%']}>
-              <Image
-                src="/img-exams-webp/ecocardiografia_fetal.webp"
-                alt="Ecocardiografia Fetal"
-                borderRadius="md"
-                objectFit="contain"
-                w="100%"
-                h={{ base: '200px', md: '300px' }}
-                mb={8}
-                bg="white"
-                loading="lazy"
-              />
-            </Box>
-          </Box>
+          <ExamImage
+            slug={SLUG}
+            src="/img-exams-webp/ecocardiografia_fetal.webp"
+            alt="Ecocardiografia Fetal"
+          />
 
-          {/* Descrição */}
           <VStack align="start" spacing={5}>
             <Text fontSize="lg">
               A <strong>Ecocardiografia Fetal</strong> é um exame de ultrassom especializado que
               avalia, de forma detalhada, a estrutura, função e circulação do coração do bebê,
               utilizando imagens bidimensionais e Doppler colorido.
             </Text>
-
             <Box>
               <Heading as="h2" fontSize="xl" mb={2}>
-                Quando é realizado:
+                Quando é realizado
               </Heading>
               <Text fontSize="lg">
                 Recomendado entre a <strong>20ª e a 30ª semanas</strong> de gestação, podendo ser
                 solicitado em outras fases conforme indicação médica.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="xl" mb={2}>
-                Indicações:
+                Indicações
               </Heading>
-              <ul style={{ paddingLeft: '20px' }}>
-                <li>Suspeita de cardiopatia fetal ou malformação cardíaca.</li>
-                <li>Histórico familiar de cardiopatias congênitas.</li>
-                <li>
-                  Alterações no ritmo fetal ou condições maternas específicas (diabetes, lúpus, uso
-                  de medicação, etc.).
-                </li>
-                <li>Parte complementar do pré-natal, inclusive em gestações de baixo risco.</li>
-              </ul>
+              <List spacing={2} pl={4} fontSize="lg" as="ul">
+                <ListItem>• Suspeita de cardiopatia fetal ou malformação cardíaca.</ListItem>
+                <ListItem>• Histórico familiar de cardiopatias congênitas.</ListItem>
+                <ListItem>
+                  • Alterações no ritmo fetal ou condições maternas específicas (diabetes, lúpus,
+                  uso de medicação, etc.).
+                </ListItem>
+                <ListItem>
+                  • Parte complementar do pré-natal, inclusive em gestações de baixo risco.
+                </ListItem>
+              </List>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="xl" mb={2}>
-                Informações rápidas:
+                Informações rápidas
               </Heading>
-              <ul style={{ paddingLeft: '20px' }}>
-                <li>
+              <List spacing={2} pl={4} fontSize="lg" as="ul">
+                <ListItem>
                   <strong>Duração:</strong> 30 – 60 min
-                </li>
-                <li>
+                </ListItem>
+                <ListItem>
                   <strong>Preparo:</strong> Não há
-                </li>
-              </ul>
+                </ListItem>
+              </List>
             </Box>
           </VStack>
 
-          {/* Botões */}
-          <HStack justify="center" spacing={4} mt={8}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge variant="obstetric" />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'ultrassonografia-avaliacao-pre-cirurgia-plastica';
 
 function AvaliacaoPreCirurgiaPlastica() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/avaliacao-pre-cirurgia-plastica';
-
-  /* ➜ SEO */
   const title = 'Avaliação Pré Cirurgia Plástica – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom para avaliação pré-cirurgia plástica mapeia gordura, músculos e hérnias, garantindo planejamento seguro em Itaberaí-GO com Dr. Massuca.';
@@ -30,7 +26,6 @@ function AvaliacaoPreCirurgiaPlastica() {
     'Documentação de assimetrias ou condições pré-existentes',
     'Avaliação de seromas, hematomas ou fibroses em pós-operatório',
   ];
-
   const importante = [
     'Exame personalizado conforme solicitação do cirurgião plástico.',
     'Podem ser avaliadas diversas regiões corporais.',
@@ -39,10 +34,7 @@ function AvaliacaoPreCirurgiaPlastica() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -61,8 +53,8 @@ function AvaliacaoPreCirurgiaPlastica() {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -73,22 +65,12 @@ function AvaliacaoPreCirurgiaPlastica() {
           >
             Ultrassom para Avaliação Pré-Cirurgia Plástica
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/cirurgiaplastica.webp"
             alt="Ultrassom Avaliação Pré Cirurgia Plástica"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
-            {/* Objetivo */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Objetivo do exame
@@ -99,8 +81,6 @@ function AvaliacaoPreCirurgiaPlastica() {
                 procedimento estético.
               </Text>
             </Box>
-
-            {/* Importante */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Importante saber
@@ -111,8 +91,6 @@ function AvaliacaoPreCirurgiaPlastica() {
                 ))}
               </List>
             </Box>
-
-            {/* Preparo */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -122,8 +100,6 @@ function AvaliacaoPreCirurgiaPlastica() {
                 previamente.
               </Text>
             </Box>
-
-            {/* Duração */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -133,8 +109,6 @@ function AvaliacaoPreCirurgiaPlastica() {
                 avaliadas.
               </Text>
             </Box>
-
-            {/* Avaliado */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -146,22 +120,10 @@ function AvaliacaoPreCirurgiaPlastica() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Falar com a equipe
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} ctaLabel="Falar com a equipe" />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

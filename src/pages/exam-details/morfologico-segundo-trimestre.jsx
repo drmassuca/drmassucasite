@@ -1,20 +1,18 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'morfologico-segundo-trimestre';
 
 function MorfologicoSegundoTrimestre() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/morfologico-segundo-trimestre';
 
   /* ➜ SEO */
@@ -60,6 +58,8 @@ function MorfologicoSegundoTrimestre() {
 
       {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
+
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -71,17 +71,11 @@ function MorfologicoSegundoTrimestre() {
             Ultrassom Morfológico – 2º Trimestre
           </Heading>
 
-          <Image
+          {/* Imagem com legenda */}
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/morfologico.webp"
             alt="Ultrassom Morfológico do Segundo Trimestre"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
 
           <VStack align="start" spacing={6}>
@@ -215,37 +209,17 @@ function MorfologicoSegundoTrimestre() {
             </Text>
           </Box>
 
-          <Box
-            bg="green.50"
-            p={5}
-            borderRadius="md"
-            borderLeft="4px solid"
-            borderColor="green.600"
-            mt={4}
-          >
-            <Text fontSize="lg" fontWeight="medium" textAlign="center">
-              Todas essas orientações existem por um único motivo: garantir que, ao final do exame,
-              você saia com a certeza de que a saúde do seu bebê foi avaliada com o máximo de
-              precisão. É esse compromisso que faz do Dr. Massuca referência em ultrassonografia há
-              mais de 20 anos.
-            </Text>
-          </Box>
+          {/* Selo ISUOG + credenciais */}
+          <ExamCredentialBadge variant="obstetric" />
 
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          {/* Perguntas frequentes */}
+          <ExamFAQ slug={SLUG} />
+
+          {/* CTA inteligente */}
+          <ExamCTA slug={SLUG} />
+
+          {/* Exames relacionados */}
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

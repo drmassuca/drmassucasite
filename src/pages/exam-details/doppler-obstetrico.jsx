@@ -1,23 +1,26 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
-import { Box, Heading, Text, Button, VStack, HStack, Image } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
+import {
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'doppler-obstetrico';
 
 const DopplerObstetrico = () => {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/doppler-obstetrico';
-
-  /* ➜ SEO */
   const title = 'Doppler Obstétrico – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom Doppler Obstétrico avalia o fluxo sanguíneo entre mãe, placenta e bebê. Exame em Itaberaí-GO com Dr. Massuca.';
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest (sem alumniOf) */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -36,8 +39,8 @@ const DopplerObstetrico = () => {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -49,21 +52,11 @@ const DopplerObstetrico = () => {
             Doppler Obstétrico
           </Heading>
 
-          <Box mb={8} display="flex" justifyContent="center">
-            <Box w={['90%', '70%', '50%']}>
-              <Image
-                src="/img-exams-webp/dopplerobstetrico.webp"
-                alt="Doppler Obstétrico"
-                borderRadius="md"
-                objectFit="contain"
-                w="100%"
-                h={{ base: '200px', md: '300px' }}
-                mb={8}
-                bg="white"
-                loading="lazy"
-              />
-            </Box>
-          </Box>
+          <ExamImage
+            slug={SLUG}
+            src="/img-exams-webp/dopplerobstetrico.webp"
+            alt="Doppler Obstétrico"
+          />
 
           <VStack align="start" spacing={5}>
             <Text fontSize="lg">
@@ -71,55 +64,42 @@ const DopplerObstetrico = () => {
               sanguíneo entre mãe, placenta e bebê. Ele analisa a circulação nas artérias uterinas,
               no cordão umbilical e em vasos fetais, como a artéria cerebral média e a aorta.
             </Text>
-
             <Text fontSize="lg">
               Essas informações mostram a oxigenação e a nutrição do bebê, ajudando a detectar
               precocemente situações como <strong>insuficiência placentária</strong>,{' '}
               <strong>restrição de crescimento intrauterino (RCIU)</strong> e risco para{' '}
               <strong>pré-eclâmpsia</strong>.
             </Text>
-
             <Box>
               <Heading as="h2" fontSize="xl" mb={2}>
                 Indicações
               </Heading>
-              <ul style={{ paddingLeft: '20px' }}>
-                <li>Gestantes com hipertensão, diabetes ou gemelaridade.</li>
-                <li>História de pré-eclâmpsia ou RCIU.</li>
-                <li>Suspeita de alterações do líquido amniótico.</li>
-                <li>Acompanhamento de condições clínicas específicas.</li>
-              </ul>
+              <List spacing={2} pl={4} fontSize="lg" as="ul">
+                <ListItem>• Gestantes com hipertensão, diabetes ou gemelaridade.</ListItem>
+                <ListItem>• História de pré-eclâmpsia ou RCIU.</ListItem>
+                <ListItem>• Suspeita de alterações do líquido amniótico.</ListItem>
+                <ListItem>• Acompanhamento de condições clínicas específicas.</ListItem>
+              </List>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="xl" mb={2}>
                 Informações rápidas
               </Heading>
-              <ul style={{ paddingLeft: '20px' }}>
-                <li>
+              <List spacing={2} pl={4} fontSize="lg" as="ul">
+                <ListItem>
                   <strong>Duração:</strong> 15 – 30 min
-                </li>
-                <li>
+                </ListItem>
+                <ListItem>
                   <strong>Preparo:</strong> Não há
-                </li>
-              </ul>
+                </ListItem>
+              </List>
             </Box>
           </VStack>
 
-          <HStack justify="center" spacing={4} mt={8}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge variant="obstetric" />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'transfontanela';
 
 const Transfontanela = () => {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/transfontanela';
-
-  /* ➜ SEO */
   const title = 'Transfontanela – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom transfontanelar avalia cérebro de recém-nascidos, detectando hemorragias e hidrocefalia. Exame em Itaberaí-GO com Dr. Massuca.';
@@ -31,10 +27,7 @@ const Transfontanela = () => {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -53,8 +46,8 @@ const Transfontanela = () => {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -65,20 +58,11 @@ const Transfontanela = () => {
           >
             Ultrassom Transfontanelar
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/transfontanela.webp"
             alt="Ultrassom Transfontanelar"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
@@ -90,7 +74,6 @@ const Transfontanela = () => {
                 neurológico.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -100,7 +83,6 @@ const Transfontanela = () => {
                 com 10 minutos de antecedência.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -110,7 +92,6 @@ const Transfontanela = () => {
                 necessidade de Doppler.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -122,22 +103,10 @@ const Transfontanela = () => {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

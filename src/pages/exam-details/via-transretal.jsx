@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'via-transretal';
 
 function ViaTransretal() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/via-transretal';
-
-  /* ➜ SEO */
   const title = 'Próstata (Via Transretal) – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom transretal da próstata avalia nódulos e guia biópsias com alta precisão. Exame em Itaberaí-GO com Dr. Massuca.';
@@ -33,10 +29,7 @@ function ViaTransretal() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -55,8 +48,8 @@ function ViaTransretal() {
         </script>
       </Helmet>
 
-      {/* Conteúdo -------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -67,22 +60,12 @@ function ViaTransretal() {
           >
             Ultrassom da Próstata por Via Transretal
           </Heading>
-
-          <Image
+          <ExamImage
+            slug={SLUG}
             src="/img-exams-webp/prostata.webp"
             alt="Ultrassom Próstata Transretal"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
           />
-
           <VStack align="start" spacing={6}>
-            {/* Objetivo */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Objetivo do exame
@@ -93,8 +76,6 @@ function ViaTransretal() {
                 direcionadas.
               </Text>
             </Box>
-
-            {/* Preparo */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -104,8 +85,6 @@ function ViaTransretal() {
                 orientação médica. Evitar evacuação após o preparo.
               </Text>
             </Box>
-
-            {/* Duração */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -114,8 +93,6 @@ function ViaTransretal() {
                 De <strong>15 a 30 minutos</strong>, podendo se estender em casos de biópsia.
               </Text>
             </Box>
-
-            {/* Avaliado */}
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -127,22 +104,10 @@ function ViaTransretal() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões -------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

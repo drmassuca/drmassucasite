@@ -1,23 +1,19 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  VStack,
-  HStack,
-  Image,
-  List,
-  ListItem,
-} from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+  ExamBreadcrumb,
+  ExamImage,
+  ExamFAQ,
+  ExamRelated,
+  ExamCTA,
+  ExamCredentialBadge,
+} from '../../components/exam';
+
+const SLUG = 'ultrassonografia-cervical-com-ou-sem-doppler';
 
 function UltrassomCervicalComOuSemDoppler() {
-  const whatsappLink = 'https://wa.me/5562996602117';
   const canonical = '/exames/ultrassonografia-cervical-com-ou-sem-doppler';
-
-  /* ➜ SEO */
   const title = 'Cervical (com ou sem Doppler) – Ultrassom – Dr. Massuca';
   const description =
     'Ultrassom cervical com ou sem Doppler avalia linfonodos, glândulas salivares e massas do pescoço. Exame em Itaberaí-GO com Dr. Massuca.';
@@ -34,10 +30,7 @@ function UltrassomCervicalComOuSemDoppler() {
 
   return (
     <>
-      {/* SEO base */}
       <SEO title={title} description={description} canonical={canonical} />
-
-      {/* Schema.org – MedicalTest */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -56,8 +49,8 @@ function UltrassomCervicalComOuSemDoppler() {
         </script>
       </Helmet>
 
-      {/* Conteúdo ---------------------------------------------------------------- */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
+        <ExamBreadcrumb slug={SLUG} />
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
@@ -68,20 +61,7 @@ function UltrassomCervicalComOuSemDoppler() {
           >
             Ultrassom Cervical (com ou sem Doppler)
           </Heading>
-
-          <Image
-            src="/img-exams-webp/cervical.webp"
-            alt="Ultrassom Cervical"
-            borderRadius="md"
-            objectFit="contain"
-            objectPosition="center"
-            w="100%"
-            h={{ base: '200px', md: '300px' }}
-            mb={8}
-            bg="white"
-            loading="lazy"
-          />
-
+          <ExamImage slug={SLUG} src="/img-exams-webp/cervical.webp" alt="Ultrassom Cervical" />
           <VStack align="start" spacing={6}>
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
@@ -92,7 +72,6 @@ function UltrassomCervicalComOuSemDoppler() {
                 — podendo incluir Doppler para estudo de vascularização quando necessário.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Com ou sem Doppler?
@@ -102,7 +81,6 @@ function UltrassomCervicalComOuSemDoppler() {
                 fluxo sanguíneo de massas. A decisão pode ser prévia ou tomada durante o exame.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Preparo
@@ -112,7 +90,6 @@ function UltrassomCervicalComOuSemDoppler() {
                 disponíveis.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Duração estimada
@@ -122,7 +99,6 @@ function UltrassomCervicalComOuSemDoppler() {
                 complexidade dos achados.
               </Text>
             </Box>
-
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 O que é avaliado
@@ -134,22 +110,10 @@ function UltrassomCervicalComOuSemDoppler() {
               </List>
             </Box>
           </VStack>
-
-          {/* Botões ---------------------------------------------------------------- */}
-          <HStack justify="center" spacing={4} mt={10}>
-            <Button
-              as="a"
-              href={whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              colorScheme="green"
-            >
-              Agendar exame
-            </Button>
-            <Button as={RouterLink} to="/exames" variant="outline" colorScheme="gray">
-              Voltar aos exames
-            </Button>
-          </HStack>
+          <ExamCredentialBadge />
+          <ExamFAQ slug={SLUG} />
+          <ExamCTA slug={SLUG} />
+          <ExamRelated slug={SLUG} />
         </Box>
       </Box>
     </>

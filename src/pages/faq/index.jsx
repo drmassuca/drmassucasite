@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   Box,
   Heading,
@@ -10,6 +10,11 @@ import {
   AccordionPanel,
   AccordionIcon,
   Spinner,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -17,7 +22,33 @@ import SEO from '../../components/SEO';
 
 export default function FaqIndex() {
   const [faqItems, setFaqItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading]   = useState(true);
+  const [question, setQuestion]     = useState('');
+  const [generating, setGenerating] = useState(false);
+  const [genResult, setGenResult]   = useState(null);
+  const [genError, setGenError]     = useState(null);
+  const resultRef = useRef(null);
+
+  async function handleGenerate() {
+    if (!question.trim() || generating) return;
+    setGenerating(true);
+    setGenResult(null);
+    setGenError(null);
+    try {
+      const res = await fetch('/api/generate-faq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: question.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Erro ao gerar resposta');
+      setGenResult(data);
+      setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
+    } catch (err) {
+      setGenError(err.message);
+    }
+    setGenerating(false);
+  }
 
   useEffect(() => {
     async function load() {
@@ -91,6 +122,67 @@ export default function FaqIndex() {
           >
             FAQ – Dúvidas Frequentes
           </Heading>
+
+          {/* Caixa de busca com geração por IA */}
+          <Box mb={8}>
+            <Text fontSize="sm" color="gray.500" mb={2} textAlign="center">
+              Não encontrou sua dúvida? Pergunte à IA:
+            </Text>
+            <InputGroup size="lg">
+              <Input
+                placeholder="Ex: Preciso de jejum para ultrassom pélvico?"
+                value={question}
+                onChange={e => setQuestion(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleGenerate()}
+                focusBorderColor="green.500"
+                bg="gray.50"
+                borderRadius="lg"
+                pr="7rem"
+                disabled={generating}
+              />
+              <InputRightElement width="6.5rem">
+                <Button
+                  h="1.9rem"
+                  size="sm"
+                  bg="green.700"
+                  color="white"
+                  _hover={{ bg: 'green.800' }}
+                  borderRadius="md"
+                  onClick={handleGenerate}
+                  isLoading={generating}
+                  loadingText="Buscando..."
+                  disabled={!question.trim()}
+                >
+                  Perguntar
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+
+            {genError && (
+              <Alert status="error" mt={3} borderRadius="md" fontSize="sm">
+                <AlertIcon />{genError}
+              </Alert>
+            )}
+
+            {genResult && (
+              <Box ref={resultRef} mt={4} p={4} bg="green.50" borderRadius="lg" border="1px solid" borderColor="green.200">
+                <Text fontSize="xs" color="green.700" fontWeight="bold" mb={1}>✨ Resposta gerada pela IA — aguardando aprovação da clínica</Text>
+                <Text fontWeight="semibold" mb={1}>{genResult.question}</Text>
+                <Text fontSize="sm" color="gray.700" mb={3}>{genResult.short_answer}</Text>
+                <Button
+                  as={RouterLink}
+                  to={`/faq/${genResult.slug}`}
+                  size="sm"
+                  bg="green.700"
+                  color="white"
+                  _hover={{ bg: 'green.800' }}
+                  borderRadius="md"
+                >
+                  Ver resposta completa
+                </Button>
+              </Box>
+            )}
+          </Box>
 
           {loading ? (
             <Box textAlign="center" py={10}>

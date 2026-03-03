@@ -9,6 +9,7 @@ import PostEditor from './pages/PostEditor';
 import Categories from './pages/Categories';
 import Media from './pages/Media';
 import AIAssistant from './pages/AIAssistant';
+import FaqAdmin from './pages/FaqAdmin';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -62,6 +63,7 @@ const AdminRoutes = () => {
           <Route path="posts/:id" element={<PostEditor />} />
           <Route path="categories" element={<Categories />} />
           <Route path="media" element={<Media />} />
+          <Route path="faq" element={<FaqAdmin />} />
           <Route path="ai" element={<AIAssistant />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>

@@ -17,8 +17,7 @@ const PrivacyPolicy = () => {
             '@type': 'WebPage',
             name: 'Política de Privacidade',
             url: 'https://drmassuca.com.br/privacy-policy',
-            description:
-              'Política de Privacidade e LGPD do site drmassuca.com.br.',
+            description: 'Política de Privacidade e LGPD do site drmassuca.com.br.',
             publisher: {
               '@type': 'Organization',
               name: 'Xdiag Tecnologias Ltda.',
@@ -49,11 +48,11 @@ const PrivacyPolicy = () => {
             <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
               1. Controlador dos dados
             </Heading>
-            <Text>
-              O controlador dos dados pessoais tratados por meio deste site é:
-            </Text>
+            <Text>O controlador dos dados pessoais tratados por meio deste site é:</Text>
             <Box pl={4} borderLeft="3px solid" borderColor="green.400">
-              <Text><strong>Dr. Antonio Massucatti Neto</strong></Text>
+              <Text>
+                <strong>Dr. Antonio Massucatti Neto</strong>
+              </Text>
               <Text>CRM-GO 17475</Text>
               <Text>Rua 19, Qd. 33, Lt. 01 – Vila Leonor, Itaberaí – GO, CEP 76630-000</Text>
               <Text>
@@ -82,25 +81,21 @@ const PrivacyPolicy = () => {
               2. Dados coletados e finalidades
             </Heading>
             <Text>
-              O site não exige cadastro nem coleta dados pessoais de forma automática. As informações
-              tratadas se limitam a:
+              O site não exige cadastro nem coleta dados pessoais de forma automática. As
+              informações tratadas se limitam a:
             </Text>
             <List spacing={2} pl={6} as="ul">
               <ListItem>
-                <strong>Dados de navegação anônimos:</strong> páginas visitadas, tempo de permanência,
-                cliques e rolagem de tela, coletados via cookies analíticos exclusivamente para melhoria
-                da experiência do usuário.
+                <strong>Dados de navegação anônimos:</strong> páginas visitadas, tempo de
+                permanência, cliques e rolagem de tela, coletados via cookies analíticos
+                exclusivamente para melhoria da experiência do usuário.
               </ListItem>
               <ListItem>
-                <strong>Mensagens no assistente virtual (chatbot):</strong> as perguntas digitadas no
-                chatbot do site são enviadas à API do Google Gemini para geração de respostas. Essas
-                mensagens não são armazenadas pelo site, porém são processadas nos servidores do Google
-                conforme a{' '}
-                <Link
-                  href="https://policies.google.com/privacy"
-                  isExternal
-                  color="green.600"
-                >
+                <strong>Mensagens no assistente virtual (chatbot):</strong> as perguntas digitadas
+                no chatbot do site são enviadas à API do Google Gemini para geração de respostas.
+                Essas mensagens não são armazenadas pelo site, porém são processadas nos servidores
+                do Google conforme a{' '}
+                <Link href="https://policies.google.com/privacy" isExternal color="green.600">
                   Política de Privacidade do Google
                 </Link>
                 . Recomendamos que você não insira dados pessoais sensíveis no chatbot.
@@ -118,8 +113,8 @@ const PrivacyPolicy = () => {
               3. Cookies e tecnologias de rastreamento
             </Heading>
             <Text>
-              Na primeira visita, um banner solicita seu consentimento para ativação de cookies. Você
-              pode aceitar ou recusar. Caso recuse, nenhum cookie analítico será ativado.
+              Na primeira visita, um banner solicita seu consentimento para ativação de cookies.
+              Você pode aceitar ou recusar. Caso recuse, nenhum cookie analítico será ativado.
             </Text>
             <List spacing={2} pl={6} as="ul">
               <ListItem>
@@ -147,13 +142,13 @@ const PrivacyPolicy = () => {
               4. Compartilhamento de dados com terceiros
             </Heading>
             <Text>
-              Os dados de navegação anônimos podem ser compartilhados com os seguintes prestadores de
-              serviço, exclusivamente para as finalidades descritas:
+              Os dados de navegação anônimos podem ser compartilhados com os seguintes prestadores
+              de serviço, exclusivamente para as finalidades descritas:
             </Text>
             <List spacing={2} pl={6} as="ul">
               <ListItem>
-                <strong>Google LLC</strong> — analytics (GA4, GTM) e processamento de linguagem natural
-                (Gemini AI no chatbot).
+                <strong>Google LLC</strong> — analytics (GA4, GTM) e processamento de linguagem
+                natural (Gemini AI no chatbot).
               </ListItem>
               <ListItem>
                 <strong>Xdiag Tecnologias Ltda.</strong> — desenvolvimento, hospedagem e manutenção
@@ -177,25 +172,27 @@ const PrivacyPolicy = () => {
             </Text>
             <Text>
               Adotamos medidas técnicas e organizacionais para proteger as informações contra acesso
-              não autorizado, incluindo: conexão criptografada via HTTPS, controle de acesso ao painel
-              administrativo e boas práticas de desenvolvimento seguro.
+              não autorizado, incluindo: conexão criptografada via HTTPS, controle de acesso ao
+              painel administrativo e boas práticas de desenvolvimento seguro.
             </Text>
 
             {/* ── 6. Direitos do titular ──────────────────── */}
             <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
               6. Seus direitos como titular de dados
             </Heading>
-            <Text>
-              Em conformidade com os artigos 17 a 22 da LGPD, você tem direito a:
-            </Text>
+            <Text>Em conformidade com os artigos 17 a 22 da LGPD, você tem direito a:</Text>
             <List spacing={2} pl={6} as="ul">
               <ListItem>Confirmação da existência de tratamento de seus dados;</ListItem>
               <ListItem>Acesso aos dados pessoais que possuímos sobre você;</ListItem>
               <ListItem>Correção de dados incompletos, inexatos ou desatualizados;</ListItem>
-              <ListItem>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</ListItem>
+              <ListItem>
+                Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;
+              </ListItem>
               <ListItem>Portabilidade dos dados a outro prestador de serviço;</ListItem>
               <ListItem>Eliminação dos dados pessoais tratados com seu consentimento;</ListItem>
-              <ListItem>Informação sobre entidades com as quais seus dados foram compartilhados;</ListItem>
+              <ListItem>
+                Informação sobre entidades com as quais seus dados foram compartilhados;
+              </ListItem>
               <ListItem>Revogação do consentimento a qualquer momento.</ListItem>
             </List>
             <Text>
@@ -231,13 +228,7 @@ const PrivacyPolicy = () => {
             </Text>
 
             {/* ── Data ────────────────────────────────────── */}
-            <Box
-              w="100%"
-              pt={4}
-              mt={2}
-              borderTop="1px solid"
-              borderColor="gray.200"
-            >
+            <Box w="100%" pt={4} mt={2} borderTop="1px solid" borderColor="gray.200">
               <Text fontSize="sm" color="gray.500">
                 Última atualização: Fevereiro de 2026.
               </Text>

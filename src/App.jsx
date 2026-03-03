@@ -30,6 +30,9 @@ const FaqIndex = lazy(() => import('./pages/faq'));
 /* >>> NOVO: rotas das 48 subpáginas do FAQ (geradas no pacote) */
 import { faqRouteObjects } from './routes/faqRoutes.jsx';
 
+/* >>> FAQ DINÂMICO: páginas geradas por IA lidas do Supabase */
+const FaqDynamic = lazy(() => import('./pages/faq/FaqDynamic'));
+
 /* >>> IA MÉDICA: Lazy load das páginas de IA */
 const IAMedica = lazy(() => import('./pages/ia-medica'));
 const ArticleDetail = lazy(() => import('./pages/ia-medica/ArticleDetail'));
@@ -209,6 +212,9 @@ function App() {
             {faqRouteObjects.map(r => (
               <Route key={r.path} path={r.path} element={r.element} />
             ))}
+
+            {/* Rota dinâmica: só ativada para slugs sem página estática */}
+            <Route path="/faq/:slug" element={<FaqDynamic />} />
 
             {/* >>> ROTAS DA IA MÉDICA */}
             <Route path="/ia-medica" element={<IAMedica />} />

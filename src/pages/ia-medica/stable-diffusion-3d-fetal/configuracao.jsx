@@ -49,7 +49,7 @@ const TutorialVideo = ({ showFullDescription = false }) => {
             <iframe
               width="100%"
               height="315"
-              src="https://www.youtube-nocookie.com/embed/2YeoU3L_TjI?modestbranding=1&rel=0&showinfo=0&controls=1&disablekb=1&fs=0&iv_load_policy=3&cc_load_policy=0"
+              src="https://www.youtube-nocookie.com/embed/2YeoU3L_TjI?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3"
               title="Tutorial de Configuração Stable Diffusion"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

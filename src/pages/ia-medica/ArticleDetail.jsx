@@ -258,6 +258,12 @@ const ArticleDetail = () => {
           articleData = await loadArticleFromJson(slug);
         }
 
+        // Se o artigo tem customLink, redireciona para a página dedicada
+        if (articleData?.customLink) {
+          navigate(articleData.customLink, { replace: true });
+          return;
+        }
+
         setArticle(articleData);
 
         if (articleData?.id) {

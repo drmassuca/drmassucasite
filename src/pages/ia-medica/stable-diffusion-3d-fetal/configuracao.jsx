@@ -46,10 +46,16 @@ const TutorialVideo = ({ showFullDescription = false }) => {
             w="100%"
             maxW="600px"
           >
-            <video width="100%" height="300" controls style={{ objectFit: 'cover' }}>
-              <source src="/videos/tutorialsd.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeos HTML5.
-            </video>
+            <iframe
+              width="100%"
+              height="315"
+              src="https://www.youtube.com/embed/2YeoU3L_TjI"
+              title="Tutorial de Configuração Stable Diffusion"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ borderRadius: '8px' }}
+            />
           </Box>
 
           {showFullDescription && (

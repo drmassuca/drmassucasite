@@ -325,7 +325,7 @@ export default function ReviewZ20Expert22() {
           <p>Os dados abaixo foram verificados e confirmados junto a Samsung, obtidos antes da autorizacao oficial de divulgacao. A fonte nao e identificada nesta publicacao.</p>
 
           <figure style={{ margin: '1.5rem 0', textAlign: 'center' }}>
-            <img src={IMG_HERA} alt="Samsung HERA Z20 — aparelho exposto no congresso This Is Us 2026" style={{ maxWidth: 400, width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }} />
+            <img src={IMG_HERA} alt="Samsung HERA Z20 — aparelho exposto no congresso This Is Us 2026" style={{ maxWidth: 300, width: '100%', display: 'block', margin: '0 auto', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }} />
             <figcaption style={{ fontSize: '.8rem', color: 'var(--text3)', marginTop: 8 }}>Samsung HERA Z20 — specs de hardware verificados e confirmados junto a Samsung</figcaption>
           </figure>
 
@@ -349,7 +349,7 @@ export default function ReviewZ20Expert22() {
           <p>Os dados abaixo foram coletados <strong>diretamente da tela System Info do aparelho exposto no congresso</strong>. Esta e informacao inedita — nao disponivel em nenhuma publicacao publica:</p>
 
           <figure style={{ margin: '1.5rem 0', textAlign: 'center' }}>
-            <img src={IMG_VOLUSON} alt="GE Voluson Expert 22 — aparelho exposto no congresso This Is Us 2026" style={{ maxWidth: 400, width: '100%', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }} />
+            <img src={IMG_VOLUSON} alt="GE Voluson Expert 22 — aparelho exposto no congresso This Is Us 2026" style={{ maxWidth: 300, width: '100%', display: 'block', margin: '0 auto', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }} />
             <figcaption style={{ fontSize: '.8rem', color: 'var(--text3)', marginTop: 8 }}>GE Voluson Expert 22 — dados de hardware coletados diretamente da tela System Info do aparelho onsite</figcaption>
           </figure>
 

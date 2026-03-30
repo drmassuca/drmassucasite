@@ -43,6 +43,7 @@ const SDConfiguracao = lazy(
 );
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
+const ReviewZ20Expert22 = lazy(() => import('./pages/ia-medica/review-z20-expert22'));
 
 /* >>> ADMIN: Lazy load do painel administrativo */
 const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
@@ -235,6 +236,10 @@ function App() {
             <Route
               path="/ia-medica/stable-diffusion-3d-fetal/problemas"
               element={<SDProblemas />}
+            />
+            <Route
+              path="/ia-medica/review-z20-expert22"
+              element={<ReviewZ20Expert22 />}
             />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}

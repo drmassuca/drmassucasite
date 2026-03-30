@@ -66,30 +66,16 @@ export default function StableDiffusion3DFetal() {
               <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={0}>
                 {/* Vídeo */}
                 <Box position="relative" bg="black">
-                  <video
+                  <iframe
                     width="100%"
                     height="300"
-                    controls
-                    style={{ objectFit: 'cover' }}
-                    onClick={() =>
-                      (window.location.href = '/ia-medica/stable-diffusion-3d-fetal/configuracao')
-                    }
-                  >
-                    <source src="/videos/tutorialsd.mp4" type="video/mp4" />
-                    Seu navegador não suporta vídeos HTML5.
-                  </video>
-                  <Box
-                    position="absolute"
-                    top="50%"
-                    left="50%"
-                    transform="translate(-50%, -50%)"
-                    cursor="pointer"
-                    onClick={() =>
-                      (window.location.href = '/ia-medica/stable-diffusion-3d-fetal/configuracao')
-                    }
-                  >
-                    <Icon as={FaPlay} color="white" boxSize={12} opacity={0.8} />
-                  </Box>
+                    src="https://www.youtube-nocookie.com/embed/2YeoU3L_TjI?modestbranding=1&rel=0&showinfo=0&iv_load_policy=3"
+                    title="Tutorial de Configuração Stable Diffusion"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ borderRadius: '8px' }}
+                  />
                 </Box>
 
                 {/* Descrição do Vídeo */}

@@ -278,7 +278,7 @@ export default function ReviewZ20Expert22() {
         <header className="art-header">
           <span className="art-cat">Review de Equipamentos</span>
           <h1 className="art-title">Samsung HERA Z20 vs. GE Voluson Expert 22: o duelo definitivo em ultrassom obstetrico premium</h1>
-          <p className="art-sub">Testei os dois aparelhos mais avancados do mundo em morfologia fetal no congresso This Is Us 2026 — e trouxe specs que nao existem em nenhuma publicacao publica</p>
+          <p className="art-sub">Testei os dois aparelhos mais avancados do mundo em morfologia fetal no congresso This Is Us 2026 — e trouxe specs que nao existem em nenhuma outra publicacao</p>
           <div className="art-meta">
             <span>30 de marco de 2026</span>
             <span>Dr. Massuca</span>
@@ -346,7 +346,7 @@ export default function ReviewZ20Expert22() {
 
           <h3>GE Voluson Expert 22 — Lyric Architecture com dual-GPU confirmada onsite</h3>
           <p>O Expert 22 introduziu a <strong>Lyric Architecture</strong>, substituindo a Radiance System Architecture do Voluson E10 [7,14]. O diferencial e o <strong>Graphic-Based Beamforming</strong> — o beamformer convencional foi substituido por processamento baseado em GPU, com flexibilidade computacional e capacidade de atualizacao por software [7,8].</p>
-          <p>Os dados abaixo foram coletados <strong>diretamente da tela System Info do aparelho exposto no congresso</strong>. Esta e informacao inedita — nao disponivel em nenhuma publicacao publica:</p>
+          <p>Os dados abaixo foram coletados <strong>diretamente da tela System Info do aparelho exposto no congresso</strong>. Esta e informacao inedita — nao disponivel em nenhuma outra publicacao:</p>
 
           <figure style={{ margin: '1.5rem 0', textAlign: 'center' }}>
             <img src={IMG_VOLUSON} alt="GE Voluson Expert 22 — aparelho exposto no congresso This Is Us 2026" style={{ maxWidth: 300, width: '100%', display: 'block', margin: '0 auto', borderRadius: 'var(--radius-lg)', border: '1px solid var(--border)' }} />

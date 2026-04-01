@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import SEOHead from '../../components/SEOHead';
 
-export default function ReviewZ20Expert22() {
+function ReviewLoader({ htmlFile, seoTitle, seoDescription }) {
   const containerRef = useRef(null);
   const [error, setError] = useState(null);
 
@@ -10,22 +10,19 @@ export default function ReviewZ20Expert22() {
 
     async function loadArticle() {
       try {
-        const res = await fetch('/articles/review-z20-expert22.html');
-        if (!res.ok) throw new Error('Falha ao carregar artigo');
+        const res = await fetch(htmlFile);
+        if (!res.ok) throw new Error('Failed to load article');
         const html = await res.text();
         if (cancelled || !containerRef.current) return;
 
-        // Extract styles from head
         const styles = [];
         html.replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, (_, css) => {
           styles.push(css);
         });
 
-        // Extract body content
         const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
         const bodyContent = bodyMatch ? bodyMatch[1] : html;
 
-        // Extract external scripts from head (like Chart.js CDN)
         const extScripts = [];
         const inlineScripts = [];
         html.replace(/<script([^>]*)>([\s\S]*?)<\/script>/gi, (_, attrs, content) => {
@@ -37,14 +34,12 @@ export default function ReviewZ20Expert22() {
           }
         });
 
-        // Inject styles
         styles.forEach((css) => {
           const style = document.createElement('style');
           style.textContent = css;
           document.head.appendChild(style);
         });
 
-        // Load Google Fonts
         if (!document.querySelector('link[href*="Playfair+Display"]')) {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
@@ -52,11 +47,9 @@ export default function ReviewZ20Expert22() {
           document.head.appendChild(link);
         }
 
-        // Inject body (without script tags)
         const cleanBody = bodyContent.replace(/<script[\s\S]*?<\/script>/gi, '');
         containerRef.current.innerHTML = cleanBody;
 
-        // Load external scripts first (Chart.js), then run inline scripts
         for (const src of extScripts) {
           if (!document.querySelector(`script[src="${src}"]`)) {
             await new Promise((resolve, reject) => {
@@ -69,7 +62,6 @@ export default function ReviewZ20Expert22() {
           }
         }
 
-        // Execute inline scripts in order
         for (const code of inlineScripts) {
           const s = document.createElement('script');
           s.textContent = code;
@@ -82,7 +74,7 @@ export default function ReviewZ20Expert22() {
 
     loadArticle();
     return () => { cancelled = true; };
-  }, []);
+  }, [htmlFile]);
 
   if (error) {
     return <div style={{ padding: 40, textAlign: 'center', color: '#666' }}>{error}</div>;
@@ -91,13 +83,33 @@ export default function ReviewZ20Expert22() {
   return (
     <>
       <SEOHead
-        title="Samsung HERA Z20 vs GE Voluson Expert 22 — Review Completo"
-        description="Comparativo técnico entre Samsung HERA Z20 e GE Voluson Expert 22: hardware, IA, transdutores, ergonomia e ROI. Dados exclusivos do congresso This Is Us 2026."
+        title={seoTitle}
+        description={seoDescription}
         image="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/banner-z20-vs-expert22.jpeg"
         article={true}
         author="Dr. Massuca"
       />
       <div ref={containerRef} style={{ background: '#fff', borderRadius: 12, maxWidth: 900, margin: '0 auto' }} />
     </>
+  );
+}
+
+export default function ReviewZ20Expert22() {
+  return (
+    <ReviewLoader
+      htmlFile="/articles/review-z20-expert22.html"
+      seoTitle="Samsung HERA Z20 vs GE Voluson Expert 22 — Review Completo"
+      seoDescription="Comparativo técnico entre Samsung HERA Z20 e GE Voluson Expert 22: hardware, IA, transdutores, ergonomia e ROI. Dados exclusivos do congresso This Is Us 2026."
+    />
+  );
+}
+
+export function ReviewZ20Expert22EN() {
+  return (
+    <ReviewLoader
+      htmlFile="/articles/review-z20-expert22-en.html"
+      seoTitle="Samsung HERA Z20 vs GE Voluson Expert 22 — Full Review"
+      seoDescription="Technical comparison between Samsung HERA Z20 and GE Voluson Expert 22: hardware, AI, transducers, ergonomics and ROI. Exclusive data from This Is Us 2026 congress."
+    />
   );
 }

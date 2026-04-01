@@ -44,6 +44,7 @@ const SDConfiguracao = lazy(
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 const ReviewZ20Expert22 = lazy(() => import('./pages/ia-medica/review-z20-expert22'));
+const ReviewZ20Expert22EN = lazy(() => import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN })));
 
 /* >>> ADMIN: Lazy load do painel administrativo */
 const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
@@ -240,6 +241,10 @@ function App() {
             <Route
               path="/ia-medica/review-z20-expert22"
               element={<ReviewZ20Expert22 />}
+            />
+            <Route
+              path="/ia-medica/review-z20-expert22/en"
+              element={<ReviewZ20Expert22EN />}
             />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}

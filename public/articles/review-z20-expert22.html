@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samsung HERA Z20 vs. GE Voluson Expert 22 — Dr. Massuca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --s:#185FA5;--s-light:#E6F1FB;--s-dark:#0C447C;
+  --g:#A32D2D;--g-light:#FCEBEB;--g-dark:#791F1F;
+  --gold:#BA7517;--gold-light:#FAEEDA;--gold-dark:#633806;
+  --green:#3B6D11;--green-light:#EAF3DE;
+  --bg:#ffffff;--bg2:#F8F9FA;--bg3:#F1F3F5;
+  --text:#1a1a2e;--text2:#4a5568;--text3:#718096;
+  --border:#e2e8f0;--border2:#cbd5e0;
+  --radius:8px;--radius-lg:12px;
+  --max:860px;
+}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px 80px;}
+
+/* HEADER */
+.art-header{padding:40px 0 32px;border-bottom:1px solid var(--border);}
+.art-cat{display:inline-block;background:var(--gold-light);color:var(--gold-dark);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:16px;}
+.art-title{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,5vw,2.4rem);font-weight:900;line-height:1.2;color:var(--text);margin-bottom:12px;letter-spacing:-.02em;}
+.art-sub{font-size:1.05rem;color:var(--text2);line-height:1.6;margin-bottom:20px;font-style:italic;}
+.art-meta{display:flex;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--text3);}
+.art-meta span{display:flex;align-items:center;gap:5px;}
+
+/* DUEL CARD */
+.duel{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;margin:2.5rem 0;align-items:center;}
+.dc{border:1px solid var(--border);border-radius:var(--radius-lg);padding:22px 16px;text-align:center;}
+.dc-s{border-color:var(--s);background:var(--s-light);}
+.dc-g{border-color:var(--g);background:var(--g-light);}
+.dc-brand{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--text);}
+.dc-model{font-size:12px;color:var(--text3);margin-top:3px;letter-spacing:.03em;}
+.dc-price{font-size:1.1rem;font-weight:600;margin-top:12px;}
+.dc-s .dc-price{color:var(--s-dark);}
+.dc-g .dc-price{color:var(--g-dark);}
+.vs{font-size:1.5rem;font-weight:700;color:var(--text3);text-align:center;font-family:'Playfair Display',serif;}
+
+/* TYPOGRAPHY */
+.art-body h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin:3rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);}
+.art-body h3{font-size:1rem;font-weight:600;color:var(--gold-dark);margin:2rem 0 .6rem;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;}
+.art-body p{margin-bottom:1.1rem;font-size:.95rem;color:var(--text2);}
+.art-body strong{color:var(--text);font-weight:600;}
+.art-body ul,.art-body ol{margin:.6rem 0 1.1rem 1.4rem;}
+.art-body li{margin-bottom:.4rem;font-size:.92rem;color:var(--text2);}
+.art-body a{color:var(--s);text-decoration:underline;text-underline-offset:2px;}
+
+/* LEAD */
+.lead-box{border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;margin:0 0 2rem;font-size:.97rem;color:var(--text2);background:var(--gold-light);}
+
+/* IMG PLACEHOLDER */
+.img-ph{background:var(--bg3);border:1.5px dashed var(--border2);border-radius:var(--radius-lg);padding:40px 20px;text-align:center;margin:1.5rem 0;color:var(--text3);}
+.img-ph strong{display:block;color:var(--text2);margin-bottom:6px;}
+.img-ph small{font-size:.8rem;}
+
+/* TABLES */
+.ht{width:100%;border-collapse:collapse;font-size:.88rem;border-radius:var(--radius-lg);overflow:hidden;margin:.8rem 0 1.5rem;border:1px solid var(--border);}
+.ht th{padding:10px 12px;text-align:left;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;font-weight:600;background:var(--bg3);}
+.ht th.s-col{color:var(--s-dark);}
+.ht th.g-col{color:var(--g-dark);}
+.ht th.spec-col{color:var(--text3);}
+.ht td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text2);vertical-align:top;}
+.ht tr:last-child td{border-bottom:none;}
+.ht tr:hover td{background:var(--bg2);}
+.win{color:var(--green);font-weight:600;}
+.nd{color:var(--text3);font-style:italic;}
+.badge{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.68rem;font-weight:600;margin-left:4px;vertical-align:middle;}
+.bw{background:var(--green-light);color:var(--green);}
+.bn{background:var(--bg3);color:var(--text3);}
+
+/* STAT CARDS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:.8rem 0 1.5rem;}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;}
+.stat-n{font-size:1.4rem;font-weight:700;color:var(--gold);}
+.stat-l{font-size:.68rem;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.04em;}
+
+/* ANIMATED BARS */
+.bars{margin:.8rem 0 1.5rem;}
+.bar-row{margin-bottom:16px;}
+.bar-lbl{display:flex;justify-content:space-between;margin-bottom:5px;font-size:.8rem;color:var(--text3);}
+.bar-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bar-name{font-size:.7rem;color:var(--text3);margin-bottom:3px;}
+.bar-track{background:var(--bg3);border-radius:4px;height:22px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.1s cubic-bezier(.4,0,.2,1);display:flex;align-items:center;padding-left:8px;font-size:.7rem;font-weight:600;color:#fff;white-space:nowrap;}
+.bf-s{background:linear-gradient(90deg,var(--s-dark),var(--s));}
+.bf-g{background:linear-gradient(90deg,var(--g-dark),var(--g));}
+.bf-a{background:linear-gradient(90deg,var(--gold-dark),var(--gold));}
+
+/* CHART */
+.chart-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin:1rem 0 1.5rem;}
+.chart-lbl{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:16px;font-weight:600;}
+.tab-row{display:flex;gap:6px;margin:.5rem 0 .8rem;}
+.tab-btn{padding:6px 16px;border-radius:20px;border:1px solid var(--border2);background:transparent;font-size:.8rem;cursor:pointer;color:var(--text3);font-family:'IBM Plex Sans',sans-serif;transition:all .2s;}
+.tab-btn.active{border-color:var(--gold);background:var(--gold-light);color:var(--gold-dark);font-weight:600;}
+
+/* EXCLUSIVE */
+.excl{border:1.5px solid var(--gold);border-radius:var(--radius-lg);padding:20px 22px;margin:2rem 0;}
+.excl-badge{display:inline-block;background:var(--gold-light);color:var(--gold-dark);font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+.excl-t{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:8px;}
+.excl-p{font-size:.88rem;color:var(--text2);margin-bottom:10px;}
+.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px;}
+.dim-card{background:var(--gold-light);border:1px solid rgba(186,117,23,.2);border-radius:var(--radius);padding:10px 12px;}
+.dim-t{font-size:.85rem;font-weight:600;color:var(--gold-dark);}
+.dim-d{font-size:.75rem;color:var(--gold);margin-top:2px;}
+.anvisa{background:var(--g-light);border-left:3px solid var(--g);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;margin-top:10px;font-size:.82rem;color:var(--g-dark);}
+
+/* VERDICT */
+.verd{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:1rem 0;}
+.vc{border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;}
+.vc-s{border-color:var(--s);}
+.vc-g{border-color:var(--g);}
+.vc-t{font-size:1rem;font-weight:700;margin-bottom:6px;}
+.vc-s .vc-t{color:var(--s-dark);}
+.vc-g .vc-t{color:var(--g-dark);}
+.vc-sub{font-size:.82rem;color:var(--text3);margin-bottom:10px;font-style:italic;}
+.vc ul{list-style:none;padding:0;}
+.vc li{font-size:.82rem;padding:3px 0;color:var(--text3);border-bottom:1px solid var(--border);}
+.vc li:last-child{border-bottom:none;}
+
+/* OPINION */
+.opinion{border:1.5px dashed #639922;border-radius:var(--radius-lg);padding:22px;margin:2.5rem 0;background:var(--green-light);}
+.op-badge{display:inline-block;background:#C0DD97;color:#27500A;font-size:.7rem;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;}
+.op-t{font-size:1.05rem;font-weight:600;color:var(--text);margin-bottom:10px;}
+.op-ph{font-size:.88rem;color:#4a6a3a;font-style:italic;border:1px dashed #97C459;padding:14px 16px;border-radius:var(--radius);line-height:1.9;}
+.op-topics{list-style:none;padding:0;margin:10px 0 0;}
+.op-topics li{font-size:.85rem;color:#4a6a3a;padding:5px 0;border-bottom:1px solid #C0DD97;}
+.op-topics li:last-child{border-bottom:none;}
+.op-topics li::before{content:"→ ";color:#639922;font-weight:600;}
+
+/* NEXUS */
+.nexus-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 20px;margin:1.5rem 0;font-size:.88rem;color:var(--text2);}
+
+/* REF */
+.ref-sec{margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+.ref-sec h2{font-size:.9rem;color:var(--text3);margin-bottom:1rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;border-bottom:none;padding-bottom:0;}
+.ref-list{list-style:decimal;margin-left:20px;}
+.ref-list li{margin-bottom:6px;font-size:.75rem;color:var(--text3);line-height:1.5;}
+.ref-list a{color:var(--s);text-decoration:none;}
+.ref-list a:hover{text-decoration:underline;}
+
+/* FOOTER */
+.art-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.8rem;color:var(--text3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+/* RESPONSIVE */
+@media(max-width:620px){
+  .duel{grid-template-columns:1fr;}.vs{padding:4px 0;}
+  .bar-group{grid-template-columns:1fr;}
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .verd{grid-template-columns:1fr;}
+  .dim-grid{grid-template-columns:1fr;}
+  .wrap{padding:0 16px 60px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="art-header">
+  <span class="art-cat">Review de Equipamentos</span>
+  <h1 class="art-title">Samsung HERA Z20 vs. GE Voluson Expert 22: o duelo definitivo em ultrassom obstétrico premium</h1>
+  <p class="art-sub">Testei os dois aparelhos mais avançados do mundo em morfologia fetal no congresso This Is Us 2026 — e trouxe specs que não existem em nenhuma publicação pública</p>
+  <div class="art-meta">
+    <span>📅 30 de março de 2026</span>
+    <span>✍️ Dr. Massuca</span>
+    <span>⏱ 18 min de leitura</span>
+    <span>🏥 Review de Equipamentos</span>
+  </div>
+</header>
+
+<!-- DUEL -->
+<div class="duel">
+  <div class="dc dc-s">
+    <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20.png" alt="Samsung HERA Z20" style="max-height:180px;width:auto;margin:0 auto 12px;display:block;border-radius:var(--radius);">
+    <div class="dc-brand">Samsung</div>
+    <div class="dc-model">HERA Z20</div>
+    <div class="dc-price">~R$ 500.000</div>
+  </div>
+  <div class="vs">vs</div>
+  <div class="dc dc-g">
+    <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/voluson-expert-22.png" alt="GE Voluson Expert 22" style="max-height:180px;width:auto;margin:0 auto 12px;display:block;border-radius:var(--radius);transform:scale(1.2);">
+    <div class="dc-brand">GE</div>
+    <div class="dc-model">Voluson Expert 22</div>
+    <div class="dc-price">~R$ 650.000</div>
+  </div>
+</div>
+
+<div class="art-body">
+
+<!-- LEAD -->
+<div class="lead-box">O mercado de ultrassom obstétrico premium vive seu momento mais competitivo. O Samsung HERA Z20 e o GE Voluson Expert 22 representam o estado da arte absoluto em imagem fetal. Ambos utilizam arquitetura de beamforming por GPU — uma das inovações centrais desta geração —, mas adotam filosofias distintas: o Samsung aposta em IA contínua e automatização radical do workflow, enquanto a GE investe no maior ecossistema de ferramentas quantitativas para ecocardiografia fetal, com validação científica publicada. Ambos os aparelhos foram testados pessoalmente pelo autor durante o congresso internacional <strong>"This Is Us" 2026</strong> da Escola NEXUS em Brasília. Este comparativo destina-se ao grupo de médicos ultrassonografistas que pretendem ingressar em um curso de inteligência artificial médica: profissionais que dominam knobologia e precisam de dados concretos para avaliar as duas plataformas mais avançadas do mundo.</div>
+
+<!-- NEXUS -->
+<div class="nexus-box">
+  <strong>Sobre o congresso:</strong> O "This Is Us — Congresso Internacional de Ultrassonografia" é organizado pela <a href="https://nexusultrassonografia.com.br/" target="_blank">Escola NEXUS</a> (Núcleo de Excelência em Ultrassonografia e Ensino Médico), fundada em 2017 em Brasília pelo Dr. Evaldo Trajano de Souza Silva Filho — especialista em medicina fetal, presidente regional da SBUS-DF e diretor da Ian Donald School of Medical Ultrasound no Brasil. A escola carrega o Selo de Qualidade da SBUS e parceria internacional com a Fetal Medicine Barcelona. Segunda edição: 26 a 28 de março de 2026.
+  <br><br>
+  <strong>Nota de reconhecimento:</strong> A <a href="https://nexusultrassonografia.com.br/" target="_blank">Escola NEXUS</a> não é apenas o palco deste review — é uma instituição de referência nacional em formação médica especializada em ultrassonografia, da qual o autor é ex-aluno. Fundada em 2017 em Brasília, a NEXUS reúne um corpo docente de mestres e doutores que são referência nos principais congressos do país, com metodologia baseada em prática clínica real com pacientes. O agradecimento especial vai ao <strong>Dr. José Paulo da Silva Netto</strong>, ginecologista, sócio-fundador e coordenador acadêmico da escola, cuja acolhida generosa no congresso This Is Us 2026 tornou possível o acesso irrestrito aos equipamentos para a elaboração deste comparativo. Igualmente, ao <strong>Dr. Evaldo Trajano de Souza Silva Filho</strong>, co-fundador e diretor médico, pela construção de um espaço que genuinamente respeita o especialista experiente.
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<h2>1. Hardware: o que está dentro da caixa</h2>
+
+<h3>Samsung HERA Z20 — Crystal Architecture 2ª geração</h3>
+<p>O HERA Z20 opera sobre a <strong>Crystal Architecture 2nd Generation</strong>, combinando três pilares: <strong>CrystalBeam</strong> (beamforming por software avançado), <strong>CrystalLive</strong> (engine de processamento 2D/3D) e transdutores <strong>S-Vue</strong> (cristal único de banda larga) [3,4]. O sistema incorpora processamento baseado em software que substitui beamformers de hardware dedicado [1].</p>
+<p>Os dados abaixo foram verificados e confirmados junto à Samsung, obtidos antes da autorização oficial de divulgação. A fonte não é identificada nesta publicação.</p>
+
+<figure style="margin:1.5rem 0;text-align:center;">
+  <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20.png" alt="Samsung HERA Z20" style="max-width:300px;width:100%;display:block;margin:0 auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+  <figcaption style="font-size:.8rem;color:var(--text3);margin-top:8px;">Samsung HERA Z20 — specs de hardware verificados e confirmados junto à Samsung</figcaption>
+</figure>
+
+<table class="ht">
+  <tr><th class="spec-col">Componente</th><th class="s-col">Samsung HERA Z20</th></tr>
+  <tr><td>CPU</td><td class="win">11th Gen Intel Core i5-11500HE @ 2.60 GHz (Tiger Lake) <span class="badge bw">Mais novo</span></td></tr>
+  <tr><td><strong>GPU_0</strong></td><td class="win">NVIDIA RTX A4000</td></tr>
+  <tr><td><strong>GPU_1</strong></td><td class="win">NVIDIA Quadro T1000</td></tr>
+  <tr><td><strong>GPU_2</strong></td><td>Intel UHD Graphics (integrada)</td></tr>
+  <tr><td>RAM</td><td class="win">32 GB — o dobro da GE <span class="badge bw">Vantagem</span></td></tr>
+  <tr><td>Storage</td><td class="win">M.2 NVMe SSD 2 TB</td></tr>
+  <tr><td>3D Function</td><td>Motor Board: PRESENT (confirma STIC mecânico)</td></tr>
+  <tr><td>Touchscreen auxiliar</td><td class="win">15,6" com controle de inclinação <span class="badge bw">Confirmado</span></td></tr>
+  <tr><td>Garantia</td><td class="win">5 anos no console <span class="badge bw">Confirmado</span></td></tr>
+</table>
+
+<h3>GE Voluson Expert 22 — Lyric Architecture com dual-GPU confirmada onsite</h3>
+<p>O Expert 22 introduziu a <strong>Lyric Architecture</strong>, substituindo a Radiance System Architecture do Voluson E10 [7,14]. O diferencial é o <strong>Graphic-Based Beamforming</strong> — o beamformer convencional foi substituído por processamento baseado em GPU, com flexibilidade computacional e capacidade de atualização por software [7,8].</p>
+<p>Os dados abaixo foram coletados <strong>diretamente da tela System Info do aparelho exposto no congresso</strong>. Esta é informação inédita — não disponível em nenhuma publicação pública:</p>
+
+<figure style="margin:1.5rem 0;text-align:center;">
+  <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/voluson-expert-22.png" alt="GE Voluson Expert 22" style="max-width:300px;width:100%;display:block;margin:0 auto;border-radius:var(--radius-lg);border:1px solid var(--border);">
+  <figcaption style="font-size:.8rem;color:var(--text3);margin-top:8px;">GE Voluson Expert 22 — dados de hardware coletados diretamente da tela System Info do aparelho onsite</figcaption>
+</figure>
+
+<table class="ht">
+  <tr><th class="spec-col">Componente</th><th class="g-col">GE Voluson Expert 22 BT25 — confirmado onsite</th></tr>
+  <tr><td>CPU</td><td>Intel64 Family 6 Model 158 @ 2.496 MHz (Comet Lake — equiv. i7-10700)</td></tr>
+  <tr><td><strong>GPU Beamforming</strong></td><td class="win">NVIDIA RTX A4000H — GPU profissional dedicada <span class="badge bw">Confirmado</span></td></tr>
+  <tr><td><strong>GPU Interface/UI</strong></td><td class="win">NVIDIA T1000 8GB GDDR6 — GPU dedicada ao display <span class="badge bw">Confirmado</span></td></tr>
+  <tr><td>RAM</td><td class="win">16.384 MB (16 GB)</td></tr>
+  <tr><td>Storage</td><td>NVMe — 123h de uso (fabricado 21/Out/2025)</td></tr>
+  <tr><td>OS</td><td>Windows 10 IoT Enterprise 2021 LTSC (Build 19044.6332, versão 21H2)</td></tr>
+  <tr><td>DICOM</td><td>MergeCom3 – 5.18.0.0</td></tr>
+  <tr><td>Telemetria remota</td><td>PTC Axeda Agent 6.9.1-1046 (GE InSite)</td></tr>
+</table>
+
+<p>O dado mais revelador é a <strong>arquitetura dual-GPU</strong>: a RTX A4000H processa exclusivamente o beamforming gráfico, enquanto a T1000 gerencia exclusivamente a interface e o display. As duas pipelines têm GPU própria — nenhuma compete por recursos com a outra, o que é crítico em processamento 4D em tempo real [7].</p>
+
+<h3>O que as GPUs do Expert 22 custam no varejo brasileiro</h3>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n" id="c1">R$0</div><div class="stat-l">RTX A4000H (beamforming)</div></div>
+  <div class="stat"><div class="stat-n" id="c2">R$0</div><div class="stat-l">T1000 8GB (interface)</div></div>
+  <div class="stat"><div class="stat-n" id="c3">R$0</div><div class="stat-l">Soma das 2 GPUs</div></div>
+  <div class="stat"><div class="stat-n" id="c4">0%</div><div class="stat-l">do custo total do aparelho</div></div>
+</div>
+
+<p>O preço premium de um aparelho de ultrassom de alto nível <strong>não está no hardware de prateleira</strong>: está nas certificações regulatórias (ANVISA, FDA), no firmware proprietário de beamforming, nos transdutores de engenharia exclusiva, na validação clínica e na infraestrutura de suporte. O hardware é o veículo; o valor está no software e no conhecimento embarcado.</p>
+
+<h3>Comparativo de especificações</h3>
+<table class="ht">
+  <tr><th class="spec-col">Especificação</th><th class="s-col">Samsung HERA Z20</th><th class="g-col">GE Voluson Expert 22</th></tr>
+  <tr><td>Arquitetura</td><td>Crystal Architecture 2ª Gen</td><td>Lyric Architecture</td></tr>
+  <tr><td>GPU principal</td><td class="win">NVIDIA RTX A4000 <span class="badge bw">✓</span></td><td>NVIDIA RTX A4000H</td></tr>
+  <tr><td>GPU secundária</td><td class="win">NVIDIA Quadro T1000 <span class="badge bw">✓</span></td><td>T1000 8GB GDDR6</td></tr>
+  <tr><td>GPU adicional</td><td>Intel UHD (integrada)</td><td>—</td></tr>
+  <tr><td>CPU</td><td class="win">Intel i5-11500HE @ 2.60 GHz (Tiger Lake — 11ª Gen) <span class="badge bw">Mais novo</span></td><td>Intel Comet Lake @ 2.496 MHz (10ª Gen)</td></tr>
+  <tr><td>RAM</td><td class="win">32 GB <span class="badge bw">2x maior</span></td><td>16 GB</td></tr>
+  <tr><td>Storage</td><td class="win">M.2 NVMe SSD 2 TB</td><td>NVMe 2 TB HDD</td></tr>
+  <tr><td>Frame rate B-mode</td><td class="nd">Não publicado</td><td class="win">&gt;3.000 fps <span class="badge bw">✓</span></td></tr>
+  <tr><td>Dynamic Range</td><td class="nd">Não publicado</td><td class="win">até 418 dB <span class="badge bw">✓</span></td></tr>
+  <tr><td>Monitor</td><td class="win">OLED 27" WQHD (2560×1440) <span class="badge bw">✓</span></td><td>LCD 23,8" Full HD (1920×1080)</td></tr>
+  <tr><td>Touchscreen auxiliar</td><td class="win">15,6" com inclinação <span class="badge bw">✓</span></td><td>15,6" sem inclinação</td></tr>
+  <tr><td>Garantia</td><td class="win">5 anos <span class="badge bw">✓</span></td><td>2 anos</td></tr>
+  <tr><td>Preço Brasil</td><td>~R$ 500.000</td><td>~R$ 650.000</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>2. Software e processamento de imagem</h2>
+<p>Ambas as plataformas oferecem alta qualidade de imagem resultante de suas arquiteturas de formação de feixe, algoritmos de processamento e recursos de redução de ruído, aumento da relação sinal/ruído e supressão de sombra acústica. O que distingue o Samsung HERA Z20 nesta geração é o uso do <strong>Software Beamforming (SWBF)</strong> — a formação do feixe ultrassônico é realizada via programação da GPU (RTX A4000), ao invés de hardware dedicado convencional. Essa arquitetura viabiliza um recurso que até recentemente era impraticável em equipamentos comerciais: a captação da <strong>terceira harmônica</strong> — talvez o achado mais surpreendente do Z20 neste review.</p>
+
+<h3>O que são os harmônicos em ultrassom</h3>
+<p>Quando o transdutor emite uma frequência fundamental — digamos, 5 MHz — o tecido não responde apenas nessa frequência. Ele gera harmônicos: múltiplos da frequência original (10 MHz, 15 MHz, etc.). O ultrassom convencional usava apenas o sinal fundamental. A segunda geração trouxe a <strong>2ª harmônica (THI — Tissue Harmonic Imaging)</strong>, hoje padrão em qualquer aparelho moderno: menos artefatos, mais contraste, melhor definição de bordas. A <strong>3ª harmônica</strong> (três vezes a frequência fundamental) vai além: feixe ainda mais estreito, resolução lateral superior e praticamente zero de sidelobe artifacts.</p>
+<p>O desafio técnico é duplo: o sinal de 3ª harmônica tem frequência 3x maior que o fundamental, mas amplitude muito menor — e é justamente esse sinal que é "desperdiçado" na maioria dos equipamentos. Captá-lo exige taxa de amostragem robusta (5 a 10 vezes maior que a frequência máxima do sinal) para garantir reconstrução precisa sem distorção ou aliasing. É o SWBF com GPU que viabiliza essa capacidade de amostragem e processamento — algo que o hardware dedicado convencional não consegue realizar com a mesma flexibilidade computacional.</p>
+
+<h3>Terceira harmônica no Samsung HERA Z20 — observação exclusiva onsite</h3>
+<p>O Samsung HERA Z20 é capaz de captar e utilizar o componente de 3ª harmônica em <strong>presets específicos</strong> dos transdutores <strong>CA1-7S</strong> (convexo) e <strong>EV2-12</strong> (endocavitário volumétrico) — ambos de tecnologia S-Vue (Single Crystal). Quando ativo, o sistema exibe um indicador discreto no HUD. A melhoria de imagem é perceptível principalmente na <strong>definição de estruturas de alta frequência em campo próximo</strong> — exatamente o cenário da neurossonografia fetal com transdutor endocavitário, em que o encéfalo fetal está próximo e a frequência mais alta é sustentável.</p>
+<p>Na prática onsite, comparativos de neurossonografia fetal mostraram nitidez superior no córtex cerebral com a 3ª harmônica ativa — uma diferença real, mais sutil do que a ativação da harmônica convencional, mas clinicamente perceptível para quem conhece a anatomia. A física impõe o limite: frequências mais altas atenuam mais rapidamente, tornando o recurso menos eficaz em campo distante ou em pacientes com IMC elevado. Para neurossonografia fetal com transdutor endocavitário e feto em apresentação cefálica, o encéfalo fica suficientemente próximo para que a 3ª harmônica seja sustentada.</p>
+<p>Estudos publicados documentam que a 3ª harmônica proporciona melhoria de até <strong>46% na resolução lateral</strong> em relação ao fundamental e <strong>28% em relação à 2ª harmônica</strong> [IEEE Xplore, 2012]. A Canon Medical (linha Aplio) foi a primeira a formalizar a tecnologia como produto comercial usando um filtro de deep learning para extrair o sinal. O Z20 implementa solução própria com comportamento similar — dado observado exclusivamente neste review, durante o congresso This Is Us 2026.</p>
+
+<!-- ══════════════════════════════════════ -->
+<h2>3. Transdutores volumétricos: CMV1-10 versus eM6C G3</h2>
+<p>O transdutor volumétrico é o coração de qualquer aparelho de ultrassom obstétrico premium. Aqui, a competição é feroz.</p>
+
+<h3>Samsung CMV1-10 — matrix array de cristal único</h3>
+<p>O <strong>CMV1-10</strong> é o novo transdutor flagship do Z20: um convex volume matrix array com tecnologia S-Vue (cristal único), cobrindo <strong>1–10 MHz</strong> de banda [2,3,4]. Essa largura de banda é notável — permite desde penetração profunda em pacientes com IMC elevado até resolução fina para detalhes anatômicos fetais. A Samsung não publica o número de elementos, o que é uma lacuna significativa para comparação técnica.</p>
+
+<h3>GE eM6C G3 — 8.192 elementos eletrônicos</h3>
+<p>O <strong>eM6C G3</strong> é a terceira geração do probe eletrônico matrix da GE, com <strong>8.192 elementos</strong> em arranjo matrix 2D ativo, operando em <strong>2–6 MHz</strong> [7,8]. A principal vantagem: por ser array eletrônico puro (sem motor mecânico), permite <strong>eSTIC</strong> — captura instantânea de STIC em ~3 segundos (versus 7–15 segundos em probes mecânicos) [8,9,21]. Volumes 4D com Color Doppler em tempo real, <strong>Bi-Plane</strong> e Bi-Plane CRI são exclusivos do eM6C G3.</p>
+
+<h3>Comparativo — transdutores</h3>
+<div class="bars" id="bars-trans">
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Banda de frequência (MHz)</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung CMV1-10</div><div class="bar-track"><div class="bar-fill bf-s" data-w="83">10 MHz</div></div></div>
+      <div><div class="bar-name">GE eM6C G3</div><div class="bar-track"><div class="bar-fill bf-g" data-w="50">6 MHz</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Elementos do array</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung CMV1-10</div><div class="bar-track"><div class="bar-fill bf-s" data-w="2">N/D</div></div></div>
+      <div><div class="bar-name">GE eM6C G3</div><div class="bar-track"><div class="bar-fill bf-g" data-w="100">8.192 elementos</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Tempo de captura STIC — menor é melhor (s)</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — mecânico (~11s)</div><div class="bar-track"><div class="bar-fill bf-s" data-w="75">~11s</div></div></div>
+      <div><div class="bar-name">GE — eSTIC eletrônico (~3s)</div><div class="bar-track"><div class="bar-fill bf-g" data-w="20">~3s</div></div></div>
+    </div>
+  </div>
+</div>
+
+<table class="ht">
+  <tr><th class="spec-col">Característica</th><th class="s-col">Samsung CMV1-10</th><th class="g-col">GE eM6C G3</th></tr>
+  <tr><td>Tipo</td><td>Convex Volume Matrix Array</td><td>Electronic Matrix Array 2D</td></tr>
+  <tr><td>Elementos</td><td class="nd">Não divulgado <span class="badge bn">?</span></td><td class="win">8.192 <span class="badge bw">✓</span></td></tr>
+  <tr><td>Frequência</td><td class="win">1–10 MHz <span class="badge bw">Maior banda</span></td><td>2–6 MHz</td></tr>
+  <tr><td>Cristal único (S-Vue)</td><td class="win">Sim</td><td>—</td></tr>
+  <tr><td>STIC</td><td>Mecânico (7–15s)</td><td class="win">eSTIC eletrônico (~3s) <span class="badge bw">3x mais rápido</span></td></tr>
+  <tr><td>Bi-Plane</td><td class="nd">Não disponível</td><td class="win">Sim <span class="badge bw">✓</span></td></tr>
+  <tr><td>Color 4D em tempo real</td><td>Sim</td><td class="win">Sim (com eSTIC)</td></tr>
+</table>
+
+<p><strong>Opinião técnica:</strong> O eM6C G3 é superior em ecocardiografia fetal graças ao eSTIC e Bi-Plane — a captura cardíaca instantânea sem artefato de movimento é transformadora [8,9,21]. A largura de banda maior do CMV1-10 (1–10 MHz vs. 2–6 MHz) favorece a Samsung em versatilidade clínica e penetração em pacientes com IMC elevado [2,3]. Para morfologia fetal de rotina, ambos são excelentes.</p>
+
+<!-- ══════════════════════════════════════ -->
+<h2>4. Inteligência artificial embarcada: duas filosofias opostas</h2>
+
+<h3>Comparativo visual — Radar de capacidades</h3>
+<div class="tab-row">
+  <button class="tab-btn active" onclick="switchTab('ia',this)">Capacidades de IA</button>
+  <button class="tab-btn" onclick="switchTab('perf',this)">Perfil clínico ideal</button>
+</div>
+<div class="chart-card">
+  <div class="chart-lbl" id="radar-lbl">Radar — capacidades de IA embarcada (escala 0–10)</div>
+  <div style="position:relative;width:100%;height:360px;">
+    <canvas id="radarChart"></canvas>
+  </div>
+</div>
+
+<h3>Samsung HERA Z20 — IA contínua e automatização radical</h3>
+<p>O recurso central é o <strong>Live ViewAssist</strong>: IA baseada em deep learning que opera <em>continuamente durante o exame</em>, sem interação do operador [1,5,6]. Identifica e captura automaticamente <strong>39 planos padrão</strong>, anota <strong>47 estruturas anatômicas</strong> e realiza <strong>46 medidas essenciais</strong> em tempo real [5,6]. A Samsung declara redução de até <strong>94% nos keystrokes</strong> em exame detalhado de 2º trimestre — dado poderoso, mas baseado em dados internos (data on file), não em estudo revisado por pares [5,6].</p>
+<p>A validação FDA (510(k) K241971, outubro 2024) documentou <strong>Dice scores >0,87</strong> para segmentação e <strong>acurácia de reconhecimento >94%</strong> em datasets diversos [17].</p>
+
+<ul>
+  <li><strong>BiometryAssist</strong> (base): biometria semiautomática — o operador seleciona a estrutura e o sistema realiza a medida [2,4]</li>
+  <li><strong>ViewAssist</strong> (base): biometria automática — basta acionar a tecla de medida e o sistema reconhece a estrutura automaticamente</li>
+  <li><strong>HeartAssist</strong> (base): classificação automática de planos cardíacos fetais, medidas e Z-Scores [2,3,4]</li>
+  <li><strong>Live ViewAssist</strong> (opcional): ViewAssist em tempo real — 39 planos contínuos, 47 estruturas, 46 medidas sem interação [5,6]</li>
+  <li><strong>5D CNS+</strong> (opcional): 6 medidas em 3 cortes transversais do cérebro fetal [3,4]</li>
+  <li><strong>5D NT</strong> (opcional): translucência nucal automática [4]</li>
+  <li><strong>EzVolume</strong> (item de série): segmentação 3D de placenta, líquido amniótico, face fetal com código de cores [3,4]</li>
+  <li><strong>EzCheck</strong>: checklist ISUOG em tempo real — rastreia planos não adquiridos [2,4]</li>
+  <li><strong>Sonio</strong> (cloud, FDA-cleared): laudos IA para medicina fetal — parceria desde 2024 [5,6]</li>
+</ul>
+
+<!-- BLOCO 5D HEART COLOR -->
+<div class="excl">
+  <span class="excl-badge">ℹ️ 5D Heart Color™ — ecocardiografia fetal avançada</span>
+  <div class="excl-t">5D Heart Color — análise cardíaca fetal automatizada por IA</div>
+  <p class="excl-p">O <strong>5D Heart Color™</strong> é uma ferramenta de IA que analisa automaticamente as estruturas cardíacas fetais a partir de um volume STIC. Disponível nos equipamentos Samsung flagship desde 2018, exibe <strong>9 planos padrão de ecocardiografia fetal com Doppler colorido</strong> em uma única visualização, utilizando a tecnologia de Navegação Inteligente para identificar e marcar automaticamente estruturas como septo, aorta e artéria pulmonar. Na terminologia Samsung, o <strong>"5D"</strong> representa a dimensão diagnóstica — sendo a 4ª dimensão o tempo (imagem volumétrica em movimento).</p>
+  <div class="dim-grid">
+    <div class="dim-card"><div class="dim-t">Visualização abrangente</div><div class="dim-d">9 planos padrão incluindo 3 vasos/traqueia, 5 câmaras e tratos de saída</div></div>
+    <div class="dim-card"><div class="dim-t">IA de navegação</div><div class="dim-d">Identifica e marca septo, aorta e artéria pulmonar automaticamente</div></div>
+    <div class="dim-card"><div class="dim-t">Doppler colorido</div><div class="dim-d">Avalia dinâmica do fluxo sanguíneo e função hemodinâmica</div></div>
+    <div class="dim-card"><div class="dim-t">Eficiência diagnóstica</div><div class="dim-d">Reduz tempo de exame — crucial para detecção precoce de cardiopatias</div></div>
+  </div>
+  <div style="background:#E6F1FB;border-left:3px solid #185FA5;border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;margin-top:12px;font-size:.82rem;color:#0C447C;">
+    🔬 <strong>Próxima geração — EzHQ (previsão 2º semestre 2025):</strong> Quantificação totalmente automatizada do coração fetal via IA. Fornecerá tamanho cardíaco e <strong>strain global (GLS)</strong> do coração fetal por segmentação de imagem nas 4 câmaras, auxiliando na identificação de anormalidades funcionais e estruturais. É a resposta Samsung ao fetalHQ2 da GE — e representa um salto expressivo em quantificação cardíaca fetal automatizada.
+  </div>
+</div>
+
+<h3>GE Voluson Expert 22 — ecossistema quantitativo e ecocardiografia avançada</h3>
+<p>A GE adota uma abordagem modular com ferramentas especializadas por área anatômica, com ênfase em quantificação rigorosa e validação científica publicada:</p>
+<ul>
+  <li><strong>SonoLyst</strong> (Intelligent Ultrasound, UK): reconhecimento automático de 21 planos ISUOG — melhoria de até 65% na eficiência [11]</li>
+  <li><strong>SonoCNS</strong>: cérebro fetal automático a partir de um volume 3D — redução de 81% no tempo de exame [10,11]</li>
+  <li><strong>fetalHQ / fetalHQ2</strong>: speckle-tracking cardíaco fetal, strain global (GSI), 24 segmentos — validado em múltiplos estudos publicados [18,19,20]</li>
+  <li><strong>fetalHS</strong>: screening cardíaco guiado por IA — 4 câmaras, 3 vasos/traqueia e eixo cardíaco automáticos [21]</li>
+  <li><strong>SonoNT / SonoIT</strong>: translucência nucal e intracraniana semi-automáticas [10,11]</li>
+  <li><strong>SonoVCADheart</strong>: 3 cliques para vistas cardíacas padronizadas a partir de STIC/eSTIC [9,21]</li>
+  <li><strong>Graphicflow</strong>: trajetórias de células sanguíneas em tempo real — sem equivalente no Z20 [8,9]</li>
+</ul>
+
+<h3>Comparativo — inteligência artificial</h3>
+<div class="bars" id="bars-ia">
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Planos capturados automaticamente</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — Live ViewAssist (39 planos, contínuo)</div><div class="bar-track"><div class="bar-fill bf-s" data-w="100">39 planos</div></div></div>
+      <div><div class="bar-name">GE — SonoLyst (21 planos ISUOG)</div><div class="bar-track"><div class="bar-fill bf-g" data-w="54">21 planos</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Redução de keystrokes (%)</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — 94% (data on file)</div><div class="bar-track"><div class="bar-fill bf-s" data-w="94">94%</div></div></div>
+      <div><div class="bar-name">GE — 82% SonoCNS (peer-reviewed)</div><div class="bar-track"><div class="bar-fill bf-g" data-w="82">82%</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Estudos científicos publicados validando IA — peer-reviewed</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — FDA data on file (K241971)</div><div class="bar-track"><div class="bar-fill bf-s" data-w="25">1 clearance FDA</div></div></div>
+      <div><div class="bar-name">GE — PMC / MDPI / BMC / Springer</div><div class="bar-track"><div class="bar-fill bf-g" data-w="100">múltiplos estudos</div></div></div>
+    </div>
+  </div>
+</div>
+
+<table class="ht">
+  <tr><th class="spec-col">Recurso de IA</th><th class="s-col">Samsung HERA Z20</th><th class="g-col">GE Voluson Expert 22</th></tr>
+  <tr><td>Planos automáticos</td><td class="win">39 planos (contínuo) <span class="badge bw">✓</span></td><td>21 planos ISUOG</td></tr>
+  <tr><td>Redução de keystrokes</td><td class="win">Até 94% (data on file)</td><td>Até 82% (SonoCNS validado)</td></tr>
+  <tr><td>Eco fetal quantitativo</td><td>HeartAssist (medidas + Z-Scores)</td><td class="win">fetalHQ2: speckle-tracking, strain, GSI <span class="badge bw">✓</span></td></tr>
+  <tr><td>Validação publicada</td><td>FDA K241971 (data on file)</td><td class="win">PMC / MDPI / BMC (peer-reviewed) <span class="badge bw">✓</span></td></tr>
+  <tr><td>Neurossonografia</td><td>5D CNS+ (6 medidas)</td><td class="win">SonoCNS: -81% tempo de exame <span class="badge bw">✓</span></td></tr>
+  <tr><td>Fluxo vascular 3D</td><td>MV-Flow, LumiFlow</td><td class="win">Graphicflow (trajetórias celulares) <span class="badge bw">✓</span></td></tr>
+  <tr><td>Cloud AI / laudos</td><td class="win">Sonio (FDA-cleared) <span class="badge bw">✓</span></td><td>—</td></tr>
+  <tr><td>STIC cardíaco</td><td>Mecânico</td><td class="win">eSTIC eletrônico (~3s) <span class="badge bw">✓</span></td></tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>5. Display, ergonomia e experiência de uso</h2>
+<p>O display é uma diferença visível e imediata. O Samsung Z20 oferece um <strong>monitor OLED de 27 polegadas com resolução WQHD (2560×1440)</strong> — 57% maior que o HERA W10. O OLED proporciona pretos absolutos e contraste infinito, particularmente valioso para ecocardiografia fetal e renderização 3D/4D [1,4,36]. O GE Expert 22 utiliza um <strong>monitor LCD HDU de 23,8 polegadas em Full HD (1920×1080)</strong> — curiosamente um retrocesso em relação ao E10, que tinha OLED [7,12,13].</p>
+<table class="ht">
+  <tr><th class="spec-col">Item</th><th class="s-col">Samsung HERA Z20</th><th class="g-col">GE Voluson Expert 22</th></tr>
+  <tr><td>Monitor principal</td><td class="win">OLED 27" WQHD (2560×1440) <span class="badge bw">✓</span></td><td>LCD 23,8" Full HD (1920×1080)</td></tr>
+  <tr><td>Tipo de painel</td><td class="win">OLED — pretos absolutos</td><td>LCD HDU — 340 cd/m², 1000:1</td></tr>
+  <tr><td>Touchscreen</td><td class="win">15,6" com inclinação <span class="badge bw">✓</span></td><td>15,6" sem inclinação</td></tr>
+  <tr><td>Peso</td><td>Não publicado</td><td>100 kg</td></tr>
+  <tr><td>Perfis de usuário</td><td class="win">MyHERA™ — por usuário</td><td>Customizável</td></tr>
+  <tr><td>Teclado</td><td>Fixo</td><td class="win">Flutuante ±38°</td></tr>
+</table>
+
+<!-- ══════════════════════════════════════ -->
+<h2>6. Suporte e infraestrutura no Brasil</h2>
+
+<div class="bars" id="bars-suporte">
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Garantia do equipamento</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — 5 anos</div><div class="bar-track"><div class="bar-fill bf-s" data-w="100">5 anos</div></div></div>
+      <div><div class="bar-name">GE — 2 anos</div><div class="bar-track"><div class="bar-fill bf-g" data-w="40">2 anos</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Qualidade percebida do suporte técnico no Brasil</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — feedback de campo</div><div class="bar-track"><div class="bar-fill bf-s" data-w="55">satisfatório</div></div></div>
+      <div><div class="bar-name">GE — feedback de campo</div><div class="bar-track"><div class="bar-fill bf-g" data-w="50">satisfatório</div></div></div>
+    </div>
+  </div>
+  <div class="bar-row">
+    <div class="bar-lbl"><span>Presença histórica e base instalada no Brasil</span></div>
+    <div class="bar-group">
+      <div><div class="bar-name">Samsung — crescente</div><div class="bar-track"><div class="bar-fill bf-s" data-w="40">em expansão</div></div></div>
+      <div><div class="bar-name">GE — décadas de presença</div><div class="bar-track"><div class="bar-fill bf-g" data-w="95">fábrica Contagem-MG desde 2010</div></div></div>
+    </div>
+  </div>
+</div>
+
+<p>Tanto <strong>GE Healthcare</strong> quanto <strong>Samsung Healthcare</strong> possuem subsidiárias regularmente estabelecidas no Brasil, operando através de composições distintas entre estrutura direta, representantes e distribuidores. A GE tem vantagem histórica inegável em base instalada e presença — com fábrica em Contagem-MG desde 2010 e décadas de relacionamento com o mercado [24]. A Samsung conta com equipe direta responsável pelo treinamento das equipes regionais, com execução através de representantes sob supervisão centralizada [22,23].</p>
+<p>O diferencial objetivo que favorece a Samsung neste critério é a <strong>garantia de 5 anos</strong> contra os <strong>2 anos da GE</strong>. Para um investimento da ordem de R$ 500–650 mil, essa diferença representa economia real no custo total de ownership e não pode ser ignorada na análise financeira.</p>
+
+<!-- ══════════════════════════════════════ -->
+<h2>7. O congresso This Is Us e a Escola NEXUS</h2>
+<p>O <strong>"This Is Us — Congresso Internacional de Ultrassonografia"</strong> é organizado pela Escola NEXUS, fundada em 2017 em Brasília pelo Dr. Evaldo Trajano de Souza Silva Filho [27,28]. A escola carrega o Selo de Qualidade da SBUS [29] e mantém parceria internacional com a Fetal Medicine Barcelona para pós-graduação em medicina fetal (800 horas, certificação internacional e diploma reconhecido pelo MEC) [26]. Com mais de 2.600 profissionais formados, é um dos mais respeitados centros de formação em ultrassonografia da América Latina.</p>
+
+
+<!-- ══════════════════════════════════════ -->
+<h2>8. Calculadora de ROI — simule seu cenário</h2>
+<p>Ajuste os parâmetros abaixo com os números da sua clínica e veja quanto tempo cada aparelho leva para se pagar — e qual o retorno real ao longo de 5 e 10 anos.</p>
+
+<div id="roi-calc" style="margin:1.5rem 0;">
+
+<!-- SLIDERS -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1.5rem;">
+  <div>
+    <label style="font-size:.78rem;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Receita bruta por dia</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <input type="range" id="sl-rec" min="1500" max="6000" step="100" value="3000" style="flex:1;">
+      <span id="lbl-rec" style="font-size:.88rem;font-weight:600;min-width:88px;color:var(--text);">R$ 3.000</span>
+    </div>
+  </div>
+  <div>
+    <label style="font-size:.78rem;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Dias úteis por mês</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <input type="range" id="sl-dias" min="15" max="25" step="1" value="20" style="flex:1;">
+      <span id="lbl-dias" style="font-size:.88rem;font-weight:600;min-width:88px;color:var(--text);">20 dias</span>
+    </div>
+  </div>
+  <div>
+    <label style="font-size:.78rem;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Custo operacional mensal</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <input type="range" id="sl-op" min="5000" max="30000" step="1000" value="15000" style="flex:1;">
+      <span id="lbl-op" style="font-size:.88rem;font-weight:600;min-width:88px;color:var(--text);">R$ 15.000</span>
+    </div>
+  </div>
+  <div>
+    <label style="font-size:.78rem;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Pró-labore do médico (mensal)</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <input type="range" id="sl-pro" min="0" max="50000" step="500" value="15000" style="flex:1;">
+      <span id="lbl-pro" style="font-size:.88rem;font-weight:600;min-width:88px;color:var(--text);">R$ 15.000</span>
+    </div>
+  </div>
+  <div>
+    <label style="font-size:.78rem;color:var(--text3);font-weight:600;letter-spacing:.04em;text-transform:uppercase;">Manutenção / seguro anual (% do aparelho)</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <input type="range" id="sl-man" min="0" max="4" step="0.1" value="2" style="flex:1;">
+      <span id="lbl-man" style="font-size:.88rem;font-weight:600;min-width:88px;color:var(--text);">2,0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- CARDS GERAIS -->
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem;">
+  <div class="stat"><div class="stat-n" id="roi-recmes" style="font-size:1.1rem;">—</div><div class="stat-l">Receita mensal bruta</div></div>
+  <div class="stat"><div class="stat-n" id="roi-recano" style="font-size:1.1rem;">—</div><div class="stat-l">Receita anual bruta</div></div>
+  <div class="stat"><div class="stat-n" id="roi-margem" style="font-size:1.1rem;">—</div><div class="stat-l">Margem líquida média</div></div>
+</div>
+
+<!-- CARDS POR APARELHO -->
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;">
+  <!-- SAMSUNG -->
+  <div style="border:1.5px solid #185FA5;border-radius:var(--radius-lg);padding:16px;background:#E6F1FB;">
+    <div style="font-size:.85rem;font-weight:700;color:#0C447C;margin-bottom:12px;letter-spacing:.02em;">Samsung HERA Z20 — R$ 500.000</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div><div style="font-size:.68rem;color:#185FA5;text-transform:uppercase;letter-spacing:.04em;">Manutenção/mês</div><div id="s-man" style="font-weight:600;font-size:.92rem;color:#0C447C;">—</div></div>
+      <div><div style="font-size:.68rem;color:#185FA5;text-transform:uppercase;letter-spacing:.04em;">Lucro líq./mês</div><div id="s-luc" style="font-weight:600;font-size:.92rem;color:#0C447C;">—</div></div>
+      <div><div style="font-size:.68rem;color:#185FA5;text-transform:uppercase;letter-spacing:.04em;">Payback</div><div id="s-pay" style="font-weight:700;font-size:1.1rem;color:#185FA5;">—</div></div>
+      <div><div style="font-size:.68rem;color:#185FA5;text-transform:uppercase;letter-spacing:.04em;">ROI 5 anos</div><div id="s-roi5" style="font-weight:600;font-size:.92rem;color:#0C447C;">—</div></div>
+      <div style="grid-column:1/-1;"><div style="font-size:.68rem;color:#185FA5;text-transform:uppercase;letter-spacing:.04em;">ROI 10 anos</div><div id="s-roi10" style="font-weight:600;font-size:.92rem;color:#0C447C;">—</div></div>
+    </div>
+  </div>
+  <!-- GE -->
+  <div style="border:1.5px solid #534AB7;border-radius:var(--radius-lg);padding:16px;background:#EEEDFE;">
+    <div style="font-size:.85rem;font-weight:700;color:#26215C;margin-bottom:12px;letter-spacing:.02em;">GE Voluson Expert 22 — R$ 650.000</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+      <div><div style="font-size:.68rem;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;">Manutenção/mês</div><div id="g-man" style="font-weight:600;font-size:.92rem;color:#26215C;">—</div></div>
+      <div><div style="font-size:.68rem;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;">Lucro líq./mês</div><div id="g-luc" style="font-weight:600;font-size:.92rem;color:#26215C;">—</div></div>
+      <div><div style="font-size:.68rem;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;">Payback</div><div id="g-pay" style="font-weight:700;font-size:1.1rem;color:#534AB7;">—</div></div>
+      <div><div style="font-size:.68rem;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;">ROI 5 anos</div><div id="g-roi5" style="font-weight:600;font-size:.92rem;color:#26215C;">—</div></div>
+      <div style="grid-column:1/-1;"><div style="font-size:.68rem;color:#534AB7;text-transform:uppercase;letter-spacing:.04em;">ROI 10 anos</div><div id="g-roi10" style="font-weight:600;font-size:.92rem;color:#26215C;">—</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LEGENDA -->
+<div style="display:flex;gap:20px;font-size:.78rem;margin-bottom:.8rem;color:var(--text3);">
+  <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:#378ADD;display:inline-block;"></span>Samsung HERA Z20</span>
+  <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:#7F77DD;display:inline-block;"></span>GE Voluson Expert 22</span>
+</div>
+
+<!-- GRÁFICO BARRAS -->
+<div style="font-size:.75rem;font-weight:600;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Comparativo financeiro em 5 anos</div>
+<div style="position:relative;width:100%;height:280px;margin-bottom:1.5rem;">
+  <canvas id="roiBar"></canvas>
+</div>
+
+<!-- GRÁFICO LINHA -->
+<div style="font-size:.75rem;font-weight:600;color:var(--text3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;">Lucro acumulado vs. investimento — 60 meses</div>
+<div style="position:relative;width:100%;height:280px;">
+  <canvas id="roiLine"></canvas>
+</div>
+
+</div><!-- /roi-calc -->
+
+<script>
+(function(){
+var PREC_S=500000,PREC_G=650000;
+var fmt=function(v){return'R$ '+Math.round(v).toLocaleString('pt-BR');};
+var fmtPct=function(v){return Math.round(v)+'%';};
+var barChart=null,lineChart=null;
+
+function calc(){
+  var rec=parseInt(document.getElementById('sl-rec').value);
+  var dias=parseInt(document.getElementById('sl-dias').value);
+  var op=parseInt(document.getElementById('sl-op').value);
+  var pro=parseInt(document.getElementById('sl-pro').value);
+  var manPct=parseFloat(document.getElementById('sl-man').value)/100;
+
+  document.getElementById('lbl-rec').textContent=fmt(rec);
+  document.getElementById('lbl-dias').textContent=dias+' dias';
+  document.getElementById('lbl-op').textContent=fmt(op);
+  document.getElementById('lbl-pro').textContent=fmt(pro);
+  document.getElementById('lbl-man').textContent=(manPct*100).toFixed(1).replace('.',',')+'%';
+
+  var recMes=rec*dias;
+  var recAno=recMes*12;
+
+  var manS=PREC_S*manPct/12;
+  var manG=PREC_G*manPct/12;
+  var lucS=recMes-op-pro-manS;
+  var lucG=recMes-op-pro-manG;
+  var payS=lucS>0?Math.ceil(PREC_S/lucS):null;
+  var payG=lucG>0?Math.ceil(PREC_G/lucG):null;
+  var roi5S=lucS>0?(((lucS*12*5)-PREC_S)/PREC_S)*100:null;
+  var roi5G=lucG>0?(((lucG*12*5)-PREC_G)/PREC_G)*100:null;
+  var roi10S=lucS>0?(((lucS*12*10)-PREC_S)/PREC_S)*100:null;
+  var roi10G=lucG>0?(((lucG*12*10)-PREC_G)/PREC_G)*100:null;
+  var margem=recMes>0?((lucS/recMes)*100):0;
+
+  document.getElementById('roi-recmes').textContent=fmt(recMes);
+  document.getElementById('roi-recano').textContent=fmt(recAno);
+  document.getElementById('roi-margem').textContent=fmtPct(margem);
+
+  document.getElementById('s-man').textContent=fmt(manS);
+  document.getElementById('s-luc').textContent=fmt(lucS);
+  document.getElementById('s-pay').textContent=payS?payS+' meses':'—';
+  document.getElementById('s-roi5').textContent=roi5S!==null?fmtPct(roi5S):'—';
+  document.getElementById('s-roi10').textContent=roi10S!==null?fmtPct(roi10S):'—';
+
+  document.getElementById('g-man').textContent=fmt(manG);
+  document.getElementById('g-luc').textContent=fmt(lucG);
+  document.getElementById('g-pay').textContent=payG?payG+' meses':'—';
+  document.getElementById('g-roi5').textContent=roi5G!==null?fmtPct(roi5G):'—';
+  document.getElementById('g-roi10').textContent=roi10G!==null?fmtPct(roi10G):'—';
+
+  // GRÁFICO BARRAS
+  var barLabels=['Investimento','Manutenção 5a','Custo oper. 5a','Receita 5a','Lucro líq. 5a'];
+  var barS=[PREC_S, manS*60, op*60, recMes*60, lucS*60];
+  var barG=[PREC_G, manG*60, op*60, recMes*60, lucG*60];
+  if(barChart){barChart.destroy();}
+  barChart=new Chart(document.getElementById('roiBar'),{
+    type:'bar',
+    data:{
+      labels:barLabels,
+      datasets:[
+        {label:'Samsung HERA Z20',data:barS,backgroundColor:'rgba(55,138,221,.75)',borderColor:'#378ADD',borderWidth:1},
+        {label:'GE Voluson Expert 22',data:barG,backgroundColor:'rgba(127,119,221,.75)',borderColor:'#7F77DD',borderWidth:1}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{ticks:{callback:function(v){return'R$ '+Math.round(v/1000)+'k';},color:'#718096',font:{size:9}},grid:{color:'rgba(0,0,0,.05)'}},
+        x:{ticks:{color:'#718096',font:{size:9}},grid:{display:false}}
+      }
+    }
+  });
+
+  // GRÁFICO LINHA
+  var meses=[];
+  var acsS=[];
+  var acsG=[];
+  for(var m=0;m<=60;m++){
+    meses.push(m);
+    acsS.push(Math.round(-PREC_S+(lucS*m)));
+    acsG.push(Math.round(-PREC_G+(lucG*m)));
+  }
+  if(lineChart){lineChart.destroy();}
+  lineChart=new Chart(document.getElementById('roiLine'),{
+    type:'line',
+    data:{
+      labels:meses,
+      datasets:[
+        {label:'Samsung HERA Z20',data:acsS,borderColor:'#378ADD',backgroundColor:'rgba(55,138,221,.07)',fill:true,tension:.3,pointRadius:0,borderWidth:2},
+        {label:'GE Voluson Expert 22',data:acsG,borderColor:'#7F77DD',backgroundColor:'rgba(127,119,221,.07)',fill:true,tension:.3,pointRadius:0,borderWidth:2}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{ticks:{callback:function(v){return'R$ '+Math.round(v/1000)+'k';},color:'#718096',font:{size:9}},grid:{color:'rgba(0,0,0,.05)'}},
+        x:{title:{display:true,text:'meses',color:'#718096',font:{size:9}},ticks:{color:'#718096',font:{size:9},maxTicksLimit:13},grid:{display:false}}
+      }
+    }
+  });
+}
+
+['sl-rec','sl-dias','sl-op','sl-pro','sl-man'].forEach(function(id){
+  document.getElementById(id).addEventListener('input',calc);
+});
+calc();
+})();
+</script>
+
+<!-- ══════════════════════════════════════ -->
+<h2>9. Veredicto</h2>
+
+<p>Estes dois aparelhos não são intercambiáveis — eles servem perfis clínicos diferentes.</p>
+
+<div class="verd">
+  <div class="vc vc-s">
+    <div class="vc-t">Samsung HERA Z20</div>
+    <div class="vc-sub">Ideal para: alto volume de morfologia fetal, redução de fadiga, quem busca IA contínua sem interação.</div>
+    <ul>
+      <li>✓ Live ViewAssist — IA mais ambiciosa do mercado</li>
+      <li>✓ OLED 27" WQHD — melhor display do segmento</li>
+      <li>✓ CPU Tiger Lake 11ª Gen — mais moderna que a GE</li>
+      <li>✓ RAM 32 GB — o dobro da GE (16 GB)</li>
+      <li>✓ Touchscreen com inclinação</li>
+      <li>✓ Garantia 5 anos — 2,5x maior que a GE</li>
+      <li>✓ Banda 1–10 MHz — maior versatilidade clínica</li>
+      <li>✓ Integração Sonio cloud (FDA-cleared)</li>
+      <li>✗ Recursos-chave são opcionais (custo adicional)</li>
+      <li>✗ STIC mecânico (não eletrônico)</li>
+      <li>✗ Specs não publicados oficialmente</li>
+    </ul>
+  </div>
+  <div class="vc vc-g">
+    <div class="vc-t">GE Voluson Expert 22</div>
+    <div class="vc-sub">Ideal para: ecocardiografia fetal avançada, medicina fetal de alto risco, quantificação rigorosa.</div>
+    <ul>
+      <li>✓ fetalHQ2: speckle-tracking único no mercado</li>
+      <li>✓ eSTIC eletrônico (~3s) — padrão-ouro em eco fetal</li>
+      <li>✓ Graphicflow — hemodinâmica fetal inédita</li>
+      <li>✓ Rede de suporte Brasil consolidada (fábrica MG)</li>
+      <li>✓ Specs publicados e auditáveis</li>
+      <li>✗ Monitor LCD (retrocesso vs E10 com OLED)</li>
+      <li>✗ 100 kg — o mais pesado do segmento</li>
+      <li>✗ IA exige mais interação do operador</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- NOTAS FINAIS E VENCEDOR -->
+<div style="background:linear-gradient(135deg,#f8f9fa,#ffffff);border:2px solid #e2e8f0;border-radius:var(--radius-lg);padding:28px;margin:2rem 0;">
+
+  <div style="font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:20px;">Avaliação final — Dr. Massuca</div>
+
+  <!-- NOTAS LADO A LADO -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+
+    <div style="background:var(--s-light);border:1.5px solid var(--s);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+      <div style="font-size:.8rem;font-weight:700;color:var(--s-dark);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Samsung HERA Z20</div>
+      <div style="font-size:3.5rem;font-weight:900;color:var(--s);line-height:1;font-family:'Playfair Display',serif;">9,3</div>
+      <div style="font-size:.72rem;color:var(--s-dark);margin-top:8px;opacity:.8;">de 10</div>
+      <div style="margin-top:14px;text-align:left;">
+        <div style="font-size:.75rem;color:var(--s-dark);margin-bottom:4px;">✦ IA contínua mais ambiciosa</div>
+        <div style="font-size:.75rem;color:var(--s-dark);margin-bottom:4px;">✦ Hardware mais moderno (Tiger Lake + 32 GB)</div>
+        <div style="font-size:.75rem;color:var(--s-dark);margin-bottom:4px;">✦ OLED 27" + touchscreen com inclinação</div>
+        <div style="font-size:.75rem;color:var(--s-dark);">✦ Garantia 5 anos — custo-benefício superior</div>
+      </div>
+    </div>
+
+    <div style="background:var(--g-light);border:1.5px solid var(--g);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+      <div style="font-size:.8rem;font-weight:700;color:var(--g-dark);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">GE Voluson Expert 22</div>
+      <div style="font-size:3.5rem;font-weight:900;color:var(--g);line-height:1;font-family:'Playfair Display',serif;">8,8</div>
+      <div style="font-size:.72rem;color:var(--g-dark);margin-top:8px;opacity:.8;">de 10</div>
+      <div style="margin-top:14px;text-align:left;">
+        <div style="font-size:.75rem;color:var(--g-dark);margin-bottom:4px;">✦ fetalHQ2 — speckle-tracking sem rival</div>
+        <div style="font-size:.75rem;color:var(--g-dark);margin-bottom:4px;">✦ eSTIC eletrônico (~3s)</div>
+        <div style="font-size:.75rem;color:var(--g-dark);margin-bottom:4px;">✦ Ecossistema quantitativo validado</div>
+        <div style="font-size:.75rem;color:var(--g-dark);">✦ Base instalada consolidada no Brasil</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOP PICK -->
+  <div style="position:relative;background:linear-gradient(135deg,#0C447C,#185FA5);border-radius:var(--radius-lg);padding:28px 24px 24px;overflow:hidden;">
+
+    <!-- Selo Top Pick -->
+    <div style="position:absolute;top:-1px;right:24px;background:#BA7517;color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:0 0 10px 10px;">
+      ★ Top Pick — Dr. Massuca
+    </div>
+
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
+
+      <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20.png" alt="Samsung HERA Z20" style="width:90px;height:130px;object-fit:contain;border-radius:10px;flex-shrink:0;">
+
+      <!-- Texto -->
+      <div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;">Escolha do editor</div>
+        <div style="font-size:1.35rem;font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px;">Samsung HERA Z20</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;">Para morfologia fetal em alto volume, o conjunto de IA contínua, hardware moderno, OLED de 27" e garantia de 5 anos torna o Z20 a escolha mais racional em 2026. A diferença de 0,5 pontos para o GE reflete principalmente o custo-benefício — com R$150k a menos e 2,5× mais garantia, o ROI é objetivamente superior.</div>
+      </div>
+
+    </div>
+
+    <!-- Notas em destaque -->
+    <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:16px;">
+      <div style="text-align:center;">
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;">Nota Samsung</div>
+        <div style="font-size:1.6rem;font-weight:900;color:#fff;">9,3<span style="font-size:.9rem;opacity:.7;">/10</span></div>
+      </div>
+      <div style="width:1px;height:36px;background:rgba(255,255,255,.2);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;">Nota GE</div>
+        <div style="font-size:1.6rem;font-weight:900;color:rgba(255,255,255,.65);">8,8<span style="font-size:.9rem;opacity:.7;">/10</span></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SEÇÃO DE OPINIÃO DO DR. MASSUCA -->
+<div class="opinion">
+  <span class="op-badge">✍️ Opinião do autor — Dr. Massuca</span>
+  <div class="op-t">Minha experiência hands-on com os dois aparelhos</div>
+
+  <div style="background:#fff3cd;border-left:4px solid #BA7517;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:1.5rem;">
+    <strong style="color:#633806;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;">⚠️ Declaração de viés</strong>
+    <p style="margin:.6rem 0 0;font-size:.9rem;color:#4a3800;">Sou usuário GE há mais de 20 anos. Trabalho com aparelhos GE há muito tempo e tenho profunda familiaridade com a plataforma Voluson. Isso inevitavelmente cria um viés de experiência — especialmente em knobologia e workflow. Este review foi construído com o compromisso de honestidade técnica, mas o leitor deve ter esse contexto em mente ao ponderar minhas impressões.</p>
+  </div>
+
+  <h3 style="margin-top:1rem;">Imagem B-mode</h3>
+  <p>Em modo B, ambos os aparelhos são muito parecidos entre si — e não apresentam uma evolução expressiva em relação às versões intermediárias anteriores, como o Voluson S10. A qualidade de imagem B-mode pura não é onde esses equipamentos se diferenciam de forma marcante.</p>
+  <p>A tela maior do GE faz diferença real na prática clínica. Mas o OLED do Samsung entrega algo que o LCD não consegue replicar: contraste superior, com realces de brilho que tornam a experiência visualmente mais confortável — desde que o operador tenha o cuidado de calibrar adequadamente o brilho. Para quem passa 10 horas por dia na frente de um monitor de ultrassom, isso não é detalhe.</p>
+
+  <h3 style="margin-top:1.5rem;">Knobologia e ergonomia</h3>
+  <p>Aqui meu viés fica mais evidente — e preciso ser honesto sobre isso. No GE, a experiência é surreal: minhas mãos vão diretamente para os controles como memória muscular, sem qualquer esforço cognitivo. O workflow acelera de forma expressiva justamente por esse fato. Não é que o Samsung seja ruim — é que o GE, para mim, é invisível.</p>
+  <p>Em relação ao controle motorizado de altura e lateralidade, ambos os aparelhos são excelentes. O único ponto negativo que identifiquei no GE foi o touchscreen auxiliar sem controle de inclinação — o Samsung, ao contrário, <strong>tem inclinação no touchscreen de 15,6"</strong>, o que representa um ponto a favor da ergonomia. Isso foi confirmado pelo representante Samsung após o congresso.</p>
+  <p>Sobre os transdutores: o eM6C G3 do GE tem o mesmo peso do probe mecânico anterior — sem regressão. O CMV1-10 do Samsung me pareceu ligeiramente mais leve. Em ambos, o grip é bom e não gerou desconforto durante o manuseio.</p>
+
+  <h3 style="margin-top:1.5rem;">Inteligência artificial na prática — o que realmente importa</h3>
+  <p>Em termos de velocidade e processamento, incluindo as funções de IA, os dois aparelhos são surpreendentemente próximos na experiência subjetiva. Não percebi diferença expressiva de performance entre eles.</p>
+  <p>O que mais me impressionou em ambos os aparelhos — e que considero o avanço mais relevante da IA aplicada ao ultrassom até agora — não foram as medidas automáticas, nem a renderização, nem os ajustes finos. Foi o <strong>checklist com validação de imagem em tempo real</strong>: o sistema avisa quando um plano obrigatório ainda não foi adquirido e, ao adquiri-lo, avalia se a imagem está tecnicamente correta — se a janela de 4 câmaras, por exemplo, contém todos os elementos que deveria conter. Isso existe nos dois aparelhos. E é o tipo de ferramenta que muda o padrão de qualidade diagnóstica de forma silenciosa e consistente.</p>
+  <p>O auto ajuste automático funciona razoavelmente. Mas o ultrassonografista experiente vai sempre se sentir impelido a fazer micro ajustes de knobologia — e está certo em fazê-lo. A IA vai melhorar muito com o tempo, mas não dispensa o especialista. Pelo contrário, amplifica o que ele já faz bem.</p>
+  <p>O Samsung tem um diferencial que não consegui explorar com profundidade por falta de tempo com o aparelho: a possibilidade de <strong>criar e customizar seus próprios checklists e workflows</strong>. Para quem tiver acesso prolongado ao equipamento, isso pode ser um diferenciador real. Fica o registro.</p>
+
+  <h3 style="margin-top:1.5rem;">Renderização 3D/4D</h3>
+  <p>Sem diferença visual expressiva entre os dois — e digo isso com franqueza. A evolução nessa área tem sido, em grande parte, de marketing. O Samsung entrega uma melhoria de textura em imagens 3D processada no próprio aparelho via IA — algo conceitualmente similar ao que modelos como o Stable Diffusion fazem com imagens estáticas (tenho inclusive uma seção dedicada a isso em <a href="https://www.drmassuca.com.br/ia-medica/stable-diffusion-3d-fetal" target="_blank">drmassuca.com.br</a>). É um incremento real, mas não um salto.</p>
+  <p>O compartilhamento de imagens com a paciente via celular existe nos dois aparelhos — funcionalidade disponível na Samsung desde 2018. É um recurso simpático, mas não é o que vai definir o futuro da IA em ultrassom.</p>
+
+  <h3 style="margin-top:1.5rem;">O 5D Heart Color™ do Samsung</h3>
+  <p>O que vi no congresso foi a demonstração do <strong>5D Heart Color™</strong> — ferramenta disponível nos equipamentos Samsung desde 2018, que gera 9 planos padrão de ecocardiografia fetal com Doppler colorido a partir de um volume STIC, com identificação automática de estruturas via IA. A tecnologia é madura e clinicamente estabelecida. O que aguardo com interesse real é o <strong>EzHQ</strong> — previsto para o 2º semestre — que trará quantificação automatizada do strain global (GLS) do coração fetal, colocando o Samsung em posição diretamente competitiva com o fetalHQ2 da GE nesse segmento.</p>
+
+  <div style="background:#EAF3DE;border-left:4px solid #3B6D11;border-radius:0 8px 8px 0;padding:14px 18px;margin-top:1.5rem;">
+    <strong style="color:#27500A;font-size:.85rem;text-transform:uppercase;letter-spacing:.04em;">📋 Nota de transparência editorial</strong>
+    <p style="margin:.6rem 0 0;font-size:.88rem;color:#2a4a10;">Este review foi submetido à revisão técnica da <strong>Samsung Medison Brasil</strong> antes da publicação. As contribuições do time técnico Samsung foram incorporadas integralmente a esta versão — incluindo a explicação do SWBF e da 3ª harmônica, a hierarquia correta das ferramentas de IA (BiometryAssist / ViewAssist / Live ViewAssist), a descrição precisa do 5D Heart Color™ e informações sobre o EzHQ.</p>
+    <p style="margin:.6rem 0 0;font-size:.88rem;color:#2a4a10;">A <strong>GE Healthcare</strong> foi contatada pelos meios disponíveis ao autor. Apesar do bom relacionamento pessoal com a empresa no Brasil, não foi possível obter uma revisão técnica formal até o momento da publicação — o que o autor compreende como uma limitação institucional, sem qualquer julgamento. O autor permanece <strong>aberto a receber contrapontos técnicos da GE</strong> — que serão incorporados com o mesmo rigor e transparência aplicados à revisão Samsung.</p>
+    <p style="margin:.6rem 0 0;font-size:.88rem;color:#2a4a10;">Identificou algum erro técnico ou deseja contribuir com dados adicionais? Entre em contato: <a href="https://www.drmassuca.com.br" target="_blank" style="color:#3B6D11">drmassuca.com.br</a></p>
+  </div>
+</div>
+
+<!-- REFERÊNCIAS -->
+<div class="ref-sec">
+  <h2>Referências (Vancouver)</h2>
+  <ol class="ref-list">
+    <li>Samsung Medison. Samsung Unveils Premium OB/GYN Ultrasound System 'HERA Z20' in ISUOG World Congress 2024. <a href="https://news.samsung.com/global/samsung-unveils-premium-ob-gyn-ultrasound-system-hera-z20-in-isuog-world-congress-2024" target="_blank">Samsung Global Newsroom, 2024.</a></li>
+    <li>Samsung Healthcare USA. Z20 Women's Health Ultrasound. <a href="https://usa.samsunghealthcare.com/ultrasound/womens-health/z20" target="_blank">usa.samsunghealthcare.com</a></li>
+    <li>Samsung Healthcare. HERA Z20 – Features. <a href="http://previous.samsunghealthcare.com/en/ultrasound/womens-health/hera-z20/features" target="_blank">samsunghealthcare.com</a></li>
+    <li>Samsung Healthcare. HERA Z20 – Overview. <a href="https://previous.samsunghealthcare.com/en/ultrasound/womens-health/hera-z20/overview" target="_blank">samsunghealthcare.com</a></li>
+    <li>AI Insider. Samsung Introduces AI-Powered Ob-Gyn Ultrasound. 2025. <a href="https://theaiinsider.tech/2025/01/29/samsung-introduces-ai-powered-ob-gyn-ultrasound-for-tough-clinical-challenges/" target="_blank">theaiinsider.tech</a></li>
+    <li>Samsung Healthcare USA. Z20: A Revolutionary Leap at SMFM 2025. <a href="https://usa.samsunghealthcare.com/news-center/ultrasound/womens-health/introducing-the-z20" target="_blank">samsunghealthcare.com</a></li>
+    <li>GE HealthCare. Voluson Expert 22 – Datasheet DOC2668404. 2022. <a href="https://let.web-sme-csp.com/wp-content/uploads/2022/09/Voluson-Expert-22-Datasheet__DOC2668404_JB19599XX.pdf" target="_blank">PDF oficial GE HealthCare</a></li>
+    <li>GE HealthCare. Voluson Expert 22 Ultrasound System. <a href="https://gehealthcare-ultrasound.com/en/voluson-family/voluson-expert-22/" target="_blank">gehealthcare-ultrasound.com</a></li>
+    <li>GE HealthCare. Voluson Expert 22 – Imaging Capabilities. <a href="https://www.gehealthcare.com/products/ultrasound/voluson/voluson-expert22/imaging-capabilities" target="_blank">gehealthcare.com</a></li>
+    <li>GE HealthCare. Voluson Expert 22 – Workflow Efficiency. <a href="https://www.gehealthcare.com/products/ultrasound/voluson/voluson-expert22/workflow-efficiency" target="_blank">gehealthcare.com</a></li>
+    <li>GE Voluson Club. AI Innovations. <a href="https://www.volusonclub.net/us/ai-innovations" target="_blank">volusonclub.net</a></li>
+    <li>Heart Medical LLC. GE Voluson Expert 22 Review. <a href="https://www.heartmedical.com/blogs/news/ge-voluson-expert-22-review-features-probes-and-clinical-value" target="_blank">heartmedical.com</a></li>
+    <li>ICE Community. GE Healthcare Voluson Expert 22. <a href="https://theicecommunity.com/ge-healthcare-voluson-expert-22/" target="_blank">theicecommunity.com</a></li>
+    <li>AuntMinnie. GE introduces Voluson Expert 22. <a href="https://www.auntminnie.com/clinical-news/ultrasound/article/15631487/ge-introduces-voluson-expert-22-ultrasound-scanner" target="_blank">auntminnie.com</a></li>
+    <li>Diagnostic Imaging. GE Healthcare Launches Voluson Expert 22. <a href="https://www.diagnosticimaging.com/view/ge-healthcare-launches-premium-ultrasound-device-with-voluson-expert-22" target="_blank">diagnosticimaging.com</a></li>
+    <li>Medical Device Network. GE Healthcare introduces Voluson Expert 22. <a href="https://www.medicaldevice-network.com/news/ge-healthcare-voluson-expert-22-ultrasound/" target="_blank">medicaldevice-network.com</a></li>
+    <li>RadAI Slice. HERA Z20 – FDA 510(k) K241971. <a href="https://xrayinterpreter.com/fda/K241971" target="_blank">xrayinterpreter.com</a></li>
+    <li>Mäkikallio K et al. Reproducibility in Fetal Cardiac Analysis with FetalHQ. PMC. 2025. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12112619/" target="_blank">PMC12112619</a></li>
+    <li>Merz E et al. Midtrimester Fetal Heart with FetalHQ. J Clin Med. 2026;15(4):1352. <a href="https://www.mdpi.com/2077-0383/15/4/1352" target="_blank">mdpi.com</a></li>
+    <li>Zhang Y et al. Fetal heart in growth restriction using fetal HQ. BMC Pregnancy Childbirth. 2024. <a href="https://link.springer.com/article/10.1186/s12884-024-06966-2" target="_blank">springer.com</a></li>
+    <li>GE Voluson Club. Fetal Heart. <a href="https://www.volusonclub.net/emea/fetal-heart" target="_blank">volusonclub.net</a></li>
+    <li>Samsung Newsroom Brasil. Novo sistema Samsung chega ao Brasil. <a href="https://news.samsung.com/br/com-foco-em-ginecologia-e-obstetricia-novo-sistema-de-ultrassom-da-samsung-chega-ao-brasil" target="_blank">samsung.com/br</a></li>
+    <li>SonoImagem Sistemas Médicos. Ultrassom Samsung. <a href="https://www.sonoimagem.com/ultrassom-samsung" target="_blank">sonoimagem.com</a></li>
+    <li>GE HealthCare Brasil. Sobre a GE Healthcare. <a href="https://loja.gehealthcare.com.br/pt-br/suporte/sobre-nos" target="_blank">gehealthcare.com.br</a></li>
+    <li>Siemens Healthineers Brasil. Parceria Escola Nexus. <a href="https://www.siemens-healthineers.com/br/news/parceria-escola-nexus" target="_blank">siemens-healthineers.com</a></li>
+    <li>Escola NEXUS. Curso Medicina Fetal Barcelona. <a href="https://conteudo.nexusultrassonografia.com.br/curso-medicina-fetal" target="_blank">nexusultrassonografia.com.br</a></li>
+    <li>Escola NEXUS. Conheça a Nexus. <a href="https://nexusultrassonografia.com.br/conheca-a-nexus/" target="_blank">nexusultrassonografia.com.br</a></li>
+    <li>CICB. This Is Us – Congresso Internacional de Ultrassonografia. 2023. <a href="https://cicb.com.br/2023/03/21/this-is-us-congresso-internacional-de-ultrassonografia/" target="_blank">cicb.com.br</a></li>
+    <li>SBUS. Selo de Qualidade para Escolas de US. <a href="https://sbus.org.br/selo-de-qualidade-para-escolas-de-us/" target="_blank">sbus.org.br</a></li>
+    <li>MedicalExpo. HERA Z20 – Samsung Healthcare Germany. <a href="https://www.medicalexpo.com/prod/samsung-healthcare-germany/product-70129-1172903.html" target="_blank">medicalexpo.com</a></li>
+    <li>Bimedis. GE Voluson Expert 22. <a href="https://bimedis.com/ge-voluson-expert-22-m586509" target="_blank">bimedis.com</a></li>
+    <li>Korea Biomed. Samsung Medison at KSUOG. <a href="https://www.koreabiomed.com/news/articleView.html?idxno=25388" target="_blank">koreabiomed.com</a></li>
+    <li>Samsung Medison. Leads Women's Health at ISUOG 2025. <a href="https://news.samsung.com/global/samsung-medison-leads-womens-health-with-life-cycle-ultrasound-solutions-at-isuog-2025" target="_blank">samsung.com/global</a></li>
+    <li>Medical Device Developments. Samsung unveils HERA Z20. <a href="https://www.medicaldevice-developments.com/news/samsung-unveils-hera-z20-premium-ultrasound-system/" target="_blank">medicaldevice-developments.com</a></li>
+    <li>Boston Imaging. Samsung Z20 at SMFM 2025. <a href="https://www.bostonimaging.com/press-releases/womens-health/z20" target="_blank">bostonimaging.com</a></li>
+    <li>Samsung Medison. Samsung Showcases Enhanced Portfolio at RSNA 2024. <a href="https://news.samsung.com/global/samsung-showcases-enhanced-portfolio-at-rsna-2024" target="_blank">samsung.com/global, 2024.</a></li>
+    <li>Boston Imaging. Z20: A Revolutionary Leap at SMFM 2025. <a href="https://www.bostonimaging.com/press-releases/womens-health/z20" target="_blank">bostonimaging.com</a></li>
+  </ol>
+</div>
+
+<footer class="art-footer">
+  <span>Dr. Massuca — drmassuca.com.br/ia-medica</span>
+  <span>Última atualização: 30 mar 2026</span>
+</footer>
+
+</div><!-- /art-body -->
+</div><!-- /wrap -->
+
+<script>
+var radarData={
+  ia:{
+    labels:['Automação workflow','Neurossonografia fetal','Validação científica','STIC cardíaco','Fluxo vascular 3D','Redução keystrokes'],
+    S:[9,8,5,7,7,9],G:[8,7,10,8,8,8]
+  },
+  perf:{
+    labels:['Morfologia fetal rotina','Eco fetal avançada','Alto volume diário','Medicina fetal alto risco','Suporte Brasil','Custo-benefício','Inovação em IA','Display / ergonomia'],
+    S:[9,7,9,7,4,9,9,9],G:[8,8,7,8,4,6,7,7]
+  }
+};
+var chartInst=null;
+var curTab='ia';
+function makeChart(tab){
+  if(chartInst)chartInst.destroy();
+  var d=radarData[tab];
+  chartInst=new Chart(document.getElementById('radarChart'),{
+    type:'radar',
+    data:{labels:d.labels,datasets:[
+      {label:'Samsung HERA Z20',data:d.S,fill:true,backgroundColor:'rgba(24,95,165,.12)',borderColor:'#185FA5',pointBackgroundColor:'#185FA5',borderWidth:1.5,pointRadius:3},
+      {label:'GE Voluson Expert 22',data:d.G,fill:true,backgroundColor:'rgba(163,45,45,.12)',borderColor:'#A32D2D',pointBackgroundColor:'#A32D2D',borderWidth:1.5,pointRadius:3}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#4a5568',font:{size:11,family:"'IBM Plex Sans',sans-serif"}}}},
+      scales:{r:{
+        min:0,max:10,
+        ticks:{color:'#718096',stepSize:2,backdropColor:'transparent',font:{size:9}},
+        pointLabels:{color:'#4a5568',font:{size:10,family:"'IBM Plex Sans',sans-serif"}},
+        grid:{color:'rgba(0,0,0,.08)'},
+        angleLines:{color:'rgba(0,0,0,.08)'}
+      }}
+    }
+  });
+}
+function switchTab(tab,btn){
+  curTab=tab;
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('radar-lbl').textContent=tab==='ia'
+    ?'Radar — capacidades de IA embarcada (escala 0–10)'
+    :'Radar — perfil clínico ideal por categoria (escala 0–10)';
+  makeChart(tab);
+}
+makeChart('ia');
+
+/* ANIMATED BARS */
+function animBars(container){
+  container.querySelectorAll('.bar-fill[data-w]').forEach(function(el){
+    el.style.width=el.getAttribute('data-w')+'%';
+  });
+}
+
+/* COUNTERS */
+function animCounters(){
+  var targets=[
+    {id:'c1',val:11040,pre:'R$ '},
+    {id:'c2',val:3650,pre:'R$ '},
+    {id:'c3',val:14690,pre:'R$ '},
+    {id:'c4',val:2.4,suf:'%',dec:1}
+  ];
+  targets.forEach(function(t){
+    var el=document.getElementById(t.id);
+    if(!el)return;
+    var s=null,dur=1300;
+    (function step(ts){
+      if(!s)s=ts;
+      var p=Math.min((ts-s)/dur,1);
+      var e=1-Math.pow(1-p,3);
+      var v=t.val*e;
+      el.textContent=(t.pre||'')+(t.dec?v.toFixed(t.dec):Math.round(v).toLocaleString('pt-BR'))+(t.suf||'');
+      if(p<1)requestAnimationFrame(step);
+    })(performance.now());
+  });
+}
+
+/* INTERSECTION OBSERVER */
+if('IntersectionObserver' in window){
+  var bObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){animBars(e.target);bObs.unobserve(e.target);}
+    });
+  },{threshold:.25});
+  document.querySelectorAll('.bars').forEach(function(b){bObs.observe(b);});
+
+  var cObs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){animCounters();cObs.disconnect();}
+    });
+  },{threshold:.5});
+  var sg=document.querySelector('.stats');
+  if(sg)cObs.observe(sg);
+}else{
+  document.querySelectorAll('.bars').forEach(animBars);
+  animCounters();
+}
+</script>
+</body>
+</html>

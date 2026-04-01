@@ -193,20 +193,37 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 </div>
 
 <!-- NAV MENU -->
-<nav style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 20px;margin:0 0 2rem;">
-  <div style="font-size:.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Índice do review</div>
-  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 12px;">
-    <li><a href="#s1" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">1. Hardware</a></li>
-    <li><a href="#s2" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">2. Software</a></li>
-    <li><a href="#s3" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">3. Transdutores</a></li>
-    <li><a href="#s4" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">4. IA embarcada</a></li>
-    <li><a href="#s5" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">5. Display e ergonomia</a></li>
-    <li><a href="#s6" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">6. Suporte Brasil</a></li>
-    <li><a href="#s7" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">7. Congresso</a></li>
-    <li><a href="#s8" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">8. Calculadora ROI</a></li>
-    <li><a href="#s9" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">9. Veredicto</a></li>
-  </ol>
+<nav id="rv-nav" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;margin:0 0 2rem;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span style="font-size:.78rem;color:var(--text3);font-weight:600;white-space:nowrap;">Seção:</span>
+    <select id="rv-nav-select" onchange="if(this.value)document.getElementById(this.value).scrollIntoView({behavior:'smooth',block:'start'})" style="font-family:'IBM Plex Sans',sans-serif;font-size:.85rem;padding:6px 32px 6px 12px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text);cursor:pointer;min-width:260px;appearance:auto;">
+      <option value="">Ir para seção...</option>
+      <option value="s1">1. Hardware: o que está dentro da caixa</option>
+      <option value="s2">2. Software e processamento de imagem</option>
+      <option value="s3">3. Transdutores volumétricos</option>
+      <option value="s4">4. Inteligência artificial embarcada</option>
+      <option value="s5">5. Display, ergonomia e experiência de uso</option>
+      <option value="s6">6. Suporte e infraestrutura no Brasil</option>
+      <option value="s7">7. O congresso This Is Us</option>
+      <option value="s8">8. Calculadora de ROI</option>
+      <option value="s9">9. Veredicto</option>
+    </select>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button onclick="rvNav(-1)" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 14px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text3);cursor:pointer;font-size:.8rem;font-weight:500;transition:all .2s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg)'">&laquo; Anterior</button>
+    <button onclick="rvNav(1)" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 14px;border:1px solid var(--s);border-radius:var(--radius);background:var(--s);color:#fff;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Próxima &raquo;</button>
+  </div>
 </nav>
+<script>
+var rvSections=['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+var rvCur=0;
+function rvNav(dir){
+  rvCur=Math.max(0,Math.min(rvSections.length-1,rvCur+dir));
+  var el=document.getElementById(rvSections[rvCur]);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById('rv-nav-select').selectedIndex=rvCur+1;
+}
+</script>
 
 <div class="art-body">
 

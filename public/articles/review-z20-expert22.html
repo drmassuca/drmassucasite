@@ -192,6 +192,22 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
   </div>
 </div>
 
+<!-- NAV MENU -->
+<nav style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px 20px;margin:0 0 2rem;">
+  <div style="font-size:.72rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Índice do review</div>
+  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px 12px;">
+    <li><a href="#s1" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">1. Hardware</a></li>
+    <li><a href="#s2" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">2. Software</a></li>
+    <li><a href="#s3" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">3. Transdutores</a></li>
+    <li><a href="#s4" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">4. IA embarcada</a></li>
+    <li><a href="#s5" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">5. Display e ergonomia</a></li>
+    <li><a href="#s6" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">6. Suporte Brasil</a></li>
+    <li><a href="#s7" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">7. Congresso</a></li>
+    <li><a href="#s8" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">8. Calculadora ROI</a></li>
+    <li><a href="#s9" style="font-size:.82rem;color:var(--s);text-decoration:none;padding:3px 0;display:block;">9. Veredicto</a></li>
+  </ol>
+</nav>
+
 <div class="art-body">
 
 <!-- LEAD -->
@@ -205,7 +221,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 </div>
 
 <!-- ══════════════════════════════════════ -->
-<h2>1. Hardware: o que está dentro da caixa</h2>
+<h2 id="s1">1. Hardware: o que está dentro da caixa</h2>
 
 <h3>Samsung HERA Z20 — Crystal Architecture 2ª geração</h3>
 <p>O HERA Z20 opera sobre a <strong>Crystal Architecture 2nd Generation</strong>, combinando três pilares: <strong>CrystalBeam</strong> (beamforming por software avançado), <strong>CrystalLive</strong> (engine de processamento 2D/3D) e transdutores <strong>S-Vue</strong> (cristal único de banda larga) [3,4]. O sistema incorpora processamento baseado em software que substitui beamformers de hardware dedicado [1].</p>
@@ -282,7 +298,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 </table>
 
 <!-- ══════════════════════════════════════ -->
-<h2>2. Software e processamento de imagem</h2>
+<h2 id="s2">2. Software e processamento de imagem</h2>
 <p>Ambas as plataformas oferecem alta qualidade de imagem resultante de suas arquiteturas de formação de feixe, algoritmos de processamento e recursos de redução de ruído, aumento da relação sinal/ruído e supressão de sombra acústica. O que distingue o Samsung HERA Z20 nesta geração é o uso do <strong>Software Beamforming (SWBF)</strong> — a formação do feixe ultrassônico é realizada via programação da GPU (RTX A4000), ao invés de hardware dedicado convencional. Essa arquitetura viabiliza um recurso que até recentemente era impraticável em equipamentos comerciais: a captação da <strong>terceira harmônica</strong> — talvez o achado mais surpreendente do Z20 neste review.</p>
 
 <h3>O que são os harmônicos em ultrassom</h3>
@@ -295,7 +311,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 <p>Estudos publicados documentam que a 3ª harmônica proporciona melhoria de até <strong>46% na resolução lateral</strong> em relação ao fundamental e <strong>28% em relação à 2ª harmônica</strong> [IEEE Xplore, 2012]. A Canon Medical (linha Aplio) foi a primeira a formalizar a tecnologia como produto comercial usando um filtro de deep learning para extrair o sinal. O Z20 implementa solução própria com comportamento similar — dado observado exclusivamente neste review, durante o congresso This Is Us 2026.</p>
 
 <!-- ══════════════════════════════════════ -->
-<h2>3. Transdutores volumétricos: CMV1-10 versus eM6C G3</h2>
+<h2 id="s3">3. Transdutores volumétricos: CMV1-10 versus eM6C G3</h2>
 <p>O transdutor volumétrico é o coração de qualquer aparelho de ultrassom obstétrico premium. Aqui, a competição é feroz.</p>
 
 <h3>Samsung CMV1-10 — matrix array de cristal único</h3>
@@ -343,7 +359,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 <p><strong>Opinião técnica:</strong> O eM6C G3 é superior em ecocardiografia fetal graças ao eSTIC e Bi-Plane — a captura cardíaca instantânea sem artefato de movimento é transformadora [8,9,21]. A largura de banda maior do CMV1-10 (1–10 MHz vs. 2–6 MHz) favorece a Samsung em versatilidade clínica e penetração em pacientes com IMC elevado [2,3]. Para morfologia fetal de rotina, ambos são excelentes.</p>
 
 <!-- ══════════════════════════════════════ -->
-<h2>4. Inteligência artificial embarcada: duas filosofias opostas</h2>
+<h2 id="s4">4. Inteligência artificial embarcada: duas filosofias opostas</h2>
 
 <h3>Comparativo visual — Radar de capacidades</h3>
 <div class="tab-row">
@@ -439,7 +455,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 </table>
 
 <!-- ══════════════════════════════════════ -->
-<h2>5. Display, ergonomia e experiência de uso</h2>
+<h2 id="s5">5. Display, ergonomia e experiência de uso</h2>
 <p>O display é uma diferença visível e imediata. O Samsung Z20 oferece um <strong>monitor OLED de 27 polegadas com resolução WQHD (2560×1440)</strong> — 57% maior que o HERA W10. O OLED proporciona pretos absolutos e contraste infinito, particularmente valioso para ecocardiografia fetal e renderização 3D/4D [1,4,36]. O GE Expert 22 utiliza um <strong>monitor LCD HDU de 23,8 polegadas em Full HD (1920×1080)</strong> — curiosamente um retrocesso em relação ao E10, que tinha OLED [7,12,13].</p>
 <table class="ht">
   <tr><th class="spec-col">Item</th><th class="s-col">Samsung HERA Z20</th><th class="g-col">GE Voluson Expert 22</th></tr>
@@ -452,7 +468,7 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 </table>
 
 <!-- ══════════════════════════════════════ -->
-<h2>6. Suporte e infraestrutura no Brasil</h2>
+<h2 id="s6">6. Suporte e infraestrutura no Brasil</h2>
 
 <div class="bars" id="bars-suporte">
   <div class="bar-row">
@@ -482,12 +498,12 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
 <p>O diferencial objetivo que favorece a Samsung neste critério é a <strong>garantia de 5 anos</strong> contra os <strong>2 anos da GE</strong>. Para um investimento da ordem de R$ 500–650 mil, essa diferença representa economia real no custo total de ownership e não pode ser ignorada na análise financeira.</p>
 
 <!-- ══════════════════════════════════════ -->
-<h2>7. O congresso This Is Us e a Escola NEXUS</h2>
+<h2 id="s7">7. O congresso This Is Us e a Escola NEXUS</h2>
 <p>O <strong>"This Is Us — Congresso Internacional de Ultrassonografia"</strong> é organizado pela Escola NEXUS, fundada em 2017 em Brasília pelo Dr. Evaldo Trajano de Souza Silva Filho [27,28]. A escola carrega o Selo de Qualidade da SBUS [29] e mantém parceria internacional com a Fetal Medicine Barcelona para pós-graduação em medicina fetal (800 horas, certificação internacional e diploma reconhecido pelo MEC) [26]. Com mais de 2.600 profissionais formados, é um dos mais respeitados centros de formação em ultrassonografia da América Latina.</p>
 
 
 <!-- ══════════════════════════════════════ -->
-<h2>8. Calculadora de ROI — simule seu cenário</h2>
+<h2 id="s8">8. Calculadora de ROI — simule seu cenário</h2>
 <p>Ajuste os parâmetros abaixo com os números da sua clínica e veja quanto tempo cada aparelho leva para se pagar — e qual o retorno real ao longo de 5 e 10 anos.</p>
 
 <div id="roi-calc" style="margin:1.5rem 0;">
@@ -697,7 +713,7 @@ calc();
 </script>
 
 <!-- ══════════════════════════════════════ -->
-<h2>9. Veredicto</h2>
+<h2 id="s9">9. Veredicto</h2>
 
 <p>Estes dois aparelhos não são intercambiáveis — eles servem perfis clínicos diferentes.</p>
 
@@ -780,7 +796,7 @@ calc();
 
     <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
 
-      <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20-top-pick.jpeg" alt="Samsung HERA Z20 — Top Pick" style="width:160px;height:220px;object-fit:contain;border-radius:20px;flex-shrink:0;">
+      <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20-top-pick.jpeg" alt="Samsung HERA Z20 — Top Pick" style="width:220px;height:300px;object-fit:contain;border-radius:20px;flex-shrink:0;">
 
       <!-- Texto -->
       <div>
@@ -796,11 +812,6 @@ calc();
       <div style="text-align:center;">
         <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;">Nota Samsung</div>
         <div style="font-size:1.6rem;font-weight:900;color:#fff;">9,3<span style="font-size:.9rem;opacity:.7;">/10</span></div>
-      </div>
-      <div style="width:1px;height:36px;background:rgba(255,255,255,.2);"></div>
-      <div style="text-align:center;">
-        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;">Nota GE</div>
-        <div style="font-size:1.6rem;font-weight:900;color:rgba(255,255,255,.65);">8,8<span style="font-size:.9rem;opacity:.7;">/10</span></div>
       </div>
     </div>
 

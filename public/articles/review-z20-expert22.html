@@ -175,6 +175,30 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
   </div>
 </header>
 
+<!-- LANGUAGE TOGGLE -->
+<div style="display:flex;justify-content:flex-end;margin:16px 0 0;">
+  <div style="display:inline-flex;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;">
+    <button id="btn-pt" onclick="setLang('pt')" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 16px;border:none;background:var(--s);color:#fff;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;">🇧🇷 Português</button>
+    <button id="btn-en" onclick="setLang('en')" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 16px;border:none;background:var(--bg);color:var(--text3);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;">🇺🇸 English</button>
+  </div>
+</div>
+<script>
+function setLang(lang){
+  var btnPt=document.getElementById('btn-pt');
+  var btnEn=document.getElementById('btn-en');
+  if(lang==='en'){
+    btnEn.style.background='var(--s)';btnEn.style.color='#fff';
+    btnPt.style.background='var(--bg)';btnPt.style.color='var(--text3)';
+    alert('English version coming soon. Stay tuned!');
+    // Reset back to PT
+    setTimeout(function(){setLang('pt');},100);
+  } else {
+    btnPt.style.background='var(--s)';btnPt.style.color='#fff';
+    btnEn.style.background='var(--bg)';btnEn.style.color='var(--text3)';
+  }
+}
+</script>
+
 <!-- DUEL -->
 <div class="duel">
   <div class="dc dc-s">
@@ -208,10 +232,6 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
       <option value="s8">8. Calculadora de ROI</option>
       <option value="s9">9. Veredicto</option>
     </select>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px;">
-    <button onclick="rvNav(-1)" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 14px;border:1px solid var(--border2);border-radius:var(--radius);background:var(--bg);color:var(--text3);cursor:pointer;font-size:.8rem;font-weight:500;transition:all .2s;" onmouseover="this.style.background='var(--bg3)'" onmouseout="this.style.background='var(--bg)'">&laquo; Anterior</button>
-    <button onclick="rvNav(1)" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 14px;border:1px solid var(--s);border-radius:var(--radius);background:var(--s);color:#fff;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Próxima &raquo;</button>
   </div>
 </nav>
 <script>
@@ -399,7 +419,7 @@ function rvNav(dir){
   <li><strong>ViewAssist</strong> (base): biometria automática — basta acionar a tecla de medida e o sistema reconhece a estrutura automaticamente</li>
   <li><strong>HeartAssist</strong> (base): classificação automática de planos cardíacos fetais, medidas e Z-Scores [2,3,4]</li>
   <li><strong>Live ViewAssist</strong> (opcional): ViewAssist em tempo real — 39 planos contínuos, 47 estruturas, 46 medidas sem interação [5,6]</li>
-  <li><strong>5D CNS+</strong> (opcional): 6 medidas em 3 cortes transversais do cérebro fetal [3,4]</li>
+  <li><strong>5D CNS+</strong> (item de série): 6 medidas em 3 cortes transversais do cérebro fetal [3,4]</li>
   <li><strong>5D NT</strong> (opcional): translucência nucal automática [4]</li>
   <li><strong>EzVolume</strong> (item de série): segmentação 3D de placenta, líquido amniótico, face fetal com código de cores [3,4]</li>
   <li><strong>EzCheck</strong>: checklist ISUOG em tempo real — rastreia planos não adquiridos [2,4]</li>
@@ -811,9 +831,12 @@ calc();
       ★ Top Pick — Dr. Massuca
     </div>
 
-    <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;">
 
-      <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20-top-pick.jpeg" alt="Samsung HERA Z20 — Top Pick" style="width:220px;height:300px;object-fit:contain;border-radius:20px;flex-shrink:0;">
+      <!-- Imagem -->
+      <div style="text-align:center;">
+        <img src="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20-top-pick.jpeg" alt="Samsung HERA Z20 — Top Pick" style="width:100%;max-width:320px;object-fit:contain;border-radius:20px;">
+      </div>
 
       <!-- Texto -->
       <div>
@@ -822,14 +845,6 @@ calc();
         <div style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.6;">Para morfologia fetal em alto volume, o conjunto de IA contínua, hardware moderno, OLED de 27" e garantia de 5 anos torna o Z20 a escolha mais racional em 2026. A diferença de 0,5 pontos para o GE reflete principalmente o custo-benefício — com R$150k a menos e 2,5× mais garantia, o ROI é objetivamente superior.</div>
       </div>
 
-    </div>
-
-    <!-- Notas em destaque -->
-    <div style="margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.15);display:flex;align-items:center;gap:16px;">
-      <div style="text-align:center;">
-        <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.06em;">Nota Samsung</div>
-        <div style="font-size:1.6rem;font-weight:900;color:#fff;">9,3<span style="font-size:.9rem;opacity:.7;">/10</span></div>
-      </div>
     </div>
 
   </div>

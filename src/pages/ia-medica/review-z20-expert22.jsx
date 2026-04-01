@@ -93,7 +93,7 @@ export default function ReviewZ20Expert22() {
       <SEOHead
         title="Samsung HERA Z20 vs GE Voluson Expert 22 — Review Completo"
         description="Comparativo técnico entre Samsung HERA Z20 e GE Voluson Expert 22: hardware, IA, transdutores, ergonomia e ROI. Dados exclusivos do congresso This Is Us 2026."
-        image="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/hera-z20-top-pick.jpeg"
+        image="https://auvyolzrjoyzsribmapa.supabase.co/storage/v1/object/public/images/articles/banner-z20-vs-expert22.jpeg"
         article={true}
         author="Dr. Massuca"
       />

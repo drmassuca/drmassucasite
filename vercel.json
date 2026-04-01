@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

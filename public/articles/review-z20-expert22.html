@@ -175,29 +175,6 @@ body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--bg);color
   </div>
 </header>
 
-<!-- LANGUAGE TOGGLE -->
-<div style="display:flex;justify-content:flex-end;margin:16px 0 0;">
-  <div style="display:inline-flex;border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;">
-    <button id="btn-pt" onclick="setLang('pt')" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 16px;border:none;background:var(--s);color:#fff;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;">🇧🇷 Português</button>
-    <button id="btn-en" onclick="setLang('en')" style="font-family:'IBM Plex Sans',sans-serif;padding:6px 16px;border:none;background:var(--bg);color:var(--text3);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;">🇺🇸 English</button>
-  </div>
-</div>
-<script>
-function setLang(lang){
-  var btnPt=document.getElementById('btn-pt');
-  var btnEn=document.getElementById('btn-en');
-  if(lang==='en'){
-    btnEn.style.background='var(--s)';btnEn.style.color='#fff';
-    btnPt.style.background='var(--bg)';btnPt.style.color='var(--text3)';
-    alert('English version coming soon. Stay tuned!');
-    // Reset back to PT
-    setTimeout(function(){setLang('pt');},100);
-  } else {
-    btnPt.style.background='var(--s)';btnPt.style.color='#fff';
-    btnEn.style.background='var(--bg)';btnEn.style.color='var(--text3)';
-  }
-}
-</script>
 
 <!-- DUEL -->
 <div class="duel">

@@ -8,7 +8,7 @@
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*([Bb]ot|[Cc]rawl|[Ss]pider|[Pp]review|[Ee]mbed|[Ww]hats[Aa]pp|[Ff]acebookexternalhit|[Tt]elegram|[Ll]inked[Ii]n|[Ss]lack|[Dd]iscord|[Ss]kype|[Aa]pple|[Yy]andex|[Bb]aidu|short\\.io|[Ii]framely|[Mm]eta-[Ee]xternal|[Mm]ozilla.*compatible.*).*"
+          "value": ".*([Bb]ot|[Cc]rawl|[Ss]pider|[Ww]hats[Aa]pp|facebookexternalhit|[Tt]elegram[Bb]ot|[Tt]witterbot|[Ll]inked[Ii]n[Bb]ot|[Ss]lackbot|[Dd]iscordbot|[Gg]ooglebot|[Bb]ingbot|[Aa]pplebot|skypeuripreview|short\\.io|[Ii]framely|[Mm]eta-[Ee]xternal[Aa]gent|[Pp]review[Bb]ot|[Ee]mbedly).*"
         }
       ],
       "destination": "/api/og/artigo?id=:id"

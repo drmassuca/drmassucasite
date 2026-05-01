@@ -44,25 +44,32 @@ async function fetchIndexHtml() {
 }
 
 export default async function handler(req, res) {
-  const articleId = parseInt(req.query.id, 10);
-  if (!articleId || Number.isNaN(articleId)) {
-    return res.status(400).send('id invalido');
+  // O parametro 'id' aceita tanto numero quanto slug. Site tem 2 rotas para o
+  // mesmo artigo (/ia-medica/artigo/14 e /ia-medica/artigo/<slug>).
+  const idOrSlug = String(req.query.id || '').trim();
+  if (!idOrSlug) {
+    return res.status(400).send('id ou slug invalido');
   }
 
-  const targetUrl = `${SITE_BASE}/ia-medica/artigo/${articleId}`;
+  const targetUrl = `${SITE_BASE}/ia-medica/artigo/${idOrSlug}`;
 
   if (!supabase) {
     return res.status(500).send('Supabase nao configurado');
   }
 
+  // Detecta se e id numerico ou slug (texto)
+  const isNumericId = /^\d+$/.test(idOrSlug);
+
   let article = null;
   try {
-    const { data } = await supabase
+    let q = supabase
       .from('articles')
-      .select('id, title, excerpt, subtitle, image_url, meta_title, meta_description')
-      .eq('id', articleId)
-      .eq('status', 'published')
-      .maybeSingle();
+      .select('id, slug, title, excerpt, subtitle, image_url, meta_title, meta_description')
+      .eq('status', 'published');
+    q = isNumericId
+      ? q.eq('id', parseInt(idOrSlug, 10))
+      : q.eq('slug', idOrSlug);
+    const { data } = await q.maybeSingle();
     article = data || null;
   } catch (e) {
     console.error('og/artigo: erro Supabase:', e);

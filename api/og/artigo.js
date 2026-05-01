@@ -69,7 +69,7 @@ export default async function handler(req, res) {
     || article.excerpt
     || article.subtitle
     || 'Artigo de Dr. Massuca sobre IA na medicina.';
-  const image = article.image_url || FALLBACK_IMAGE;
+  const image = absolutize(article.image_url) || FALLBACK_IMAGE;
 
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
@@ -109,4 +109,16 @@ function esc(s) {
     '"': '&quot;',
     "'": '&#39;',
   }[c]));
+}
+
+// Converte URL relativa para absoluta (X bot exige absoluta em og:image).
+// Aceita ja-absolutas, protocol-relative (//), e absolute paths (/).
+function absolutize(url) {
+  if (!url) return '';
+  const u = String(url).trim();
+  if (!u) return '';
+  if (/^https?:\/\//i.test(u)) return u;
+  if (u.startsWith('//')) return 'https:' + u;
+  if (u.startsWith('/')) return 'https://drmassuca.com.br' + u;
+  return 'https://drmassuca.com.br/' + u;
 }

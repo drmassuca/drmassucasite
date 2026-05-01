@@ -7,13 +7,69 @@ import {
   Stack,
   List,
   ListItem,
+  UnorderedList,
+  OrderedList,
   Link as CLink,
   Button,
   Spinner,
 } from '@chakra-ui/react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import SEO from '../../components/SEO';
+
+// Mapeia elementos de markdown para componentes Chakra. Mantém visual coerente
+// com as FAQs hardcoded em src/pages/faq/*.jsx (Heading verde, UnorderedList, etc).
+const markdownComponents = {
+  h1: ({ children }) => (
+    <Heading as="h1" size="lg" color="green.700" mt={6} mb={3}>
+      {children}
+    </Heading>
+  ),
+  h2: ({ children }) => (
+    <Heading as="h2" size="md" color="green.700" mt={6} mb={2}>
+      {children}
+    </Heading>
+  ),
+  h3: ({ children }) => (
+    <Heading as="h3" size="sm" color="green.700" mt={4} mb={2}>
+      {children}
+    </Heading>
+  ),
+  p: ({ children }) => (
+    <Text lineHeight="1.8" mb={3}>
+      {children}
+    </Text>
+  ),
+  ul: ({ children }) => (
+    <UnorderedList pl={6} spacing={1} mb={3}>
+      {children}
+    </UnorderedList>
+  ),
+  ol: ({ children }) => (
+    <OrderedList pl={6} spacing={1} mb={3}>
+      {children}
+    </OrderedList>
+  ),
+  li: ({ children }) => <ListItem>{children}</ListItem>,
+  strong: ({ children }) => (
+    <Text as="strong" fontWeight="semibold">
+      {children}
+    </Text>
+  ),
+  em: ({ children }) => (
+    <Text as="em" fontStyle="italic">
+      {children}
+    </Text>
+  ),
+  a: ({ href, children }) => (
+    <CLink href={href} color="green.700" textDecoration="underline" isExternal>
+      {children}
+    </CLink>
+  ),
+};
+
 const SUPA_URL = 'https://auvyolzrjoyzsribmapa.supabase.co';
 const SUPA_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
@@ -131,11 +187,13 @@ export default function FaqDynamic() {
         </Text>
 
         <Stack spacing={6} color="gray.700">
-          {/* Resposta completa */}
+          {/* Resposta completa em markdown, mapeada para componentes Chakra */}
           {item.answer && item.answer !== item.short_answer && (
-            <Stack spacing={2}>
-              <Text lineHeight="1.8">{item.answer}</Text>
-            </Stack>
+            <Box>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                {item.answer}
+              </ReactMarkdown>
+            </Box>
           )}
 
           {/* Veja também */}

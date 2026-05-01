@@ -2,6 +2,17 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },
+    {
+      "source": "/ia-medica/artigo/:id",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(whatsapp|facebookexternalhit|telegrambot|twitterbot|linkedinbot|slackbot|discordbot|googlebot|bingbot|applebot|skypeuripreview|WhatsApp|Facebookexternalhit|TelegramBot|Twitterbot|LinkedInBot|Slackbot|Discordbot|Googlebot|Bingbot|Applebot).*"
+        }
+      ],
+      "destination": "/api/og/artigo?id=:id"
+    },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

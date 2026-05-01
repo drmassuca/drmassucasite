@@ -2,17 +2,7 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },
-    {
-      "source": "/ia-medica/artigo/:id",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*([Bb]ot|[Cc]rawl|[Ss]pider|[Ww]hats[Aa]pp|facebookexternalhit|[Tt]elegram[Bb]ot|[Tt]witterbot|[Ll]inked[Ii]n[Bb]ot|[Ss]lackbot|[Dd]iscordbot|[Gg]ooglebot|[Bb]ingbot|[Aa]pplebot|skypeuripreview|short\\.io|[Ii]framely|[Mm]eta-[Ee]xternal[Aa]gent|[Pp]review[Bb]ot|[Ee]mbedly).*"
-        }
-      ],
-      "destination": "/api/og/artigo?id=:id"
-    },
+    { "source": "/ia-medica/artigo/:id", "destination": "/api/og/artigo?id=:id" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

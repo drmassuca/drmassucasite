@@ -9,11 +9,39 @@ const supabase = SUPABASE_URL && SUPABASE_KEY
   ? createClient(SUPABASE_URL, SUPABASE_KEY)
   : null;
 
-const FALLBACK_IMAGE = 'https://drmassuca.com.br/logo-pe.webp';
+const SITE_BASE = 'https://drmassuca.com.br';
+const FALLBACK_IMAGE = `${SITE_BASE}/logo-pe.webp`;
 
-// Lista de bots que pedem Open Graph. user-agent vem em forma especifica
-// (consistente entre versoes), entao regex case-sensitive cobre os reais.
-const CRAWLER_REGEX = /whatsapp|facebookexternalhit|telegrambot|twitterbot|linkedinbot|slackbot|discordbot|googlebot|bingbot|applebot|skypeuripreview/i;
+// Cache do index.html em memoria do warm container Vercel.
+// Quando o container morre/scala, recarrega na primeira request.
+let indexHtmlCache = null;
+let indexHtmlCacheAt = 0;
+const INDEX_CACHE_TTL_MS = 60 * 60 * 1000; // 1h
+
+async function fetchIndexHtml() {
+  const now = Date.now();
+  if (indexHtmlCache && (now - indexHtmlCacheAt) < INDEX_CACHE_TTL_MS) {
+    return indexHtmlCache;
+  }
+  try {
+    const r = await fetch(`${SITE_BASE}/`, {
+      headers: { 'User-Agent': 'OG-Injector/1.0 (+vercel-function)' },
+      redirect: 'follow',
+    });
+    if (r.ok) {
+      const html = await r.text();
+      // sanity check: deve ter bundle Vite e div root
+      if (html.includes('id="root"') && html.length > 500) {
+        indexHtmlCache = html;
+        indexHtmlCacheAt = now;
+        return html;
+      }
+    }
+  } catch (e) {
+    console.error('fetchIndexHtml failed:', e);
+  }
+  return null;
+}
 
 export default async function handler(req, res) {
   const articleId = parseInt(req.query.id, 10);
@@ -21,24 +49,10 @@ export default async function handler(req, res) {
     return res.status(400).send('id invalido');
   }
 
-  const targetUrl = `https://drmassuca.com.br/ia-medica/artigo/${articleId}`;
-  const ua = req.headers['user-agent'] || '';
-  const isCrawler = CRAWLER_REGEX.test(ua);
-
-  // Se nao for crawler, redireciona pra rota real do SPA. Defesa em profundidade
-  // caso o vercel.json rewrite tenha derrubado um humano aqui por engano.
-  if (!isCrawler) {
-    return res.redirect(302, targetUrl);
-  }
+  const targetUrl = `${SITE_BASE}/ia-medica/artigo/${articleId}`;
 
   if (!supabase) {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.status(500).send(renderHtml({
-      title: 'Erro de configuracao',
-      description: 'Supabase nao configurado',
-      image: FALLBACK_IMAGE,
-      url: targetUrl,
-    }));
+    return res.status(500).send('Supabase nao configurado');
   }
 
   let article = null;
@@ -55,13 +69,10 @@ export default async function handler(req, res) {
   }
 
   if (!article) {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    return res.status(404).send(renderHtml({
-      title: 'Artigo nao encontrado',
-      description: 'Esse artigo nao esta disponivel.',
-      image: FALLBACK_IMAGE,
-      url: targetUrl,
-    }));
+    // Sem artigo, deixa o SPA mostrar um 404 proprio. Servir index.html original
+    // ou redirect; vou redirect pra rota real (SPA mostra 404 ou listagem)
+    res.setHeader('Cache-Control', 'no-store');
+    return res.redirect(302, targetUrl);
   }
 
   const title = article.meta_title || article.title || 'Artigo';
@@ -71,12 +82,107 @@ export default async function handler(req, res) {
     || 'Artigo de Dr. Massuca sobre IA na medicina.';
   const image = absolutize(article.image_url) || FALLBACK_IMAGE;
 
+  // Estrategia: fetch o index.html buildado e injetar meta tags do artigo.
+  // Browsers humanos hidratam o SPA (bundle Vite continua referenciado).
+  // Crawlers e validators leem as meta tags corretas, ignoram o JS.
+  const baseHtml = await fetchIndexHtml();
+
+  if (baseHtml) {
+    const modified = injectMetaTags(baseHtml, { title, description, image, url: targetUrl });
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=86400');
+    return res.status(200).send(modified);
+  }
+
+  // Fallback se fetch falhou: HTML simples com OG tags (suficiente pra crawlers)
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
-  res.status(200).send(renderHtml({ title, description, image, url: targetUrl }));
+  res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=86400');
+  return res.status(200).send(renderSimpleHtml({ title, description, image, url: targetUrl }));
 }
 
-function renderHtml({ title, description, image, url }) {
+function injectMetaTags(html, { title, description, image, url }) {
+  const fullTitle = `${title} | Dr. Massuca`;
+
+  // Helper: substitui ou adiciona tag antes de </head>
+  function replaceOrAdd(html, regex, replacement) {
+    if (regex.test(html)) {
+      return html.replace(regex, replacement);
+    }
+    return html.replace('</head>', `${replacement}\n</head>`);
+  }
+
+  let out = html;
+
+  // Title
+  out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(fullTitle)}</title>`);
+
+  // Description
+  out = replaceOrAdd(
+    out,
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="description" content="${esc(description)}">`,
+  );
+
+  // Open Graph
+  out = replaceOrAdd(
+    out,
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:title" content="${esc(title)}">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:description" content="${esc(description)}">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:image" content="${esc(image)}">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+property="og:type"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:type" content="article">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:url" content="${esc(url)}">`,
+  );
+
+  // Twitter Card (adiciona se nao existir, sobrescreve se existir)
+  out = replaceOrAdd(
+    out,
+    /<meta\s+name="twitter:card"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:card" content="summary_large_image">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:title" content="${esc(title)}">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:description" content="${esc(description)}">`,
+  );
+  out = replaceOrAdd(
+    out,
+    /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:image" content="${esc(image)}">`,
+  );
+
+  // Canonical
+  out = replaceOrAdd(
+    out,
+    /<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+    `<link rel="canonical" href="${esc(url)}">`,
+  );
+
+  return out;
+}
+
+function renderSimpleHtml({ title, description, image, url }) {
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -86,7 +192,6 @@ function renderHtml({ title, description, image, url }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:image" content="${esc(image)}">
-<meta property="og:image:alt" content="${esc(title)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${esc(url)}">
 <meta property="og:locale" content="pt_BR">
@@ -111,14 +216,12 @@ function esc(s) {
   }[c]));
 }
 
-// Converte URL relativa para absoluta (X bot exige absoluta em og:image).
-// Aceita ja-absolutas, protocol-relative (//), e absolute paths (/).
 function absolutize(url) {
   if (!url) return '';
   const u = String(url).trim();
   if (!u) return '';
   if (/^https?:\/\//i.test(u)) return u;
   if (u.startsWith('//')) return 'https:' + u;
-  if (u.startsWith('/')) return 'https://drmassuca.com.br' + u;
-  return 'https://drmassuca.com.br/' + u;
+  if (u.startsWith('/')) return SITE_BASE + u;
+  return SITE_BASE + '/' + u;
 }

@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import AdvancedAnalytics from './components/AdvancedAnalytics';
 import LinkOptimizer from './components/LinkOptimizer';
-// import PerformanceMonitoring from './components/PerformanceMonitoring';
+import PerformanceMonitoring from './components/PerformanceMonitoring';
 
 // Lazy load para TODAS as páginas (incluindo as antes estáticas)
 const PrivacyPolicy = lazy(() => import('./pages/privacy-policy'));
@@ -369,6 +369,7 @@ function App() {
       <Footer />
       <AdvancedAnalytics />
       <LinkOptimizer />
+      <PerformanceMonitoring />
     </Box>
   );
 }

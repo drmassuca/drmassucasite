@@ -1,52 +1,49 @@
 import { useEffect } from 'react';
 
 /**
- * Hook para monitorar Core Web Vitals e performance
- * Versão completa com web-vitals
+ * Coleta Core Web Vitals (LCP, INP, CLS, FCP, TTFB) e envia via dataLayer.
+ * GTM aplica Consent Mode v2: pings anonimizados sem consent, full com consent.
+ * INP substituiu FID em março/2024 como métrica oficial do CWV.
  */
 const usePerformanceMonitoring = () => {
   useEffect(() => {
-    // Função para enviar métricas para GA4
     const sendToAnalytics = metric => {
-      if (window.gtag) {
-        window.gtag('event', metric.name, {
-          event_category: 'Web Vitals',
-          event_label: metric.id,
-          value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-          non_interaction: true,
-        });
-      }
+      const value = Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value);
 
-      // Log para desenvolvimento
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Web Vital:', metric);
-      }
+      window.dataLayer?.push({
+        event: 'web_vitals',
+        metric_name: metric.name,
+        metric_value: value,
+        metric_id: metric.id,
+        metric_rating: metric.rating,
+        page_path: window.location.pathname,
+      });
     };
 
-    // Monitora Core Web Vitals
-    const observeWebVitals = async () => {
+    const observe = async () => {
       try {
-        const { getCLS, getFID, getFCP, getLCP, getTTFB } = await import('web-vitals');
-
-        getCLS(sendToAnalytics);
-        getFID(sendToAnalytics);
-        getLCP(sendToAnalytics);
-        getFCP(sendToAnalytics);
-        getTTFB(sendToAnalytics);
+        const { onCLS, onINP, onLCP, onFCP, onTTFB } = await import('web-vitals');
+        onCLS(sendToAnalytics);
+        onINP(sendToAnalytics);
+        onLCP(sendToAnalytics);
+        onFCP(sendToAnalytics);
+        onTTFB(sendToAnalytics);
       } catch (error) {
-        console.warn('Web Vitals not available:', error);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Web Vitals indisponível:', error);
+        }
       }
     };
 
     if (typeof window !== 'undefined') {
-      observeWebVitals();
+      observe();
     }
   }, []);
 };
 
 const PerformanceMonitoring = ({ children }) => {
   usePerformanceMonitoring();
-  return children;
+  return children || null;
 };
 
 export default PerformanceMonitoring;

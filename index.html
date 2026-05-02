@@ -167,7 +167,7 @@
     <meta property="og:image" content="https://drmassuca.com.br/logo-pe.webp" />
     <meta property="og:locale" content="pt_BR" />
 
-    <!-- Consent Strict: nada carrega antes do aceite -->
+    <!-- Consent Mode v2: GTM carrega imediatamente; envia pings anonimizados se consent negado, full tracking quando aceito -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { dataLayer.push(arguments); };
@@ -178,23 +178,21 @@
         ad_storage: 'denied',
         analytics_storage: 'denied',
         functionality_storage: 'granted',
-        security_storage: 'granted'
+        security_storage: 'granted',
+        wait_for_update: 500
       });
 
-      // Carrega GTM somente após aceitar
+      gtag('set', 'url_passthrough', true);
+      gtag('set', 'ads_data_redaction', true);
+
       window.__GTM_ID = 'GTM-PPH3NLG6';
-      window.__gtmLoaded = false;
-      window.__loadGTM = function (id) {
-        if (!id || window.__gtmLoaded) return;
-        window.__gtmLoaded = true;
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-          j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', id);
-      };
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', window.__GTM_ID);
 
       window.__acceptAnalytics = function () {
         gtag('consent', 'update', {
@@ -203,7 +201,6 @@
           ad_user_data: 'granted',
           ad_personalization: 'granted'
         });
-        window.__loadGTM && window.__loadGTM(window.__GTM_ID);
         dataLayer.push({ event: 'consent_updated', consent: 'granted' });
       };
 

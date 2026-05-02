@@ -1,4 +1,4 @@
-// Usando Gemini AI - Compatível com Hostinger
-import ChatbotGemini from './ChatbotGemini';
+// Chatbot publico - Grok + RAG sobre conteudo do site, lazy-loaded sob demanda.
+import ChatbotLauncher from './ChatbotLauncher';
 
-export default ChatbotGemini;
+export default ChatbotLauncher;

@@ -1,5 +1,5 @@
 # Robots.txt para Dr. Massuca
-# Última atualização: 2025-08-16
+# Última atualização: 2026-05-02
 
 # Regras gerais para todos os bots
 User-agent: *
@@ -33,6 +33,3 @@ Disallow: /
 
 # Sitemap
 Sitemap: https://drmassuca.com.br/sitemap.xml
-
-# Velocidade de crawl (opcional)
-Crawl-delay: 1

@@ -10,6 +10,8 @@ import Categories from './pages/Categories';
 import Media from './pages/Media';
 import AIAssistant from './pages/AIAssistant';
 import FaqAdmin from './pages/FaqAdmin';
+import SiteVivoOverview from './pages/SiteVivoOverview';
+import VitalsAdmin from './pages/VitalsAdmin';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -65,6 +67,8 @@ const AdminRoutes = () => {
           <Route path="media" element={<Media />} />
           <Route path="faq" element={<FaqAdmin />} />
           <Route path="ai" element={<AIAssistant />} />
+          <Route path="site-vivo" element={<SiteVivoOverview />} />
+          <Route path="site-vivo/vitals" element={<VitalsAdmin />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

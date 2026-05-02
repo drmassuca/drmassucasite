@@ -17,6 +17,9 @@ export default function ExamCredentialBadge({ variant = 'general' }) {
               <Image
                 src="/assets/isuog-logo.png"
                 alt="ISUOG – International Society of Ultrasound in Obstetrics and Gynecology"
+                htmlWidth="200"
+                htmlHeight="60"
+                style={{ aspectRatio: '10 / 3' }}
                 h="32px"
                 objectFit="contain"
                 loading="lazy"

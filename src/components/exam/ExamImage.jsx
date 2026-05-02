@@ -15,6 +15,9 @@ export default function ExamImage({ slug, src, alt }) {
           <Image
             src={src}
             alt={alt}
+            htmlWidth="1280"
+            htmlHeight="720"
+            style={{ aspectRatio: '16 / 9' }}
             borderRadius="md"
             objectFit="contain"
             w="100%"

@@ -62,7 +62,16 @@ export default function ExamTemplate() {
         </Heading>
 
         {exam.image && (
-          <Image src={exam.image} alt={exam.title} loading="lazy" borderRadius="md" shadow="md" />
+          <Image
+            src={exam.image}
+            alt={exam.title}
+            htmlWidth="1280"
+            htmlHeight="720"
+            style={{ aspectRatio: '16 / 9' }}
+            loading="lazy"
+            borderRadius="md"
+            shadow="md"
+          />
         )}
 
         {exam.paragraphs.map((p, idx) => (

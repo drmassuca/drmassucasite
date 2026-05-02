@@ -11,7 +11,8 @@ import {
   OrderedList,
   Link as CLink,
   Button,
-  Spinner,
+  Skeleton,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
@@ -118,8 +119,12 @@ export default function FaqDynamic() {
 
   if (loading) {
     return (
-      <Box maxW="900px" mx="auto" px={4} py={20} textAlign="center">
-        <Spinner color="green.700" size="xl" />
+      <Box maxW="900px" mx="auto" px={4} py={10}>
+        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+          <Skeleton height="36px" mb={4} width="80%" />
+          <Skeleton height="20px" mb={6} width="60%" />
+          <SkeletonText noOfLines={8} spacing={3} skeletonHeight="16px" />
+        </Box>
       </Box>
     );
   }

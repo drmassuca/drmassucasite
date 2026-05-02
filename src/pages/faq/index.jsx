@@ -9,7 +9,8 @@ import {
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
-  Spinner,
+  Skeleton,
+  VStack,
   Input,
   InputGroup,
   InputRightElement,
@@ -185,9 +186,18 @@ export default function FaqIndex() {
           </Box>
 
           {loading ? (
-            <Box textAlign="center" py={10}>
-              <Spinner color="green.700" size="xl" />
-            </Box>
+            <VStack spacing={8} align="stretch">
+              {[1, 2, 3, 4].map(s => (
+                <Box key={s}>
+                  <Skeleton height="28px" mb={4} width="60%" />
+                  <VStack spacing={2} align="stretch">
+                    {[1, 2, 3, 4, 5].map(i => (
+                      <Skeleton key={i} height="48px" width="100%" borderRadius="md" />
+                    ))}
+                  </VStack>
+                </Box>
+              ))}
+            </VStack>
           ) : (
             itemsBySection.map(({ section, items }) => (
               <Box key={section} mb={8}>

@@ -185,7 +185,7 @@ function App() {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              height="200px"
+              minH={{ base: '80vh', md: '70vh' }}
               color="white"
             >
               <Box

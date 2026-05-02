@@ -12,7 +12,6 @@ import {
   Brain,
   ChevronDown,
   User,
-  HelpCircle,
   Activity,
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
@@ -38,7 +37,6 @@ const AdminLayout = () => {
     { path: '/admin/posts', icon: FileText, label: 'Posts' },
     { path: '/admin/categories', icon: FolderOpen, label: 'Categorias' },
     { path: '/admin/media', icon: Image, label: 'Mídia' },
-    { path: '/admin/faq', icon: HelpCircle, label: 'FAQ' },
     { path: '/admin/site-vivo', icon: Activity, label: 'Site-vivo' },
     { path: '/admin/ai', icon: Brain, label: 'Assistente IA' },
     { path: '/admin/settings', icon: Settings, label: 'Configurações' },

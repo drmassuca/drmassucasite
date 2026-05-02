@@ -22,7 +22,7 @@ const SiteVivoOverview = () => {
     faq: { pending: 0, published: 0, ai_last_7d: 0 },
     vitals: { runs_last_7d: 0, urls_monitored: 0, active_alerts: 0, last_run_at: null },
     chat: { embeddings: 0, faq_embedded: 0, chunks_embedded: 0 },
-    seo: { sitemap_urls: 92, last_deploy: null },
+    seo: { indexed: 0, not_indexed: 0, total_inspected: 0, last_run_at: null, active_alerts: 0 },
   });
   const [recentAlerts, setRecentAlerts] = useState([]);
 
@@ -74,14 +74,56 @@ const SiteVivoOverview = () => {
         supabase.from('site_chunks').select('*', { count: 'exact', head: true }),
       ]);
 
-      // Recent active alerts (top 5)
-      const { data: alerts } = await supabase
-        .from('vitals_alerts')
-        .select('id, path, strategy, severity, metric, prev_value, curr_value, delta, created_at')
-        .is('ack_at', null)
-        .is('dismissed_at', null)
+      // SEO Vivo (gsc_inspections - latest per URL)
+      const { data: seoInspections } = await supabase
+        .from('gsc_inspections')
+        .select('url, coverage_state, created_at')
         .order('created_at', { ascending: false })
-        .limit(5);
+        .limit(500);
+
+      const seoMap = new Map();
+      for (const r of seoInspections || []) {
+        if (!seoMap.has(r.url)) seoMap.set(r.url, r);
+      }
+      const seoLatest = Array.from(seoMap.values());
+      let seoIndexed = 0;
+      let seoNotIndexed = 0;
+      for (const r of seoLatest) {
+        const cov = (r.coverage_state || '').toLowerCase();
+        if (cov.includes('submitted and indexed') || cov === 'indexed') seoIndexed++;
+        else if (cov.includes('not indexed') || cov.includes('discovered') || cov.includes('crawled')) seoNotIndexed++;
+      }
+      const { count: seoActiveAlerts } = await supabase
+        .from('gsc_alerts')
+        .select('*', { count: 'exact', head: true })
+        .is('ack_at', null)
+        .is('dismissed_at', null);
+
+      // Recent active alerts from BOTH vitals + seo
+      const [{ data: vAlerts }, { data: sAlerts }] = await Promise.all([
+        supabase
+          .from('vitals_alerts')
+          .select('id, path, strategy, severity, metric, prev_value, curr_value, delta, created_at')
+          .is('ack_at', null)
+          .is('dismissed_at', null)
+          .order('created_at', { ascending: false })
+          .limit(5),
+        supabase
+          .from('gsc_alerts')
+          .select('id, url, severity, alert_type, prev_state, curr_state, created_at')
+          .is('ack_at', null)
+          .is('dismissed_at', null)
+          .order('created_at', { ascending: false })
+          .limit(5),
+      ]);
+
+      // Merge alerts (tag origem)
+      const alerts = [
+        ...(vAlerts || []).map(a => ({ ...a, _source: 'vitals' })),
+        ...(sAlerts || []).map(a => ({ ...a, _source: 'seo' })),
+      ]
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 5);
 
       setData({
         faq: {
@@ -101,8 +143,11 @@ const SiteVivoOverview = () => {
           chunks_embedded: chunksEmbedded ?? 0,
         },
         seo: {
-          sitemap_urls: 92,
-          last_deploy: null,
+          indexed: seoIndexed,
+          not_indexed: seoNotIndexed,
+          total_inspected: seoLatest.length,
+          last_run_at: seoLatest[0]?.created_at ?? null,
+          active_alerts: seoActiveAlerts ?? 0,
         },
       });
 
@@ -262,33 +307,45 @@ const SiteVivoOverview = () => {
         </div>
 
         {/* SEO Vivo */}
-        <div className="sv-module-card sv-module-card--inactive">
+        <Link to="/admin/site-vivo/seo" className="sv-module-card">
           <div className="sv-module-header">
             <div className="sv-module-icon sv-icon-orange">
               <Search size={22} />
             </div>
-            <span className="sv-status sv-status-ok">
-              <CheckCircle size={12} />
-              Ativo
+            <span className={`sv-status ${data.seo.active_alerts > 0 ? 'sv-status-warn' : 'sv-status-ok'}`}>
+              {data.seo.active_alerts > 0 ? (
+                <>
+                  <AlertTriangle size={12} />
+                  {data.seo.active_alerts} alerta(s)
+                </>
+              ) : (
+                <>
+                  <CheckCircle size={12} />
+                  Ativo
+                </>
+              )}
             </span>
           </div>
           <h3 className="sv-module-title">SEO Vivo</h3>
-          <p className="sv-module-desc">Prerender + sitemap auto-gerado em cada deploy</p>
+          <p className="sv-module-desc">Search Console: indexação + queries + páginas (cron diário)</p>
           <div className="sv-module-stats">
             <div className="sv-stat">
-              <span className="sv-stat-value">{data.seo.sitemap_urls}</span>
-              <span className="sv-stat-label">URLs no sitemap</span>
+              <span className="sv-stat-value">{data.seo.indexed}</span>
+              <span className="sv-stat-label">indexadas</span>
             </div>
             <div className="sv-stat">
-              <span className="sv-stat-value">~daily</span>
-              <span className="sv-stat-label">regenera</span>
+              <span className="sv-stat-value">{data.seo.not_indexed}</span>
+              <span className="sv-stat-label">não indexadas</span>
             </div>
             <div className="sv-stat">
-              <span className="sv-stat-value">build-time</span>
-              <span className="sv-stat-label">freq.</span>
+              <span className="sv-stat-value">{formatRelative(data.seo.last_run_at)}</span>
+              <span className="sv-stat-label">última run</span>
             </div>
           </div>
-        </div>
+          <div className="sv-module-action">
+            Ver detalhes <ArrowUpRight size={14} />
+          </div>
+        </Link>
       </div>
 
       {/* Recent Active Alerts */}

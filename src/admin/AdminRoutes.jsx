@@ -12,6 +12,7 @@ import AIAssistant from './pages/AIAssistant';
 import FaqAdmin from './pages/FaqAdmin';
 import SiteVivoOverview from './pages/SiteVivoOverview';
 import VitalsAdmin from './pages/VitalsAdmin';
+import SeoAdmin from './pages/SeoAdmin';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -69,6 +70,7 @@ const AdminRoutes = () => {
           <Route path="ai" element={<AIAssistant />} />
           <Route path="site-vivo" element={<SiteVivoOverview />} />
           <Route path="site-vivo/vitals" element={<VitalsAdmin />} />
+          <Route path="site-vivo/seo" element={<SeoAdmin />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

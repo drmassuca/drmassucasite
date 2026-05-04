@@ -311,11 +311,14 @@
   margin: 0 auto;
 }
 
-.memo3d-gallery-item:nth-child(1) { grid-column: span 5; }
-.memo3d-gallery-item:nth-child(2) { grid-column: span 7; }
+/* Distribuição simétrica em 12-col:
+   linha 1 → 2 imagens grandes (6+6)
+   linha 2 → 3 imagens iguais (4+4+4) */
+.memo3d-gallery-item:nth-child(1) { grid-column: span 6; }
+.memo3d-gallery-item:nth-child(2) { grid-column: span 6; }
 .memo3d-gallery-item:nth-child(3) { grid-column: span 4; }
-.memo3d-gallery-item:nth-child(4) { grid-column: span 5; }
-.memo3d-gallery-item:nth-child(5) { grid-column: span 3; }
+.memo3d-gallery-item:nth-child(4) { grid-column: span 4; }
+.memo3d-gallery-item:nth-child(5) { grid-column: span 4; }
 
 .memo3d-figure {
   margin: 0;
@@ -335,11 +338,12 @@
 .memo3d-figure-frame {
   position: relative;
   overflow: hidden;
-  height: 360px;
+  aspect-ratio: 4 / 3;
 }
 
-.memo3d-figure.tall .memo3d-figure-frame {
-  height: 400px;
+/* Imagens da linha 1 (mais largas) ganham proporção paisagem */
+.memo3d-gallery-item:nth-child(-n+2) .memo3d-figure-frame {
+  aspect-ratio: 16 / 11;
 }
 
 .memo3d-figure::before {

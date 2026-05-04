@@ -33,6 +33,10 @@ async function asJson(res) {
   return res.json();
 }
 
+function uuid() {
+  return crypto.randomUUID();
+}
+
 // ─── Pacientes ─────────────────────────────────────────────
 
 /**
@@ -49,4 +53,147 @@ export async function createPatient(payload) {
   });
   const data = await asJson(res);
   return data.patient;
+}
+
+/** Busca paciente com exames e mídias embutidos. */
+export async function getPatient(id) {
+  const res = await authedFetch(`/api/memo3d/pacientes/${id}`, { method: 'GET' });
+  const data = await asJson(res);
+  return data.patient;
+}
+
+// ─── Exames ────────────────────────────────────────────────
+
+/**
+ * @param {object} payload
+ * @param {string} payload.patientId
+ * @param {string} payload.examDate  YYYY-MM-DD
+ * @param {string} [payload.examType]
+ * @param {string} [payload.device]   'voluson_s10' | 'hera_z20'
+ * @param {string} [payload.notes]
+ */
+export async function createExam(payload) {
+  const res = await authedFetch('/api/memo3d/exames/create', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+  const data = await asJson(res);
+  return data.exam;
+}
+
+// ─── Uploads ───────────────────────────────────────────────
+
+/**
+ * Sobe foto direto pro R2 (PUT pré-assinado) e registra metadata.
+ * Retorna a row de memo_media criada.
+ *
+ * @param {object} args
+ * @param {string} args.patientId
+ * @param {string} args.examId
+ * @param {File}   args.file
+ * @param {function} [args.onProgress]  callback(0..1) — placeholder, sem implementação ainda
+ */
+export async function uploadPhoto({ patientId, examId, file }) {
+  const mediaId = uuid();
+  const mime = file.type;
+
+  // 1) pede URL pré-assinada
+  const presignRes = await authedFetch('/api/memo3d/uploads/r2-presigned', {
+    method: 'POST',
+    body: JSON.stringify({ patientId, examId, mediaId, mime, size: file.size }),
+  });
+  const { uploadUrl, key } = await asJson(presignRes);
+
+  // 2) PUT direto pro R2 (não passa pelo backend — não precisa do token)
+  const putRes = await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': mime },
+    body: file,
+  });
+  if (!putRes.ok) {
+    throw new Error(`Upload pro R2 falhou (HTTP ${putRes.status})`);
+  }
+
+  // 3) registra metadata no banco
+  const dimensions = await readImageDimensions(file).catch(() => ({}));
+  const registerRes = await authedFetch('/api/memo3d/midias/register', {
+    method: 'POST',
+    body: JSON.stringify({
+      mediaId,
+      examId,
+      kind: 'photo',
+      filename: file.name,
+      sizeBytes: file.size,
+      mimeType: mime,
+      width: dimensions.width || null,
+      height: dimensions.height || null,
+      r2Key: key,
+    }),
+  });
+  const data = await asJson(registerRes);
+  return data.media;
+}
+
+/**
+ * Sobe vídeo pro Cloudflare Stream (direct upload) e registra metadata.
+ *
+ * @param {object} args
+ * @param {string} args.patientId
+ * @param {string} args.examId
+ * @param {File}   args.file
+ */
+export async function uploadVideo({ patientId, examId, file }) {
+  const mediaId = uuid();
+
+  // 1) pede direct upload URL
+  const reqRes = await authedFetch('/api/memo3d/uploads/stream-direct', {
+    method: 'POST',
+    body: JSON.stringify({ patientId, examId }),
+  });
+  const { uploadURL, uid: streamVideoId } = await asJson(reqRes);
+
+  // 2) POST multipart pro Stream
+  const formData = new FormData();
+  formData.append('file', file, file.name);
+  const uploadRes = await fetch(uploadURL, {
+    method: 'POST',
+    body: formData,
+  });
+  if (!uploadRes.ok) {
+    const text = await uploadRes.text().catch(() => '');
+    throw new Error(`Upload pro Stream falhou (HTTP ${uploadRes.status}): ${text.slice(0, 200)}`);
+  }
+
+  // 3) registra metadata
+  const registerRes = await authedFetch('/api/memo3d/midias/register', {
+    method: 'POST',
+    body: JSON.stringify({
+      mediaId,
+      examId,
+      kind: 'video',
+      filename: file.name,
+      sizeBytes: file.size,
+      mimeType: file.type,
+      streamVideoId,
+    }),
+  });
+  const data = await asJson(registerRes);
+  return data.media;
+}
+
+/** Lê dimensões de imagem usando URL.createObjectURL + Image. */
+function readImageDimensions(file) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve({ width: img.naturalWidth, height: img.naturalHeight });
+    };
+    img.onerror = err => {
+      URL.revokeObjectURL(url);
+      reject(err);
+    };
+    img.src = url;
+  });
 }

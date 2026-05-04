@@ -16,6 +16,7 @@ import SeoAdmin from './pages/SeoAdmin';
 import Memo3dDashboard from './pages/memo3d/Dashboard';
 import Memo3dPacientesList from './pages/memo3d/PacientesList';
 import Memo3dPacienteNova from './pages/memo3d/PacienteNova';
+import Memo3dPacienteDetalhe from './pages/memo3d/PacienteDetalhe';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -77,6 +78,7 @@ const AdminRoutes = () => {
           <Route path="memo3d" element={<Memo3dDashboard />} />
           <Route path="memo3d/pacientes" element={<Memo3dPacientesList />} />
           <Route path="memo3d/pacientes/nova" element={<Memo3dPacienteNova />} />
+          <Route path="memo3d/pacientes/:id" element={<Memo3dPacienteDetalhe />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

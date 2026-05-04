@@ -399,3 +399,345 @@
 .banner-close:hover {
   background: rgba(0, 0, 0, 0.06);
 }
+
+/* Form: textarea + select */
+.memo3d-form textarea,
+.memo3d-form select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: white;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.memo3d-form textarea:focus,
+.memo3d-form select:focus {
+  outline: none;
+  border-color: #0f3d2e;
+  box-shadow: 0 0 0 3px rgba(15, 61, 46, 0.12);
+}
+
+.memo3d-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.memo3d-form.inline-form {
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+/* Patient detail */
+.patient-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.patient-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.1rem;
+  color: #0f3d2e;
+  margin: 0;
+}
+
+.new-exam-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border-left: 3px solid #d4af37;
+}
+
+.new-exam-card h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  color: #0f3d2e;
+}
+
+/* Exam list */
+.exam-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.exam-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.exam-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.exam-header:hover {
+  background: #f8fafc;
+}
+
+.exam-header > svg {
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.exam-summary {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.exam-tag {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.exam-summary .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.exam-media-count {
+  color: #64748b;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.exam-body {
+  padding: 0 1rem 1.25rem 2.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.exam-notes {
+  color: #475569;
+  font-size: 0.9rem;
+  margin: 0.75rem 0;
+}
+
+.media-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.media-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.media-item .media-name {
+  flex: 1;
+  color: #334155;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.media-item .media-meta {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.media-photo svg {
+  color: #d4af37;
+}
+
+.media-video svg {
+  color: #0f3d2e;
+}
+
+.exam-footer-info {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #e2e8f0;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Midia uploader */
+.midia-uploader {
+  background: #fafafa;
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.uploader-dropzone {
+  text-align: center;
+}
+
+.uploader-dropzone svg:first-child {
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.uploader-dropzone p {
+  margin: 0.25rem 0;
+  color: #475569;
+}
+
+.uploader-dropzone .muted {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.uploader-dropzone .btn {
+  margin-top: 0.75rem;
+}
+
+.upload-queue {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.upload-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.upload-uploading {
+  border-color: #fbbf24;
+  background: #fffbeb;
+}
+
+.upload-done {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.upload-error {
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+.upload-icon svg {
+  color: #475569;
+}
+
+.upload-uploading .upload-icon svg {
+  color: #d97706;
+}
+
+.upload-done .upload-icon svg {
+  color: #16a34a;
+}
+
+.upload-error .upload-icon svg {
+  color: #dc2626;
+}
+
+.upload-name {
+  flex: 1;
+  font-weight: 500;
+  color: #334155;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.upload-size {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.upload-status {
+  color: #64748b;
+  font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+.upload-error .upload-status {
+  color: #b91c1c;
+}
+
+.upload-remove {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.15rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-remove:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #475569;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}

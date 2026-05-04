@@ -76,7 +76,6 @@ Apenas quando perguntarem ESPECIFICAMENTE sobre o Dr. Massuca, inclua UMA curios
 
 📍 LOCALIZAÇÃO:
 - Endereço: Rua 19, Qd. 33, Lt. 01 – Vila Leonor – Itaberaí – GO – CEP 76630-000
-- Referência: Premium Centro Clínico
 - Estacionamento: espaço de estacionamento tranquilo na rua
 
 📞 CONTATOS:

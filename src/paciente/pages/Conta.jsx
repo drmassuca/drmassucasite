@@ -12,6 +12,9 @@ import {
   Calendar,
   Activity,
   Hourglass,
+  Sparkles,
+  ShieldCheck,
+  MessageCircle,
 } from 'lucide-react';
 import {
   getPatientMe,
@@ -139,6 +142,46 @@ export default function Conta() {
           }}
         />
       ))}
+
+      {/* Cards informativos pra dar densidade visual e antecipar dúvidas */}
+      <section className="conta-extras">
+        <div className="conta-extras-rule" />
+        <div className="conta-extras-grid">
+          <article className="conta-extra-card">
+            <Share2 className="conta-extra-icon" />
+            <h3>Compartilhe com a família</h3>
+            <p>
+              Use o botão <em>compartilhar com família</em> em qualquer exame. O link
+              gerado dura 24 horas — sem necessidade de cadastro pra quem recebe.
+            </p>
+          </article>
+          <article className="conta-extra-card">
+            <Sparkles className="conta-extra-icon" />
+            <h3>Impressão 3D do bebê</h3>
+            <p>
+              Curtiu uma das fotos? Fale com a clínica pelo WhatsApp e a gente
+              transforma a imagem em escultura física, sob encomenda.
+            </p>
+            <a
+              href="https://wa.me/5562996602117?text=Olá%21%20Quero%20saber%20sobre%20a%20impressão%203D%20a%20partir%20da%20minha%20galeria."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="conta-extra-link"
+            >
+              Falar no WhatsApp →
+            </a>
+          </article>
+          <article className="conta-extra-card">
+            <ShieldCheck className="conta-extra-icon" />
+            <h3>Sua memória, segura</h3>
+            <p>
+              Suas memórias ficam disponíveis por 12 meses. Após esse período, são
+              apagadas em definitivo. Você pode pedir exclusão antecipada a qualquer
+              momento.
+            </p>
+          </article>
+        </div>
+      </section>
 
       {previewMedia && <MediaPreview media={previewMedia} onClose={() => setPreviewMedia(null)} />}
 

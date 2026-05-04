@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Heart, Mail, Lock, Loader2 } from 'lucide-react';
+import { Mail, Lock, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import '../paciente.css';
 
@@ -39,7 +39,7 @@ export default function LoginPaciente() {
     <div className="paciente-login-page">
       <div className="paciente-login-card">
         <div className="paciente-login-logo">
-          <Heart />
+          <img src="/logo.webp" alt="Dr. Massuca" className="paciente-login-logo-img" />
           <h1>Memo3D</h1>
           <p>suas memórias da gestação</p>
         </div>

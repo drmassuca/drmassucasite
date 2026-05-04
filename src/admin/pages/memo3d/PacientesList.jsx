@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Plus, Search } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { CheckCircle, Plus, Search, X } from 'lucide-react';
 import { supabase } from '../../../lib/supabase';
 import './memo3d.css';
 
@@ -12,6 +12,9 @@ const STATUS_LABELS = {
 };
 
 export default function Memo3dPacientesList() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const justCreated = location.state?.justCreated || null;
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -76,6 +79,22 @@ export default function Memo3dPacientesList() {
           />
         </div>
       </div>
+
+      {justCreated && (
+        <div className="success-banner">
+          <CheckCircle size={18} />
+          <span>
+            Paciente <strong>{justCreated.name}</strong> cadastrada com sucesso.
+          </span>
+          <button
+            className="banner-close"
+            onClick={() => navigate(location.pathname, { replace: true })}
+            aria-label="Fechar"
+          >
+            <X size={16} />
+          </button>
+        </div>
+      )}
 
       {error && <div className="error-banner">Erro: {error}</div>}
 

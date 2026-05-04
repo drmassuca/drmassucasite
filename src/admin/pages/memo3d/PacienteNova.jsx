@@ -48,7 +48,11 @@ export default function Memo3dPacienteNova() {
         resourceType: 'patient',
         resourceId: patient.id,
       });
-      navigate(`/admin/memo3d/pacientes/${patient.id}`);
+      // Volta pra lista por enquanto. A página de detalhe vem na Fase 2.2 —
+      // aí o redirect muda pra `/admin/memo3d/pacientes/${patient.id}`.
+      navigate('/admin/memo3d/pacientes', {
+        state: { justCreated: { id: patient.id, name: patient.full_name } },
+      });
     } catch (err) {
       setError(err.message);
     } finally {

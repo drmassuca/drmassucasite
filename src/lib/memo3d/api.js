@@ -126,6 +126,81 @@ export async function markExamPaid(examId, amountCents = 3000) {
   return data.exam;
 }
 
+// ─── Paciente (Fase 3) ─────────────────────────────────────
+
+/** Dados da paciente logada + exames pagos não-expirados + mídias. */
+export async function getPatientMe() {
+  const res = await authedFetch('/api/memo3d/paciente/me', { method: 'GET' });
+  return asJson(res);
+}
+
+/** Troca senha da paciente logada e marca must_change_password=false. */
+export async function changePatientPassword(newPassword) {
+  const res = await authedFetch('/api/memo3d/paciente/change-password', {
+    method: 'POST',
+    body: JSON.stringify({ newPassword }),
+  });
+  return asJson(res);
+}
+
+/** Aceita termo LGPD com versão específica. */
+export async function acceptConsent(version) {
+  const res = await authedFetch('/api/memo3d/paciente/accept-consent', {
+    method: 'POST',
+    body: JSON.stringify({ version }),
+  });
+  return asJson(res);
+}
+
+/** Signed URL R2 (foto/book) — TTL 30min. */
+export async function signPatientR2(mediaId) {
+  const res = await authedFetch('/api/memo3d/paciente/sign-r2', {
+    method: 'POST',
+    body: JSON.stringify({ mediaId }),
+  });
+  return asJson(res);
+}
+
+/** Stream signed token (vídeo) — TTL 30min. */
+export async function signPatientStream(mediaId) {
+  const res = await authedFetch('/api/memo3d/paciente/sign-stream', {
+    method: 'POST',
+    body: JSON.stringify({ mediaId }),
+  });
+  return asJson(res);
+}
+
+/** Cria link de compartilhamento com família (24h). */
+export async function createFamilyShare(examId) {
+  const res = await authedFetch('/api/memo3d/family-shares/create', {
+    method: 'POST',
+    body: JSON.stringify({ examId }),
+  });
+  return asJson(res);
+}
+
+// ─── Family share PUBLIC (sem autenticação) ────────────────
+
+/** Visualização pública do exame compartilhado. Sem login. */
+export async function viewFamilyShare(token) {
+  const res = await fetch('/api/memo3d/family-shares/view', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token }),
+  });
+  return asJson(res);
+}
+
+/** Signed URL/token público para uma mídia específica do share. */
+export async function viewFamilyShareMedia(token, mediaId) {
+  const res = await fetch('/api/memo3d/family-shares/view', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token, mediaId }),
+  });
+  return asJson(res);
+}
+
 // ─── Uploads ───────────────────────────────────────────────
 
 /**

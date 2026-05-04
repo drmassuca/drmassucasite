@@ -54,6 +54,9 @@ const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
 /* >>> RECEPÇÃO: painel restrito Memo3D-only (separado do admin completo) */
 const RecepcaoRoutes = lazy(() => import('./recepcao/RecepcaoRoutes'));
 
+/* >>> PACIENTE: ambiente Memo3D da gestante (login, galeria, compartilhamento família) */
+const PacienteRoutes = lazy(() => import('./paciente/PacienteRoutes'));
+
 /* Lazy load para TODOS os exames - reduz bundle inicial */
 const ObstetricoDeRotina = lazy(() => import('./pages/exam-details/obstetrico-de-rotina'));
 const MorfologicoPrimeiroTrimestre = lazy(
@@ -120,8 +123,9 @@ function App() {
   // Painéis restritos sem header/footer do site público
   const isAdminPage = location.pathname.startsWith('/admin');
   const isRecepcaoPage = location.pathname.startsWith('/recepcao');
+  const isPacientePage = location.pathname.startsWith('/memo3d');
 
-  if (isAdminPage || isRecepcaoPage) {
+  if (isAdminPage || isRecepcaoPage || isPacientePage) {
     return (
       <>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -152,7 +156,9 @@ function App() {
             </div>
           }
         >
-          {isAdminPage ? <AdminRoutes /> : <RecepcaoRoutes />}
+          {isAdminPage && <AdminRoutes />}
+          {isRecepcaoPage && <RecepcaoRoutes />}
+          {isPacientePage && <PacienteRoutes />}
         </Suspense>
       </>
     );

@@ -180,10 +180,40 @@ function ExamSection({ exam, onPreview, onShare }) {
 
 function MediaCard({ media, onClick }) {
   const isVideo = media.kind === 'video';
+  const [thumbUrl, setThumbUrl] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadThumb() {
+      try {
+        if (isVideo) {
+          const r = await signPatientStream(media.id, { audit: false });
+          if (cancelled) return;
+          // Frame em ~2s do vídeo, altura 240px (Stream redimensiona)
+          setThumbUrl(
+            `https://${r.customerSubdomain}/${r.token}/thumbnails/thumbnail.jpg?time=2s&height=240`
+          );
+        } else {
+          const r = await signPatientR2(media.id, { audit: false });
+          if (cancelled) return;
+          setThumbUrl(r.url);
+        }
+      } catch (_) {
+        /* fallback pra ícone */
+      }
+    }
+    loadThumb();
+    return () => {
+      cancelled = true;
+    };
+  }, [media.id, isVideo]);
+
   return (
     <div className="midia-card">
       <div className="midia-card-thumb" onClick={onClick}>
-        {isVideo ? (
+        {thumbUrl ? (
+          <img src={thumbUrl} alt={media.filename || ''} />
+        ) : isVideo ? (
           <Film className="midia-card-thumb-icon" />
         ) : (
           <ImageIcon className="midia-card-thumb-icon" />

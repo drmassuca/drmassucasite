@@ -35,8 +35,19 @@ function generatePassword() {
   return pwd;
 }
 
-function emailFromPhone(phone) {
-  return phone.replace(/\+/g, '') + '@memo3d.local';
+/**
+ * Email para login da paciente.
+ *
+ * Prioridade:
+ *  1. patient.email (cadastrado pela recepção) — ideal, fácil pra paciente lembrar.
+ *  2. Fallback: email derivado do telefone (+5562999998888 → 5562999998888@memo3d.local)
+ *     — usado quando paciente não forneceu email no cadastro.
+ */
+function emailForLogin(patient) {
+  if (patient.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(patient.email)) {
+    return patient.email.trim().toLowerCase();
+  }
+  return patient.phone.replace(/\+/g, '') + '@memo3d.local';
 }
 
 export default async function handler(req, res) {
@@ -66,14 +77,15 @@ export default async function handler(req, res) {
     }
 
     const password = generatePassword();
-    const email = emailFromPhone(patient.phone);
+    const email = emailForLogin(patient);
     const userMetadata = { role: 'patient', patient_id: patient.id };
 
     let authUserId = patient.auth_user_id;
 
     if (authUserId) {
-      // já existe auth user vinculado → atualiza senha
+      // já existe auth user vinculado → atualiza senha + email (caso tenha mudado)
       const { error: uErr } = await client.auth.admin.updateUserById(authUserId, {
+        email,
         password,
         user_metadata: userMetadata,
       });

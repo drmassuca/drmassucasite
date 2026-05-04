@@ -102,21 +102,7 @@ export default function Familia() {
 
         <div className="midia-grid">
           {medias.map(m => (
-            <div key={m.id} className="midia-card">
-              <div className="midia-card-thumb" onClick={() => setPreviewMedia(m)}>
-                {m.kind === 'video' ? (
-                  <Film className="midia-card-thumb-icon" />
-                ) : (
-                  <ImageIcon className="midia-card-thumb-icon" />
-                )}
-                <div className="midia-play-overlay">
-                  {m.kind === 'video' ? <Play size={36} /> : <ImageIcon size={36} />}
-                </div>
-              </div>
-              <div className="midia-card-meta">
-                <span>{m.kind === 'video' ? 'Vídeo' : 'Foto'}</span>
-              </div>
-            </div>
+            <FamiliaCard key={m.id} token={token} media={m} onClick={() => setPreviewMedia(m)} />
           ))}
         </div>
       </div>
@@ -124,6 +110,54 @@ export default function Familia() {
       {previewMedia && (
         <FamiliaPreview token={token} media={previewMedia} onClose={() => setPreviewMedia(null)} />
       )}
+    </div>
+  );
+}
+
+function FamiliaCard({ token, media, onClick }) {
+  const isVideo = media.kind === 'video';
+  const [thumbUrl, setThumbUrl] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadThumb() {
+      try {
+        const r = await viewFamilyShareMedia(token, media.id);
+        if (cancelled) return;
+        if (r.kind === 'video') {
+          setThumbUrl(
+            `https://${r.customerSubdomain}/${r.streamToken}/thumbnails/thumbnail.jpg?time=2s&height=240`
+          );
+        } else {
+          setThumbUrl(r.url);
+        }
+      } catch (_) {
+        /* fallback pra ícone */
+      }
+    }
+    loadThumb();
+    return () => {
+      cancelled = true;
+    };
+  }, [token, media.id]);
+
+  return (
+    <div className="midia-card">
+      <div className="midia-card-thumb" onClick={onClick}>
+        {thumbUrl ? (
+          <img src={thumbUrl} alt={media.filename || ''} />
+        ) : isVideo ? (
+          <Film className="midia-card-thumb-icon" />
+        ) : (
+          <ImageIcon className="midia-card-thumb-icon" />
+        )}
+        <div className="midia-play-overlay">
+          {isVideo ? <Play size={36} /> : <ImageIcon size={36} />}
+        </div>
+      </div>
+      <div className="midia-card-meta">
+        <span>{isVideo ? 'Vídeo' : 'Foto'}</span>
+      </div>
     </div>
   );
 }

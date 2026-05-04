@@ -58,6 +58,14 @@ export default async function handler(req, res) {
     }
 
     const client = getAdminClient();
+    // Carrega o auth_user_id atual antes do update — usado pra sincronizar
+    // email no auth.users se a paciente tiver login configurado.
+    const { data: existing } = await client
+      .from('memo_patients')
+      .select('auth_user_id, email')
+      .eq('id', id)
+      .maybeSingle();
+
     const { data, error } = await client
       .from('memo_patients')
       .update(updates)
@@ -70,6 +78,21 @@ export default async function handler(req, res) {
         return res.status(409).json({ error: 'Telefone já em uso por outra paciente' });
       }
       throw error;
+    }
+
+    // Se a paciente já tem auth.users criada e o email do cadastro mudou,
+    // sincroniza no auth.users pra ela conseguir logar com o email novo.
+    if (existing?.auth_user_id && updates.email !== undefined && updates.email !== existing.email) {
+      const newEmail =
+        updates.email && updates.email.includes('@')
+          ? updates.email.trim().toLowerCase()
+          : data.phone.replace(/\+/g, '') + '@memo3d.local';
+      try {
+        await client.auth.admin.updateUserById(existing.auth_user_id, { email: newEmail });
+      } catch (syncErr) {
+        // não bloqueia o update da paciente, mas reporta no log
+        console.error('[memo3d patient update — auth email sync]', syncErr);
+      }
     }
 
     await recordAuditServer({

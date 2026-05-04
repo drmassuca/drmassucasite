@@ -62,16 +62,21 @@ export default async function handler(req, res) {
 
     const url = await presignGetUrl({ key: data.r2_key, expiresInSeconds: URL_TTL_SECONDS });
 
-    await recordAuditServer({
-      patientId: patient.id,
-      userId: user.id,
-      action: 'patient.media.view',
-      resourceType: 'media',
-      resourceId: mediaId,
-      ip: getClientIp(req),
-      userAgent: req.headers['user-agent'] || null,
-      metadata: { kind: data.kind },
-    });
+    // audit é opcional: thumbnails do grid passam audit=false pra não poluir o log.
+    // O click pra fullscreen deixa default (true) e registra a visualização.
+    const shouldAudit = req.body?.audit !== false;
+    if (shouldAudit) {
+      await recordAuditServer({
+        patientId: patient.id,
+        userId: user.id,
+        action: 'patient.media.view',
+        resourceType: 'media',
+        resourceId: mediaId,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'] || null,
+        metadata: { kind: data.kind },
+      });
+    }
 
     return res.status(200).json({ url, expiresIn: URL_TTL_SECONDS });
   } catch (err) {

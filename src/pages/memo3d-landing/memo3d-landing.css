@@ -371,7 +371,7 @@
 
 .memo3d-figure-week {
   position: absolute;
-  bottom: 18px;
+  top: 18px;
   left: 18px;
   background: var(--m3d-bg);
   padding: 8px 14px;

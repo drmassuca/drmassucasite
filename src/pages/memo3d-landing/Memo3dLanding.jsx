@@ -169,7 +169,6 @@ export default function Memo3dLanding() {
             </FadeUp>
             <div className="memo3d-hero-image-meta">
               <span className="memo3d-hero-image-tag">24 semanas · período áureo</span>
-              <span className="memo3d-hero-image-caption">samsung hera z20</span>
             </div>
           </div>
         </header>

@@ -13,6 +13,9 @@ import FaqAdmin from './pages/FaqAdmin';
 import SiteVivoOverview from './pages/SiteVivoOverview';
 import VitalsAdmin from './pages/VitalsAdmin';
 import SeoAdmin from './pages/SeoAdmin';
+import Memo3dDashboard from './pages/memo3d/Dashboard';
+import Memo3dPacientesList from './pages/memo3d/PacientesList';
+import Memo3dPacienteNova from './pages/memo3d/PacienteNova';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -71,6 +74,9 @@ const AdminRoutes = () => {
           <Route path="site-vivo" element={<SiteVivoOverview />} />
           <Route path="site-vivo/vitals" element={<VitalsAdmin />} />
           <Route path="site-vivo/seo" element={<SeoAdmin />} />
+          <Route path="memo3d" element={<Memo3dDashboard />} />
+          <Route path="memo3d/pacientes" element={<Memo3dPacientesList />} />
+          <Route path="memo3d/pacientes/nova" element={<Memo3dPacienteNova />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

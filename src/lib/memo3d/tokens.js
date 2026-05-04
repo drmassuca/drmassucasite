@@ -53,5 +53,7 @@ function bytesToBase64Url(bytes) {
 
 function bufferToHex(buffer) {
   const bytes = new Uint8Array(buffer);
-  return Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+  return Array.from(bytes)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }

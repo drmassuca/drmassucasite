@@ -5,11 +5,7 @@
  * Lógica server (presigned URLs) fica em api/memo3d/_lib/r2-server.js.
  */
 
-export const R2_ALLOWED_PHOTO_MIMES = new Set([
-  'image/jpeg',
-  'image/png',
-  'image/webp',
-]);
+export const R2_ALLOWED_PHOTO_MIMES = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
 export const R2_MAX_PHOTO_BYTES = 20 * 1024 * 1024; // 20 MB por foto
 
@@ -32,10 +28,14 @@ export function buildR2ThumbKey({ patientId, examId, mediaId }) {
 /** Detecta extensão a partir do mime type. */
 export function extFromMime(mime) {
   switch (mime) {
-    case 'image/jpeg': return 'jpg';
-    case 'image/png':  return 'png';
-    case 'image/webp': return 'webp';
-    default: throw new Error(`mime não suportado: ${mime}`);
+    case 'image/jpeg':
+      return 'jpg';
+    case 'image/png':
+      return 'png';
+    case 'image/webp':
+      return 'webp';
+    default:
+      throw new Error(`mime não suportado: ${mime}`);
   }
 }
 

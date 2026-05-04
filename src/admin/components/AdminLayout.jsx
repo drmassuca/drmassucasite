@@ -13,6 +13,7 @@ import {
   ChevronDown,
   User,
   Activity,
+  Heart,
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import './AdminLayout.css';
@@ -38,6 +39,7 @@ const AdminLayout = () => {
     { path: '/admin/categories', icon: FolderOpen, label: 'Categorias' },
     { path: '/admin/media', icon: Image, label: 'Mídia' },
     { path: '/admin/site-vivo', icon: Activity, label: 'Site-vivo' },
+    { path: '/admin/memo3d', icon: Heart, label: 'Memo3D' },
     { path: '/admin/ai', icon: Brain, label: 'Assistente IA' },
     { path: '/admin/settings', icon: Settings, label: 'Configurações' },
   ];

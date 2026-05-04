@@ -1,7 +1,10 @@
 /**
  * Memo3D — detalhe da paciente (com exames e mídias).
  *
- * GET /api/memo3d/pacientes/<id>
+ * GET /api/memo3d/pacientes/detail?id=<uuid>
+ *
+ * Usa query param em vez de dynamic route porque [id].js não é confiável
+ * em projetos Vite + Vercel (filesystem routing cai no SPA fallback).
  *
  * Retorna paciente + exames embutidos + mídias de cada exame.
  */

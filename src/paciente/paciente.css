@@ -230,33 +230,109 @@
   font-weight: 600;
 }
 
-.conta-section {
-  margin-bottom: 2.5rem;
+/* ─── Exam section (cada exame é um card) ─────────────── */
+.exam-section {
+  background: white;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.conta-section-header {
+.exam-section-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-.conta-section h2 {
-  font-size: 1.4rem;
+.exam-section-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.exam-section h2 {
+  font-size: 1.35rem;
   color: #0f3d2e;
-  margin: 0;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.exam-section-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-family: system-ui, sans-serif;
+}
+
+.exam-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(15, 61, 46, 0.08);
+  color: #0f3d2e;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
   font-weight: 600;
 }
 
-.conta-section h2 small {
-  font-size: 0.85rem;
-  color: #6b7868;
-  font-weight: 400;
-  margin-left: 0.5rem;
+.exam-section-tag.exam-section-device {
+  background: rgba(212, 175, 55, 0.15);
+  color: #8b7820;
 }
 
+.exam-section-expires {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #6b7868;
+  font-size: 0.78rem;
+  font-style: italic;
+  font-family: system-ui, sans-serif;
+}
+
+.exam-section-empty {
+  color: #6b7868;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+/* Subseções dentro do exame */
+.exam-subsection {
+  margin-bottom: 1.25rem;
+}
+
+.exam-subsection:last-child {
+  margin-bottom: 0;
+}
+
+.exam-subsection h3 {
+  font-size: 1rem;
+  color: #0f3d2e;
+  margin: 0 0 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.exam-subsection .count {
+  color: #6b7868;
+  font-weight: 400;
+  font-size: 0.85rem;
+  font-family: system-ui, sans-serif;
+}
+
+/* Botão compartilhar fica no header do exame */
 .conta-share-btn {
   background: #0f3d2e;
   color: white;
@@ -269,6 +345,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  flex-shrink: 0;
 }
 
 .conta-share-btn:hover {

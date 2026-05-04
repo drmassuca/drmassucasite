@@ -1,6 +1,18 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Image as ImageIcon, Film, Share2, Play, Download, X, Copy, Check } from 'lucide-react';
+import {
+  Image as ImageIcon,
+  Film,
+  Share2,
+  Play,
+  Download,
+  X,
+  Copy,
+  Check,
+  Calendar,
+  Activity,
+  Hourglass,
+} from 'lucide-react';
 import {
   getPatientMe,
   signPatientR2,
@@ -10,6 +22,20 @@ import {
 import { recordAudit } from '../../lib/memo3d/audit';
 import ConsentModal from '../components/ConsentModal';
 import '../paciente.css';
+
+const TYPE_LABELS = {
+  morfologico_1tri: 'Morfológico 1º trimestre',
+  morfologico_2tri: 'Morfológico 2º trimestre',
+  doppler: 'Doppler obstétrico',
+  obstetrico: 'Obstétrico',
+  '4d': 'Ultrassom 4D',
+  outro: 'Outro',
+};
+
+const DEVICE_LABELS = {
+  voluson_s10: 'GE Voluson S10',
+  hera_z20: 'Samsung HERA Z20',
+};
 
 export default function Conta() {
   const navigate = useNavigate();
@@ -85,12 +111,11 @@ export default function Conta() {
     <>
       <div className="conta-hero">
         <h1>Olá, {firstName(patient.full_name)}</h1>
-        <p>Aqui estão suas memórias da gestação.</p>
-        {exams[0]?.expires_at && (
-          <span className="conta-expira">
-            Disponíveis até {new Date(exams[0].expires_at).toLocaleDateString('pt-BR')}
-          </span>
-        )}
+        <p>
+          {exams.length === 1
+            ? 'Aqui está sua memória.'
+            : `Você tem ${exams.length} exames com memórias liberadas.`}
+        </p>
       </div>
 
       {exams.map(exam => (
@@ -128,53 +153,85 @@ function ExamSection({ exam, onPreview, onShare }) {
   const bookPages = (exam.memo_media || []).filter(m => m.kind === 'book_page');
 
   return (
-    <>
-      {videos.length > 0 && (
-        <section className="conta-section">
-          <div className="conta-section-header">
-            <h2>
-              Vídeos <small>· {new Date(exam.exam_date).toLocaleDateString('pt-BR')}</small>
-            </h2>
-            <button type="button" className="conta-share-btn" onClick={onShare}>
-              <Share2 size={14} /> Compartilhar com família
-            </button>
+    <section className="exam-section">
+      <header className="exam-section-header">
+        <div className="exam-section-info">
+          <h2>
+            <Calendar size={18} /> Exame de{' '}
+            {new Date(exam.exam_date).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </h2>
+          <div className="exam-section-tags">
+            {exam.exam_type && (
+              <span className="exam-section-tag">
+                {TYPE_LABELS[exam.exam_type] || exam.exam_type}
+              </span>
+            )}
+            {exam.device && (
+              <span className="exam-section-tag exam-section-device">
+                <Activity size={11} /> {DEVICE_LABELS[exam.device] || exam.device}
+              </span>
+            )}
+            {exam.expires_at && (
+              <span className="exam-section-expires">
+                <Hourglass size={11} /> até {new Date(exam.expires_at).toLocaleDateString('pt-BR')}
+              </span>
+            )}
           </div>
-          <div className="midia-grid">
-            {videos.map(m => (
-              <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
-            ))}
-          </div>
-        </section>
-      )}
+        </div>
+        <button type="button" className="conta-share-btn" onClick={onShare}>
+          <Share2 size={14} /> Compartilhar com família
+        </button>
+      </header>
 
-      {photos.length > 0 && (
-        <section className="conta-section">
-          <div className="conta-section-header">
-            <h2>
-              Fotos <small>· {new Date(exam.exam_date).toLocaleDateString('pt-BR')}</small>
-            </h2>
-          </div>
-          <div className="midia-grid">
-            {photos.map(m => (
-              <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
-            ))}
-          </div>
-        </section>
-      )}
+      {exam.memo_media.length === 0 ? (
+        <p className="exam-section-empty">Nenhuma mídia neste exame ainda.</p>
+      ) : (
+        <>
+          {videos.length > 0 && (
+            <div className="exam-subsection">
+              <h3>
+                Vídeos <span className="count">({videos.length})</span>
+              </h3>
+              <div className="midia-grid">
+                {videos.map(m => (
+                  <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
+                ))}
+              </div>
+            </div>
+          )}
 
-      {bookPages.length > 0 && (
-        <section className="conta-section">
-          <div className="conta-section-header">
-            <h2>Book 3D</h2>
-          </div>
-          <div className="midia-grid">
-            {bookPages.map(m => (
-              <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
-            ))}
-          </div>
-        </section>
+          {photos.length > 0 && (
+            <div className="exam-subsection">
+              <h3>
+                Fotos <span className="count">({photos.length})</span>
+              </h3>
+              <div className="midia-grid">
+                {photos.map(m => (
+                  <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {bookPages.length > 0 && (
+            <div className="exam-subsection">
+              <h3>
+                Book 3D <span className="count">({bookPages.length})</span>
+              </h3>
+              <div className="midia-grid">
+                {bookPages.map(m => (
+                  <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
+                ))}
+              </div>
+            </div>
+          )}
+        </>
       )}
-    </>
+    </section>
   );
 }
 

@@ -134,6 +134,19 @@ export async function getPatientMe() {
   return asJson(res);
 }
 
+/**
+ * Registra evento de login da paciente em memo_audit_log.
+ * Chamar logo após signInWithPassword bem-sucedido. Falha silenciosa
+ * (audit não pode quebrar UX).
+ */
+export async function recordPatientLogin() {
+  try {
+    await authedFetch('/api/memo3d/paciente/login-event', { method: 'POST' });
+  } catch (_) {
+    /* silencioso */
+  }
+}
+
 /** Troca senha da paciente logada e marca must_change_password=false. */
 export async function changePatientPassword(newPassword) {
   const res = await authedFetch('/api/memo3d/paciente/change-password', {

@@ -6,17 +6,42 @@
  */
 import { supabase } from '../supabase';
 
+async function buildHeaders(token, extra) {
+  const headers = {
+    'Content-Type': 'application/json',
+    ...(extra || {}),
+  };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  return headers;
+}
+
+/**
+ * Faz fetch com Authorization Bearer do Supabase. Se receber 401, tenta
+ * refresh do JWT (refresh token ainda pode estar válido por mais tempo)
+ * e refaz a request uma vez. Se mesmo assim falhar, propaga o 401.
+ *
+ * Resolve o caso de admins/pacientes que ficam muito tempo logados e
+ * a sessão expira (Supabase Auth: access_token TTL = 1h por padrão).
+ */
 async function authedFetch(url, opts = {}) {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  const token = session?.access_token;
-  const headers = {
-    'Content-Type': 'application/json',
-    ...(opts.headers || {}),
-  };
-  if (token) headers.Authorization = `Bearer ${token}`;
-  return fetch(url, { ...opts, headers });
+  let token = session?.access_token;
+
+  let res = await fetch(url, { ...opts, headers: await buildHeaders(token, opts.headers) });
+
+  if (res.status === 401 && session) {
+    // Tenta refresh do JWT. refreshSession usa o refresh_token guardado
+    // no storage do Supabase (TTL muito maior que o access_token).
+    const { data: refreshed, error: refreshErr } = await supabase.auth.refreshSession();
+    if (!refreshErr && refreshed?.session?.access_token) {
+      token = refreshed.session.access_token;
+      res = await fetch(url, { ...opts, headers: await buildHeaders(token, opts.headers) });
+    }
+  }
+
+  return res;
 }
 
 async function asJson(res) {

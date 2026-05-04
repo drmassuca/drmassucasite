@@ -21,6 +21,7 @@ import {
   Activity,
   FileVideo,
   FileImage,
+  Share2,
 } from 'lucide-react';
 import {
   getPatient,
@@ -65,6 +66,7 @@ export default function Memo3dPacienteDetalhe() {
 
   const [patient, setPatient] = useState(null);
   const [accessCount, setAccessCount] = useState(0);
+  const [shareCount, setShareCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -88,13 +90,21 @@ export default function Memo3dPacienteDetalhe() {
       setPatient(p);
       setError(null);
 
-      // Conta acessos da paciente (logins) no audit log
-      const { count } = await supabase
-        .from('memo_audit_log')
-        .select('*', { count: 'exact', head: true })
-        .eq('patient_id', id)
-        .like('action', 'patient.login%');
-      setAccessCount(count || 0);
+      // Acessos (logins) e compartilhamentos com a família, em paralelo.
+      const [logins, shares] = await Promise.all([
+        supabase
+          .from('memo_audit_log')
+          .select('*', { count: 'exact', head: true })
+          .eq('patient_id', id)
+          .like('action', 'patient.login%'),
+        supabase
+          .from('memo_audit_log')
+          .select('*', { count: 'exact', head: true })
+          .eq('patient_id', id)
+          .eq('action', 'patient.share.create'),
+      ]);
+      setAccessCount(logins.count || 0);
+      setShareCount(shares.count || 0);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -363,6 +373,7 @@ export default function Memo3dPacienteDetalhe() {
         <CounterCard icon={FileVideo} label="Vídeos" value={counters.videos} />
         <CounterCard icon={FileImage} label="Fotos" value={counters.photos} />
         <CounterCard icon={Activity} label="Acessos da paciente" value={accessCount} />
+        <CounterCard icon={Share2} label="Compartilhamentos" value={shareCount} />
       </div>
 
       <section className="section">

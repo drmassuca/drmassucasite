@@ -152,20 +152,32 @@ export async function acceptConsent(version) {
   return asJson(res);
 }
 
-/** Signed URL R2 (foto/book) — TTL 30min. */
-export async function signPatientR2(mediaId) {
+/**
+ * Signed URL R2 (foto/book) — TTL 30min.
+ * @param {string} mediaId
+ * @param {object} [opts]
+ * @param {boolean} [opts.audit=true]  passar false em loads de thumbnail pra não poluir audit log
+ */
+export async function signPatientR2(mediaId, opts = {}) {
+  const audit = opts.audit !== false;
   const res = await authedFetch('/api/memo3d/paciente/sign-r2', {
     method: 'POST',
-    body: JSON.stringify({ mediaId }),
+    body: JSON.stringify({ mediaId, audit }),
   });
   return asJson(res);
 }
 
-/** Stream signed token (vídeo) — TTL 30min. */
-export async function signPatientStream(mediaId) {
+/**
+ * Stream signed token (vídeo) — TTL 30min.
+ * @param {string} mediaId
+ * @param {object} [opts]
+ * @param {boolean} [opts.audit=true]  passar false em loads de thumbnail
+ */
+export async function signPatientStream(mediaId, opts = {}) {
+  const audit = opts.audit !== false;
   const res = await authedFetch('/api/memo3d/paciente/sign-stream', {
     method: 'POST',
-    body: JSON.stringify({ mediaId }),
+    body: JSON.stringify({ mediaId, audit }),
   });
   return asJson(res);
 }

@@ -63,15 +63,19 @@ export default async function handler(req, res) {
       downloadable: false,
     });
 
-    await recordAuditServer({
-      patientId: patient.id,
-      userId: user.id,
-      action: 'patient.video.play',
-      resourceType: 'media',
-      resourceId: mediaId,
-      ip: getClientIp(req),
-      userAgent: req.headers['user-agent'] || null,
-    });
+    // audit opcional: thumbnails passam audit=false; play real deixa true.
+    const shouldAudit = req.body?.audit !== false;
+    if (shouldAudit) {
+      await recordAuditServer({
+        patientId: patient.id,
+        userId: user.id,
+        action: 'patient.video.play',
+        resourceType: 'media',
+        resourceId: mediaId,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'] || null,
+      });
+    }
 
     return res.status(200).json({
       token,

@@ -47,7 +47,7 @@ export default function LoginPaciente() {
         <form onSubmit={handleSubmit} className="paciente-login-form">
           <label>
             <span>
-              <Mail size={14} /> Email entregue na recepção
+              <Mail size={14} /> Email
             </span>
             <input
               type="email"
@@ -56,7 +56,7 @@ export default function LoginPaciente() {
               onChange={e => setEmail(e.target.value)}
               autoFocus
               autoComplete="email"
-              placeholder="ex: 5562999998888@memo3d.local"
+              placeholder="seu@email.com"
             />
           </label>
 
@@ -87,7 +87,7 @@ export default function LoginPaciente() {
         </form>
 
         <p className="paciente-login-footer">
-          Recebeu este email e a senha pessoalmente na clínica.
+          Use o email do seu cadastro e a senha entregue pela recepção.
           <br />
           Em caso de dúvida, fale com a recepção pelo WhatsApp.
         </p>

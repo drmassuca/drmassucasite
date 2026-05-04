@@ -1,7 +1,9 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import RoleGuard from './components/RoleGuard';
 import AdminLayout from './components/AdminLayout';
+import { Memo3dPathContext } from '../lib/memo3d/path-context';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import PostsList from './pages/PostsList';
@@ -55,12 +57,16 @@ const AdminRoutes = () => {
         {/* Login - rota pública */}
         <Route path="/admin/login" element={<LoginRoute />} />
 
-        {/* Rotas protegidas com layout */}
+        {/* Rotas protegidas com layout — apenas owner; reception é redirecionada pra /recepcao */}
         <Route
           path="/admin"
           element={
             <ProtectedRoute>
-              <AdminLayout />
+              <RoleGuard allow={['owner']}>
+                <Memo3dPathContext.Provider value="/admin/memo3d">
+                  <AdminLayout />
+                </Memo3dPathContext.Provider>
+              </RoleGuard>
             </ProtectedRoute>
           }
         >
@@ -78,7 +84,7 @@ const AdminRoutes = () => {
           <Route path="memo3d" element={<Memo3dDashboard />} />
           <Route path="memo3d/pacientes" element={<Memo3dPacientesList />} />
           <Route path="memo3d/pacientes/nova" element={<Memo3dPacienteNova />} />
-          <Route path="memo3d/pacientes/:id" element={<Memo3dPacienteDetalhe />} />
+          <Route path="memo3d/pacientes/detail" element={<Memo3dPacienteDetalhe />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

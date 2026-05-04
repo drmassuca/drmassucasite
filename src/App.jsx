@@ -44,10 +44,15 @@ const SDConfiguracao = lazy(
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 const ReviewZ20Expert22 = lazy(() => import('./pages/ia-medica/review-z20-expert22'));
-const ReviewZ20Expert22EN = lazy(() => import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN })));
+const ReviewZ20Expert22EN = lazy(() =>
+  import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN }))
+);
 
 /* >>> ADMIN: Lazy load do painel administrativo */
 const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
+
+/* >>> RECEPÇÃO: painel restrito Memo3D-only (separado do admin completo) */
+const RecepcaoRoutes = lazy(() => import('./recepcao/RecepcaoRoutes'));
 
 /* Lazy load para TODOS os exames - reduz bundle inicial */
 const ObstetricoDeRotina = lazy(() => import('./pages/exam-details/obstetrico-de-rotina'));
@@ -112,15 +117,11 @@ function App() {
   usePageTracking();
   const location = useLocation();
 
-  // Verifica se estamos no painel admin
+  // Painéis restritos sem header/footer do site público
   const isAdminPage = location.pathname.startsWith('/admin');
+  const isRecepcaoPage = location.pathname.startsWith('/recepcao');
 
-  // Debug log
-  console.log('App render - pathname:', location.pathname, 'isAdminPage:', isAdminPage);
-
-  // Se for página admin, renderiza apenas as rotas do admin (sem header/footer do site)
-  if (isAdminPage) {
-    console.log('Renderizando AdminRoutes...');
+  if (isAdminPage || isRecepcaoPage) {
     return (
       <>
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
@@ -147,11 +148,11 @@ function App() {
                   animation: 'spin 1s linear infinite',
                 }}
               />
-              <p style={{ color: '#64748b' }}>Carregando painel admin...</p>
+              <p style={{ color: '#64748b' }}>Carregando...</p>
             </div>
           }
         >
-          <AdminRoutes />
+          {isAdminPage ? <AdminRoutes /> : <RecepcaoRoutes />}
         </Suspense>
       </>
     );
@@ -238,14 +239,8 @@ function App() {
               path="/ia-medica/stable-diffusion-3d-fetal/problemas"
               element={<SDProblemas />}
             />
-            <Route
-              path="/ia-medica/review-z20-expert22"
-              element={<ReviewZ20Expert22 />}
-            />
-            <Route
-              path="/ia-medica/review-z20-expert22/en"
-              element={<ReviewZ20Expert22EN />}
-            />
+            <Route path="/ia-medica/review-z20-expert22" element={<ReviewZ20Expert22 />} />
+            <Route path="/ia-medica/review-z20-expert22/en" element={<ReviewZ20Expert22EN />} />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
             <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />

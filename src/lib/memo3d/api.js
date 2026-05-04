@@ -64,6 +64,39 @@ export async function getPatient(id) {
   return data.patient;
 }
 
+/** Atualiza paciente. Apenas campos enviados são alterados. */
+export async function updatePatient({ id, fullName, phone, cpfLast4, email }) {
+  const payload = { id };
+  if (fullName !== undefined) payload.fullName = fullName;
+  if (phone !== undefined) payload.phone = phone;
+  if (cpfLast4 !== undefined) payload.cpfLast4 = cpfLast4;
+  if (email !== undefined) payload.email = email;
+  const res = await authedFetch('/api/memo3d/pacientes/update', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+  const data = await asJson(res);
+  return data.patient;
+}
+
+/** Soft delete (status='deleted'). */
+export async function deletePatient(id) {
+  const res = await authedFetch('/api/memo3d/pacientes/delete', {
+    method: 'POST',
+    body: JSON.stringify({ id }),
+  });
+  return asJson(res);
+}
+
+/** Gera nova senha temporária. Retorna { password, loginEmail, mustChangeOnLogin }. */
+export async function setPatientPassword(patientId) {
+  const res = await authedFetch('/api/memo3d/pacientes/set-password', {
+    method: 'POST',
+    body: JSON.stringify({ patientId }),
+  });
+  return asJson(res);
+}
+
 // ─── Exames ────────────────────────────────────────────────
 
 /**
@@ -78,6 +111,16 @@ export async function createExam(payload) {
   const res = await authedFetch('/api/memo3d/exames/create', {
     method: 'POST',
     body: JSON.stringify(payload),
+  });
+  const data = await asJson(res);
+  return data.exam;
+}
+
+/** Marca exame como pago. amountCents default 3000 (R$30,00). */
+export async function markExamPaid(examId, amountCents = 3000) {
+  const res = await authedFetch('/api/memo3d/exames/mark-paid', {
+    method: 'POST',
+    body: JSON.stringify({ examId, amountCents }),
   });
   const data = await asJson(res);
   return data.exam;

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { recordPatientLogin } from '../../lib/memo3d/api';
 import '../paciente.css';
 
 const ERROR_MESSAGES = {
@@ -27,6 +28,9 @@ export default function LoginPaciente() {
         password,
       });
       if (err) throw err;
+      // Registra evento de login no audit log (alimenta contador admin).
+      // Fire-and-forget — falha silenciosa não bloqueia a navegação.
+      recordPatientLogin();
       navigate('/memo3d/conta');
     } catch (err) {
       setError(ERROR_MESSAGES[err.message] || err.message);

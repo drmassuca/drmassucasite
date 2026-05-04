@@ -837,9 +837,13 @@
   .memo3d-gallery-item:nth-child(1),
   .memo3d-gallery-item:nth-child(2),
   .memo3d-gallery-item:nth-child(3),
-  .memo3d-gallery-item:nth-child(4),
-  .memo3d-gallery-item:nth-child(5) {
+  .memo3d-gallery-item:nth-child(4) {
     grid-column: span 1;
+  }
+  /* No mobile a 5ª imagem (36 semanas) ocupa as 2 colunas pra
+     não sobrar espaço vazio do lado direito. */
+  .memo3d-gallery-item:nth-child(5) {
+    grid-column: span 2;
   }
   .memo3d-pullquote {
     padding: 80px 32px;

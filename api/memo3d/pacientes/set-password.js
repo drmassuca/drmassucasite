@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     const client = getAdminClient();
     const { data: patient, error: pErr } = await client
       .from('memo_patients')
-      .select('id, full_name, phone, auth_user_id, status')
+      .select('id, full_name, phone, email, auth_user_id, status')
       .eq('id', patientId)
       .maybeSingle();
 

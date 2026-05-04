@@ -23,6 +23,7 @@ const ForDoctors = lazy(() => import('./pages/for-doctors'));
 const Testimonials = lazy(() => import('./pages/testimonials'));
 const Contact = lazy(() => import('./pages/contact'));
 const Ultrassom3D = lazy(() => import('./pages/ultrassom-3d'));
+const Memo3dLanding = lazy(() => import('./pages/memo3d-landing/Memo3dLanding'));
 
 /* >>> NOVO: página-mestra do FAQ em lazy load (resolve para src/pages/faq/index.jsx) */
 const FaqIndex = lazy(() => import('./pages/faq'));
@@ -123,7 +124,16 @@ function App() {
   // Painéis restritos sem header/footer do site público
   const isAdminPage = location.pathname.startsWith('/admin');
   const isRecepcaoPage = location.pathname.startsWith('/recepcao');
-  const isPacientePage = location.pathname.startsWith('/memo3d');
+  // Paciente = só rotas autenticadas/restritas; /memo3d puro é landing pública.
+  const PACIENTE_PATHS = [
+    '/memo3d/login',
+    '/memo3d/trocar-senha',
+    '/memo3d/conta',
+    '/memo3d/familia',
+  ];
+  const isPacientePage = PACIENTE_PATHS.some(
+    p => location.pathname === p || location.pathname.startsWith(p + '/')
+  );
 
   if (isAdminPage || isRecepcaoPage || isPacientePage) {
     return (
@@ -215,6 +225,7 @@ function App() {
             <Route path="/depoimentos" element={<Testimonials />} />
             <Route path="/contato" element={<Contact />} />
             <Route path="/ultrassom-3d" element={<Ultrassom3D />} />
+            <Route path="/memo3d" element={<Memo3dLanding />} />
 
             {/* >>> NOVAS ROTAS DO FAQ */}
             <Route path="/faq" element={<FaqIndex />} />

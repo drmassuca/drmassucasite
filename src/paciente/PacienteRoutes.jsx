@@ -40,7 +40,7 @@ const PacienteRoutes = () => (
         <Route index element={<Navigate to="/memo3d/conta" replace />} />
         <Route path="conta" element={<Conta />} />
       </Route>
-      <Route path="/memo3d/*" element={<Navigate to="/memo3d/conta" replace />} />
+      <Route path="/memo3d/*" element={<Navigate to="/memo3d/login" replace />} />
     </Routes>
   </AuthProvider>
 );

@@ -21,6 +21,7 @@ import {
   signPatientR2,
   signPatientStream,
   createFamilyShare,
+  recordPatientLogin,
 } from '../../lib/memo3d/api';
 import { recordAudit } from '../../lib/memo3d/audit';
 import ConsentModal from '../components/ConsentModal';
@@ -78,6 +79,22 @@ export default function Conta() {
   useEffect(() => {
     reload();
   }, [reload]);
+
+  // Registra patient.login no audit log uma vez por sessão de aba.
+  // Captura tanto login fresco quanto retorno em sessão Supabase ainda válida.
+  // sessionStorage zera quando a aba fecha — então cada nova sessão conta.
+  useEffect(() => {
+    if (!data) return;
+    if (typeof window === 'undefined') return;
+    try {
+      if (!window.sessionStorage.getItem('memo3d_login_recorded')) {
+        window.sessionStorage.setItem('memo3d_login_recorded', '1');
+        recordPatientLogin();
+      }
+    } catch (_) {
+      /* sessionStorage indisponível — ignora */
+    }
+  }, [data]);
 
   if (loading) {
     return (

@@ -57,7 +57,9 @@ export async function createPatient(payload) {
 
 /** Busca paciente com exames e mídias embutidos. */
 export async function getPatient(id) {
-  const res = await authedFetch(`/api/memo3d/pacientes/${id}`, { method: 'GET' });
+  const res = await authedFetch(`/api/memo3d/pacientes/detail?id=${encodeURIComponent(id)}`, {
+    method: 'GET',
+  });
   const data = await asJson(res);
   return data.patient;
 }

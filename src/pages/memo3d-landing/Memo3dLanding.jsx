@@ -1,18 +1,6 @@
+import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import {
-  Heart,
-  Camera,
-  Share2,
-  ShieldCheck,
-  Hourglass,
-  Sparkles,
-  Activity,
-  ArrowRight,
-  MessageCircle,
-  PlayCircle,
-  Check,
-} from 'lucide-react';
 import SEO from '../../components/SEO';
 import './memo3d-landing.css';
 
@@ -21,33 +9,82 @@ const WHATSAPP =
   encodeURIComponent('Olá! Quero saber mais sobre o Memo3D — galeria das memórias e impressão 3D.');
 
 const TIMELINE = [
-  {
-    week: '8',
-    img: '/imagens-3d/ultrassom-3d-1.webp',
-    caption: 'Embrião com estruturas básicas formadas.',
-  },
-  { week: '11', img: '/imagens-3d/ultrassom-3d-2.webp', caption: 'Membros mais definidos.' },
-  {
-    week: '15',
-    img: '/imagens-3d/ultrassom-3d-3.webp',
-    caption: 'Traços faciais começam a aparecer.',
-  },
-  {
-    week: '24',
-    img: '/imagens-3d/ultrassom-3d-4.webp',
-    caption: 'Fase ideal para 3D — rosto nítido.',
-  },
-  { week: '36', img: '/imagens-3d/ultrassom-3d-5.webp', caption: 'Bebê quase pronto pra nascer.' },
+  { week: '8 semanas', img: '/imagens-3d/baby-1.webp', desc: 'Estruturas básicas se formam — o silêncio inicial.' },
+  { week: '11 semanas', img: '/imagens-3d/baby-2.webp', desc: 'Membros mais definidos. Os primeiros movimentos.' },
+  { week: '15 semanas', img: '/imagens-3d/baby-3.webp', desc: 'Os traços faciais começam a se desenhar.' },
+  { week: '24 semanas', img: '/imagens-3d/baby-4.webp', desc: 'Período áureo do 3D. Rosto nítido, expressões claras.' },
+  { week: '36 semanas', img: '/imagens-3d/baby-5.webp', desc: 'Quase pronto. Quase nascido. Quase nos braços.' },
 ];
 
-const ANTES_DEPOIS = [
-  { antes: '/imagens-3d/antesedepois1.png', depois: '/imagens-3d/antesedepois1.2.png' },
-  { antes: '/imagens-3d/antesedepois2.png', depois: '/imagens-3d/antesedepois2.2.png' },
-  { antes: '/imagens-3d/antesedepois3.png', depois: '/imagens-3d/antesedepois3.2.png' },
-  { antes: '/imagens-3d/antesedepois4.png', depois: '/imagens-3d/antesedepois4.2.png' },
+const FAQS = [
+  {
+    q: 'Como recebo o acesso à minha galeria?',
+    a: 'A recepção da clínica gera presencialmente uma senha temporária junto com o email do seu cadastro. Você troca essa senha no primeiro acesso.',
+  },
+  {
+    q: 'Por quanto tempo as memórias ficam disponíveis?',
+    a: 'Doze meses a partir da data do exame. Após esse período, os arquivos são apagados em definitivo, conforme nossa política de privacidade.',
+  },
+  {
+    q: 'Posso compartilhar com a família?',
+    a: 'Sim. Dentro da galeria você gera um link de compartilhamento com validade de 24 horas, sem necessidade de quem recebe criar conta.',
+  },
+  {
+    q: 'Como funciona a impressão 3D?',
+    a: 'A partir das fotos 3D do exame, fazemos a escultura física em resina. O contato inicial é por WhatsApp, para combinarmos tamanho, prazo e valor — tudo personalizado.',
+  },
+  {
+    q: 'Meus dados ficam seguros?',
+    a: 'Trabalhamos em conformidade com a LGPD. As memórias só são liberadas após você aceitar o termo de uso, e cada visualização é registrada em auditoria interna.',
+  },
 ];
+
+/* ─── Fade-up reveal hook ─────────────────────────────── */
+function useFadeUp(delay = 0) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return undefined;
+    const io = new IntersectionObserver(
+      entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            setTimeout(() => setVisible(true), delay);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+    io.observe(ref.current);
+    return () => io.disconnect();
+  }, [delay]);
+  return [ref, visible];
+}
+
+function FadeUp({ delay, style, children, as: Tag = 'div' }) {
+  const [ref, visible] = useFadeUp(delay);
+  return (
+    <Tag ref={ref} className={`m3d-fade${visible ? ' is-visible' : ''}`} style={style}>
+      {children}
+    </Tag>
+  );
+}
 
 export default function Memo3dLanding() {
+  const [lightbox, setLightbox] = useState(null);
+  const [openFaq, setOpenFaq] = useState(0);
+
+  // Esc fecha lightbox
+  useEffect(() => {
+    if (lightbox === null) return undefined;
+    const onKey = e => {
+      if (e.key === 'Escape') setLightbox(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox]);
+
   return (
     <>
       <SEO
@@ -55,13 +92,14 @@ export default function Memo3dLanding() {
         description="Galeria boutique online com vídeos e fotos do seu ultrassom 3D/4D + impressão 3D do bebê. Acesso por 12 meses. Equipamentos premium GE Voluson S10 e Samsung HERA Z20."
         canonical="/memo3d"
         keywords="memo3d, memórias 3d gestação, galeria ultrassom, impressão 3d bebê, dr massuca itaberai, hera z20, voluson s10"
-        image="https://drmassuca.com.br/imagens-3d/ultrassom-3d-4.webp"
+        image="https://drmassuca.com.br/imagens-3d/baby-4.webp"
       />
       <Helmet>
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
         />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -88,23 +126,27 @@ export default function Memo3dLanding() {
       </Helmet>
 
       <div className="memo3d-landing">
-        {/* HERO — split layout */}
-        <section className="memo3d-hero">
-          <div className="memo3d-hero-grid">
-            <div className="memo3d-hero-text">
-              <div className="memo3d-hero-badge">
-                <Heart size={14} /> Memo3D · Dr. Massucatti
-              </div>
+        {/* HERO — split assimétrico */}
+        <header className="memo3d-hero">
+          <div className="memo3d-hero-left">
+            <FadeUp>
+              <div className="memo3d-eyebrow">Diferencial boutique</div>
+            </FadeUp>
+            <FadeUp delay={120}>
               <h1>
-                As memórias <em>boutique</em> da sua gestação,
-                <br />
-                <span className="memo3d-hero-accent">eternizadas.</span>
+                As memórias<br />
+                da sua gestação,<br />
+                <em>eternizadas.</em>
               </h1>
-              <p className="memo3d-hero-sub">
+            </FadeUp>
+            <FadeUp delay={260}>
+              <p className="memo3d-hero-lead">
                 Galeria privada com vídeos e fotos do seu ultrassom 3D/4D, acesso por 12 meses.
-                Compartilhe com a família e, quando quiser, transforme em escultura física por
+                Compartilhe com a família — e, quando quiser, transforme em escultura física por
                 impressão 3D.
               </p>
+            </FadeUp>
+            <FadeUp delay={400}>
               <div className="memo3d-hero-cta">
                 <a
                   href={WHATSAPP}
@@ -112,303 +154,232 @@ export default function Memo3dLanding() {
                   rel="noopener noreferrer"
                   className="memo3d-btn memo3d-btn-primary"
                 >
-                  <MessageCircle size={16} /> Falar no WhatsApp
+                  Falar no WhatsApp
                 </a>
-                <Link to="/memo3d/login" className="memo3d-btn memo3d-btn-ghost">
-                  Já sou paciente · entrar <ArrowRight size={14} />
+                <Link to="/memo3d/login" className="memo3d-btn memo3d-btn-secondary">
+                  Já sou paciente
                 </Link>
               </div>
+            </FadeUp>
+          </div>
+
+          <div className="memo3d-hero-right">
+            <FadeUp delay={300} style={{ height: '100%' }}>
+              <img src="/imagens-3d/baby-4.webp" alt="Ultrassom 3D · 24 semanas" />
+            </FadeUp>
+            <div className="memo3d-hero-image-meta">
+              <span className="memo3d-hero-image-tag">24 semanas · período áureo</span>
+              <span className="memo3d-hero-image-caption">samsung hera z20</span>
             </div>
-            <div className="memo3d-hero-visual">
-              <div className="memo3d-hero-image-frame">
-                <img src="/imagens-3d/ultrassom-3d-4.webp" alt="Ultrassom 3D · 24 semanas" />
-                <span className="memo3d-hero-image-tag">24 semanas · Samsung HERA Z20</span>
+          </div>
+        </header>
+
+        {/* STATS NUMÉRICO */}
+        <section className="memo3d-stats">
+          <div className="memo3d-stats-grid">
+            {[
+              ['12 meses', 'duração da galeria'],
+              ['HERA Z20', 'aparelho premium Samsung'],
+              ['LGPD', 'auditoria conforme'],
+              ['24h', 'compartilhamento família'],
+            ].map(([k, v], i) => (
+              <FadeUp key={i} delay={i * 70}>
+                <div>
+                  <div className="memo3d-stat-num">{k}</div>
+                  <div className="memo3d-stat-label">{v}</div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </section>
+
+        {/* GALERIA editorial — semana a semana */}
+        <section className="memo3d-section">
+          <FadeUp>
+            <div className="memo3d-section-header">
+              <div>
+                <span className="memo3d-section-eyebrow">I · A galeria</span>
+                <h2 className="memo3d-section-title">
+                  Semana<br />
+                  <em>a semana.</em>
+                </h2>
               </div>
-              <div className="memo3d-hero-image-deco" aria-hidden />
-            </div>
-          </div>
-        </section>
-
-        {/* TIMELINE — evolução do bebê */}
-        <section className="memo3d-section memo3d-section-light">
-          <div className="memo3d-container">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Linha do tempo</span>
-              <h2>Veja seu bebê crescer, semana a semana</h2>
-              <p>
-                Imagens reais de exames feitos no consultório. A fase ideal para 3D é entre 26 e 32
-                semanas, quando o rostinho aparece com mais nitidez.
+              <p className="memo3d-section-lead">
+                Imagens reais capturadas em consultório. Cada uma representa um instante
+                que não se repete — mas que pode caber numa moldura.
               </p>
-            </header>
-            <div className="memo3d-timeline">
-              {TIMELINE.map(item => (
-                <figure key={item.week} className="memo3d-timeline-card">
-                  <div className="memo3d-timeline-frame">
-                    <img
-                      src={item.img}
-                      alt={`Ultrassom 3D · ${item.week} semanas`}
-                      loading="lazy"
-                    />
-                    <span className="memo3d-timeline-badge">{item.week} sem</span>
+            </div>
+          </FadeUp>
+
+          <div className="memo3d-gallery">
+            {TIMELINE.map((item, i) => (
+              <FadeUp
+                key={item.week}
+                delay={i * 100}
+                as="div"
+                style={{ display: 'contents' }}
+              >
+                <figure
+                  className={`memo3d-figure memo3d-gallery-item${i >= 2 ? ' tall' : ''}`}
+                  onClick={() => setLightbox(i)}
+                >
+                  <div className="memo3d-figure-frame">
+                    <img src={item.img} alt={`Ultrassom 3D · ${item.week}`} loading="lazy" />
+                    <span className="memo3d-figure-week">{item.week}</span>
+                    <figcaption className="memo3d-figure-caption">{item.desc}</figcaption>
                   </div>
-                  <figcaption>{item.caption}</figcaption>
                 </figure>
-              ))}
-            </div>
+              </FadeUp>
+            ))}
           </div>
         </section>
 
-        {/* COMO FUNCIONA */}
-        <section className="memo3d-section">
-          <div className="memo3d-container">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Como funciona</span>
-              <h2>Em três passos, simples e seguros</h2>
-            </header>
-            <ol className="memo3d-steps">
-              <li>
-                <span className="memo3d-step-num">1</span>
-                <h3>Faça seu ultrassom 3D/4D</h3>
-                <p>
-                  Os vídeos e fotos do exame são salvos com qualidade premium logo após a consulta
-                  com Dr. Massucatti em Itaberaí.
-                </p>
-              </li>
-              <li>
-                <span className="memo3d-step-num">2</span>
-                <h3>Receba acesso na recepção</h3>
-                <p>
-                  Você sai da clínica com a senha temporária da sua galeria. Sem app, sem cadastro
-                  online complicado.
-                </p>
-              </li>
-              <li>
-                <span className="memo3d-step-num">3</span>
-                <h3>Visualize, compartilhe, personalize</h3>
-                <p>
-                  Acesse de qualquer dispositivo, compartilhe com a família via link de 24h, e
-                  solicite a impressão 3D quando quiser.
-                </p>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        {/* O QUE ESTÁ INCLUÍDO */}
-        <section className="memo3d-section memo3d-section-light">
-          <div className="memo3d-container">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Sua memória, completa</span>
-              <h2>Tudo o que está incluído</h2>
-              <p>Hospedagem boutique por 12 meses contados da data do exame.</p>
-            </header>
-            <div className="memo3d-features-grid">
-              <FeatureCard
-                icon={Camera}
-                title="Vídeos do exame"
-                body="Vídeos do ultrassom 3D/4D em alta qualidade adaptativa via Cloudflare Stream."
-              />
-              <FeatureCard
-                icon={Sparkles}
-                title="Fotos em alta"
-                body="Imagens 3D do feto que você pode baixar quantas vezes quiser."
-              />
-              <FeatureCard
-                icon={Hourglass}
-                title="Acesso por 12 meses"
-                body="Suas memórias online o ano inteiro após o exame."
-              />
-              <FeatureCard
-                icon={Share2}
-                title="Compartilhar com família"
-                body="Link com expiração de 24h pra avós, irmãos, padrinhos. Sem download."
-              />
-              <FeatureCard
-                icon={ShieldCheck}
-                title="Acesso seguro"
-                body="Senha pessoal e termo conforme LGPD. Só você (e quem você compartilhar) acessa."
-              />
-              <FeatureCard
-                icon={PlayCircle}
-                title="Pronto pra impressão 3D"
-                body="A partir das fotos da galeria, peça a escultura 3D do bebê com 1 clique."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* EQUIPAMENTOS PREMIUM */}
-        <section className="memo3d-section memo3d-section-dark">
-          <div className="memo3d-container">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Equipamentos premium</span>
-              <h2>Tecnologia de referência mundial</h2>
-              <p>
-                Para garantir a qualidade das imagens que viram suas memórias, a clínica conta com
-                dois aparelhos de ponta.
+        {/* PULL QUOTE */}
+        <section className="memo3d-pullquote">
+          <FadeUp>
+            <div className="memo3d-pullquote-inner">
+              <div className="memo3d-pullquote-rule" />
+              <p className="memo3d-pullquote-text">
+                A galeria nunca é o protagonista do exame — é um <strong>presente</strong>{' '}
+                que entregamos depois de cuidar do que <em>realmente importa</em>:
+                a saúde do seu bebê.
               </p>
-            </header>
-            <div className="memo3d-equipment-grid">
-              <article className="memo3d-equipment-card">
-                <Activity className="memo3d-equipment-icon" />
-                <h3>GE Voluson S10</h3>
-                <p>
-                  Ultrassom 3D/4D consagrado em centros de referência mundo afora. Imagens nítidas,
-                  vídeos em rede e qualidade clínica reconhecida.
-                </p>
-              </article>
-              <article className="memo3d-equipment-card memo3d-equipment-featured">
-                <Activity className="memo3d-equipment-icon" />
-                <span className="memo3d-equipment-tag">Lançamento</span>
-                <h3>Samsung HERA Z20</h3>
-                <p>
-                  O aparelho mais avançado do mundo para ultrassonografia obstétrica. Renderização
-                  realista do feto, qualidade de imagem incomparável e tecnologia proprietária
-                  Samsung. Diferencial exclusivo no centro-oeste.
-                </p>
-              </article>
+              <div className="memo3d-pullquote-rule bottom" />
+              <div className="memo3d-pullquote-cite">Dr. Antonio Massucatti Neto</div>
             </div>
-          </div>
+          </FadeUp>
         </section>
 
-        {/* IMPRESSÃO 3D — antes e depois */}
+        {/* SPECS — Quando + O que vai junto */}
         <section className="memo3d-section">
-          <div className="memo3d-container">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Impressão 3D</span>
-              <h2>Tenha o rostinho do seu bebê em mãos</h2>
-              <p>
-                Mais que uma foto: a escultura 3D em resina, gerada a partir das imagens
-                tridimensionais do seu próprio exame.
+          <div className="memo3d-specs">
+            <FadeUp>
+              <span className="memo3d-section-eyebrow">II · Quando</span>
+              <h3>
+                Doze meses para <em>guardar</em>.
+              </h3>
+              <div className="memo3d-specs-num-block">
+                <div className="memo3d-specs-num">12</div>
+                <div className="memo3d-specs-num-label">
+                  meses<br />de acesso
+                </div>
+              </div>
+              <p className="memo3d-specs-prose">
+                Sua galeria fica disponível por doze meses contados da data do exame. É tempo
+                suficiente para revisitar, baixar, compartilhar com a família — e, quando quiser,
+                pedir a impressão 3D. Após esse período, os arquivos são apagados em definitivo.
               </p>
-            </header>
+            </FadeUp>
 
-            <div className="memo3d-antes-depois">
-              {ANTES_DEPOIS.map((pair, i) => (
-                <div key={i} className="memo3d-antes-depois-pair">
-                  <figure>
-                    <img src={pair.antes} alt={`Imagem 3D do exame ${i + 1}`} loading="lazy" />
-                    <figcaption>Imagem 3D do exame</figcaption>
-                  </figure>
-                  <ArrowRight className="memo3d-antes-depois-arrow" />
-                  <figure>
-                    <img src={pair.depois} alt={`Escultura 3D ${i + 1}`} loading="lazy" />
-                    <figcaption>Escultura impressa 3D</figcaption>
-                  </figure>
+            <FadeUp delay={150}>
+              <span className="memo3d-section-eyebrow">III · O que vai junto</span>
+              <h3>
+                Pequenos <em>presentes</em>.
+              </h3>
+              {[
+                ['I', 'Vídeos do ultrassom 3D/4D', 'em alta qualidade adaptativa'],
+                ['II', 'Fotos do bebê', 'em resolução plena, com download'],
+                ['III', 'Compartilhamento com a família', 'link de 24 horas, sem cadastro'],
+                ['IV', 'Impressão 3D sob encomenda', 'a partir da imagem que você escolher'],
+              ].map(([n, k, v]) => (
+                <div key={n} className="memo3d-specs-list-item">
+                  <div className="memo3d-specs-list-numeral">{n}.</div>
+                  <div>
+                    <div className="memo3d-specs-list-name">{k}</div>
+                    <div className="memo3d-specs-list-detail">{v}</div>
+                  </div>
                 </div>
               ))}
-            </div>
-
-            <div className="memo3d-print3d">
-              <h3>Como solicitar</h3>
-              <ol>
-                <li>Você visualiza as fotos 3D do bebê na sua galeria.</li>
-                <li>Seleciona a imagem que mais te encantou.</li>
-                <li>Clica em &ldquo;Quero impressão 3D dessa imagem&rdquo;.</li>
-                <li>
-                  O WhatsApp da clínica abre com a foto pronta. A gente combina detalhes, tamanho e
-                  prazo.
-                </li>
-              </ol>
-              <p className="memo3d-muted">
-                Pagamento e prazo de entrega são tratados diretamente com a equipe.
-              </p>
-            </div>
+            </FadeUp>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="memo3d-section memo3d-section-light">
-          <div className="memo3d-container memo3d-container-narrow">
-            <header className="memo3d-section-header">
-              <span className="memo3d-eyebrow">Dúvidas frequentes</span>
-              <h2>Perguntas que aparecem com frequência</h2>
-            </header>
-            <dl className="memo3d-faq">
-              <FaqItem
-                q="Como recebo o acesso à minha galeria?"
-                a="A recepção da clínica gera uma senha temporária presencialmente, junto com o email do seu cadastro. Você troca essa senha no primeiro acesso."
-              />
-              <FaqItem
-                q="Por quanto tempo as memórias ficam disponíveis?"
-                a="12 meses a partir da data do seu exame. Após esse período, os arquivos são apagados em definitivo conforme nossa política de privacidade."
-              />
-              <FaqItem
-                q="Posso compartilhar com minha família?"
-                a="Sim. Dentro da galeria você gera um link de compartilhamento com validade de 24 horas, sem necessidade de criar conta para quem recebe."
-              />
-              <FaqItem
-                q="Quanto custa a hospedagem das memórias?"
-                a="É um serviço opcional, com valor único cobrado na recepção no dia do exame. A recepção informa o valor atualizado."
-              />
-              <FaqItem
-                q="Como funciona a impressão 3D?"
-                a="A partir das fotos 3D do exame, fazemos a escultura física em resina. O contato inicial é por WhatsApp para combinarmos tamanho, prazo e valor — tudo personalizado."
-              />
-              <FaqItem
-                q="E se eu perder minha senha?"
-                a="A recepção gera uma nova senha temporária pra você. Basta solicitar pelo WhatsApp da clínica."
-              />
-              <FaqItem
-                q="Meus dados ficam seguros?"
-                a="Sim. Trabalhamos em conformidade com a LGPD. Suas memórias só são liberadas após você aceitar o termo de uso, e cada visualização é registrada com auditoria interna."
-              />
-            </dl>
+        <section className="memo3d-section memo3d-section-soft">
+          <div className="memo3d-faq-wrap">
+            <FadeUp>
+              <div className="memo3d-faq-header">
+                <span className="memo3d-section-eyebrow">IV · Conversas</span>
+                <h2>
+                  O que costumam <em>perguntar</em>.
+                </h2>
+              </div>
+            </FadeUp>
+            {FAQS.map((f, i) => {
+              const isOpen = openFaq === i;
+              return (
+                <FadeUp key={i} delay={i * 80}>
+                  <div className={`memo3d-faq-item${isOpen ? ' is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="memo3d-faq-button"
+                      onClick={() => setOpenFaq(isOpen ? -1 : i)}
+                    >
+                      <span className="memo3d-faq-q">{f.q}</span>
+                      <span className="memo3d-faq-icon">+</span>
+                    </button>
+                    <div className="memo3d-faq-answer">
+                      <p>{f.a}</p>
+                    </div>
+                  </div>
+                </FadeUp>
+              );
+            })}
           </div>
         </section>
 
-        {/* CTA FINAL */}
-        <section className="memo3d-cta">
-          <div className="memo3d-container memo3d-cta-inner">
-            <Heart className="memo3d-cta-icon" />
-            <h2>Pronto pra começar?</h2>
-            <p>Agende seu ultrassom 3D/4D pelo WhatsApp e deixe o resto com a gente.</p>
-            <div className="memo3d-hero-cta">
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="memo3d-btn memo3d-btn-primary"
-              >
-                <MessageCircle size={16} /> Conversar no WhatsApp
-              </a>
-              <Link to="/ultrassom-3d" className="memo3d-btn memo3d-btn-ghost-dark">
-                Sobre o exame 3D/4D <ArrowRight size={14} />
-              </Link>
+        {/* FOREST CTA */}
+        <section className="memo3d-forest-cta">
+          <FadeUp>
+            <div className="memo3d-forest-cta-eyebrow">Convite</div>
+            <h2>
+              Pronta para o<br />
+              <em>primeiro retrato</em>?
+            </h2>
+            <p className="memo3d-forest-cta-lead">
+              Agende seu ultrassom 3D/4D pelo WhatsApp — quando o exame chegar, a galeria já está
+              te esperando.
+            </p>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="memo3d-forest-btn"
+            >
+              WhatsApp · 62 99660‑2117
+            </a>
+            <Link to="/memo3d/login" className="memo3d-forest-btn">
+              Já sou paciente · entrar
+            </Link>
+            <div className="memo3d-forest-cta-meta">
+              Itaberaí · Goiás · Seg–Sex · 8h–18h
             </div>
-            <ul className="memo3d-cta-perks">
-              <li>
-                <Check size={14} /> Equipamentos premium
-              </li>
-              <li>
-                <Check size={14} /> Atendimento boutique
-              </li>
-              <li>
-                <Check size={14} /> Conformidade LGPD
-              </li>
-            </ul>
-          </div>
+          </FadeUp>
         </section>
+
+        {/* LIGHTBOX */}
+        {lightbox !== null && (
+          <div className="memo3d-lightbox" onClick={() => setLightbox(null)}>
+            <div className="memo3d-lightbox-content" onClick={e => e.stopPropagation()}>
+              <div className="memo3d-lightbox-frame">
+                <img src={TIMELINE[lightbox].img} alt={TIMELINE[lightbox].week} />
+              </div>
+              <div className="memo3d-lightbox-info">
+                <div className="memo3d-lightbox-week">{TIMELINE[lightbox].week}</div>
+                <div className="memo3d-lightbox-caption">{TIMELINE[lightbox].desc}</div>
+              </div>
+              <button
+                type="button"
+                className="memo3d-lightbox-close"
+                onClick={() => setLightbox(null)}
+                aria-label="Fechar"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </>
-  );
-}
-
-function FeatureCard({ icon: Icon, title, body }) {
-  return (
-    <article className="memo3d-feature">
-      <Icon className="memo3d-feature-icon" />
-      <h3>{title}</h3>
-      <p>{body}</p>
-    </article>
-  );
-}
-
-function FaqItem({ q, a }) {
-  return (
-    <>
-      <dt>{q}</dt>
-      <dd>{a}</dd>
     </>
   );
 }

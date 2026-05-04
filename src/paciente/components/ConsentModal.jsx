@@ -3,7 +3,6 @@ import { ShieldCheck } from 'lucide-react';
 import { acceptConsent } from '../../lib/memo3d/api';
 import '../paciente.css';
 
-
 /**
  * Versão DRAFT do termo de consentimento Memo3D.
  *

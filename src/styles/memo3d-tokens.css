@@ -1,0 +1,42 @@
+/* ─── Memo3D · Design tokens (Variação D — handoff-d) ──
+   Sistema de cor "Galeria Premium" com paleta quente, dourado refinado
+   só em filete, verde-floresta como acento dramático (rodapé/CTA).
+   Importado por memo3d-landing.css e paciente.css.
+*/
+
+:root {
+  /* Cores — paleta quente */
+  --m3d-bg:          #fbf8f2;             /* papel quente — fundo principal */
+  --m3d-bg-soft:     #f0ebe1;             /* fundo de seção alternada / cards */
+  --m3d-ink:         #2a2820;             /* tinta quente — texto principal */
+  --m3d-text-muted:  #6f6a5e;             /* texto secundário */
+  --m3d-rule:        rgba(42, 40, 32, 0.10); /* divisórias */
+  --m3d-forest:      #0f3d2e;             /* verde-floresta · rodapé · itálicos */
+  --m3d-forest-deep: #0a2b21;             /* hover do forest */
+  --m3d-gold:        #b8923a;             /* dourado refinado — só em filete */
+  --m3d-gold-soft:   #d6c08a;             /* dourado lavado (alt) */
+
+  /* Tipografia */
+  --m3d-font-sans:   'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --m3d-font-serif:  'Cormorant Garamond', Georgia, serif;
+
+  /* Sombras */
+  --m3d-shadow-card-hover: 0 24px 50px -16px rgba(15, 30, 25, 0.30);
+  --m3d-shadow-soft:       0 1px 0 rgba(0, 0, 0, 0.02);
+
+  /* Curvas de animação */
+  --m3d-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .memo3d-landing *,
+  .paciente-layout *,
+  .paciente-login-page *,
+  .troca-senha-page *,
+  .consent-modal *,
+  .midia-modal * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

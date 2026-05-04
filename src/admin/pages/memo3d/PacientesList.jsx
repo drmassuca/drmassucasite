@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { CheckCircle, Plus, Search, X } from 'lucide-react';
 import { supabase } from '../../../lib/supabase';
+import { useMemo3dPath } from '../../../lib/memo3d/path-context';
 import './memo3d.css';
 
 const STATUS_LABELS = {
@@ -14,6 +15,7 @@ const STATUS_LABELS = {
 export default function Memo3dPacientesList() {
   const location = useLocation();
   const navigate = useNavigate();
+  const basePath = useMemo3dPath();
   const justCreated = location.state?.justCreated || null;
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,7 +65,7 @@ export default function Memo3dPacientesList() {
           <h1>Pacientes Memo3D</h1>
           <p>{patients.length} cadastradas (excluídas ocultas)</p>
         </div>
-        <Link to="/admin/memo3d/pacientes/nova" className="btn btn-primary">
+        <Link to={`${basePath}/pacientes/nova`} className="btn btn-primary">
           <Plus size={18} /> Nova paciente
         </Link>
       </header>
@@ -134,7 +136,7 @@ export default function Memo3dPacientesList() {
                   </td>
                   <td>{new Date(p.created_at).toLocaleDateString('pt-BR')}</td>
                   <td>
-                    <Link to={`/admin/memo3d/pacientes/${p.id}`} className="link">
+                    <Link to={`${basePath}/pacientes/detail?id=${p.id}`} className="link">
                       Detalhes
                     </Link>
                   </td>

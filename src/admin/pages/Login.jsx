@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Brain, Mail, Lock, Loader2, AlertCircle } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { defaultPathForRole } from '../../lib/memo3d/role';
 import './Login.css';
 
 const Login = () => {
@@ -21,8 +22,8 @@ const Login = () => {
     setError('');
 
     try {
-      await signIn(email, password);
-      navigate('/admin');
+      const data = await signIn(email, password);
+      navigate(defaultPathForRole(data?.user));
     } catch (err) {
       console.error('Erro no login:', err);
       setError(getErrorMessage(err.message));

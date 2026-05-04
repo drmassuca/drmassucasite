@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Users, FileText, Hourglass, Wallet, ArrowRight } from 'lucide-react';
 import { supabase } from '../../../lib/supabase';
+import { useMemo3dPath } from '../../../lib/memo3d/path-context';
 import './memo3d.css';
 
 const startOfMonth = () => {
@@ -10,6 +11,7 @@ const startOfMonth = () => {
 };
 
 export default function Memo3dDashboard() {
+  const basePath = useMemo3dPath();
   const [stats, setStats] = useState({
     patients: 0,
     examsPaid: 0,
@@ -100,7 +102,7 @@ export default function Memo3dDashboard() {
       <section className="section">
         <h2>Acessos rápidos</h2>
         <div className="quick-links">
-          <Link to="/admin/memo3d/pacientes" className="quick-link">
+          <Link to={`${basePath}/pacientes`} className="quick-link">
             <Users size={20} />
             <div>
               <strong>Pacientes</strong>

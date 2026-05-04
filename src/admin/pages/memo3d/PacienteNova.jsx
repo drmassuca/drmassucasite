@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Save } from 'lucide-react';
 import { createPatient } from '../../../lib/memo3d/api';
 import { recordAudit } from '../../../lib/memo3d/audit';
+import { useMemo3dPath } from '../../../lib/memo3d/path-context';
 import './memo3d.css';
 
 /**
@@ -20,6 +21,7 @@ function normalizePhone(raw) {
 
 export default function Memo3dPacienteNova() {
   const navigate = useNavigate();
+  const basePath = useMemo3dPath();
   const [form, setForm] = useState({ fullName: '', phone: '', cpfLast4: '', email: '' });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -48,7 +50,7 @@ export default function Memo3dPacienteNova() {
         resourceType: 'patient',
         resourceId: patient.id,
       });
-      navigate(`/admin/memo3d/pacientes/${patient.id}`);
+      navigate(`${basePath}/pacientes/detail?id=${patient.id}`);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -60,7 +62,7 @@ export default function Memo3dPacienteNova() {
     <div className="memo3d-page">
       <header className="page-header">
         <div>
-          <Link to="/admin/memo3d/pacientes" className="back-link">
+          <Link to={`${basePath}/pacientes`} className="back-link">
             <ArrowLeft size={16} /> Voltar para a lista
           </Link>
           <h1>Nova paciente Memo3D</h1>
@@ -127,7 +129,7 @@ export default function Memo3dPacienteNova() {
         {error && <div className="error-banner">{error}</div>}
 
         <div className="form-actions">
-          <Link to="/admin/memo3d/pacientes" className="btn btn-secondary">
+          <Link to={`${basePath}/pacientes`} className="btn btn-secondary">
             Cancelar
           </Link>
           <button type="submit" className="btn btn-primary" disabled={submitting}>

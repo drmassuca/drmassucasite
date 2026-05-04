@@ -65,8 +65,8 @@ const RecepcaoLayout = () => {
       <div className={`recepcao-main ${sidebarOpen ? '' : 'expanded'}`}>
         <header className="recepcao-header">
           <div className="recepcao-header-brand">
-            <span className="recepcao-clinic-name">Premium Centro Clínico</span>
-            <span className="recepcao-doctor-name">Dr. Massucatti — CRM-GO 17475</span>
+            <span className="recepcao-clinic-name">Memo3D · Painel da recepção</span>
+            <span className="recepcao-doctor-name">Dr. Massuca — CRM-GO 17475</span>
           </div>
           <div className="recepcao-header-user">
             <User size={16} />

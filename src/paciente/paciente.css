@@ -48,6 +48,17 @@
   height: 22px;
 }
 
+.paciente-brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--m3d-gold);
+  padding: 2px;
+  background: var(--m3d-bg);
+}
+
 .paciente-brand strong {
   display: block;
   font-size: 11px;
@@ -137,6 +148,17 @@
   color: var(--m3d-gold);
   width: 36px;
   height: 36px;
+}
+
+.paciente-login-logo-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--m3d-gold);
+  padding: 3px;
+  background: var(--m3d-bg);
+  margin: 0 auto;
 }
 
 .paciente-login-logo h1 {
@@ -964,23 +986,202 @@
   margin-bottom: 16px;
 }
 
+/* ─── Cards "Saiba mais" embaixo da galeria ──────────── */
+.conta-extras {
+  margin-top: 64px;
+  padding-top: 0;
+}
+
+.conta-extras-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--m3d-gold);
+  margin: 0 auto 48px;
+}
+
+.conta-extras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.conta-extra-card {
+  background: var(--m3d-bg-soft);
+  padding: 32px 28px;
+  position: relative;
+  transition: transform 0.4s var(--m3d-ease);
+}
+
+.conta-extra-card:hover {
+  transform: translateY(-3px);
+}
+
+.conta-extra-icon {
+  color: var(--m3d-gold);
+  width: 26px;
+  height: 26px;
+  margin-bottom: 16px;
+}
+
+.conta-extra-card h3 {
+  font-family: var(--m3d-font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--m3d-ink);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.conta-extra-card p {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--m3d-text-muted);
+  margin: 0;
+}
+
+.conta-extra-card p em {
+  font-family: var(--m3d-font-serif);
+  font-style: italic;
+  color: var(--m3d-forest);
+  font-weight: 400;
+}
+
+.conta-extra-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--m3d-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--m3d-gold);
+  padding-bottom: 4px;
+  transition: color 0.25s var(--m3d-ease);
+}
+
+.conta-extra-link:hover {
+  color: var(--m3d-gold);
+}
+
+/* ─── Footer da paciente ─────────────────────────────── */
+.paciente-footer {
+  margin-top: 80px;
+  padding: 56px 32px 40px;
+  background: var(--m3d-bg-soft);
+}
+
+.paciente-footer-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--m3d-gold);
+  margin: 0 auto 40px;
+}
+
+.paciente-footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+}
+
+.paciente-footer-content > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.paciente-footer-content strong {
+  font-family: var(--m3d-font-sans);
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--m3d-gold);
+  font-weight: 700;
+}
+
+.paciente-footer-content span,
+.paciente-footer-content a {
+  font-family: var(--m3d-font-serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--m3d-ink);
+  text-decoration: none;
+}
+
+.paciente-footer-content a:hover {
+  color: var(--m3d-forest);
+}
+
 /* ─── Mobile ─────────────────────────────────────────── */
 @media (max-width: 720px) {
   .paciente-header {
-    padding: 16px 24px;
+    padding: 14px 18px;
+    gap: 12px;
+  }
+  .paciente-brand strong {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+  }
+  .paciente-brand span {
+    display: none; /* esconde o subtítulo no mobile pra ganhar espaço */
+  }
+  .paciente-brand-logo {
+    width: 36px;
+    height: 36px;
+  }
+  .paciente-logout {
+    padding: 8px 14px;
+    font-size: 10px;
+    letter-spacing: 0.14em;
   }
   .paciente-main {
-    padding: 32px 24px;
+    padding: 32px 20px;
+  }
+  .conta-hero {
+    padding: 24px 0;
+    margin-bottom: 32px;
   }
   .paciente-login-card,
   .consent-card,
   .troca-senha-card {
-    padding: 40px 28px;
+    padding: 36px 24px;
   }
   .exam-section {
-    padding: 32px 24px;
+    padding: 28px 20px;
   }
   .exam-section::before {
-    left: 24px;
+    left: 20px;
+  }
+  .exam-section h2 {
+    font-size: 22px;
+  }
+  .exam-section-tags {
+    gap: 12px;
+  }
+  .conta-share-btn {
+    padding: 12px 18px;
+    font-size: 10px;
+  }
+  .midia-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .conta-extras {
+    margin-top: 48px;
+  }
+  .conta-extra-card {
+    padding: 24px 20px;
+  }
+  .paciente-footer {
+    padding: 40px 20px 32px;
+    margin-top: 56px;
+  }
+}
+
+@media (max-width: 420px) {
+  .midia-grid {
+    grid-template-columns: 1fr;
   }
 }

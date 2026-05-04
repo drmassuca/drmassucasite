@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Heart, Image as ImageIcon, Film, Hourglass, Play, X } from 'lucide-react';
+import { Image as ImageIcon, Film, Hourglass, Play, X } from 'lucide-react';
 import { viewFamilyShare, viewFamilyShareMedia } from '../../lib/memo3d/api';
 import '../paciente.css';
 
@@ -48,7 +48,7 @@ export default function Familia() {
       <div className="paciente-layout">
         <header className="paciente-header">
           <span className="paciente-brand">
-            <Heart className="paciente-brand-icon" /> <strong>Memo3D</strong>
+            <img src="/logo.webp" alt="Dr. Massuca" className="paciente-brand-logo" /> <strong>Memo3D</strong>
           </span>
         </header>
         <div className="paciente-loading">
@@ -64,7 +64,7 @@ export default function Familia() {
       <div className="paciente-layout">
         <header className="paciente-header">
           <span className="paciente-brand">
-            <Heart className="paciente-brand-icon" /> <strong>Memo3D</strong>
+            <img src="/logo.webp" alt="Dr. Massuca" className="paciente-brand-logo" /> <strong>Memo3D</strong>
           </span>
         </header>
         <div className="familia-page">
@@ -83,7 +83,7 @@ export default function Familia() {
     <div className="paciente-layout">
       <header className="paciente-header">
         <span className="paciente-brand">
-          <Heart className="paciente-brand-icon" />
+          <img src="/logo.webp" alt="Dr. Massuca" className="paciente-brand-logo" />
           <div>
             <strong>Memo3D</strong>
             <span>compartilhado por {exam.patient_name}</span>

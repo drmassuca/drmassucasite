@@ -122,6 +122,18 @@ export async function setPatientPassword(patientId) {
   return asJson(res);
 }
 
+/**
+ * Histórico de uso de uma paciente (admin/recepção): últimos logins e
+ * family shares criados, com contadores de visualização.
+ * Retorna { logins, shares }.
+ */
+export async function getPacienteUsage(patientId) {
+  const res = await authedFetch(`/api/memo3d/pacientes/usage?id=${encodeURIComponent(patientId)}`, {
+    method: 'GET',
+  });
+  return asJson(res);
+}
+
 // ─── Exames ────────────────────────────────────────────────
 
 /**
@@ -217,6 +229,16 @@ export async function signPatientStream(mediaId, opts = {}) {
     method: 'POST',
     body: JSON.stringify({ mediaId, audit }),
   });
+  return asJson(res);
+}
+
+/**
+ * Histórico da paciente logada: logins e family shares criados por ela,
+ * com contadores e última visualização.
+ * Retorna { logins, shares }.
+ */
+export async function getPatientUsage() {
+  const res = await authedFetch('/api/memo3d/paciente/usage', { method: 'GET' });
   return asJson(res);
 }
 

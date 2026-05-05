@@ -914,3 +914,119 @@
   color: #64748b;
   font-size: 0.85rem;
 }
+
+/* ─── Histórico de uso (paciente) ─────────────────────────── */
+.usage-section .section-header {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.usage-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.usage-tab {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.usage-tab:hover {
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+.usage-tab.active {
+  background: #1e293b;
+  border-color: #1e293b;
+  color: #fff;
+}
+
+.usage-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.usage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.usage-table thead th {
+  text-align: left;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.6rem 0.85rem;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.usage-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.usage-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.usage-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.usage-table td {
+  padding: 0.55rem 0.85rem;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.usage-when {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.usage-ip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.usage-count {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #0f3d2e;
+}
+
+.usage-exam-tag {
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.usage-row-expired td {
+  color: #94a3b8;
+}
+
+.usage-expired-tag {
+  color: #b91c1c;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-left: 0.4rem;
+}

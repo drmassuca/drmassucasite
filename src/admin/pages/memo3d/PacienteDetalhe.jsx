@@ -22,6 +22,8 @@ import {
   FileVideo,
   FileImage,
   Share2,
+  LogIn,
+  Eye,
 } from 'lucide-react';
 import {
   getPatient,
@@ -29,6 +31,7 @@ import {
   deletePatient,
   setPatientPassword,
   markExamPaid,
+  getPacienteUsage,
 } from '../../../lib/memo3d/api';
 import { recordAudit } from '../../../lib/memo3d/audit';
 import { useMemo3dPath } from '../../../lib/memo3d/path-context';
@@ -67,6 +70,7 @@ export default function Memo3dPacienteDetalhe() {
   const [patient, setPatient] = useState(null);
   const [accessCount, setAccessCount] = useState(0);
   const [shareCount, setShareCount] = useState(0);
+  const [usage, setUsage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -91,7 +95,7 @@ export default function Memo3dPacienteDetalhe() {
       setError(null);
 
       // Acessos (logins) e compartilhamentos com a família, em paralelo.
-      const [logins, shares] = await Promise.all([
+      const [logins, shares, usageData] = await Promise.all([
         supabase
           .from('memo_audit_log')
           .select('*', { count: 'exact', head: true })
@@ -102,9 +106,11 @@ export default function Memo3dPacienteDetalhe() {
           .select('*', { count: 'exact', head: true })
           .eq('patient_id', id)
           .eq('action', 'patient.share.create'),
+        getPacienteUsage(id).catch(() => ({ logins: [], shares: [] })),
       ]);
       setAccessCount(logins.count || 0);
       setShareCount(shares.count || 0);
+      setUsage(usageData);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -376,6 +382,10 @@ export default function Memo3dPacienteDetalhe() {
         <CounterCard icon={Share2} label="Compartilhamentos" value={shareCount} />
       </div>
 
+      {usage && (usage.logins.length > 0 || usage.shares.length > 0) && (
+        <UsageSection usage={usage} />
+      )}
+
       <section className="section">
         <div className="section-header">
           <h2>Exames ({counters.exams})</h2>
@@ -532,6 +542,143 @@ function CounterCard({ icon: Icon, label, value }) {
       </div>
     </div>
   );
+}
+
+function UsageSection({ usage }) {
+  const [tab, setTab] = useState('logins');
+  const { logins, shares } = usage;
+
+  return (
+    <section className="section usage-section">
+      <div className="section-header">
+        <h2>Histórico de uso</h2>
+        <div className="usage-tabs">
+          <button
+            type="button"
+            className={`usage-tab ${tab === 'logins' ? 'active' : ''}`}
+            onClick={() => setTab('logins')}
+          >
+            <LogIn size={14} /> Acessos da paciente ({logins.length})
+          </button>
+          <button
+            type="button"
+            className={`usage-tab ${tab === 'shares' ? 'active' : ''}`}
+            onClick={() => setTab('shares')}
+          >
+            <Eye size={14} /> Links de família ({shares.length})
+          </button>
+        </div>
+      </div>
+
+      {tab === 'logins' && (
+        <div className="usage-table-wrap">
+          {logins.length === 0 ? (
+            <p className="empty-state">Sem acessos registrados ainda.</p>
+          ) : (
+            <table className="usage-table">
+              <thead>
+                <tr>
+                  <th>Quando</th>
+                  <th>Dispositivo</th>
+                  <th>IP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {logins.map(l => (
+                  <tr key={l.id}>
+                    <td className="usage-when">{formatDateTime(l.created_at)}</td>
+                    <td>{parseUserAgent(l.user_agent)}</td>
+                    <td className="usage-ip">{l.ip || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+
+      {tab === 'shares' && (
+        <div className="usage-table-wrap">
+          {shares.length === 0 ? (
+            <p className="empty-state">A paciente ainda não criou links pra família.</p>
+          ) : (
+            <table className="usage-table">
+              <thead>
+                <tr>
+                  <th>Criado em</th>
+                  <th>Exame</th>
+                  <th>Expira em</th>
+                  <th>Visualizações</th>
+                  <th>Última visualização</th>
+                  <th>IP</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shares.map(s => {
+                  const expired = new Date(s.expires_at) < new Date();
+                  return (
+                    <tr key={s.id} className={expired ? 'usage-row-expired' : ''}>
+                      <td className="usage-when">{formatDateTime(s.created_at)}</td>
+                      <td>
+                        {new Date(s.exam_date).toLocaleDateString('pt-BR')}
+                        {s.exam_type && (
+                          <span className="usage-exam-tag">
+                            {' '}
+                            · {TYPE_LABELS[s.exam_type] || s.exam_type}
+                          </span>
+                        )}
+                      </td>
+                      <td className="usage-when">
+                        {formatDateTime(s.expires_at)}
+                        {expired && <span className="usage-expired-tag"> expirado</span>}
+                      </td>
+                      <td className="usage-count">{s.view_count}</td>
+                      <td className="usage-when">
+                        {s.last_viewed_at ? formatDateTime(s.last_viewed_at) : '—'}
+                      </td>
+                      <td className="usage-ip">{s.last_viewed_ip || '—'}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function parseUserAgent(ua) {
+  if (!ua) return '—';
+  const lc = ua.toLowerCase();
+  let device = 'Computador';
+  if (lc.includes('iphone')) device = 'iPhone';
+  else if (lc.includes('ipad')) device = 'iPad';
+  else if (lc.includes('android')) device = 'Android';
+  else if (lc.includes('mac os')) device = 'Mac';
+  else if (lc.includes('windows')) device = 'Windows';
+  else if (lc.includes('linux')) device = 'Linux';
+
+  let browser = '';
+  if (lc.includes('edg/')) browser = 'Edge';
+  else if (lc.includes('chrome/') && !lc.includes('chromium/')) browser = 'Chrome';
+  else if (lc.includes('firefox/')) browser = 'Firefox';
+  else if (lc.includes('safari/') && !lc.includes('chrome/')) browser = 'Safari';
+
+  return browser ? `${device} · ${browser}` : device;
+}
+
+function formatDateTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 function PatientEditForm({ patient, onSaved, onCancel }) {

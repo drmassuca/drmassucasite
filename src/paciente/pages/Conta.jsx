@@ -14,7 +14,10 @@ import {
   Hourglass,
   Sparkles,
   ShieldCheck,
-  MessageCircle,
+  Eye,
+  LogIn,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import {
   getPatientMe,
@@ -22,6 +25,7 @@ import {
   signPatientStream,
   createFamilyShare,
   recordPatientLogin,
+  getPatientUsage,
 } from '../../lib/memo3d/api';
 import { recordAudit } from '../../lib/memo3d/audit';
 import ConsentModal from '../components/ConsentModal';
@@ -160,6 +164,8 @@ export default function Conta() {
         />
       ))}
 
+      <AtividadeSection />
+
       {/* Cards informativos pra dar densidade visual e antecipar dúvidas */}
       <section className="conta-extras">
         <div className="conta-extras-rule" />
@@ -168,16 +174,16 @@ export default function Conta() {
             <Share2 className="conta-extra-icon" />
             <h3>Compartilhe com a família</h3>
             <p>
-              Use o botão <em>compartilhar com família</em> em qualquer exame. O link
-              gerado dura 24 horas — sem necessidade de cadastro pra quem recebe.
+              Use o botão <em>compartilhar com família</em> em qualquer exame. O link gerado dura 24
+              horas — sem necessidade de cadastro pra quem recebe.
             </p>
           </article>
           <article className="conta-extra-card">
             <Sparkles className="conta-extra-icon" />
             <h3>Impressão 3D do bebê</h3>
             <p>
-              Curtiu uma das fotos? Fale com a clínica pelo WhatsApp e a gente
-              transforma a imagem em escultura física, sob encomenda.
+              Curtiu uma das fotos? Fale com a clínica pelo WhatsApp e a gente transforma a imagem
+              em escultura física, sob encomenda.
             </p>
             <a
               href="https://wa.me/5562996602117?text=Olá%21%20Quero%20saber%20sobre%20a%20impressão%203D%20a%20partir%20da%20minha%20galeria."
@@ -192,9 +198,8 @@ export default function Conta() {
             <ShieldCheck className="conta-extra-icon" />
             <h3>Sua memória, segura</h3>
             <p>
-              Suas memórias ficam disponíveis por 12 meses. Após esse período, são
-              apagadas em definitivo. Você pode pedir exclusão antecipada a qualquer
-              momento.
+              Suas memórias ficam disponíveis por 12 meses. Após esse período, são apagadas em
+              definitivo. Você pode pedir exclusão antecipada a qualquer momento.
             </p>
           </article>
         </div>
@@ -489,6 +494,214 @@ function ShareLinkModal({ info, onClose }) {
       </div>
     </div>
   );
+}
+
+function AtividadeSection() {
+  const [usage, setUsage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    getPatientUsage()
+      .then(d => {
+        if (!cancelled) setUsage(d);
+      })
+      .catch(() => {
+        if (!cancelled) setUsage({ logins: [], shares: [] });
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (loading || !usage) return null;
+  const { logins, shares } = usage;
+  if (logins.length === 0 && shares.length === 0) return null;
+
+  const lastLogin = logins[0];
+  const lastShare = shares.find(s => s.last_viewed_at);
+
+  return (
+    <section className="conta-atividade">
+      <header className="conta-atividade-header">
+        <div>
+          <h2>
+            <Activity size={18} /> Sua atividade
+          </h2>
+          <p className="conta-atividade-sub">
+            Tudo que acontece na sua conta — pra você acompanhar com tranquilidade.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="conta-atividade-toggle"
+          onClick={() => setExpanded(e => !e)}
+        >
+          {expanded ? (
+            <>
+              <ChevronUp size={14} /> recolher
+            </>
+          ) : (
+            <>
+              <ChevronDown size={14} /> ver detalhes
+            </>
+          )}
+        </button>
+      </header>
+
+      <div className="conta-atividade-summary">
+        {lastLogin && (
+          <div className="conta-atividade-stat">
+            <LogIn size={16} className="conta-atividade-stat-icon" />
+            <div>
+              <div className="conta-atividade-stat-label">Último acesso seu</div>
+              <div className="conta-atividade-stat-value">
+                {formatDateTime(lastLogin.created_at)}
+              </div>
+              <div className="conta-atividade-stat-sub">
+                {parseUserAgent(lastLogin.user_agent)}
+                {lastLogin.ip && ` · IP ${maskIp(lastLogin.ip)}`}
+              </div>
+            </div>
+          </div>
+        )}
+        {lastShare ? (
+          <div className="conta-atividade-stat">
+            <Eye size={16} className="conta-atividade-stat-icon" />
+            <div>
+              <div className="conta-atividade-stat-label">Sua família abriu pela última vez</div>
+              <div className="conta-atividade-stat-value">
+                {formatDateTime(lastShare.last_viewed_at)}
+              </div>
+              <div className="conta-atividade-stat-sub">
+                Link do exame de {new Date(lastShare.exam_date).toLocaleDateString('pt-BR')}
+                {lastShare.last_viewed_ip && ` · IP ${maskIp(lastShare.last_viewed_ip)}`}
+              </div>
+            </div>
+          </div>
+        ) : shares.length > 0 ? (
+          <div className="conta-atividade-stat">
+            <Eye size={16} className="conta-atividade-stat-icon" />
+            <div>
+              <div className="conta-atividade-stat-label">Compartilhamentos</div>
+              <div className="conta-atividade-stat-value">
+                {shares.length} {shares.length === 1 ? 'link gerado' : 'links gerados'}
+              </div>
+              <div className="conta-atividade-stat-sub">
+                Ainda ninguém abriu — assim que abrirem aparece aqui.
+              </div>
+            </div>
+          </div>
+        ) : null}
+      </div>
+
+      {expanded && (
+        <div className="conta-atividade-details">
+          {logins.length > 0 && (
+            <div className="conta-atividade-block">
+              <h3>
+                <LogIn size={14} /> Acessos recentes seus
+              </h3>
+              <ul className="conta-atividade-list">
+                {logins.map(l => (
+                  <li key={l.id}>
+                    <span className="conta-atividade-list-when">
+                      {formatDateTime(l.created_at)}
+                    </span>
+                    <span className="conta-atividade-list-what">
+                      {parseUserAgent(l.user_agent)}
+                      {l.ip && ` · ${maskIp(l.ip)}`}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {shares.length > 0 && (
+            <div className="conta-atividade-block">
+              <h3>
+                <Share2 size={14} /> Links que você gerou pra família
+              </h3>
+              <ul className="conta-atividade-list">
+                {shares.map(s => {
+                  const expired = new Date(s.expires_at) < new Date();
+                  return (
+                    <li key={s.id}>
+                      <span className="conta-atividade-list-when">
+                        Gerado em {formatDateTime(s.created_at)}
+                      </span>
+                      <span className="conta-atividade-list-what">
+                        Exame de {new Date(s.exam_date).toLocaleDateString('pt-BR')} ·{' '}
+                        {s.view_count} {s.view_count === 1 ? 'visualização' : 'visualizações'}
+                        {s.last_viewed_at && (
+                          <>
+                            {' '}
+                            · última em {formatDateTime(s.last_viewed_at)}
+                            {s.last_viewed_ip && ` (IP ${maskIp(s.last_viewed_ip)})`}
+                          </>
+                        )}
+                        {expired && ' · link expirado'}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function parseUserAgent(ua) {
+  if (!ua) return 'Dispositivo desconhecido';
+  const lc = ua.toLowerCase();
+  let device = 'Computador';
+  if (lc.includes('iphone')) device = 'iPhone';
+  else if (lc.includes('ipad')) device = 'iPad';
+  else if (lc.includes('android')) device = 'Android';
+  else if (lc.includes('mac os')) device = 'Mac';
+  else if (lc.includes('windows')) device = 'Windows';
+  else if (lc.includes('linux')) device = 'Linux';
+
+  let browser = '';
+  if (lc.includes('edg/')) browser = 'Edge';
+  else if (lc.includes('chrome/') && !lc.includes('chromium/')) browser = 'Chrome';
+  else if (lc.includes('firefox/')) browser = 'Firefox';
+  else if (lc.includes('safari/') && !lc.includes('chrome/')) browser = 'Safari';
+
+  return browser ? `${device} · ${browser}` : device;
+}
+
+function maskIp(ip) {
+  if (!ip) return '';
+  // IPv4: oculta último octeto (62.180.5.123 → 62.180.5.•••)
+  const v4 = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/.exec(ip);
+  if (v4) return `${v4[1]}.${v4[2]}.${v4[3]}.•••`;
+  // IPv6: oculta últimos blocos
+  if (ip.includes(':')) {
+    const parts = ip.split(':');
+    return parts.slice(0, 3).join(':') + ':•••';
+  }
+  return ip;
+}
+
+function formatDateTime(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleString('pt-BR', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 function firstName(full) {

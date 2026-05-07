@@ -21,7 +21,34 @@ const MAX_BYTES = 4 * 1024 * 1024;
 const HISTORY_KEY = 'memo3d_labia_history';
 const HISTORY_LIMIT = 10;
 
-const DEFAULT_PROMPT = `Hyper-realistic 3D ultrasound baby face enhancement. Preserve anatomical features, composition, and proportions exactly. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. Avoid: cartoon, anime, plastic skin, doll-like, deformed, added hair, blurry, distorted.`;
+// Cláusulas comuns aplicadas a todos os presets:
+// - corta o HUD do aparelho (info clínica, ID, marcadores, bordas)
+// - inclui rótulo "AI enhanced" discreto pra atender a obrigação de
+//   indicar uso de IA na imagem final
+const COMMON_TAIL = `Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — output only the clean baby image on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner. Avoid: HUD text, machine UI elements.`;
+
+const PRESETS = [
+  {
+    id: 'fiel',
+    label: 'Fiel',
+    description: 'Preserva ao máximo a anatomia, pose e composição original',
+    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve anatomical features, composition, pose, and proportions EXACTLY as in the input image — only refine surface texture and lighting. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, added hair, repositioning, blurry, distorted.`,
+  },
+  {
+    id: 'medio',
+    label: 'Médio',
+    description: 'Equilibra fidelidade com refinamento estético',
+    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve facial features and overall composition, allowing subtle refinement of skin tone, lighting, and surroundings. Natural skin texture, warm soft lighting, cinematic mood. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, repositioning beyond what's natural.`,
+  },
+  {
+    id: 'realista',
+    label: 'Realista',
+    description: 'Mais liberdade artística — pode reinterpretar pose e iluminação',
+    prompt: `Photorealistic newborn-style portrait based on this 3D ultrasound. Beautiful natural baby face with soft skin, gentle expression, dramatic warm lighting, professional studio mood. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed.`,
+  },
+];
+
+const DEFAULT_PRESET_ID = 'fiel';
 
 export default function LabIA() {
   const basePath = useMemo3dPath();
@@ -34,7 +61,10 @@ export default function LabIA() {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
-  const [prompt, setPrompt] = useState(DEFAULT_PROMPT);
+  const [presetId, setPresetId] = useState(DEFAULT_PRESET_ID);
+  const [prompt, setPrompt] = useState(
+    () => PRESETS.find(p => p.id === DEFAULT_PRESET_ID)?.prompt || ''
+  );
   const [generating, setGenerating] = useState(false);
   const [genError, setGenError] = useState(null);
   const [result, setResult] = useState(null); // { standard, quality }
@@ -127,6 +157,7 @@ export default function LabIA() {
       const entry = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         ts: new Date().toISOString(),
+        preset: presetId,
         prompt: prompt.trim(),
         standardOk: !!data.standard?.ok,
         standardMs: data.standard?.ms,
@@ -261,12 +292,28 @@ export default function LabIA() {
       </section>
 
       <section className="section">
-        <h2>2. Prompt</h2>
+        <h2>2. Preset + prompt</h2>
+        <div className="lab-ia-presets">
+          {PRESETS.map(p => (
+            <button
+              key={p.id}
+              type="button"
+              className={`lab-ia-preset${presetId === p.id ? ' is-active' : ''}`}
+              onClick={() => {
+                setPresetId(p.id);
+                setPrompt(p.prompt);
+              }}
+            >
+              <strong>{p.label}</strong>
+              <span>{p.description}</span>
+            </button>
+          ))}
+        </div>
         <textarea
           className="lab-ia-prompt"
           value={prompt}
           onChange={e => setPrompt(e.target.value)}
-          rows={5}
+          rows={6}
           placeholder="Descreve a transformação..."
         />
         <div className="lab-ia-prompt-meta">
@@ -277,10 +324,9 @@ export default function LabIA() {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick={() => setPrompt(DEFAULT_PROMPT)}
-            disabled={prompt === DEFAULT_PROMPT}
+            onClick={() => setPrompt(PRESETS.find(p => p.id === presetId)?.prompt || '')}
           >
-            Restaurar padrão
+            Restaurar preset {PRESETS.find(p => p.id === presetId)?.label}
           </button>
         </div>
       </section>
@@ -334,6 +380,7 @@ export default function LabIA() {
             <thead>
               <tr>
                 <th>Quando</th>
+                <th>Preset</th>
                 <th>Prompt (corte)</th>
                 <th>Standard</th>
                 <th>Quality</th>
@@ -344,6 +391,7 @@ export default function LabIA() {
               {history.map(h => (
                 <tr key={h.id}>
                   <td>{new Date(h.ts).toLocaleTimeString('pt-BR')}</td>
+                  <td>{h.preset || '—'}</td>
                   <td className="lab-ia-history-prompt">
                     {h.prompt.slice(0, 80)}
                     {h.prompt.length > 80 ? '…' : ''}

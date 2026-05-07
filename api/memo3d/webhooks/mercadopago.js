@@ -208,6 +208,9 @@ async function handleApproved({ supabase, payment, paymentId, purchase, pack }) 
   }
 
   // Credita
+  // amount_cents é lido pelo painel admin de Atividade (api/memo3d/admin/activity.js)
+  // pra somar o total acumulado em R$ no card "Compras crédito".
+  const amountCents = Math.round(Number(purchase.amount_brl) * 100);
   const result = await applyCredit({
     patientId: purchase.patient_id,
     delta: purchase.credits,
@@ -216,7 +219,7 @@ async function handleApproved({ supabase, payment, paymentId, purchase, pack }) 
       purchase_id: purchase.id,
       pack_id: purchase.pack_id,
       mp_payment_id: paymentId,
-      amount_brl: purchase.amount_brl,
+      amount_cents: amountCents,
     },
   });
 

@@ -58,6 +58,23 @@ export async function presignGetUrl({ key, expiresInSeconds = 1800 }) {
   return getSignedUrl(getClient(), cmd, { expiresIn: expiresInSeconds });
 }
 
+/**
+ * Sobe um objeto direto do servidor pro R2 (sem URL pré-assinada).
+ * Usado por endpoints que precisam processar bytes antes de gravar
+ * (ex.: lab IA — sobe a foto pra ser enviada à Grok).
+ */
+export async function putObject({ key, body, contentType }) {
+  if (!key) throw new Error('putObject: key obrigatório');
+  if (!body) throw new Error('putObject: body obrigatório');
+  const cmd = new PutObjectCommand({
+    Bucket: BUCKET(),
+    Key: key,
+    Body: body,
+    ContentType: contentType,
+  });
+  return getClient().send(cmd);
+}
+
 /** Apaga objeto. Usado pelo job de hard delete (exame expirado). */
 export async function deleteObject({ key }) {
   if (!key) throw new Error('deleteObject: key obrigatório');

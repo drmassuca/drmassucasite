@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Users, FileText, Hourglass, Wallet, ArrowRight } from 'lucide-react';
+import { Users, FileText, Hourglass, Wallet, ArrowRight, Sparkles } from 'lucide-react';
 import { supabase } from '../../../lib/supabase';
 import { useMemo3dPath } from '../../../lib/memo3d/path-context';
 import './memo3d.css';
@@ -107,6 +107,14 @@ export default function Memo3dDashboard() {
             <div>
               <strong>Pacientes</strong>
               <span>Cadastrar e gerenciar</span>
+            </div>
+            <ArrowRight size={16} />
+          </Link>
+          <Link to={`${basePath}/lab-ia`} className="quick-link">
+            <Sparkles size={20} />
+            <div>
+              <strong>Lab IA</strong>
+              <span>Comparador Grok (img2img)</span>
             </div>
             <ArrowRight size={16} />
           </Link>

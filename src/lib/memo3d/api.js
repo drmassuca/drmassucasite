@@ -373,6 +373,34 @@ export async function uploadVideo({ patientId, examId, file }) {
   return data.media;
 }
 
+// ─── Lab IA (admin only) ──────────────────────────────────
+
+/**
+ * Sobe foto pro lab de testes do Grok (pasta R2 lab-ia/uploads/).
+ * Sem watermark — imagem original vai pra Grok.
+ * Retorna { key, sizeBytes, mime }.
+ */
+export async function labUploadPhoto(file) {
+  const res = await authedFetch('/api/memo3d/admin/lab-upload', {
+    method: 'POST',
+    headers: { 'Content-Type': file.type },
+    body: file,
+  });
+  return asJson(res);
+}
+
+/**
+ * Chama xAI Image Edit nos 2 modelos em paralelo. Retorna
+ * { standard, pro } com { ok, ms, costUsd, images?, error?, model }.
+ */
+export async function labGrokEdit({ photoKey, prompt }) {
+  const res = await authedFetch('/api/memo3d/admin/lab-grok-edit', {
+    method: 'POST',
+    body: JSON.stringify({ photoKey, prompt }),
+  });
+  return asJson(res);
+}
+
 /** Lê dimensões de imagem usando URL.createObjectURL + Image. */
 function readImageDimensions(file) {
   return new Promise((resolve, reject) => {

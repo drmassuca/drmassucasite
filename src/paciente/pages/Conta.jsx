@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import {
   Image as ImageIcon,
   Film,
@@ -31,6 +31,7 @@ import {
 import { recordAudit } from '../../lib/memo3d/audit';
 import ConsentModal from '../components/ConsentModal';
 import { CONSENT_VERSION } from '../consent-version';
+import { useCredits } from '../contexts/CreditsContext';
 import '../paciente.css';
 
 const TYPE_LABELS = {
@@ -49,11 +50,14 @@ const DEVICE_LABELS = {
 
 export default function Conta() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { refetch: refetchCredits } = useCredits();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [previewMedia, setPreviewMedia] = useState(null);
   const [shareInfo, setShareInfo] = useState(null);
+  const [pixStatus, setPixStatus] = useState(null);
 
   const reload = useCallback(async () => {
     setLoading(true);
@@ -85,6 +89,32 @@ export default function Conta() {
   useEffect(() => {
     reload();
   }, [reload]);
+
+  // Retorno do checkout do Mercado Pago — query param ?pix=success|pending|failure.
+  // Mostra banner, atualiza saldo de créditos (no caso de success) e remove o
+  // param da URL pra não re-disparar em refresh.
+  useEffect(() => {
+    const pix = searchParams.get('pix');
+    if (!pix) return;
+    if (pix === 'success' || pix === 'pending' || pix === 'failure') {
+      setPixStatus(pix);
+      if (pix === 'success' || pix === 'pending') {
+        // PIX é assíncrono — saldo pode ainda não ter chegado, mas refetch no
+        // mount + outro depois de 4s cobre os dois casos (webhook rápido e lento).
+        refetchCredits();
+        const t = setTimeout(refetchCredits, 4000);
+        const cleanup = () => clearTimeout(t);
+        // Limpa o param da URL preservando outros
+        const next = new URLSearchParams(searchParams);
+        next.delete('pix');
+        setSearchParams(next, { replace: true });
+        return cleanup;
+      }
+      const next = new URLSearchParams(searchParams);
+      next.delete('pix');
+      setSearchParams(next, { replace: true });
+    }
+  }, [searchParams, setSearchParams, refetchCredits]);
 
   // Registra patient.login no audit log uma vez por sessão de aba.
   // Captura tanto login fresco quanto retorno em sessão Supabase ainda válida.
@@ -135,6 +165,7 @@ export default function Conta() {
 
   return (
     <>
+      {pixStatus && <PixReturnBanner status={pixStatus} onClose={() => setPixStatus(null)} />}
       <div className="conta-hero">
         <h1>Olá, {firstName(patient.full_name)}</h1>
         <p>
@@ -752,4 +783,46 @@ function formatDateTime(iso) {
 function firstName(full) {
   if (!full) return '';
   return full.trim().split(/\s+/)[0];
+}
+
+function PixReturnBanner({ status, onClose }) {
+  if (status === 'success') {
+    return (
+      <div className="pix-banner is-success" role="status">
+        <Check size={16} />
+        <div>
+          <strong>Pagamento confirmado!</strong> Seus créditos já estão disponíveis.
+        </div>
+        <button type="button" onClick={onClose} aria-label="Fechar">
+          <X size={14} />
+        </button>
+      </div>
+    );
+  }
+  if (status === 'pending') {
+    return (
+      <div className="pix-banner is-pending" role="status">
+        <Hourglass size={16} />
+        <div>
+          <strong>Pagamento em processamento.</strong> Assim que o PIX for confirmado, seus créditos
+          aparecem automaticamente — pode levar alguns segundos.
+        </div>
+        <button type="button" onClick={onClose} aria-label="Fechar">
+          <X size={14} />
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div className="pix-banner is-failure" role="status">
+      <X size={16} />
+      <div>
+        <strong>Pagamento não concluído.</strong> Você pode tentar de novo a partir da página de
+        melhorar foto.
+      </div>
+      <button type="button" onClick={onClose} aria-label="Fechar">
+        <X size={14} />
+      </button>
+    </div>
+  );
 }

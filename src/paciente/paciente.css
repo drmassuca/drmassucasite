@@ -1731,6 +1731,59 @@
   justify-content: center;
 }
 
+/* ─── Banner de retorno do checkout PIX ──────────────── */
+.pix-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-left-width: 3px;
+  border-left-style: solid;
+}
+
+.pix-banner > div {
+  flex: 1;
+}
+
+.pix-banner button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.18s;
+}
+
+.pix-banner button:hover {
+  opacity: 1;
+}
+
+.pix-banner.is-success {
+  background: rgba(34, 197, 94, 0.07);
+  color: #14532d;
+  border-left-color: #15803d;
+}
+
+.pix-banner.is-pending {
+  background: rgba(184, 146, 58, 0.08);
+  color: #78350f;
+  border-left-color: var(--m3d-gold);
+}
+
+.pix-banner.is-failure {
+  background: rgba(220, 38, 38, 0.06);
+  color: #7f1d1d;
+  border-left-color: #b91c1c;
+}
+
 /* ─── Modal de comprar créditos ──────────────────────── */
 .buy-credits-modal {
   text-align: left;

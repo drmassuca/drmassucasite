@@ -406,6 +406,26 @@ export async function getPatientCredits() {
   return asJson(res);
 }
 
+/** Lista os pacotes de créditos disponíveis para compra. */
+export async function getCreditsPacks() {
+  const res = await authedFetch('/api/memo3d/paciente/credits-packs', { method: 'GET' });
+  const data = await asJson(res);
+  return data.packs || [];
+}
+
+/**
+ * Cria checkout do Mercado Pago pra um pacote de créditos.
+ * Retorna { initPoint, sandboxInitPoint, purchaseId, pack } — UI redireciona
+ * pra initPoint (URL do checkout do MP).
+ */
+export async function createCreditsCheckout(packId) {
+  const res = await authedFetch('/api/memo3d/paciente/credits-checkout', {
+    method: 'POST',
+    body: JSON.stringify({ packId }),
+  });
+  return asJson(res);
+}
+
 // ─── Melhoria com IA (paciente) ───────────────────────────
 
 /**

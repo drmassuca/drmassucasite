@@ -45,12 +45,8 @@ const FAQS = [
     a: 'Entre 26 e 32 semanas é o período ideal. Antes disso, o bebê ainda é muito pequeno; depois, pode estar com pouco espaço no útero, o que dificulta a visualização do rostinho.',
   },
   {
-    q: 'O 3D tem custo adicional?',
-    a: 'Não. As imagens 3D são oferecidas como diferencial exclusivo da clínica, sem custo extra, sempre que as condições técnicas permitirem durante seus exames obstétricos.',
-  },
-  {
     q: 'Sempre é possível ter imagens 3D?',
-    a: 'Nem sempre. A qualidade depende da posição do bebê, da quantidade de líquido amniótico e da janela acústica da gestante. Por isso oferecemos como cortesia, quando o exame permite.',
+    a: 'Nem sempre. A qualidade depende da posição do bebê, da quantidade de líquido amniótico e da janela acústica da gestante. Quando o exame permite, as imagens são capturadas e ficam disponíveis na sua galeria.',
   },
   {
     q: 'E depois do exame, como recebo as imagens?',
@@ -107,7 +103,7 @@ export default function Ultrassom3D() {
     <>
       <SEO
         title="Ultrassom 3D/4D em Itaberaí-GO | Dr. Massuca | Imagens 3D do Bebê"
-        description="Ultrassom 3D/4D em Itaberaí-GO com Dr. Massuca. Veja seu bebê em detalhes únicos — diferencial exclusivo, sem custo extra, oferecido quando as condições técnicas permitem. Equipamentos premium GE Voluson S10 e Samsung HERA Z20."
+        description="Ultrassom 3D/4D em Itaberaí-GO com Dr. Massuca. Veja seu bebê em detalhes únicos durante seus exames obstétricos, com equipamentos premium GE Voluson S10 e Samsung HERA Z20. Imagens disponíveis quando as condições técnicas permitem."
         canonical="/ultrassom-3d"
         keywords="ultrassom 3D Itaberaí, ultrassom 4D, imagens 3D bebê, Dr Massuca 3D, ultrassom obstétrico 3D, babyface 3D"
         image="https://drmassuca.com.br/imagens-3d/ultrassom-3d-4.webp"
@@ -165,8 +161,7 @@ export default function Ultrassom3D() {
             <FadeUp delay={260}>
               <p className="memo3d-hero-lead">
                 Tecnologia que permite visualizar o rostinho e os movimentos do seu bebê em detalhes
-                únicos — oferecida como cortesia em todos os exames obstétricos, sempre que as
-                condições técnicas permitem.
+                únicos durante seus exames obstétricos.
               </p>
             </FadeUp>
             <FadeUp delay={400}>
@@ -203,7 +198,7 @@ export default function Ultrassom3D() {
               ['26–32', 'semanas · período áureo'],
               ['HERA Z20', 'aparelho premium Samsung'],
               ['Voluson S10', 'aparelho premium GE'],
-              ['Cortesia', 'sem custo adicional'],
+              ['4D', 'tempo real'],
             ].map(([k, v], i) => (
               <FadeUp key={i} delay={i * 70}>
                 <div>
@@ -290,8 +285,7 @@ export default function Ultrassom3D() {
               </p>
               <p className="memo3d-specs-prose">
                 Mesmo nesse período, a qualidade da imagem 3D depende da posição do bebê, do líquido
-                amniótico e da janela acústica. Por isso oferecemos como cortesia — não como
-                promessa.
+                amniótico e da janela acústica da gestante. É uma possibilidade — não uma promessa.
               </p>
             </FadeUp>
 
@@ -391,23 +385,6 @@ export default function Ultrassom3D() {
           </div>
         </section>
 
-        {/* AVISO IMPORTANTE — em estilo discreto */}
-        <section className="memo3d-section u3d-disclaimer-wrap">
-          <FadeUp>
-            <div className="u3d-disclaimer">
-              <div className="u3d-disclaimer-rule" />
-              <p>
-                O ultrassom 3D é oferecido como cortesia, sem custo adicional, sempre que as
-                condições técnicas permitem.{' '}
-                <em>
-                  A prioridade do exame é, e sempre será, a avaliação médica detalhada da saúde do
-                  bebê e da gestação.
-                </em>
-              </p>
-            </div>
-          </FadeUp>
-        </section>
-
         {/* FOREST CTA */}
         <section className="memo3d-forest-cta">
           <FadeUp>
@@ -417,7 +394,7 @@ export default function Ultrassom3D() {
               <em>primeiro retrato</em>?
             </h2>
             <p className="memo3d-forest-cta-lead">
-              Agende seu ultrassom obstétrico pelo WhatsApp e, quando as condições permitirem, ganhe
+              Agende seu ultrassom obstétrico pelo WhatsApp e, quando as condições permitirem, veja
               lindas imagens 3D do seu bebê.
             </p>
             <a

@@ -1,0 +1,192 @@
+/* ─── Ultrassom 3D — overrides e blocos específicos ────────
+   Reusa toda a estrutura visual de memo3d-landing.css.
+   Aqui ficam só as seções exclusivas dessa página:
+     · u3d-memo-bridge   (cross-link pra /memo3d)
+     · u3d-disclaimer    (aviso clínico discreto)
+*/
+
+.u3d-landing {
+  /* hook pra overrides futuros se precisar diferenciar do /memo3d */
+}
+
+/* ─── Bridge pra Memo3D ──────────────────────────────── */
+.u3d-memo-bridge {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.u3d-memo-bridge-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 72px;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.u3d-memo-bridge-text h2 {
+  font-family: var(--m3d-font-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--m3d-ink);
+  margin: 18px 0 24px;
+}
+
+.u3d-memo-bridge-text h2 em {
+  font-style: italic;
+  color: var(--m3d-forest);
+}
+
+.u3d-memo-bridge-text p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--m3d-ink);
+  margin: 0 0 18px;
+  max-width: 480px;
+}
+
+.u3d-memo-bridge-text p strong {
+  font-weight: 600;
+  color: var(--m3d-forest);
+  letter-spacing: 0.01em;
+}
+
+.u3d-memo-bridge-meta {
+  font-size: 13px !important;
+  color: var(--m3d-text-muted) !important;
+  font-style: italic;
+  border-left: 1px solid var(--m3d-gold);
+  padding-left: 14px;
+  margin: 24px 0 28px !important;
+}
+
+.u3d-memo-bridge-text .memo3d-btn {
+  margin-top: 8px;
+}
+
+/* Figuras lado direito — duas imagens em sobreposição editorial */
+.u3d-memo-bridge-figure {
+  position: relative;
+  aspect-ratio: 1 / 1.05;
+  width: 100%;
+}
+
+.u3d-memo-bridge-frame {
+  position: absolute;
+  overflow: hidden;
+  background: var(--m3d-bg);
+  box-shadow: var(--m3d-shadow-card-hover);
+}
+
+.u3d-memo-bridge-frame:first-child {
+  top: 0;
+  left: 0;
+  width: 72%;
+  aspect-ratio: 4 / 5;
+  z-index: 2;
+}
+
+.u3d-memo-bridge-frame-secondary {
+  bottom: 0;
+  right: 0;
+  width: 56%;
+  aspect-ratio: 1 / 1.1;
+  z-index: 1;
+}
+
+.u3d-memo-bridge-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.92) contrast(1.02);
+  transition: filter 0.5s var(--m3d-ease), transform 0.6s var(--m3d-ease);
+}
+
+.u3d-memo-bridge-frame:hover img {
+  filter: saturate(1) contrast(1.04);
+  transform: scale(1.03);
+}
+
+/* Filete dourado decorativo só no frame principal */
+.u3d-memo-bridge-frame:first-child::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  height: 1px;
+  background: var(--m3d-gold);
+  opacity: 0.85;
+}
+
+/* ─── Disclaimer discreto ─────────────────────────────── */
+.u3d-disclaimer-wrap {
+  padding-top: 0;
+  padding-bottom: 64px;
+}
+
+.u3d-disclaimer {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 32px;
+}
+
+.u3d-disclaimer-rule {
+  width: 32px;
+  height: 1px;
+  background: var(--m3d-gold);
+  margin: 0 auto 28px;
+}
+
+.u3d-disclaimer p {
+  font-family: var(--m3d-font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--m3d-text-muted);
+  font-weight: 400;
+  margin: 0;
+}
+
+.u3d-disclaimer p em {
+  font-style: italic;
+  color: var(--m3d-forest);
+  font-size: 17px;
+  display: block;
+  margin-top: 8px;
+}
+
+/* ─── Mobile ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .u3d-memo-bridge {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+  .u3d-memo-bridge-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .u3d-memo-bridge-figure {
+    aspect-ratio: 5 / 4;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .u3d-memo-bridge-text h2 {
+    font-size: 36px;
+  }
+  .u3d-memo-bridge-text p {
+    font-size: 16px;
+  }
+  .u3d-disclaimer p {
+    font-size: 16px;
+  }
+  .u3d-disclaimer p em {
+    font-size: 15px;
+  }
+}

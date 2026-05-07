@@ -22,17 +22,18 @@ const HISTORY_KEY = 'memo3d_labia_history';
 const HISTORY_LIMIT = 10;
 
 // Cláusulas comuns aplicadas a todos os presets:
+// - close-up no rosto (rosto deve ocupar a maior parte da imagem)
 // - corta o HUD do aparelho (info clínica, ID, marcadores, bordas)
 // - inclui rótulo "AI enhanced" discreto pra atender a obrigação de
 //   indicar uso de IA na imagem final
-const COMMON_TAIL = `Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — output only the clean baby image on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner. Avoid: HUD text, machine UI elements.`;
+const COMMON_TAIL = `Tightly frame the baby's face as the main subject — face must fill the majority of the output frame (close-up portrait composition). De-emphasize or crop limbs, hands, umbilical cord, and surrounding body parts. Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — output only the clean baby face on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner. Avoid: wide-angle framing, distant baby, HUD text, machine UI elements.`;
 
 const PRESETS = [
   {
     id: 'fiel',
     label: 'Fiel',
-    description: 'Preserva ao máximo a anatomia, pose e composição original',
-    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve anatomical features, composition, pose, and proportions EXACTLY as in the input image — only refine surface texture and lighting. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, added hair, repositioning, blurry, distorted.`,
+    description: 'Preserva ao máximo o rosto e proporções faciais originais',
+    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve facial features and proportions EXACTLY as in the input image — same eyes, nose, mouth, cheeks, chin, and head shape. The face must remain unmistakably the same baby. Only refine surface texture and lighting. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, added hair, changing the face identity, blurry, distorted.`,
   },
   {
     id: 'medio',

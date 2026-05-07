@@ -6,11 +6,15 @@
  * Retorna:
  *  - summary: contadores totais e por tipo no período
  *  - patientStats: top pacientes com contagem
- *  - events: tabela paginada de eventos
+ *  - events: tabela paginada de eventos (com patient embed)
  *  - knownActions: lista de actions distintas pra montar filtros
  *
  * Lê de memo_audit_log + memo_credit_ledger (compras de crédito quando
  * Richard implementar entram aqui também).
+ *
+ * Nota: PostgREST embedded select entre memo_audit_log e memo_patients
+ * exige FK formal, que não existe. Em vez disso, fazemos 2 queries e
+ * juntamos no JS pra evitar mudança de schema.
  */
 import { requireAdmin } from '../_lib/auth.js';
 import { getAdminClient } from '../_lib/supabase-admin.js';
@@ -36,29 +40,24 @@ export default async function handler(req, res) {
 
     const client = getAdminClient();
 
-    // Query base de audit log
-    let query = client
+    // 1. Eventos paginados (sem embed — fazer JOIN no JS depois)
+    let eventsQuery = client
       .from('memo_audit_log')
       .select(
-        `
-        id, action, resource_type, resource_id,
-        patient_id, user_id, ip, user_agent, metadata, created_at,
-        memo_patients ( id, full_name, phone )
-        `,
+        'id, action, resource_type, resource_id, patient_id, user_id, ip, user_agent, metadata, created_at',
         { count: 'exact' }
       )
       .order('created_at', { ascending: false });
 
-    if (fromIso) query = query.gte('created_at', fromIso);
-    if (toIso) query = query.lte('created_at', toIso);
-    if (types?.length) query = query.in('action', types);
-    if (patientId) query = query.eq('patient_id', patientId);
+    if (fromIso) eventsQuery = eventsQuery.gte('created_at', fromIso);
+    if (toIso) eventsQuery = eventsQuery.lte('created_at', toIso);
+    if (types?.length) eventsQuery = eventsQuery.in('action', types);
+    if (patientId) eventsQuery = eventsQuery.eq('patient_id', patientId);
 
-    // Eventos paginados
-    const eventsRes = await query.range(offset, offset + limit - 1);
+    const eventsRes = await eventsQuery.range(offset, offset + limit - 1);
     if (eventsRes.error) throw eventsRes.error;
 
-    // Resumo agregado — contagem total no período (sem paginação)
+    // 2. Resumo agregado — todas actions no período (paginação ignorada)
     let summaryQuery = client.from('memo_audit_log').select('action', { count: 'exact' });
     if (fromIso) summaryQuery = summaryQuery.gte('created_at', fromIso);
     if (toIso) summaryQuery = summaryQuery.lte('created_at', toIso);
@@ -66,23 +65,18 @@ export default async function handler(req, res) {
     const summaryRes = await summaryQuery;
     if (summaryRes.error) throw summaryRes.error;
 
-    // Conta por action (no JS — Supabase não tem GROUP BY direto via REST)
+    // Conta por action (no JS — Supabase JS não tem GROUP BY direto)
     const byAction = {};
     (summaryRes.data || []).forEach(row => {
       byAction[row.action] = (byAction[row.action] || 0) + 1;
     });
 
-    // Top pacientes por número de eventos no período (sem patientId filter)
+    // 3. Top pacientes (sem embed)
     let patientStats = [];
     if (!patientId) {
       let psQuery = client
         .from('memo_audit_log')
-        .select(
-          `
-          patient_id,
-          memo_patients ( full_name )
-          `
-        )
+        .select('patient_id')
         .not('patient_id', 'is', null);
       if (fromIso) psQuery = psQuery.gte('created_at', fromIso);
       if (toIso) psQuery = psQuery.lte('created_at', toIso);
@@ -92,11 +86,7 @@ export default async function handler(req, res) {
         (ps.data || []).forEach(r => {
           if (!r.patient_id) return;
           if (!acc[r.patient_id]) {
-            acc[r.patient_id] = {
-              patient_id: r.patient_id,
-              full_name: r.memo_patients?.full_name || '—',
-              count: 0,
-            };
+            acc[r.patient_id] = { patient_id: r.patient_id, count: 0 };
           }
           acc[r.patient_id].count += 1;
         });
@@ -106,10 +96,38 @@ export default async function handler(req, res) {
       }
     }
 
-    // Lista de actions distintas pra filtro
-    const knownActions = Object.keys(byAction).sort();
+    // 4. Junta nomes das pacientes (uma única query pra todos os IDs únicos)
+    const patientIdsSet = new Set();
+    (eventsRes.data || []).forEach(e => {
+      if (e.patient_id) patientIdsSet.add(e.patient_id);
+    });
+    patientStats.forEach(p => patientIdsSet.add(p.patient_id));
 
-    // Compras de crédito — pega do ledger (reason = purchase_pix)
+    let patientsById = {};
+    if (patientIdsSet.size > 0) {
+      const { data: patients, error: pErr } = await client
+        .from('memo_patients')
+        .select('id, full_name, phone')
+        .in('id', Array.from(patientIdsSet));
+      if (!pErr && patients) {
+        patientsById = patients.reduce((acc, p) => {
+          acc[p.id] = p;
+          return acc;
+        }, {});
+      }
+    }
+
+    // Anexa memo_patients em events e patientStats
+    const events = (eventsRes.data || []).map(e => ({
+      ...e,
+      memo_patients: e.patient_id ? patientsById[e.patient_id] || null : null,
+    }));
+    patientStats = patientStats.map(p => ({
+      ...p,
+      full_name: patientsById[p.patient_id]?.full_name || '—',
+    }));
+
+    // 5. Compras de crédito — pega do ledger (reason = purchase_pix)
     let purchasesCount = 0;
     let purchasesAmountCents = 0;
     {
@@ -130,6 +148,8 @@ export default async function handler(req, res) {
       }
     }
 
+    const knownActions = Object.keys(byAction).sort();
+
     return res.status(200).json({
       summary: {
         totalEvents: summaryRes.count || 0,
@@ -139,7 +159,7 @@ export default async function handler(req, res) {
       },
       patientStats,
       knownActions,
-      events: eventsRes.data || [],
+      events,
       pagination: {
         page: pageNum,
         pageSize: limit,

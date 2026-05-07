@@ -13,7 +13,6 @@
  * Limpeza: pasta lab-ia/uploads/ pode ser limpa via cron ou manualmente —
  * é só fase de testes.
  */
-import { randomUUID } from 'node:crypto';
 import { requireAdmin } from '../_lib/auth.js';
 import { putObject } from '../_lib/r2-server.js';
 
@@ -66,13 +65,20 @@ export default async function handler(req, res) {
     if (buffer.length === 0) return res.status(400).json({ error: 'Body vazio' });
 
     const ext = mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : 'jpg';
-    const key = `lab-ia/uploads/${Date.now()}-${randomUUID()}.${ext}`;
+    const id = globalThis.crypto?.randomUUID
+      ? globalThis.crypto.randomUUID()
+      : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+    const key = `lab-ia/uploads/${Date.now()}-${id}.${ext}`;
     await putObject({ key, body: buffer, contentType: mime });
 
     return res.status(200).json({ key, sizeBytes: buffer.length, mime });
   } catch (err) {
     if (err.statusCode) return res.status(err.statusCode).json({ error: err.message });
     console.error('[memo3d lab-upload]', err);
-    return res.status(500).json({ error: 'Erro ao subir foto pro lab' });
+    // Admin-only e fase de testes: devolve mensagem técnica pra debug rápido.
+    return res.status(500).json({
+      error: `Erro ao subir foto pro lab: ${err?.message || 'desconhecido'}`,
+      name: err?.name,
+    });
   }
 }

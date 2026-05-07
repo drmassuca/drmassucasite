@@ -117,6 +117,9 @@ export default async function handler(req, res) {
   } catch (err) {
     if (err.statusCode) return res.status(err.statusCode).json({ error: err.message });
     console.error('[memo3d lab-grok-edit]', err);
-    return res.status(500).json({ error: 'Erro ao chamar Grok' });
+    return res.status(500).json({
+      error: `Erro ao chamar Grok: ${err?.message || 'desconhecido'}`,
+      name: err?.name,
+    });
   }
 }

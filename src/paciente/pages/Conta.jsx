@@ -30,6 +30,7 @@ import {
 } from '../../lib/memo3d/api';
 import { recordAudit } from '../../lib/memo3d/audit';
 import ConsentModal from '../components/ConsentModal';
+import { CONSENT_VERSION } from '../consent-version';
 import '../paciente.css';
 
 const TYPE_LABELS = {
@@ -118,8 +119,8 @@ export default function Conta() {
 
   const { patient, exams } = data;
 
-  // Termo não aceito → modal bloqueia visualização
-  if (!patient.consent_lgpd_at) {
+  // Termo não aceito ou versão antiga → modal bloqueia visualização
+  if (!patient.consent_lgpd_at || patient.consent_lgpd_version !== CONSENT_VERSION) {
     return <ConsentModal onAccepted={() => reload()} />;
   }
 

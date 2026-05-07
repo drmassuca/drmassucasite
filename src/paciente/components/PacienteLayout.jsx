@@ -1,13 +1,22 @@
 import { Outlet, useNavigate, Link } from 'react-router-dom';
-import { LogOut } from 'lucide-react';
+import { LogOut, Sparkles, Loader2 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { CreditsProvider, useCredits } from '../contexts/CreditsContext';
 import '../paciente.css';
 
 /**
- * Layout boutique pra paciente. Header com logo Dr. Massuca + sair.
- * Sem sidebar — paciente só tem uma página principal.
+ * Layout boutique pra paciente. Header com logo Dr. Massuca + badge de
+ * créditos IA + sair. Sem sidebar — paciente só tem uma página principal.
  */
 export default function PacienteLayout() {
+  return (
+    <CreditsProvider>
+      <PacienteLayoutInner />
+    </CreditsProvider>
+  );
+}
+
+function PacienteLayoutInner() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -25,9 +34,12 @@ export default function PacienteLayout() {
             <span>memórias da gestação · Dr. Massuca</span>
           </div>
         </Link>
-        <button type="button" onClick={handleLogout} className="paciente-logout">
-          <LogOut size={16} /> Sair
-        </button>
+        <div className="paciente-header-actions">
+          <CreditsBadge />
+          <button type="button" onClick={handleLogout} className="paciente-logout">
+            <LogOut size={16} /> Sair
+          </button>
+        </div>
       </header>
       <main className="paciente-main">
         <Outlet />
@@ -54,5 +66,27 @@ export default function PacienteLayout() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function CreditsBadge() {
+  const { balance, loading, photosRemaining } = useCredits();
+  if (loading && balance == null) {
+    return (
+      <span className="paciente-credits-badge is-loading" aria-label="Carregando créditos">
+        <Loader2 size={14} className="spin" />
+      </span>
+    );
+  }
+  if (balance == null) return null;
+  return (
+    <span
+      className={`paciente-credits-badge${balance === 0 ? ' is-empty' : ''}`}
+      title={`Você tem ${balance} créditos · ~${photosRemaining} foto${photosRemaining === 1 ? '' : 's'} de IA`}
+    >
+      <Sparkles size={14} />
+      <strong>{balance}</strong>
+      <span className="paciente-credits-label">créditos IA</span>
+    </span>
   );
 }

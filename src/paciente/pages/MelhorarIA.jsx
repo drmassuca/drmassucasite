@@ -1,7 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Sparkles, Loader2, AlertTriangle, Save, RotateCcw, Check } from 'lucide-react';
+import {
+  ArrowLeft,
+  Sparkles,
+  Loader2,
+  AlertTriangle,
+  Save,
+  RotateCcw,
+  Check,
+  ShoppingCart,
+} from 'lucide-react';
 import { signPatientR2, enhancePhoto, saveEnhancedPhoto } from '../../lib/memo3d/api';
+import { useCredits } from '../contexts/CreditsContext';
 import '../paciente.css';
 
 const SKIN_TONES = [
@@ -32,6 +42,7 @@ const PRESETS = [
 export default function MelhorarIA() {
   const { mediaId } = useParams();
   const navigate = useNavigate();
+  const { balance, costPerPhoto, setBalance, photosRemaining } = useCredits();
   const [sourceUrl, setSourceUrl] = useState(null);
   const [loadingSource, setLoadingSource] = useState(true);
   const [skinTone, setSkinTone] = useState('padrao');
@@ -41,6 +52,9 @@ export default function MelhorarIA() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState(null);
+  const [showBuyModal, setShowBuyModal] = useState(false);
+
+  const insufficientCredits = balance != null && balance < costPerPhoto;
 
   useEffect(() => {
     let cancelled = false;
@@ -74,6 +88,10 @@ export default function MelhorarIA() {
   }, [mediaId, navigate]);
 
   async function handleGenerate() {
+    if (insufficientCredits) {
+      setShowBuyModal(true);
+      return;
+    }
     setGenerating(true);
     setError(null);
     setResult(null);
@@ -81,8 +99,20 @@ export default function MelhorarIA() {
     try {
       const data = await enhancePhoto({ mediaId, preset, skinTone });
       setResult(data);
+      // Servidor já debitou — atualiza saldo localmente sem refetch
+      if (typeof data.creditsBalance === 'number') {
+        setBalance(data.creditsBalance);
+      }
     } catch (err) {
-      setError(err.message);
+      // 402 = saldo insuficiente; abre modal de compra
+      if (
+        err.message?.includes('Saldo insuficiente') ||
+        err.message?.includes('saldo insuficiente')
+      ) {
+        setShowBuyModal(true);
+      } else {
+        setError(err.message);
+      }
     } finally {
       setGenerating(false);
     }
@@ -183,6 +213,17 @@ export default function MelhorarIA() {
             </div>
           </div>
 
+          <div className="melhorar-ia-cost">
+            <span>
+              Esta operação custa <strong>{costPerPhoto} créditos</strong>
+            </span>
+            <span className="muted">
+              {balance == null
+                ? '— carregando saldo...'
+                : `Saldo: ${balance} · ${photosRemaining} foto${photosRemaining === 1 ? '' : 's'} restantes`}
+            </span>
+          </div>
+
           <button
             type="button"
             className="btn btn-primary melhorar-ia-generate"
@@ -193,18 +234,24 @@ export default function MelhorarIA() {
               <>
                 <Loader2 className="spin" size={16} /> Gerando...
               </>
+            ) : insufficientCredits ? (
+              <>
+                <ShoppingCart size={16} /> Comprar créditos
+              </>
             ) : result ? (
               <>
-                <RotateCcw size={16} /> Gerar de novo
+                <RotateCcw size={16} /> Gerar de novo ({costPerPhoto} créditos)
               </>
             ) : (
               <>
-                <Sparkles size={16} /> Gerar versão melhorada
+                <Sparkles size={16} /> Gerar versão melhorada ({costPerPhoto} créditos)
               </>
             )}
           </button>
         </section>
       </div>
+
+      {showBuyModal && <BuyCreditsModal onClose={() => setShowBuyModal(false)} />}
 
       {result && (
         <section className="melhorar-ia-result">
@@ -254,6 +301,39 @@ export default function MelhorarIA() {
           </div>
         </section>
       )}
+    </div>
+  );
+}
+
+function BuyCreditsModal({ onClose }) {
+  return (
+    <div className="midia-modal" onClick={onClose}>
+      <div className="consent-card" onClick={e => e.stopPropagation()} style={{ maxWidth: 520 }}>
+        <h2>
+          <ShoppingCart size={20} style={{ verticalAlign: 'middle', marginRight: 8 }} />
+          Comprar créditos de IA
+        </h2>
+        <p>
+          Você usou seus créditos disponíveis. Em breve será possível comprar mais créditos
+          diretamente aqui pelo site.
+        </p>
+        <p>
+          Por enquanto, fale com a clínica pelo WhatsApp para liberar créditos extras na sua conta:
+        </p>
+        <div className="consent-actions">
+          <a
+            href="https://wa.me/5562996602117?text=Ol%C3%A1%21%20Quero%20comprar%20mais%20cr%C3%A9ditos%20de%20IA%20pra%20melhorar%20minhas%20fotos%20no%20Memo3D."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+          >
+            <ShoppingCart size={14} /> Falar com a clínica
+          </a>
+          <button type="button" onClick={onClose} className="btn btn-secondary">
+            Fechar
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

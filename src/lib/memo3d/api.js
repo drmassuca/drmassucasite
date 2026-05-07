@@ -373,6 +373,14 @@ export async function uploadVideo({ patientId, examId, file }) {
   return data.media;
 }
 
+// ─── Créditos de IA (paciente) ────────────────────────────
+
+/** Retorna { balance, ledger: [...] } da paciente logada. */
+export async function getPatientCredits() {
+  const res = await authedFetch('/api/memo3d/paciente/credits', { method: 'GET' });
+  return asJson(res);
+}
+
 // ─── Melhoria com IA (paciente) ───────────────────────────
 
 /**

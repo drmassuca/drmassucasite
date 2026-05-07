@@ -13,6 +13,7 @@
 import { requirePatient, getClientIp } from '../_lib/auth-patient.js';
 import { getAdminClient, recordAuditServer } from '../_lib/supabase-admin.js';
 import { presignGetUrl } from '../_lib/r2-server.js';
+import { applyCredit, COST_PHOTO_ENHANCE } from '../_lib/credits.js';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const XAI_EDIT_URL = 'https://api.x.ai/v1/images/edits';
@@ -92,6 +93,18 @@ export default async function handler(req, res) {
     }
     if (!data.r2_key) return res.status(404).json({ error: 'Mídia sem r2_key' });
 
+    // Pré-checa saldo de créditos. Cobrança real ocorre só após sucesso da
+    // xAI — assim erro técnico não consome créditos da paciente. Mas se a
+    // paciente "descartar" o resultado depois de visto, continua cobrado
+    // (custo Grok já foi incorrido).
+    if ((patient.ai_credits || 0) < COST_PHOTO_ENHANCE) {
+      return res.status(402).json({
+        error: 'Saldo insuficiente de créditos de IA',
+        balance: patient.ai_credits || 0,
+        required: COST_PHOTO_ENHANCE,
+      });
+    }
+
     const imageUrl = await presignGetUrl({ key: data.r2_key, expiresInSeconds: 600 });
     const prompt = buildPrompt(preset, skinTone);
 
@@ -135,6 +148,30 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: 'xAI não retornou imagem', ms });
     }
 
+    // Debita créditos AGORA (Grok já entregou). Se falhar o débito (ex.
+    // saldo virou 0 entre check e debit), retorna 402 mas a imagem já
+    // existe — improvável e dá pra logar.
+    let newBalance;
+    try {
+      const result = await applyCredit({
+        patientId: patient.id,
+        delta: -COST_PHOTO_ENHANCE,
+        reason: 'photo_enhance',
+        metadata: { mediaId, preset, skinTone, model: MODEL, ms },
+      });
+      newBalance = result.balance;
+    } catch (creditErr) {
+      console.error('[memo3d enhance-photo] débito de créditos falhou', creditErr);
+      if (creditErr.statusCode === 402) {
+        return res.status(402).json({
+          error: 'Saldo insuficiente — outra geração consumiu seus créditos',
+          balance: creditErr.balance,
+          required: creditErr.required,
+        });
+      }
+      return res.status(500).json({ error: `Erro ao debitar créditos: ${creditErr.message}` });
+    }
+
     await recordAuditServer({
       patientId: patient.id,
       userId: user.id,
@@ -154,6 +191,8 @@ export default async function handler(req, res) {
       costUsd: COST_PER_IMAGE,
       ms,
       promptUsed: prompt,
+      creditsBalance: newBalance,
+      creditsCost: COST_PHOTO_ENHANCE,
     });
   } catch (err) {
     if (err.statusCode) return res.status(err.statusCode).json({ error: err.message });

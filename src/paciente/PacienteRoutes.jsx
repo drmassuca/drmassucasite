@@ -5,6 +5,7 @@ import LoginPaciente from './pages/LoginPaciente';
 import TrocarSenha from './pages/TrocarSenha';
 import Conta from './pages/Conta';
 import Familia from './pages/Familia';
+import MelhorarIA from './pages/MelhorarIA';
 import PacienteLayout from './components/PacienteLayout';
 
 /**
@@ -39,6 +40,7 @@ const PacienteRoutes = () => (
       >
         <Route index element={<Navigate to="/memo3d/conta" replace />} />
         <Route path="conta" element={<Conta />} />
+        <Route path="melhorar/:mediaId" element={<MelhorarIA />} />
       </Route>
       <Route path="/memo3d/*" element={<Navigate to="/memo3d/login" replace />} />
     </Routes>

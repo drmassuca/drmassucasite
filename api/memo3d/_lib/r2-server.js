@@ -58,23 +58,6 @@ export async function presignGetUrl({ key, expiresInSeconds = 1800 }) {
   return getSignedUrl(getClient(), cmd, { expiresIn: expiresInSeconds });
 }
 
-/**
- * Sobe um objeto direto do servidor pro R2 (sem URL pré-assinada).
- * Usado pelo endpoint de upload com watermark, que precisa processar
- * a imagem no back-end antes de enviar.
- */
-export async function putObject({ key, body, contentType }) {
-  if (!key) throw new Error('putObject: key obrigatório');
-  if (!body) throw new Error('putObject: body obrigatório');
-  const cmd = new PutObjectCommand({
-    Bucket: BUCKET(),
-    Key: key,
-    Body: body,
-    ContentType: contentType,
-  });
-  return getClient().send(cmd);
-}
-
 /** Apaga objeto. Usado pelo job de hard delete (exame expirado). */
 export async function deleteObject({ key }) {
   if (!key) throw new Error('deleteObject: key obrigatório');

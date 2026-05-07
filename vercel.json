@@ -4,11 +4,5 @@
     { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },
     { "source": "/ia-medica/artigo/:id", "destination": "/api/og/artigo?id=:id" },
     { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "functions": {
-    "api/memo3d/uploads/r2-watermark.js": {
-      "includeFiles": "api/memo3d/_lib/assets/**",
-      "maxDuration": 30
-    }
-  }
+  ]
 }

@@ -368,7 +368,21 @@ function MediaCard({ media, onClick }) {
       </div>
       <div className="midia-card-meta">
         <span>{isVideo ? 'Vídeo' : isAi ? 'Foto · IA' : 'Foto'}</span>
-        {!isVideo && <DownloadBtn media={media} />}
+        {!isVideo && (
+          <div className="midia-card-actions">
+            {!isAi && (
+              <Link
+                to={`/memo3d/melhorar/${media.id}`}
+                className="midia-action-btn midia-action-ai"
+                title="Melhorar com IA"
+                onClick={e => e.stopPropagation()}
+              >
+                <Wand2 size={14} />
+              </Link>
+            )}
+            <DownloadBtn media={media} />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -679,11 +679,15 @@
   z-index: 1;
 }
 
+.midia-modal-content {
+  overflow-y: auto;
+}
+
 .midia-modal-content iframe,
 .midia-modal-content img {
   width: 100%;
   height: auto;
-  max-height: 80vh;
+  max-height: 70vh;
   display: block;
   position: relative;
   z-index: 0;
@@ -1379,6 +1383,21 @@
 
 .midia-card-thumb {
   position: relative;
+}
+
+/* ─── Botões de ação no rodapé do MediaCard (download + melhorar IA) ─── */
+.midia-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.midia-action-ai {
+  color: var(--m3d-gold);
+}
+
+.midia-action-ai:hover {
+  color: var(--m3d-ink);
 }
 
 /* ─── Botão "Melhorar com IA" no rodapé do MediaPreview ─ */

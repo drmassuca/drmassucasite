@@ -1719,3 +1719,69 @@
   gap: 10px;
   justify-content: center;
 }
+
+/* ─── Modal de comprar créditos ──────────────────────── */
+.buy-credits-modal {
+  text-align: left;
+}
+
+.buy-credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.pack-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 14px;
+  border: 1px solid var(--m3d-rule);
+  border-radius: 10px;
+  background: var(--m3d-bg-soft, #f8fafc);
+  text-align: center;
+  transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+}
+
+.pack-card:hover {
+  border-color: var(--m3d-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -10px rgba(0, 0, 0, 0.18);
+}
+
+.pack-card h3 {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--m3d-text-muted);
+}
+
+.pack-card-credits {
+  font-size: 13px;
+  color: var(--m3d-ink);
+}
+
+.pack-card-credits strong {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--m3d-ink);
+  margin-right: 4px;
+}
+
+.pack-card-photos {
+  font-size: 12px;
+}
+
+.pack-card-price {
+  margin: 6px 0 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--m3d-gold);
+}
+
+.pack-card .btn {
+  width: 100%;
+  justify-content: center;
+}

@@ -10,7 +10,13 @@ import {
   Check,
   ShoppingCart,
 } from 'lucide-react';
-import { signPatientR2, enhancePhoto, saveEnhancedPhoto } from '../../lib/memo3d/api';
+import {
+  signPatientR2,
+  enhancePhoto,
+  saveEnhancedPhoto,
+  getCreditsPacks,
+  createCreditsCheckout,
+} from '../../lib/memo3d/api';
 import { useCredits } from '../contexts/CreditsContext';
 import '../paciente.css';
 
@@ -306,34 +312,128 @@ export default function MelhorarIA() {
 }
 
 function BuyCreditsModal({ onClose }) {
+  const [packs, setPacks] = useState(null);
+  const [loadError, setLoadError] = useState(null);
+  const [selectedPack, setSelectedPack] = useState(null);
+  const [redirecting, setRedirecting] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const list = await getCreditsPacks();
+        if (!cancelled) setPacks(list);
+      } catch (err) {
+        if (!cancelled) setLoadError(err.message);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function handleBuy(packId) {
+    setRedirecting(true);
+    setCheckoutError(null);
+    setSelectedPack(packId);
+    try {
+      const data = await createCreditsCheckout(packId);
+      const url = data.initPoint || data.sandboxInitPoint;
+      if (!url) throw new Error('Checkout retornou sem URL');
+      window.location.assign(url);
+    } catch (err) {
+      setCheckoutError(err.message);
+      setRedirecting(false);
+      setSelectedPack(null);
+    }
+  }
+
   return (
     <div className="midia-modal" onClick={onClose}>
-      <div className="consent-card" onClick={e => e.stopPropagation()} style={{ maxWidth: 520 }}>
+      <div
+        className="consent-card buy-credits-modal"
+        onClick={e => e.stopPropagation()}
+        style={{ maxWidth: 720 }}
+      >
         <h2>
           <ShoppingCart size={20} style={{ verticalAlign: 'middle', marginRight: 8 }} />
           Comprar créditos de IA
         </h2>
-        <p>
-          Você usou seus créditos disponíveis. Em breve será possível comprar mais créditos
-          diretamente aqui pelo site.
+        <p className="muted">
+          Pague via PIX no Mercado Pago. Os créditos são liberados automaticamente assim que o
+          pagamento é confirmado.
         </p>
-        <p>
-          Por enquanto, fale com a clínica pelo WhatsApp para liberar créditos extras na sua conta:
-        </p>
-        <div className="consent-actions">
-          <a
-            href="https://wa.me/5562996602117?text=Ol%C3%A1%21%20Quero%20comprar%20mais%20cr%C3%A9ditos%20de%20IA%20pra%20melhorar%20minhas%20fotos%20no%20Memo3D."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary"
-          >
-            <ShoppingCart size={14} /> Falar com a clínica
-          </a>
+
+        {loadError && (
+          <div className="error-banner" style={{ marginTop: 12 }}>
+            <AlertTriangle size={14} /> {loadError}
+          </div>
+        )}
+        {checkoutError && (
+          <div className="error-banner" style={{ marginTop: 12 }}>
+            <AlertTriangle size={14} /> {checkoutError}
+          </div>
+        )}
+
+        {!packs && !loadError && (
+          <div className="paciente-loading" style={{ minHeight: 160 }}>
+            <div className="spinner" />
+          </div>
+        )}
+
+        {packs && (
+          <div className="buy-credits-grid">
+            {packs.map(p => (
+              <PackCard
+                key={p.id}
+                pack={p}
+                onBuy={handleBuy}
+                disabled={redirecting}
+                loading={redirecting && selectedPack === p.id}
+              />
+            ))}
+          </div>
+        )}
+
+        <div className="consent-actions" style={{ marginTop: 16 }}>
           <button type="button" onClick={onClose} className="btn btn-secondary">
             Fechar
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function PackCard({ pack, onBuy, disabled, loading }) {
+  const price = `R$ ${pack.priceBrl.toFixed(2).replace('.', ',')}`;
+  return (
+    <div className="pack-card">
+      <h3>{pack.name}</h3>
+      <div className="pack-card-credits">
+        <strong>{pack.credits}</strong> créditos
+      </div>
+      <div className="pack-card-photos muted">
+        {pack.photos} foto{pack.photos === 1 ? '' : 's'} com IA
+      </div>
+      <div className="pack-card-price">{price}</div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={() => onBuy(pack.id)}
+        disabled={disabled}
+      >
+        {loading ? (
+          <>
+            <Loader2 className="spin" size={14} /> Redirecionando...
+          </>
+        ) : (
+          <>
+            <ShoppingCart size={14} /> Comprar
+          </>
+        )}
+      </button>
     </div>
   );
 }

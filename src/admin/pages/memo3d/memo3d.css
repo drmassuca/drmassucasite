@@ -1240,3 +1240,266 @@
   color: #475569;
   max-width: 320px;
 }
+
+/* ─── Atividade Memo3D ───────────────────────────────── */
+
+.atividade-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.atividade-card {
+  padding: 1rem 1.1rem;
+}
+
+.atividade-card .stat-value {
+  font-size: 1.7rem;
+}
+
+.atividade-card-sub {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+
+.atividade-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.atividade-range,
+.atividade-types {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.atividade-range > span,
+.atividade-types > span {
+  font-weight: 600;
+  margin-right: 0.3rem;
+  color: #334155;
+}
+
+.atividade-range .btn,
+.atividade-types .atividade-type-chip {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.65rem;
+}
+
+.atividade-range .btn.is-active {
+  background: #0f3d2e;
+  color: white;
+}
+
+.atividade-type-chip {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.atividade-type-chip:hover {
+  border-color: #cbd5e1;
+}
+
+.atividade-type-chip.is-active {
+  background: #0f3d2e;
+  color: white;
+  border-color: #0f3d2e;
+}
+
+.atividade-type-clear {
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: inherit;
+  text-decoration: underline;
+}
+
+.atividade-search {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  max-width: 480px;
+}
+
+.atividade-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+.atividade-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .atividade-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.atividade-aside {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.atividade-aside h2 {
+  margin: 0 0 0.6rem 0;
+  font-size: 0.92rem;
+  color: #0f3d2e;
+}
+
+.atividade-top {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.atividade-top li a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #0f172a;
+  transition: background 0.15s;
+}
+
+.atividade-top li a:hover {
+  background: #f0f7f3;
+}
+
+.atividade-top strong {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #0f3d2e;
+}
+
+.atividade-top span {
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.atividade-events {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.atividade-events-header,
+.atividade-events-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.atividade-events-footer {
+  border-bottom: none;
+  border-top: 1px solid #f1f5f9;
+}
+
+.atividade-events-header h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #0f3d2e;
+}
+
+.atividade-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.atividade-pagination .btn {
+  padding: 0.35rem 0.6rem;
+}
+
+.atividade-table {
+  font-size: 0.82rem;
+}
+
+.atividade-table th {
+  font-size: 0.7rem;
+}
+
+.atividade-resource {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.74rem;
+  color: #64748b;
+}
+
+.atividade-meta-btn {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.74rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.atividade-meta-btn:hover {
+  border-color: #0f3d2e;
+  color: #0f3d2e;
+}
+
+.atividade-meta-row td {
+  background: #f8fafc;
+  border-top: none !important;
+  padding: 0 1rem 0.6rem !important;
+}
+
+.atividade-meta-row pre {
+  margin: 0;
+  font-size: 0.74rem;
+  color: #334155;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  max-height: 240px;
+  overflow: auto;
+}

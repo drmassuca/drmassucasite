@@ -40,6 +40,7 @@ const AdminLayout = () => {
     { path: '/admin/media', icon: Image, label: 'Mídia' },
     { path: '/admin/site-vivo', icon: Activity, label: 'Site-vivo' },
     { path: '/admin/memo3d', icon: Heart, label: 'Memo3D' },
+    { path: '/admin/memo3d/atividade', icon: Activity, label: 'Atividade Memo3D' },
     { path: '/admin/ai', icon: Brain, label: 'Assistente IA' },
     { path: '/admin/settings', icon: Settings, label: 'Configurações' },
   ];

@@ -373,6 +373,31 @@ export async function uploadVideo({ patientId, examId, file }) {
   return data.media;
 }
 
+// ─── Painel de atividade (admin) ──────────────────────────
+
+/**
+ * Lê painel agregado de atividade.
+ * @param {object} [params]
+ * @param {string} [params.from] ISO date
+ * @param {string} [params.to] ISO date
+ * @param {string[]} [params.types] lista de actions
+ * @param {string} [params.patientId] filtro por paciente
+ * @param {number} [params.page]
+ * @param {number} [params.pageSize]
+ */
+export async function getAdminActivity(params = {}) {
+  const qs = new URLSearchParams();
+  if (params.from) qs.set('from', params.from);
+  if (params.to) qs.set('to', params.to);
+  if (params.types?.length) qs.set('type', params.types.join(','));
+  if (params.patientId) qs.set('patientId', params.patientId);
+  if (params.page) qs.set('page', String(params.page));
+  if (params.pageSize) qs.set('pageSize', String(params.pageSize));
+  const url = `/api/memo3d/admin/activity${qs.toString() ? '?' + qs.toString() : ''}`;
+  const res = await authedFetch(url, { method: 'GET' });
+  return asJson(res);
+}
+
 // ─── Créditos de IA (paciente) ────────────────────────────
 
 /** Retorna { balance, ledger: [...] } da paciente logada. */

@@ -132,6 +132,24 @@ export default async function handler(req, res) {
     if (!response.ok) {
       const errMsg =
         body?.error?.message || body?.error || text.slice(0, 300) || `HTTP ${response.status}`;
+      // Registra falha pra Dr. ver no painel — sem cobrar créditos da paciente
+      recordAuditServer({
+        patientId: patient.id,
+        userId: user.id,
+        action: 'patient.ai.fail',
+        resourceType: 'media',
+        resourceId: mediaId,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'] || null,
+        metadata: {
+          preset,
+          skinTone,
+          model: MODEL,
+          ms,
+          httpStatus: response.status,
+          error: String(errMsg).slice(0, 500),
+        },
+      }).catch(e => console.error('[memo3d enhance-photo] audit fail err', e));
       return res.status(502).json({ error: `Erro na xAI: ${errMsg}`, ms });
     }
     const items = body?.data || body?.images || [];
@@ -145,6 +163,22 @@ export default async function handler(req, res) {
       .filter(Boolean)[0];
 
     if (!generatedUrl) {
+      recordAuditServer({
+        patientId: patient.id,
+        userId: user.id,
+        action: 'patient.ai.fail',
+        resourceType: 'media',
+        resourceId: mediaId,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'] || null,
+        metadata: {
+          preset,
+          skinTone,
+          model: MODEL,
+          ms,
+          error: 'xAI sem imagem no payload',
+        },
+      }).catch(e => console.error('[memo3d enhance-photo] audit fail err', e));
       return res.status(502).json({ error: 'xAI não retornou imagem', ms });
     }
 

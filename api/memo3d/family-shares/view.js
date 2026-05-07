@@ -13,7 +13,7 @@
  *
  * Sempre incrementa view_count e atualiza last_viewed_at/ip.
  */
-import { getAdminClient } from '../_lib/supabase-admin.js';
+import { getAdminClient, recordAuditServer } from '../_lib/supabase-admin.js';
 import { hashToken, isValidTokenFormat } from '../../../src/lib/memo3d/tokens.js';
 import { presignGetUrl } from '../_lib/r2-server.js';
 import { signPlaybackToken } from '../_lib/stream-server.js';
@@ -97,6 +97,18 @@ export default async function handler(req, res) {
         }))
         .sort((a, b) => (a.position || 0) - (b.position || 0));
 
+      // Audit: visualização pública do link (sem mídia específica)
+      recordAuditServer({
+        patientId: exam.patient_id || null,
+        userId: null,
+        action: 'family.share.view',
+        resourceType: 'share',
+        resourceId: share.id,
+        ip: getClientIp(req),
+        userAgent: req.headers['user-agent'] || null,
+        metadata: { exam_id: exam.id, view: 'meta', view_count: (share.view_count || 0) + 1 },
+      }).catch(err => console.error('[memo3d family-share view] audit failed', err));
+
       return res.status(200).json({
         shareId: share.id,
         expiresAt: share.expires_at,
@@ -132,6 +144,18 @@ export default async function handler(req, res) {
         customerSubdomain: process.env.CLOUDFLARE_STREAM_CUSTOMER_SUBDOMAIN,
       });
     }
+
+    // Audit: visualização de mídia específica via share
+    recordAuditServer({
+      patientId: share.memo_exams.patient_id || null,
+      userId: null,
+      action: 'family.share.view',
+      resourceType: 'media',
+      resourceId: media.id,
+      ip: getClientIp(req),
+      userAgent: req.headers['user-agent'] || null,
+      metadata: { share_id: share.id, exam_id: share.memo_exams.id, kind: media.kind },
+    }).catch(err => console.error('[memo3d family-share view] audit failed', err));
 
     if (!media.r2_key) return res.status(404).json({ error: 'r2_key ausente' });
     const url = await presignGetUrl({ key: media.r2_key, expiresInSeconds: 1800 });

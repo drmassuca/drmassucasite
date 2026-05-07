@@ -8,7 +8,6 @@
  */
 import { requireAdmin, getClientIp } from '../_lib/auth.js';
 import { getAdminClient, recordAuditServer } from '../_lib/supabase-admin.js';
-import { applyCredit, INITIAL_GRANT } from '../_lib/credits.js';
 
 const PHONE_E164 = /^\+\d{10,15}$/;
 const CPF_LAST4 = /^\d{4}$/;
@@ -75,19 +74,9 @@ export default async function handler(req, res) {
       metadata: { full_name: data.full_name, phone: data.phone },
     });
 
-    // Grant inicial de créditos de IA (na aquisição). Falha não bloqueia
-    // criação da paciente — só loga.
-    try {
-      const { balance } = await applyCredit({
-        patientId: data.id,
-        delta: INITIAL_GRANT,
-        reason: 'initial_grant',
-        metadata: { granted_by: user.id, granted_at: new Date().toISOString() },
-      });
-      data.ai_credits = balance;
-    } catch (creditErr) {
-      console.error('[memo3d patient create] grant inicial falhou', creditErr);
-    }
+    // Créditos de IA são concedidos na primeira marcação de pagamento
+    // (mark-paid.js), não no cadastro. Paciente cadastrada mas não-paga
+    // entra com 0 créditos.
 
     return res.status(201).json({ patient: data });
   } catch (err) {

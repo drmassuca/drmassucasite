@@ -473,11 +473,11 @@ export default function Memo3dPacienteDetalhe() {
                             const ok = window.confirm(
                               `Marcar exame de ${new Date(exam.exam_date).toLocaleDateString(
                                 'pt-BR'
-                              )} como pago (R$ 30,00)?`
+                              )} como pago (R$ 50,00 — assinatura anual)?`
                             );
                             if (!ok) return;
                             try {
-                              await markExamPaid(exam.id, 3000);
+                              await markExamPaid(exam.id, 5000);
                               recordAudit({
                                 action: 'exam.mark_paid.client',
                                 resourceType: 'exam',

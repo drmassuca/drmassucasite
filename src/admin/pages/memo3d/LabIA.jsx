@@ -25,7 +25,7 @@ const HISTORY_LIMIT = 10;
 // que force composição/realismo (isso fica em cada preset com intensidade
 // diferente). Calibrada após o feedback do Dr.: tail muito pesado deixava
 // os 3 presets parecidos demais.
-const COMMON_TAIL = `Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — keep only the baby on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner.`;
+const COMMON_TAIL = `Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — keep only the baby on a soft neutral background. Add two small, elegant labels discretely placed in opposite bottom corners of the image: "AI enhanced" in the bottom-right corner, and "Dr. Massuca" in the bottom-left corner. Both labels in the same delicate style, low opacity, sans-serif.`;
 
 const PRESETS = [
   {

@@ -195,7 +195,7 @@ const PrivacyPolicy = () => {
                       <strong>Supabase Inc.</strong>
                     </Td>
                     <Td>Banco de dados e autenticação (Memo3D)</Td>
-                    <Td>EUA</Td>
+                    <Td>São Paulo, Brasil</Td>
                   </Tr>
                   <Tr>
                     <Td>

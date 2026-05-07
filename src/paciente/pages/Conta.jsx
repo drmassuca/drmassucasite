@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   Image as ImageIcon,
   Film,
@@ -18,6 +18,7 @@ import {
   LogIn,
   ChevronDown,
   ChevronUp,
+  Wand2,
 } from 'lucide-react';
 import {
   getPatientMe,
@@ -214,7 +215,8 @@ export default function Conta() {
 
 function ExamSection({ exam, onPreview, onShare }) {
   const videos = (exam.memo_media || []).filter(m => m.kind === 'video');
-  const photos = (exam.memo_media || []).filter(m => m.kind === 'photo');
+  const photos = (exam.memo_media || []).filter(m => m.kind === 'photo' && !m.source_media_id);
+  const aiPhotos = (exam.memo_media || []).filter(m => m.kind === 'photo' && m.source_media_id);
   const bookPages = (exam.memo_media || []).filter(m => m.kind === 'book_page');
 
   return (
@@ -282,6 +284,20 @@ function ExamSection({ exam, onPreview, onShare }) {
             </div>
           )}
 
+          {aiPhotos.length > 0 && (
+            <div className="exam-subsection">
+              <h3>
+                <Wand2 size={14} className="exam-subsection-icon" /> Memórias melhoradas com IA{' '}
+                <span className="count">({aiPhotos.length})</span>
+              </h3>
+              <div className="midia-grid">
+                {aiPhotos.map(m => (
+                  <MediaCard key={m.id} media={m} onClick={() => onPreview(m)} />
+                ))}
+              </div>
+            </div>
+          )}
+
           {bookPages.length > 0 && (
             <div className="exam-subsection">
               <h3>
@@ -302,6 +318,7 @@ function ExamSection({ exam, onPreview, onShare }) {
 
 function MediaCard({ media, onClick }) {
   const isVideo = media.kind === 'video';
+  const isAi = !!media.source_media_id;
   const [thumbUrl, setThumbUrl] = useState(null);
 
   useEffect(() => {
@@ -340,12 +357,17 @@ function MediaCard({ media, onClick }) {
         ) : (
           <ImageIcon className="midia-card-thumb-icon" />
         )}
+        {isAi && (
+          <span className="midia-card-ai-badge" title="Melhorada com IA">
+            <Wand2 size={11} /> IA
+          </span>
+        )}
         <div className="midia-play-overlay">
           {isVideo ? <Play size={36} /> : <ImageIcon size={36} />}
         </div>
       </div>
       <div className="midia-card-meta">
-        <span>{isVideo ? 'Vídeo' : 'Foto'}</span>
+        <span>{isVideo ? 'Vídeo' : isAi ? 'Foto · IA' : 'Foto'}</span>
         {!isVideo && <DownloadBtn media={media} />}
       </div>
     </div>
@@ -387,6 +409,7 @@ function MediaPreview({ media, onClose }) {
   const [src, setSrc] = useState(null);
   const [streamSrc, setStreamSrc] = useState(null);
   const [error, setError] = useState(null);
+  const canEnhance = media.kind === 'photo' && !media.source_media_id;
 
   useEffect(() => {
     let cancelled = false;
@@ -432,6 +455,13 @@ function MediaPreview({ media, onClose }) {
         {!error && !src && !streamSrc && (
           <div className="paciente-loading">
             <div className="spinner" />
+          </div>
+        )}
+        {canEnhance && (src || streamSrc) && (
+          <div className="midia-modal-actions">
+            <Link to={`/memo3d/melhorar/${media.id}`} className="btn btn-primary">
+              <Wand2 size={14} /> Melhorar com IA
+            </Link>
           </div>
         )}
       </div>

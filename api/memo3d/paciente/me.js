@@ -30,7 +30,8 @@ export default async function handler(req, res) {
           id, kind, filename, size_bytes, duration_seconds,
           width, height, mime_type,
           r2_key, thumbnail_r2_key, stream_video_id,
-          position, uploaded_at
+          position, uploaded_at,
+          source_media_id, ai_metadata
         )
       `
       )

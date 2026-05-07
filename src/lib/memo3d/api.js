@@ -373,6 +373,38 @@ export async function uploadVideo({ patientId, examId, file }) {
   return data.media;
 }
 
+// ─── Melhoria com IA (paciente) ───────────────────────────
+
+/**
+ * Gera versão melhorada da foto via Grok. Não salva — só devolve URL
+ * temporária pra paciente decidir se quer manter.
+ *
+ * @param {object} args
+ * @param {string} args.mediaId
+ * @param {'fiel'|'medio'|'realista'} args.preset
+ * @param {'padrao'|'clara'|'parda'|'negra'} args.skinTone
+ * @returns {Promise<{generatedUrl, preset, skinTone, model, costUsd, ms, promptUsed}>}
+ */
+export async function enhancePhoto({ mediaId, preset, skinTone }) {
+  const res = await authedFetch('/api/memo3d/paciente/enhance-photo', {
+    method: 'POST',
+    body: JSON.stringify({ mediaId, preset, skinTone }),
+  });
+  return asJson(res);
+}
+
+/**
+ * Salva no R2 a versão IA escolhida. Cria nova row em memo_media com
+ * source_media_id apontando pra original.
+ */
+export async function saveEnhancedPhoto(payload) {
+  const res = await authedFetch('/api/memo3d/paciente/save-enhanced', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+  return asJson(res);
+}
+
 // ─── Lab IA (admin only) ──────────────────────────────────
 
 /**

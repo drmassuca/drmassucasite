@@ -58,6 +58,7 @@ export default async function handler(req, res) {
         must_change_password: patient.must_change_password,
         consent_lgpd_at: patient.consent_lgpd_at,
         consent_lgpd_version: patient.consent_lgpd_version,
+        ai_credits: patient.ai_credits || 0,
       },
       exams: examsOut,
     });

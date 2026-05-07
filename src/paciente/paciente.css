@@ -1590,10 +1590,89 @@
   line-height: 1.35;
 }
 
+.melhorar-ia-cost {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 6px 0 12px;
+  padding: 10px 12px;
+  background: var(--m3d-bg-soft);
+  border: 1px solid var(--m3d-rule);
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.melhorar-ia-cost strong {
+  color: var(--m3d-gold);
+}
+
+.melhorar-ia-cost .muted {
+  font-size: 12px;
+}
+
 .melhorar-ia-generate {
   width: 100%;
   justify-content: center;
   margin-top: 4px;
+}
+
+/* ─── Badge de créditos no header da paciente ────────── */
+.paciente-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.paciente-credits-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: 1px solid var(--m3d-gold);
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.08);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--m3d-ink);
+  white-space: nowrap;
+}
+
+.paciente-credits-badge svg {
+  color: var(--m3d-gold);
+  flex-shrink: 0;
+}
+
+.paciente-credits-badge strong {
+  color: var(--m3d-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.paciente-credits-label {
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--m3d-text-muted);
+}
+
+.paciente-credits-badge.is-empty {
+  border-color: rgba(185, 28, 28, 0.4);
+  background: rgba(185, 28, 28, 0.06);
+}
+
+.paciente-credits-badge.is-empty svg,
+.paciente-credits-badge.is-empty strong {
+  color: #b91c1c;
+}
+
+.paciente-credits-badge.is-loading {
+  padding: 8px 14px;
+}
+
+@media (max-width: 720px) {
+  .paciente-credits-label {
+    display: none;
+  }
 }
 
 .melhorar-ia-result {

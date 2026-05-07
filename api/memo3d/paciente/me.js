@@ -1,14 +1,20 @@
 /**
- * Memo3D — dados da paciente logada + exames pagos não-expirados + mídias.
+ * Memo3D — dados da paciente logada + exames visíveis + mídias.
  *
  * GET /api/memo3d/paciente/me
  *
- * Retorna apenas o que a paciente pode ver: SOMENTE exames pagos
- * com expires_at > now. Filtragem feita no server pra não confiar
- * no client.
+ * Regra de visibilidade (modelo de assinatura anual):
+ *  - Se a paciente tem subscription_paid_at e subscription_paid_at + 1 ano > now,
+ *    todos os exames dela são visíveis (independente de paid individual).
+ *  - Caso contrário, fallback retrocompatível: só exames com paid = true e
+ *    expires_at > now (regra antiga de cobrança por exame).
+ *
+ * Filtragem feita no server pra não confiar no client.
  */
 import { requirePatient } from '../_lib/auth-patient.js';
 import { getAdminClient } from '../_lib/supabase-admin.js';
+
+const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
 export default async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'POST') {
@@ -19,8 +25,13 @@ export default async function handler(req, res) {
     const { patient } = await requirePatient(req);
     const client = getAdminClient();
 
-    const nowIso = new Date().toISOString();
-    const { data: exams, error } = await client
+    const now = new Date();
+    const subStart = patient.subscription_paid_at ? new Date(patient.subscription_paid_at) : null;
+    const subExpiresAt = subStart ? new Date(subStart.getTime() + ONE_YEAR_MS) : null;
+    const subActive = !!subExpiresAt && subExpiresAt > now;
+
+    // Fetch sem filtro paid se subscription ativa; com filtro se não
+    let query = client
       .from('memo_exams')
       .select(
         `
@@ -36,10 +47,14 @@ export default async function handler(req, res) {
       `
       )
       .eq('patient_id', patient.id)
-      .eq('paid', true)
-      .gt('expires_at', nowIso)
       .order('exam_date', { ascending: false });
 
+    if (!subActive) {
+      // Compatibilidade com modelo antigo: só exames pagos individualmente
+      query = query.eq('paid', true).gt('expires_at', now.toISOString());
+    }
+
+    const { data: exams, error } = await query;
     if (error) throw error;
 
     // Ordena mídias por position
@@ -59,6 +74,9 @@ export default async function handler(req, res) {
         consent_lgpd_at: patient.consent_lgpd_at,
         consent_lgpd_version: patient.consent_lgpd_version,
         ai_credits: patient.ai_credits || 0,
+        subscription_paid_at: patient.subscription_paid_at || null,
+        subscription_expires_at: subExpiresAt ? subExpiresAt.toISOString() : null,
+        subscription_active: subActive,
       },
       exams: examsOut,
     });

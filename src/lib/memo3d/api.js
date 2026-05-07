@@ -153,8 +153,8 @@ export async function createExam(payload) {
   return data.exam;
 }
 
-/** Marca exame como pago. amountCents default 3000 (R$30,00). */
-export async function markExamPaid(examId, amountCents = 3000) {
+/** Marca exame como pago. amountCents default 5000 (R$50,00 — assinatura anual). */
+export async function markExamPaid(examId, amountCents = 5000) {
   const res = await authedFetch('/api/memo3d/exames/mark-paid', {
     method: 'POST',
     body: JSON.stringify({ examId, amountCents }),

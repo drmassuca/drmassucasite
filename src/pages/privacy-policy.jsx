@@ -1,6 +1,21 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../components/SEO';
-import { Box, Heading, Text, VStack, Link, List, ListItem } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Text,
+  VStack,
+  Link,
+  List,
+  ListItem,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from '@chakra-ui/react';
 
 const PrivacyPolicy = () => {
   return (
@@ -78,33 +93,35 @@ const PrivacyPolicy = () => {
 
             {/* ── 2. Dados coletados ──────────────────────── */}
             <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
-              2. Dados coletados e finalidades
+              2. Camadas do serviço e dados coletados
             </Heading>
-            <Text>
-              O site não exige cadastro nem coleta dados pessoais de forma automática. As
-              informações tratadas se limitam a:
-            </Text>
-            <List spacing={2} pl={6} as="ul">
+            <Text>O site oferece diferentes camadas de serviço, com tratamentos distintos:</Text>
+            <List spacing={3} pl={6} as="ul">
               <ListItem>
-                <strong>Dados de navegação anônimos:</strong> páginas visitadas, tempo de
-                permanência, cliques e rolagem de tela, coletados via cookies analíticos
-                exclusivamente para melhoria da experiência do usuário.
+                <strong>Site público</strong> (informações sobre a clínica, exames, FAQ, IA Médica):
+                não exige cadastro. Coletamos apenas dados de navegação anônimos via cookies
+                analíticos e mensagens trocadas voluntariamente em chatbot ou WhatsApp.
               </ListItem>
               <ListItem>
-                <strong>Mensagens no assistente virtual (chatbot):</strong> as perguntas digitadas
-                no chatbot do site são enviadas à API do Google Gemini para geração de respostas.
-                Essas mensagens não são armazenadas pelo site, porém são processadas nos servidores
-                do Google conforme a{' '}
+                <strong>Memo3D</strong> (galeria privada da gestante): exige login e tem{' '}
+                <strong>termo de uso e consentimento próprio</strong>, apresentado à paciente no
+                primeiro acesso ou sempre que o termo for atualizado. Esse termo cobre detalhes
+                específicos sobre armazenamento de mídias, recursos de inteligência artificial e
+                subprocessadores envolvidos.
+              </ListItem>
+              <ListItem>
+                <strong>Assistente virtual (chatbot)</strong>: as perguntas digitadas são enviadas à
+                API do Google Gemini para geração de respostas. Não são armazenadas pelo site, mas
+                são processadas nos servidores do Google conforme a{' '}
                 <Link href="https://policies.google.com/privacy" isExternal color="green.600">
                   Política de Privacidade do Google
                 </Link>
-                . Recomendamos que você não insira dados pessoais sensíveis no chatbot.
+                . Recomendamos não inserir dados pessoais sensíveis no chatbot.
               </ListItem>
               <ListItem>
-                <strong>Contato via WhatsApp:</strong> dados compartilhados voluntariamente durante
-                conversas pelo WhatsApp (nome, telefone, informações clínicas) são tratados com
-                confidencialidade e utilizados exclusivamente para fins de agendamento e atendimento
-                médico.
+                <strong>Contato via WhatsApp</strong>: dados clínicos compartilhados voluntariamente
+                (nome, telefone, informações médicas) são tratados com confidencialidade e
+                utilizados exclusivamente para fins de agendamento e atendimento médico.
               </ListItem>
             </List>
 
@@ -118,18 +135,14 @@ const PrivacyPolicy = () => {
             </Text>
             <List spacing={2} pl={6} as="ul">
               <ListItem>
-                <strong>Google Analytics (GA4):</strong> coleta dados anônimos de navegação (páginas
-                visitadas, origem do acesso, dispositivo utilizado). Não identifica pessoalmente o
-                visitante.
+                <strong>Google Analytics 4 (GA4):</strong> coleta dados anônimos de navegação
+                (páginas visitadas, origem do tráfego, dispositivo, profundidade de rolagem) e{' '}
+                <strong>eventos de conversão</strong> (cliques em WhatsApp, envios de formulário,
+                interações com áreas-chave). Não identifica pessoalmente o visitante.
               </ListItem>
               <ListItem>
-                <strong>Google Tag Manager (GTM):</strong> gerencia a ativação dos scripts de
-                analytics. Não coleta dados por si só.
-              </ListItem>
-              <ListItem>
-                <strong>Métricas de engajamento:</strong> o site registra anonimamente eventos como
-                profundidade de rolagem, cliques em botões e tempo de permanência para otimização de
-                conteúdo. Esses dados não identificam o visitante.
+                <strong>Google Tag Manager (GTM):</strong> orquestra a execução das tags de GA4 e
+                eventos de conversão. Não coleta dados por si só.
               </ListItem>
               <ListItem>
                 <strong>Cookie de consentimento:</strong> armazena sua escolha (aceitar/recusar) por
@@ -137,27 +150,73 @@ const PrivacyPolicy = () => {
               </ListItem>
             </List>
 
-            {/* ── 4. Compartilhamento ─────────────────────── */}
+            {/* ── 4. Subprocessadores ─────────────────────── */}
             <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
-              4. Compartilhamento de dados com terceiros
+              4. Subprocessadores e infraestrutura
             </Heading>
             <Text>
-              Os dados de navegação anônimos podem ser compartilhados com os seguintes prestadores
-              de serviço, exclusivamente para as finalidades descritas:
+              Para entregar os serviços do site público e do Memo3D, utilizamos os seguintes
+              prestadores. Transferências internacionais ocorrem sob garantias contratuais (Standard
+              Contractual Clauses ou equivalente):
             </Text>
-            <List spacing={2} pl={6} as="ul">
-              <ListItem>
-                <strong>Google LLC</strong> — analytics (GA4, GTM) e processamento de linguagem
-                natural (Gemini AI no chatbot).
-              </ListItem>
-              <ListItem>
-                <strong>Xdiag Tecnologias Ltda.</strong> — desenvolvimento, hospedagem e manutenção
-                técnica do site.
-              </ListItem>
-            </List>
+            <TableContainer w="100%">
+              <Table variant="simple" size="sm">
+                <Thead>
+                  <Tr>
+                    <Th>Subprocessador</Th>
+                    <Th>Finalidade</Th>
+                    <Th>Localização</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>
+                      <strong>Google LLC</strong>
+                    </Td>
+                    <Td>Analytics (GA4, GTM) e IA conversacional (Gemini no chatbot)</Td>
+                    <Td>EUA</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <strong>Cloudflare, Inc.</strong>
+                    </Td>
+                    <Td>Armazenamento e streaming de mídias do Memo3D (R2 e Stream)</Td>
+                    <Td>EUA</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <strong>xAI Corp.</strong>
+                    </Td>
+                    <Td>Processamento de imagens por inteligência artificial (Memo3D)</Td>
+                    <Td>EUA</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <strong>Supabase Inc.</strong>
+                    </Td>
+                    <Td>Banco de dados e autenticação (Memo3D)</Td>
+                    <Td>EUA</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <strong>Vercel Inc.</strong>
+                    </Td>
+                    <Td>Hospedagem e execução do site</Td>
+                    <Td>EUA</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>
+                      <strong>Xdiag Tecnologias Ltda.</strong>
+                    </Td>
+                    <Td>Desenvolvimento, manutenção e operação técnica</Td>
+                    <Td>Brasil</Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
             <Text>
-              Não comercializamos, alugamos ou compartilhamos dados pessoais com terceiros para fins
-              de marketing ou publicidade. Este site não exibe anúncios.
+              Não comercializamos, alugamos ou cedemos dados pessoais para fins publicitários ou de
+              marketing. Este site não exibe anúncios.
             </Text>
 
             {/* ── 5. Armazenamento ────────────────────────── */}
@@ -165,15 +224,18 @@ const PrivacyPolicy = () => {
               5. Armazenamento e segurança
             </Heading>
             <Text>
-              O site não mantém banco de dados com informações pessoais de visitantes. Os dados de
-              analytics são processados e armazenados pelo Google em seus servidores, conforme suas
-              políticas de retenção. Dados de atendimento via WhatsApp são mantidos pelo tempo
-              necessário à finalidade clínica e em conformidade com a legislação vigente.
+              Os dados de navegação anônimos do site público (analytics) são processados e
+              armazenados pelo Google em seus servidores, conforme suas políticas de retenção. As
+              mídias e dados de autenticação do Memo3D ficam em servidores Cloudflare e Supabase,
+              com criptografia em trânsito (TLS) e em repouso. Dados de atendimento via WhatsApp são
+              mantidos pelo tempo necessário à finalidade clínica e em conformidade com a legislação
+              vigente.
             </Text>
             <Text>
               Adotamos medidas técnicas e organizacionais para proteger as informações contra acesso
-              não autorizado, incluindo: conexão criptografada via HTTPS, controle de acesso ao
-              painel administrativo e boas práticas de desenvolvimento seguro.
+              não autorizado: conexão criptografada via HTTPS, autenticação por senha forte na área
+              da paciente, controle de acesso ao painel administrativo, registro de auditoria de
+              eventos relevantes e boas práticas de desenvolvimento seguro.
             </Text>
 
             {/* ── 6. Direitos do titular ──────────────────── */}
@@ -212,9 +274,11 @@ const PrivacyPolicy = () => {
               7. Crianças e adolescentes
             </Heading>
             <Text>
-              Este site não coleta intencionalmente dados de menores de 18 anos. Caso um responsável
-              legal identifique que dados de um menor foram compartilhados sem consentimento, deve
-              entrar em contato para que sejam eliminados.
+              Este site não coleta intencionalmente dados de menores de 18 anos. O Memo3D é
+              utilizado pela gestante adulta titular dos exames; eventuais imagens fetais ali
+              hospedadas são tratadas conforme o termo de consentimento específico. Caso um
+              responsável legal identifique que dados de um menor foram compartilhados sem
+              consentimento, deve entrar em contato para que sejam eliminados.
             </Text>
 
             {/* ── 8. Alterações ───────────────────────────── */}
@@ -223,14 +287,14 @@ const PrivacyPolicy = () => {
             </Heading>
             <Text>
               Esta política poderá ser atualizada a qualquer momento para refletir melhorias nas
-              práticas de privacidade ou adequações legais. Recomendamos que o usuário consulte esta
-              página periodicamente. A data da última atualização estará sempre indicada abaixo.
+              práticas de privacidade ou adequações legais. Recomendamos consulta periódica. A data
+              da última atualização estará sempre indicada abaixo.
             </Text>
 
             {/* ── Data ────────────────────────────────────── */}
             <Box w="100%" pt={4} mt={2} borderTop="1px solid" borderColor="gray.200">
               <Text fontSize="sm" color="gray.500">
-                Última atualização: Fevereiro de 2026.
+                Última atualização: <strong>7 de maio de 2026.</strong>
               </Text>
             </Box>
           </VStack>

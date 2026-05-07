@@ -276,37 +276,38 @@ export async function viewFamilyShareMedia(token, mediaId) {
 // ─── Uploads ───────────────────────────────────────────────
 
 /**
- * Sobe foto pro R2 com watermark automático aplicado no servidor + registra
- * metadata. Retorna a row de memo_media criada.
- *
- * Fluxo: cliente POSTa os bytes da imagem direto pro endpoint de watermark
- * (não usa mais URL pré-assinada). Servidor aplica marca d'água via sharp
- * e sobe pro R2 com PutObject. Saída sempre JPEG.
+ * Sobe foto direto pro R2 (PUT pré-assinado) e registra metadata.
+ * Retorna a row de memo_media criada.
  *
  * @param {object} args
  * @param {string} args.patientId
  * @param {string} args.examId
  * @param {File}   args.file
+ * @param {function} [args.onProgress]  callback(0..1) — placeholder, sem implementação ainda
  */
 export async function uploadPhoto({ patientId, examId, file }) {
   const mediaId = uuid();
   const mime = file.type;
 
-  // 1) sobe a imagem pro endpoint que aplica watermark e grava no R2
-  const dimensions = await readImageDimensions(file).catch(() => ({}));
-  const upRes = await authedFetch('/api/memo3d/uploads/r2-watermark', {
+  // 1) pede URL pré-assinada
+  const presignRes = await authedFetch('/api/memo3d/uploads/r2-presigned', {
     method: 'POST',
-    headers: {
-      'Content-Type': mime,
-      'X-Memo3d-Patient-Id': patientId,
-      'X-Memo3d-Exam-Id': examId,
-      'X-Memo3d-Media-Id': mediaId,
-    },
+    body: JSON.stringify({ patientId, examId, mediaId, mime, size: file.size }),
+  });
+  const { uploadUrl, key } = await asJson(presignRes);
+
+  // 2) PUT direto pro R2 (não passa pelo backend — não precisa do token)
+  const putRes = await fetch(uploadUrl, {
+    method: 'PUT',
+    headers: { 'Content-Type': mime },
     body: file,
   });
-  const { key, sizeBytes, mime: outMime } = await asJson(upRes);
+  if (!putRes.ok) {
+    throw new Error(`Upload pro R2 falhou (HTTP ${putRes.status})`);
+  }
 
-  // 2) registra metadata no banco — usa o tamanho/mime depois do watermark
+  // 3) registra metadata no banco
+  const dimensions = await readImageDimensions(file).catch(() => ({}));
   const registerRes = await authedFetch('/api/memo3d/midias/register', {
     method: 'POST',
     body: JSON.stringify({
@@ -314,8 +315,8 @@ export async function uploadPhoto({ patientId, examId, file }) {
       examId,
       kind: 'photo',
       filename: file.name,
-      sizeBytes: sizeBytes || file.size,
-      mimeType: outMime || 'image/jpeg',
+      sizeBytes: file.size,
+      mimeType: mime,
       width: dimensions.width || null,
       height: dimensions.height || null,
       r2Key: key,

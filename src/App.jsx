@@ -130,6 +130,7 @@ function App() {
     '/memo3d/trocar-senha',
     '/memo3d/conta',
     '/memo3d/familia',
+    '/memo3d/melhorar',
   ];
   const isPacientePage = PACIENTE_PATHS.some(
     p => location.pathname === p || location.pathname.startsWith(p + '/')

@@ -21,31 +21,30 @@ const MAX_BYTES = 4 * 1024 * 1024;
 const HISTORY_KEY = 'memo3d_labia_history';
 const HISTORY_LIMIT = 10;
 
-// Cláusulas comuns aplicadas a todos os presets:
-// - close-up no rosto (rosto deve ocupar a maior parte da imagem)
-// - corta o HUD do aparelho (info clínica, ID, marcadores, bordas)
-// - inclui rótulo "AI enhanced" discreto pra atender a obrigação de
-//   indicar uso de IA na imagem final
-const COMMON_TAIL = `Tightly frame the baby's face as the main subject — face must fill the majority of the output frame (close-up portrait composition). De-emphasize or crop limbs, hands, umbilical cord, and surrounding body parts. Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — output only the clean baby face on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner. Avoid: wide-angle framing, distant baby, HUD text, machine UI elements.`;
+// Cláusula mínima compartilhada — só HUD crop + label de IA, sem nada
+// que force composição/realismo (isso fica em cada preset com intensidade
+// diferente). Calibrada após o feedback do Dr.: tail muito pesado deixava
+// os 3 presets parecidos demais.
+const COMMON_TAIL = `Crop out the ultrasound machine HUD (clinic name, patient ID, technical readings, side scale markers, 3D indicator, all overlay text and borders) — keep only the baby on a soft neutral background. Add a small, elegant "AI enhanced" label discretely placed in the bottom-right corner.`;
 
 const PRESETS = [
   {
     id: 'fiel',
     label: 'Fiel',
-    description: 'Preserva ao máximo o rosto e proporções faciais originais',
-    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve facial features and proportions EXACTLY as in the input image — same eyes, nose, mouth, cheeks, chin, and head shape. The face must remain unmistakably the same baby. Only refine surface texture and lighting. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, added hair, changing the face identity, blurry, distorted.`,
+    description: 'Limpa e refina mas mantém aparência de ultrassom 3D',
+    prompt: `Clean up and refine this 3D ultrasound image while keeping it RECOGNIZABLY a 3D ultrasound rendering. DO NOT transform it into a photograph or newborn studio portrait. Preserve composition, framing, pose, and proportions exactly as in the input. Only smooth out scan artifacts and slightly improve clarity, lighting, and skin texture. Output must read clearly as "the same 3D ultrasound image, just cleaner". ${COMMON_TAIL} Avoid: turning it into a photograph, newborn studio look, repositioning, recomposing, close-up zoom, cartoon, plastic skin, deformed, added hair, changing the face identity.`,
   },
   {
     id: 'medio',
     label: 'Médio',
-    description: 'Equilibra fidelidade com refinamento estético',
-    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve facial features and overall composition, allowing subtle refinement of skin tone, lighting, and surroundings. Natural skin texture, warm soft lighting, cinematic mood. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed, repositioning beyond what's natural.`,
+    description: 'Refinamento estético preservando composição (validado)',
+    prompt: `Hyper-realistic 3D ultrasound baby face enhancement. Preserve anatomical features, composition, and proportions exactly. Soft natural skin texture, warm gentle lighting, cinematic depth, realistic shading. ${COMMON_TAIL} Avoid: cartoon, anime, plastic skin, doll-like, deformed, added hair, blurry, distorted.`,
   },
   {
     id: 'realista',
     label: 'Realista',
-    description: 'Mais liberdade artística — pode reinterpretar pose e iluminação',
-    prompt: `Photorealistic newborn-style portrait based on this 3D ultrasound. Beautiful natural baby face with soft skin, gentle expression, dramatic warm lighting, professional studio mood. ${COMMON_TAIL} Avoid additionally: cartoon, anime, plastic skin, doll-like, deformed.`,
+    description: 'Retrato fotográfico de recém-nascido em close-up',
+    prompt: `Photorealistic newborn-style portrait based on this 3D ultrasound. Tight close-up framing on the face — face fills the majority of the frame. De-emphasize or crop limbs and surrounding body parts. Beautiful natural baby face with soft skin, gentle expression, dramatic warm lighting, professional studio mood. ${COMMON_TAIL} Avoid: cartoon, anime, plastic skin, doll-like, deformed, wide-angle framing.`,
   },
 ];
 

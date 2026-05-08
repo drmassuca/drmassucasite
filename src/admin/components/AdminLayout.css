@@ -112,6 +112,33 @@
   box-shadow: 0 4px 6px -1px rgba(34, 211, 238, 0.3);
 }
 
+/* Sub-item indentado (ex: Atividade dentro de Memo3D) */
+.nav-item-sub {
+  margin-left: 1.4rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  font-size: 0.82rem;
+  position: relative;
+}
+
+.nav-item-sub::before {
+  content: '';
+  position: absolute;
+  left: -0.6rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.admin-sidebar.closed .nav-item-sub {
+  margin-left: 0;
+}
+
+.admin-sidebar.closed .nav-item-sub::before {
+  display: none;
+}
+
 .nav-icon {
   width: 20px;
   height: 20px;

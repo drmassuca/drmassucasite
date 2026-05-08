@@ -22,7 +22,9 @@ function formatSize(bytes) {
 
 export default function MidiaUploader({ patientId, examId, onUploaded }) {
   const fileInputRef = useRef(null);
+  const dragCounter = useRef(0); // contador pra evitar flicker entre filhos durante drag
   const [queue, setQueue] = useState([]); // [{ id, file, kind, status: idle|uploading|done|error, error?, mediaId? }]
+  const [isDragOver, setIsDragOver] = useState(false);
 
   function handleFiles(fileList) {
     const newItems = [];
@@ -89,14 +91,62 @@ export default function MidiaUploader({ patientId, examId, onUploaded }) {
     setQueue(q => q.filter(i => i.id !== itemId));
   }
 
+  // ─── Drag & drop handlers ─────────────────────────────
+  function onDragEnter(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!Array.from(e.dataTransfer.types || []).includes('Files')) return;
+    dragCounter.current += 1;
+    setIsDragOver(true);
+  }
+  function onDragOver(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.dataTransfer.dropEffect = 'copy';
+  }
+  function onDragLeave(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounter.current -= 1;
+    if (dragCounter.current <= 0) {
+      dragCounter.current = 0;
+      setIsDragOver(false);
+    }
+  }
+  function onDrop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounter.current = 0;
+    setIsDragOver(false);
+    const files = Array.from(e.dataTransfer.files || []);
+    if (files.length > 0) handleFiles(files);
+  }
+
   return (
     <div className="midia-uploader">
-      <div className="uploader-dropzone">
+      <div
+        className={`uploader-dropzone${isDragOver ? ' is-dragover' : ''}`}
+        onDragEnter={onDragEnter}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onClick={() => fileInputRef.current?.click()}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            fileInputRef.current?.click();
+          }
+        }}
+      >
         <Upload size={28} />
         <p>
-          <strong>Adicionar mídia ao exame</strong>
+          <strong>{isDragOver ? 'Solte aqui pra enviar' : 'Adicionar mídia ao exame'}</strong>
         </p>
         <p className="muted">
+          Arraste e solte, ou clique pra escolher.
+          <br />
           Fotos (JPEG, PNG, WebP — até 20MB) ou vídeo (MP4, MOV, AVI, WebM — até 100MB)
         </p>
         <input
@@ -113,7 +163,10 @@ export default function MidiaUploader({ patientId, examId, onUploaded }) {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => fileInputRef.current?.click()}
+          onClick={e => {
+            e.stopPropagation();
+            fileInputRef.current?.click();
+          }}
         >
           Escolher arquivos
         </button>

@@ -14,20 +14,49 @@ import { getAdminActivity } from '../../../lib/memo3d/api';
 import './memo3d.css';
 
 const ACTION_LABELS = {
+  // Sessão e termo
   'patient.login': '🔑 Login',
-  'patient.create': '👤 Cadastro',
+  'patient.consent.accept': '✅ Aceitou termo',
+
+  // Visualização de mídia
   'patient.media.view': '👁️ Visualizou foto',
+  'patient.video.play': '🎬 Tocou vídeo',
   'patient.media.download': '⬇️ Baixou foto',
-  'patient.share.create.client': '🔗 Gerou link família',
+
+  // Compartilhamento com família
   'patient.share.create': '🔗 Gerou link família',
+  'patient.share.create.client': '🔗 Gerou link família',
   'family.share.view': '👨‍👩‍👧 Família abriu link',
+
+  // Inteligência artificial
   'patient.ai.generate': '✨ Gerou IA',
   'patient.ai.save': '💾 Salvou IA',
   'patient.ai.fail': '❌ Falha IA',
-  'patient.credit.purchase': '💳 Comprou créditos',
-  'exam.mark_paid': '💰 Exame pago',
+
+  // Créditos / pagamento
+  'patient.credits.checkout_created': '🛒 Iniciou compra',
+  'patient.credits.purchase_approved': '💳 Compra aprovada',
+  'patient.credits.purchase_refunded': '↩️ Reembolso',
+  'patient.credit.purchase': '💳 Comprou créditos', // legado
+
+  // Conta da paciente
+  'patient.password.changed': '🔒 Trocou senha',
+
+  // Recepção / admin
+  'patient.create': '👤 Cadastro',
+  'patient.create.client': '👤 Cadastro',
+  'patient.update': '✏️ Atualizou cadastro',
+  'patient.update.client': '✏️ Atualizou cadastro',
+  'patient.delete': '🗑️ Excluiu paciente',
+  'patient.delete.client': '🗑️ Excluiu paciente',
+  'patient.password.set': '🔑 Senha definida',
+  'patient.password.set.client': '🔑 Senha definida',
   'exam.create': '📋 Exame criado',
+  'exam.create.client': '📋 Exame criado',
+  'exam.mark_paid': '💰 Exame pago',
+  'exam.mark_paid.client': '💰 Exame pago',
   'media.upload.client': '📤 Upload de mídia',
+  'media.register': '📤 Mídia registrada',
 };
 
 function actionLabel(action) {

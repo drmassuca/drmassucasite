@@ -14,6 +14,7 @@ import {
   User,
   Activity,
   Heart,
+  BarChart3,
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import './AdminLayout.css';
@@ -40,9 +41,7 @@ const AdminLayout = () => {
     { path: '/admin/media', icon: Image, label: 'Mídia' },
     { path: '/admin/site-vivo', icon: Activity, label: 'Site-vivo' },
     { path: '/admin/memo3d', icon: Heart, label: 'Memo3D' },
-    { path: '/admin/memo3d/atividade', icon: Activity, label: 'Atividade Memo3D' },
-    { path: '/admin/ai', icon: Brain, label: 'Assistente IA' },
-    { path: '/admin/settings', icon: Settings, label: 'Configurações' },
+    { path: '/admin/memo3d/atividade', icon: BarChart3, label: 'Atividade', subItem: true },
   ];
 
   return (
@@ -65,7 +64,9 @@ const AdminLayout = () => {
               key={item.path}
               to={item.path}
               end={item.exact}
-              className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}
+              className={({ isActive }) =>
+                `nav-item${item.subItem ? ' nav-item-sub' : ''} ${isActive ? 'active' : ''}`
+              }
             >
               <item.icon className="nav-icon" />
               {sidebarOpen && <span>{item.label}</span>}

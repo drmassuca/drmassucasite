@@ -73,6 +73,24 @@ function buildContextText(matches) {
     .join('\n\n---\n\n');
 }
 
+async function logInteraction(supaUrl, serviceKey, payload) {
+  try {
+    const r = await fetch(`${supaUrl}/rest/v1/chat_interactions`, {
+      method: 'POST',
+      headers: {
+        'apikey': serviceKey,
+        'Authorization': `Bearer ${serviceKey}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) console.error('chat_interactions log failed:', r.status, await r.text());
+  } catch (e) {
+    console.error('chat_interactions log error:', e.message);
+  }
+}
+
 async function callGrok(grokKey, systemContext, userMessages) {
   const input = [
     { role: 'system', content: `${SYSTEM_PROMPT}\n\nCONTEXTO DO SITE:\n${systemContext}` },
@@ -104,6 +122,8 @@ async function callGrok(grokKey, systemContext, userMessages) {
 }
 
 export default async function handler(req, res) {
+  const startedAt = Date.now();
+
   // CORS basico (mesma origem na pratica, mas defensivo)
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -111,7 +131,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { messages } = req.body || {};
+  const { messages, sessionId } = req.body || {};
   if (!Array.isArray(messages) || messages.length === 0) {
     return res.status(400).json({ error: 'messages array obrigatorio' });
   }
@@ -130,9 +150,12 @@ export default async function handler(req, res) {
   if (!OPENAI_API_KEY) return res.status(500).json({ error: 'OPENAI_API_KEY ausente' });
   if (!SUPA_URL || !SERVICE_KEY) return res.status(500).json({ error: 'Supabase env ausente' });
 
+  const sessionIdSafe = typeof sessionId === 'string' && sessionId.length <= 128 ? sessionId : null;
+  let matches = [];
+
   try {
     const queryEmbedding = await embed(lastUser.content, OPENAI_API_KEY);
-    const matches = await matchContent(SUPA_URL, SERVICE_KEY, queryEmbedding, 5);
+    matches = await matchContent(SUPA_URL, SERVICE_KEY, queryEmbedding, 5);
     const context = buildContextText(matches);
 
     const sanitized = messages
@@ -141,17 +164,50 @@ export default async function handler(req, res) {
 
     const answer = await callGrok(GROK_API_KEY, context, sanitized);
 
-    return res.status(200).json({
-      answer,
-      sources: matches.map(m => ({
-        source: m.source,
-        source_id: m.source_id,
-        title: m.title,
-        similarity: Number(m.similarity?.toFixed(3)),
-      })),
+    const sources = matches.map(m => ({
+      source: m.source,
+      source_id: m.source_id,
+      title: m.title,
+      similarity: Number(m.similarity?.toFixed(3)),
+    }));
+
+    // Log da interacao (await pra garantir gravacao no Vercel serverless;
+    // latencia adicional ~50ms aceitavel comparado aos ~2s do Grok).
+    await logInteraction(SUPA_URL, SERVICE_KEY, {
+      session_id: sessionIdSafe,
+      user_message: lastUser.content,
+      response: answer,
+      top_similarity: sources[0]?.similarity ?? null,
+      sources_count: sources.length,
+      sources,
+      latency_ms: Date.now() - startedAt,
+      fallback_to_whatsapp: sources.length === 0 && /whatsapp/i.test(answer || ''),
     });
+
+    return res.status(200).json({ answer, sources });
   } catch (e) {
     console.error('chat handler error:', e);
+
+    // Log do erro tambem (best-effort)
+    await logInteraction(SUPA_URL, SERVICE_KEY, {
+      session_id: sessionIdSafe,
+      user_message: lastUser.content,
+      response: null,
+      top_similarity: matches[0] ? Number(matches[0].similarity?.toFixed(3)) : null,
+      sources_count: matches.length,
+      sources: matches.length
+        ? matches.map(m => ({
+            source: m.source,
+            source_id: m.source_id,
+            title: m.title,
+            similarity: Number(m.similarity?.toFixed(3)),
+          }))
+        : null,
+      latency_ms: Date.now() - startedAt,
+      fallback_to_whatsapp: false,
+      error: e.message,
+    });
+
     return res.status(502).json({ error: e.message });
   }
 }

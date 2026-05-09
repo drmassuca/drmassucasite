@@ -266,6 +266,56 @@ export async function processArticles({ supaUrl, serviceKey, openaiKey, force, l
   return allChunks.length;
 }
 
+// Embeda 1 artigo (chunkando + delete antigo + insert novo).
+// Usado pelo webhook de article-published quando UPDATE/INSERT acontece.
+export async function embedSingleArticle(article, ctx) {
+  const { supaUrl, serviceKey, openaiKey, log } = ctx;
+
+  if (!article?.slug) {
+    log.push('embedSingleArticle: artigo invalido (sem slug)');
+    return 0;
+  }
+
+  const chunks = chunkArticle(article);
+  log.push(`embedSingleArticle: ${article.slug} -> ${chunks.length} chunks`);
+  if (chunks.length === 0) return 0;
+
+  // Embed em batch (artigos cabem facil em 1 chamada)
+  const texts = chunks.map(c => `${c.title}. ${c.content}`);
+  const embeddings = await embedBatch(texts, openaiKey);
+
+  // Delete chunks antigos do mesmo artigo (idempotente)
+  const delUrl = `${supaUrl}/rest/v1/site_chunks?source_type=eq.article&source_slug=like.${encodeURIComponent(
+    article.slug + '%'
+  )}`;
+  await fetch(delUrl, {
+    method: 'DELETE',
+    headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+  });
+
+  // Insert novos
+  const rows = chunks.map((c, i) => ({ ...c, embedding: embeddings[i] }));
+  await supa(supaUrl, serviceKey, 'POST', 'site_chunks', rows);
+
+  log.push(`embedSingleArticle: ${chunks.length} embeddings populados`);
+  return chunks.length;
+}
+
+// Deleta todos os chunks de 1 artigo (usado quando artigo e despublicado/deletado).
+export async function deleteArticleChunks(slug, ctx) {
+  const { supaUrl, serviceKey, log } = ctx;
+  if (!slug) return false;
+  const url = `${supaUrl}/rest/v1/site_chunks?source_type=eq.article&source_slug=like.${encodeURIComponent(
+    slug + '%'
+  )}`;
+  const r = await fetch(url, {
+    method: 'DELETE',
+    headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+  });
+  log.push(`deleteArticleChunks: ${slug} -> status ${r.status}`);
+  return r.ok;
+}
+
 export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
   const exams = examsData.map(e => ({
     source_type: 'exam',

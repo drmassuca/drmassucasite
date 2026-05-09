@@ -54,7 +54,7 @@ async function matchContent(supaUrl, serviceKey, queryEmbedding, count = 5) {
     body: JSON.stringify({
       query_embedding: queryEmbedding,
       match_count: count,
-      match_threshold: 0.35,
+      match_threshold: 0.45,
     }),
   });
   if (!res.ok) {
@@ -71,6 +71,19 @@ function buildContextText(matches) {
   return matches
     .map((m, i) => `[${i + 1}] ${m.title}\n${m.content}`)
     .join('\n\n---\n\n');
+}
+
+// Heuristica de fallback: ou RAG nao retornou nada, OU top_sim baixo
+// E modelo admitiu nao saber. Menciao isolada de "WhatsApp" nao conta
+// (pode ser direcionamento valido pra preco/agendamento, com RAG forte).
+function detectFallback(sources, answer) {
+  if (!sources || sources.length === 0) return true;
+  const topSim = sources[0]?.similarity ?? 0;
+  if (topSim >= 0.5) return false;
+  const text = String(answer || '');
+  return /n[ãa]o\s+(tenho|sei|consigo|encontrei|posso)/i.test(text)
+      || /sem\s+informa[çc][ãa]o/i.test(text)
+      || /n[ãa]o\s+est[áa]\s+no\s+contexto/i.test(text);
 }
 
 async function logInteraction(supaUrl, serviceKey, payload) {
@@ -181,7 +194,7 @@ export default async function handler(req, res) {
       sources_count: sources.length,
       sources,
       latency_ms: Date.now() - startedAt,
-      fallback_to_whatsapp: sources.length === 0 && /whatsapp/i.test(answer || ''),
+      fallback_to_whatsapp: detectFallback(sources, answer),
     });
 
     return res.status(200).json({ answer, sources });

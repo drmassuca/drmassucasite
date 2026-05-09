@@ -13,11 +13,15 @@ import {
   Clock,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { useAuth } from '../contexts/AuthContext';
 import './SiteVivoOverview.css';
 
 const SiteVivoOverview = () => {
+  const { session } = useAuth();
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [rebuilding, setRebuilding] = useState(false);
+  const [rebuildResult, setRebuildResult] = useState(null);
   const [data, setData] = useState({
     faq: { pending: 0, published: 0, ai_last_7d: 0 },
     vitals: { runs_last_7d: 0, urls_monitored: 0, active_alerts: 0, last_run_at: null },
@@ -169,6 +173,36 @@ const SiteVivoOverview = () => {
     fetchAll();
   };
 
+  const handleRebuildRag = async (only, force) => {
+    if (!session?.access_token) {
+      setRebuildResult({ error: 'Sessão expirada — faça login novamente.' });
+      return;
+    }
+    setRebuilding(true);
+    setRebuildResult(null);
+    try {
+      const r = await fetch('/api/admin/rebuild-rag', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ only, force }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        setRebuildResult({ error: data.error || `HTTP ${r.status}` });
+      } else {
+        setRebuildResult(data);
+        fetchAll(); // refresh stats card (chunks_embedded muda)
+      }
+    } catch (e) {
+      setRebuildResult({ error: e.message });
+    } finally {
+      setRebuilding(false);
+    }
+  };
+
   const formatRelative = iso => {
     if (!iso) return '—';
     const date = new Date(iso);
@@ -304,6 +338,48 @@ const SiteVivoOverview = () => {
               <span className="sv-stat-label">chunks site</span>
             </div>
           </div>
+
+          <div className="sv-rebuild-actions">
+            <button
+              type="button"
+              className="sv-rebuild-btn"
+              onClick={() => handleRebuildRag('all', false)}
+              disabled={rebuilding}
+              title="Indexa só artigos/FAQs novos (rápido)"
+            >
+              <RefreshCw size={14} className={rebuilding ? 'spin' : ''} />
+              {rebuilding ? 'Indexando…' : 'Indexar novos'}
+            </button>
+            <button
+              type="button"
+              className="sv-rebuild-btn sv-rebuild-btn--ghost"
+              onClick={() => handleRebuildRag('all', true)}
+              disabled={rebuilding}
+              title="Reconstrói TODOS os embeddings do zero (~20s)"
+            >
+              Reconstruir tudo
+            </button>
+          </div>
+
+          {rebuildResult && (
+            <div
+              className={`sv-rebuild-result sv-rebuild-result--${
+                rebuildResult.error ? 'err' : 'ok'
+              }`}
+            >
+              {rebuildResult.error ? (
+                <>✕ {rebuildResult.error}</>
+              ) : (
+                <>
+                  ✓ {(rebuildResult.faqs_processed || 0) +
+                    (rebuildResult.site_chunks_processed || 0) +
+                    (rebuildResult.articles_chunks_processed || 0)}{' '}
+                  chunks processados em{' '}
+                  {(rebuildResult.duration_ms / 1000).toFixed(1)}s
+                </>
+              )}
+            </div>
+          )}
         </div>
 
         {/* SEO Vivo */}

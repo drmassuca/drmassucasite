@@ -167,7 +167,7 @@ async function supa(supaUrl, key, method, path, body) {
   return res.json();
 }
 
-async function processFAQ({ supaUrl, serviceKey, openaiKey, force, log }) {
+export async function processFAQ({ supaUrl, serviceKey, openaiKey, force, log }) {
   const filter = force ? '' : '&embedding=is.null';
   const items = await supa(
     supaUrl,
@@ -194,7 +194,7 @@ async function processFAQ({ supaUrl, serviceKey, openaiKey, force, log }) {
   return items.length;
 }
 
-async function processArticles({ supaUrl, serviceKey, openaiKey, force, log }) {
+export async function processArticles({ supaUrl, serviceKey, openaiKey, force, log }) {
   // Pega artigos publicados
   const articles = await supa(
     supaUrl,
@@ -266,7 +266,7 @@ async function processArticles({ supaUrl, serviceKey, openaiKey, force, log }) {
   return allChunks.length;
 }
 
-async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
+export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
   const exams = examsData.map(e => ({
     source_type: 'exam',
     source_slug: e.slug,

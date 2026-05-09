@@ -1,12 +1,20 @@
 // api/build-embeddings.js
-// One-shot endpoint pra popular embeddings de FAQ + site_chunks.
+// One-shot endpoint pra popular embeddings de FAQ + site_chunks + articles.
 // Protegido por EMBED_BUILD_TOKEN (qualquer string aleatoria que voce escolher).
 // Reusa OPENAI_API_KEY e SUPABASE_SERVICE_KEY ja configurados no Vercel.
 //
 // Uso:
 //   curl "https://drmassuca.com.br/api/build-embeddings?token=SEU_TOKEN"
 //   curl "https://drmassuca.com.br/api/build-embeddings?token=SEU_TOKEN&only=faq"
+//   curl "https://drmassuca.com.br/api/build-embeddings?token=SEU_TOKEN&only=site"
+//   curl "https://drmassuca.com.br/api/build-embeddings?token=SEU_TOKEN&only=articles"
 //   curl "https://drmassuca.com.br/api/build-embeddings?token=SEU_TOKEN&force=1"
+//
+// only=all  -> faq + site + articles (default)
+// only=faq  -> apenas faq_items
+// only=site -> apenas site_chunks (curated + exames)
+// only=articles -> apenas blog IA Medica
+// force=1   -> reembeda tudo, mesmo o que ja tem embedding
 //
 // Tambem funciona pelo browser (GET), mas use curl pra ver o JSON formatado.
 
@@ -72,6 +80,60 @@ function stripHtml(s) {
   return (s || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 }
 
+function slugifyHeading(text) {
+  return (text || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '') // remove acentos
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 60);
+}
+
+// Quebra um artigo em chunks: 1 header + 1 por <h3>.
+// Cada chunk: { source_type: 'article', source_slug: '<slug>#<id>', title, content }
+function chunkArticle(article) {
+  const chunks = [];
+
+  // Header chunk: garante que pergunta sobre "do que e o artigo X" ache sempre
+  const headerContent = [article.title, article.subtitle, article.excerpt]
+    .filter(Boolean).join('. ');
+  chunks.push({
+    source_type: 'article',
+    source_slug: `${article.slug}#header`,
+    title: article.title,
+    content: stripHtml(headerContent),
+  });
+
+  // Body: split por <h3> (h2 e raro/unico, h4 e granular demais)
+  const html = article.content || '';
+  const blocks = html.split(/(?=<h3[^>]*>)/i);
+
+  let bodyIdx = 0;
+  for (const block of blocks) {
+    if (!block.trim()) continue;
+    const headingMatch = block.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
+    const headingText = headingMatch ? stripHtml(headingMatch[1]) : '';
+    const content = stripHtml(block);
+
+    // Skip bloco de pre-h3 muito curto (intro/lead vai junto via header)
+    if (content.length < 100) continue;
+
+    const slugSuffix = headingText
+      ? slugifyHeading(headingText) || `body-${bodyIdx}`
+      : `body-${bodyIdx}`;
+
+    chunks.push({
+      source_type: 'article',
+      source_slug: `${article.slug}#${slugSuffix}`,
+      title: headingText ? `${article.title} — ${headingText}` : article.title,
+      content,
+    });
+    bodyIdx++;
+  }
+
+  return chunks;
+}
+
 async function embedBatch(texts, openaiKey) {
   const res = await fetch(OPENAI_URL, {
     method: 'POST',
@@ -130,6 +192,78 @@ async function processFAQ({ supaUrl, serviceKey, openaiKey, force, log }) {
   );
   log.push(`FAQ: ${items.length} embeddings populados`);
   return items.length;
+}
+
+async function processArticles({ supaUrl, serviceKey, openaiKey, force, log }) {
+  // Pega artigos publicados
+  const articles = await supa(
+    supaUrl,
+    serviceKey,
+    'GET',
+    `articles?select=id,slug,title,subtitle,excerpt,content&status=eq.published`
+  );
+  log.push(`Articles: ${articles.length} publicados no Supabase`);
+
+  let toProcess = articles;
+  if (!force) {
+    // Quais slugs ja tem chunks em site_chunks?
+    const existing = await supa(
+      supaUrl,
+      serviceKey,
+      'GET',
+      `site_chunks?select=source_slug&source_type=eq.article`
+    );
+    const existingSlugs = new Set(
+      existing.map(e => (e.source_slug || '').split('#')[0]).filter(Boolean)
+    );
+    toProcess = articles.filter(a => !existingSlugs.has(a.slug));
+    log.push(`Articles: ${toProcess.length} novos para embedar (force=false)`);
+  } else {
+    log.push(`Articles: reembedando todos (force=true)`);
+  }
+
+  if (toProcess.length === 0) return 0;
+
+  // Gera chunks de todos os artigos
+  const allChunks = [];
+  for (const article of toProcess) {
+    const chunks = chunkArticle(article);
+    log.push(`Articles: ${article.slug} -> ${chunks.length} chunks`);
+    allChunks.push(...chunks);
+  }
+  log.push(`Articles: ${allChunks.length} chunks gerados (total)`);
+
+  // Embed em batch (OpenAI suporta arrays grandes; vamos limitar a 100 por chamada por segurança)
+  const EMBED_BATCH = 100;
+  const embeddings = [];
+  for (let i = 0; i < allChunks.length; i += EMBED_BATCH) {
+    const slice = allChunks.slice(i, i + EMBED_BATCH);
+    const texts = slice.map(c => `${c.title}. ${c.content}`);
+    const embs = await embedBatch(texts, openaiKey);
+    embeddings.push(...embs);
+  }
+
+  // Delete chunks antigos dos artigos sendo (re)embedados
+  for (const article of toProcess) {
+    const url = `${supaUrl}/rest/v1/site_chunks?source_type=eq.article&source_slug=like.${encodeURIComponent(article.slug + '%')}`;
+    const r = await fetch(url, {
+      method: 'DELETE',
+      headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+    });
+    if (!r.ok && r.status !== 404) {
+      log.push(`Articles: WARN delete antigo de ${article.slug} retornou ${r.status}`);
+    }
+  }
+
+  // Insert novos em batches
+  const INSERT_BATCH = 50;
+  const rows = allChunks.map((c, i) => ({ ...c, embedding: embeddings[i] }));
+  for (let i = 0; i < rows.length; i += INSERT_BATCH) {
+    await supa(supaUrl, serviceKey, 'POST', 'site_chunks', rows.slice(i, i + INSERT_BATCH));
+  }
+
+  log.push(`Articles: ${allChunks.length} embeddings populados em site_chunks`);
+  return allChunks.length;
 }
 
 async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
@@ -207,14 +341,17 @@ export default async function handler(req, res) {
 
     let faqCount = 0;
     let siteCount = 0;
+    let articlesCount = 0;
 
     if (only === 'all' || only === 'faq') faqCount = await processFAQ(ctx);
     if (only === 'all' || only === 'site') siteCount = await processSiteChunks(ctx);
+    if (only === 'all' || only === 'articles') articlesCount = await processArticles(ctx);
 
     return res.status(200).json({
       success: true,
       faqs_processed: faqCount,
       site_chunks_processed: siteCount,
+      articles_chunks_processed: articlesCount,
       duration_ms: Date.now() - startedAt,
       log,
     });

@@ -46,5 +46,6 @@ public/videos/tutorialsd.mp4
 **/*.original.webp
 .vercel
 
-# Claude Code (settings per-machine)
+# Claude Code (per-machine: settings + worktrees cache)
 .claude/settings.local.json
+.claude/worktrees/

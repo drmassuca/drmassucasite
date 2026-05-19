@@ -15,6 +15,7 @@ import {
   Activity,
   Heart,
   BarChart3,
+  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import './AdminLayout.css';
@@ -42,6 +43,7 @@ const AdminLayout = () => {
     { path: '/admin/site-vivo', icon: Activity, label: 'Site-vivo' },
     { path: '/admin/memo3d', icon: Heart, label: 'Memo3D' },
     { path: '/admin/memo3d/atividade', icon: BarChart3, label: 'Atividade', subItem: true },
+    { path: '/admin/memo3d/galeria-ia', icon: Sparkles, label: 'Galeria IA', subItem: true },
   ];
 
   return (

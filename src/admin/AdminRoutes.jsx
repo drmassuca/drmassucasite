@@ -22,6 +22,7 @@ import Memo3dPacienteNova from './pages/memo3d/PacienteNova';
 import Memo3dPacienteDetalhe from './pages/memo3d/PacienteDetalhe';
 import Memo3dLabIA from './pages/memo3d/LabIA';
 import Memo3dAtividade from './pages/memo3d/Atividade';
+import Memo3dGaleriaIA from './pages/memo3d/GaleriaIA';
 
 // Importar estilos globais do admin
 import './admin-global.css';
@@ -91,6 +92,7 @@ const AdminRoutes = () => {
           <Route path="memo3d/pacientes/detail" element={<Memo3dPacienteDetalhe />} />
           <Route path="memo3d/lab-ia" element={<Memo3dLabIA />} />
           <Route path="memo3d/atividade" element={<Memo3dAtividade />} />
+          <Route path="memo3d/galeria-ia" element={<Memo3dGaleriaIA />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
 

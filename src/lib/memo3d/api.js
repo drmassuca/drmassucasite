@@ -373,6 +373,30 @@ export async function uploadVideo({ patientId, examId, file }) {
   return data.media;
 }
 
+// ─── Galeria IA (admin) ───────────────────────────────────
+
+/**
+ * Lista imagens IA geradas pelas pacientes, com URLs assinadas
+ * já incluídas (TTL 30 min).
+ * @param {object} [params]
+ * @param {string} [params.from] ISO date
+ * @param {string} [params.to] ISO date
+ * @param {string} [params.patientId]
+ * @param {number} [params.page]
+ * @param {number} [params.pageSize]
+ */
+export async function getAdminAiGallery(params = {}) {
+  const qs = new URLSearchParams();
+  if (params.from) qs.set('from', params.from);
+  if (params.to) qs.set('to', params.to);
+  if (params.patientId) qs.set('patientId', params.patientId);
+  if (params.page) qs.set('page', String(params.page));
+  if (params.pageSize) qs.set('pageSize', String(params.pageSize));
+  const url = `/api/memo3d/admin/ai-gallery${qs.toString() ? '?' + qs.toString() : ''}`;
+  const res = await authedFetch(url, { method: 'GET' });
+  return asJson(res);
+}
+
 // ─── Painel de atividade (admin) ──────────────────────────
 
 /**

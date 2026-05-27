@@ -161,6 +161,53 @@ const ElastografiaHepatica = () => {
               </Text>
             </Box>
 
+            <Box w="full">
+              <Heading as="h2" fontSize="2xl" mb={3}>
+                Equipamento
+              </Heading>
+              <Box
+                bg="rgba(212, 175, 55, 0.1)"
+                border="1px solid rgba(212, 175, 55, 0.3)"
+                borderRadius="lg"
+                p={6}
+                textAlign="center"
+              >
+                <Text
+                  fontSize="xs"
+                  color="green.700"
+                  letterSpacing="0.2em"
+                  textTransform="uppercase"
+                  fontWeight="semibold"
+                  mb={2}
+                >
+                  Aparelho premium
+                </Text>
+                <Text
+                  fontSize={{ base: '3xl', md: '4xl' }}
+                  color="green.800"
+                  fontWeight="bold"
+                  lineHeight="1"
+                  mb={1}
+                >
+                  HERA Z20
+                </Text>
+                <Text
+                  fontSize="sm"
+                  color="#b8941f"
+                  fontWeight="semibold"
+                  letterSpacing="0.05em"
+                  mb={4}
+                >
+                  SAMSUNG
+                </Text>
+                <Text fontSize="md" color="gray.700">
+                  Plataforma top de linha da Samsung para ultrassonografia hepática, com tecnologia
+                  dedicada de elastografia ponto a ponto e quantificação de gordura (Fat Fraction)
+                  no mesmo equipamento.
+                </Text>
+              </Box>
+            </Box>
+
             <Box>
               <Heading as="h2" fontSize="2xl" mb={3}>
                 Resultado e laudo

@@ -54,6 +54,8 @@ const examUrls = [
   '/exames/avaliacao-pre-cirurgia-plastica',
   '/exames/ultrassonografia-de-tireoide-com-ou-sem-doppler',
   '/exames/ultrassonografia-cervical-com-ou-sem-doppler',
+  '/exames/elastografia-hepatica',
+  '/exames/avaliacao-multiparametrica-figado',
 ];
 
 function Exams() {
@@ -137,6 +139,11 @@ function Exams() {
                   ['Superior', '/exames/superior'],
                   ['Inferior', '/exames/inferior'],
                   ['Parede Abdominal', '/exames/parede-abdominal'],
+                  ['Elastografia Hepática', '/exames/elastografia-hepatica'],
+                  [
+                    'Avaliação Multiparamétrica do Fígado',
+                    '/exames/avaliacao-multiparametrica-figado',
+                  ],
                 ],
               },
               {

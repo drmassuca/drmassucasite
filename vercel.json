@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },
+    { "source": "/share/guia-hardware-ia-medica", "destination": "/api/og/guia-hardware-ia-medica" },
     { "source": "/ia-medica/artigo/:id", "destination": "/api/og/artigo?id=:id" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]

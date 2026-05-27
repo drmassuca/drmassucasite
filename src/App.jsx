@@ -45,6 +45,7 @@ const SDConfiguracao = lazy(
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 const ReviewZ20Expert22 = lazy(() => import('./pages/ia-medica/review-z20-expert22'));
+const GuiaHardwareIAMedica = lazy(() => import('./pages/ia-medica/guia-hardware-ia-medica'));
 const ReviewZ20Expert22EN = lazy(() =>
   import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN }))
 );
@@ -104,6 +105,10 @@ const UltrassonografiaPartesMoles = lazy(
 );
 const UltrassonografiaAvaliacaoPreCirurgiaPlastica = lazy(
   () => import('./pages/exam-details/ultrassonografia-avaliacao-pre-cirurgia-plastica')
+);
+const ElastografiaHepatica = lazy(() => import('./pages/exam-details/elastografia-hepatica'));
+const AvaliacaoMultiparametricaFigado = lazy(
+  () => import('./pages/exam-details/avaliacao-multiparametrica-figado')
 );
 
 /* ────────────────────────── GA page-view helper ────────────────────────── */
@@ -258,6 +263,7 @@ function App() {
               element={<SDProblemas />}
             />
             <Route path="/ia-medica/review-z20-expert22" element={<ReviewZ20Expert22 />} />
+            <Route path="/ia-medica/guia-hardware-ia-medica" element={<GuiaHardwareIAMedica />} />
             <Route path="/ia-medica/review-z20-expert22/en" element={<ReviewZ20Expert22EN />} />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
@@ -311,6 +317,11 @@ function App() {
             <Route
               path="/exames/avaliacao-pre-cirurgia-plastica"
               element={<UltrassonografiaAvaliacaoPreCirurgiaPlastica />}
+            />
+            <Route path="/exames/elastografia-hepatica" element={<ElastografiaHepatica />} />
+            <Route
+              path="/exames/avaliacao-multiparametrica-figado"
+              element={<AvaliacaoMultiparametricaFigado />}
             />
 
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

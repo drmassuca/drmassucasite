@@ -276,6 +276,48 @@ export const relatedExams = {
     },
   ],
 
+  /* Hepático Avançado */
+  'elastografia-hepatica': [
+    {
+      slug: 'avaliacao-multiparametrica-figado',
+      icon: '🔬',
+      label: 'Avaliação Multiparamétrica do Fígado',
+      desc: 'Exame hepático integrado com interpretação clínica',
+    },
+    {
+      slug: 'superior',
+      icon: '⬆️',
+      label: 'Abdome Superior',
+      desc: 'Fígado, vesícula, pâncreas e baço',
+    },
+    {
+      slug: 'total',
+      icon: '📋',
+      label: 'Abdome Total',
+      desc: 'Avaliação abdominal completa',
+    },
+  ],
+  'avaliacao-multiparametrica-figado': [
+    {
+      slug: 'elastografia-hepatica',
+      icon: '🩺',
+      label: 'Elastografia Hepática',
+      desc: 'Rigidez hepática e quantificação de esteatose',
+    },
+    {
+      slug: 'superior',
+      icon: '⬆️',
+      label: 'Abdome Superior',
+      desc: 'Fígado, vesícula, pâncreas e baço',
+    },
+    {
+      slug: 'total',
+      icon: '📋',
+      label: 'Abdome Total',
+      desc: 'Avaliação abdominal completa',
+    },
+  ],
+
   /* Próstata */
   'via-abdominal': [
     {
@@ -483,6 +525,10 @@ export const whatsappMessages = {
   'ultrassonografia-de-tireoide-com-ou-sem-doppler':
     'Olá, gostaria de agendar um ultrassom de tireoide.',
   'ultrassonografia-cervical-com-ou-sem-doppler': 'Olá, gostaria de agendar um ultrassom cervical.',
+  'elastografia-hepatica':
+    'Olá, gostaria de agendar uma elastografia hepática com quantificação de esteatose.',
+  'avaliacao-multiparametrica-figado':
+    'Olá, gostaria de agendar uma avaliação multiparamétrica do fígado.',
 };
 
 /* ─── FAQs por exame (schema FAQ markup) ────────────────────────────────── */
@@ -700,6 +746,50 @@ export const examFAQs = {
       a: 'Linfonodos, glândulas salivares, massas cervicais e fluxo sanguíneo quando indicado.',
     },
   ],
+  'elastografia-hepatica': [
+    {
+      q: 'O exame substitui a biópsia hepática?',
+      a: 'Na grande maioria dos casos, sim. A elastografia hepática quantitativa é hoje o método de escolha para estadiamento de fibrose em diversas etiologias, com correspondência validada contra biópsia.',
+    },
+    {
+      q: 'Preciso estar em jejum?',
+      a: 'Sim, jejum mínimo de 4 horas. Água permitida. Não consumir álcool nas 24 horas anteriores.',
+    },
+    {
+      q: 'O exame dói?',
+      a: 'Não. É indolor e não invasivo, sem contraste, radiação ou agulhas.',
+    },
+    {
+      q: 'Por que trazer exames laboratoriais?',
+      a: 'A interpretação dos valores de rigidez e de gordura hepática é mais precisa quando feita junto com transaminases, plaquetas, INR e albumina.',
+    },
+    {
+      q: 'Quanto tempo demora o exame?',
+      a: 'Aproximadamente 20 a 30 minutos.',
+    },
+  ],
+  'avaliacao-multiparametrica-figado': [
+    {
+      q: 'Qual a diferença para a elastografia simples?',
+      a: 'A avaliação multiparamétrica integra rigidez hepática, esteatose, elastografia esplênica, Doppler portal completo e índice hepato-renal em uma única sessão, com interpretação clínica direcionada, e não apenas números isolados.',
+    },
+    {
+      q: 'Quando este exame é indicado?',
+      a: 'Em casos complexos: suspeita de cirrose compensada, investigação de hipertensão portal, monitoramento sob terapia hepatológica, avaliação pré-cirúrgica ou pré-transplante, ou doença hepática de múltiplas etiologias.',
+    },
+    {
+      q: 'Preciso estar em jejum?',
+      a: 'Sim, jejum de 4 a 6 horas. Água permitida. Não consumir álcool nas 24 horas anteriores.',
+    },
+    {
+      q: 'Quanto tempo demora o exame?',
+      a: 'Aproximadamente 40 a 60 minutos, dependendo da complexidade do caso.',
+    },
+    {
+      q: 'O médico solicitante pode discutir o resultado?',
+      a: 'Sim. Em casos selecionados, o médico solicitante pode entrar em contato direto para discussão conjunta da interpretação do laudo.',
+    },
+  ],
 };
 
 /* ─── Legendas das imagens por exame ────────────────────────────────────── */
@@ -733,6 +823,9 @@ export const imageCaptions = {
     'Imagem ilustrativa — avaliação pré-cirurgia plástica',
   'ultrassonografia-de-tireoide-com-ou-sem-doppler': 'Imagem ilustrativa — ultrassom de tireoide',
   'ultrassonografia-cervical-com-ou-sem-doppler': 'Imagem ilustrativa — ultrassom cervical',
+  'elastografia-hepatica':
+    'Imagem ilustrativa — elastografia hepática e quantificação de esteatose',
+  'avaliacao-multiparametrica-figado': 'Imagem ilustrativa — avaliação multiparamétrica do fígado',
 };
 
 /* ─── Breadcrumb labels por slug ────────────────────────────────────────── */
@@ -761,4 +854,6 @@ export const breadcrumbLabels = {
   'ultrassonografia-avaliacao-pre-cirurgia-plastica': 'Pré Cirurgia Plástica',
   'ultrassonografia-de-tireoide-com-ou-sem-doppler': 'Tireoide',
   'ultrassonografia-cervical-com-ou-sem-doppler': 'Cervical',
+  'elastografia-hepatica': 'Elastografia Hepática',
+  'avaliacao-multiparametrica-figado': 'Avaliação Multiparamétrica do Fígado',
 };

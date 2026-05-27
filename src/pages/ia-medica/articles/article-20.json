@@ -1,0 +1,21 @@
+{
+  "id": 20,
+  "slug": "samsung-hera-z20-vs-ge-voluson-expert-22",
+  "title": "Samsung HERA Z20 vs. GE Voluson Expert 22: o duelo definitivo em ultrassom obstétrico premium",
+  "subtitle": "Testei os dois aparelhos mais avançados do mundo em morfologia fetal no This Is Us 2026 — e trouxe specs que não existem em nenhuma publicação pública",
+  "excerpt": "Samsung HERA Z20 contra GE Voluson Expert 22: testados pessoalmente no congresso This Is Us 2026 da Escola NEXUS em Brasília. Hardware com dados coletados diretamente da tela dos aparelhos, revisado pela Samsung Medison Brasil, calculadora de ROI interativa e vencedor declarado.",
+  "category": "Review de Equipamentos",
+  "date": "2026-03-30",
+  "readTime": "18 min",
+  "author": "Dr. Massuca",
+  "tags": ["Ultrassom", "Samsung HERA Z20", "GE Voluson Expert 22", "Morfologia Fetal", "Ecocardiografia Fetal", "IA em Medicina", "Review de Equipamentos", "NEXUS", "This Is Us 2026"],
+  "featured": true,
+  "image": "PLACEHOLDER_CAPA",
+  "sources": [
+    {"title": "Samsung HERA Z20 — ISUOG 2024", "url": "https://news.samsung.com/global/samsung-unveils-premium-ob-gyn-ultrasound-system-hera-z20-in-isuog-world-congress-2024", "type": "industry"},
+    {"title": "GE Voluson Expert 22 — Datasheet", "url": "https://let.web-sme-csp.com/wp-content/uploads/2022/09/Voluson-Expert-22-Datasheet__DOC2668404_JB19599XX.pdf", "type": "industry"},
+    {"title": "FDA 510(k) K241971 — HERA Z20", "url": "https://xrayinterpreter.com/fda/K241971", "type": "regulatory"},
+    {"title": "FetalHQ — PMC 2025", "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12112619/", "type": "academic"},
+    {"title": "NEXUS — Escola de Ultrassonografia", "url": "https://nexusultrassonografia.com.br/", "type": "institutional"}
+  ]
+}

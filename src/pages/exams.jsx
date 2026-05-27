@@ -139,12 +139,8 @@ function Exams() {
                   ['Superior', '/exames/superior'],
                   ['Inferior', '/exames/inferior'],
                   ['Parede Abdominal', '/exames/parede-abdominal'],
-                  ['Elastografia Hepática', '/exames/elastografia-hepatica'],
-                  [
-                    'Avaliação Multiparamétrica do Fígado',
-                    '/exames/avaliacao-multiparametrica-figado',
-                  ],
                 ],
+                hasHepaticBox: true,
               },
               {
                 icon: FaMicroscope,
@@ -266,6 +262,66 @@ function Exams() {
                         >
                           Saiba tudo sobre Ultrassom 3D →
                         </Button>
+                      </Box>
+                    )}
+
+                    {/* Box especial para Avaliação Hepática Avançada */}
+                    {section.hasHepaticBox && (
+                      <Box
+                        bg="rgba(212, 175, 55, 0.1)"
+                        p={4}
+                        borderRadius="lg"
+                        border="1px solid rgba(212, 175, 55, 0.3)"
+                        mt={3}
+                        w="full"
+                      >
+                        <Text fontSize="sm" color="green.800" mb={2} fontWeight="semibold">
+                          ✨ <strong>Avaliação hepática avançada:</strong>
+                        </Text>
+                        <Text fontSize="sm" color="green.700" mb={3} lineHeight="1.4">
+                          Quantificação objetiva de fibrose e esteatose hepática, sem biópsia.
+                        </Text>
+                        <VStack spacing={2} align="stretch">
+                          <Button
+                            as={RouterLink}
+                            to="/exames/elastografia-hepatica"
+                            size="sm"
+                            bg="#d4af37"
+                            color="white"
+                            _hover={{ bg: '#b8941f' }}
+                            fontSize="xs"
+                            fontWeight="600"
+                            borderRadius="md"
+                            justifyContent="space-between"
+                          >
+                            <Text as="span">Elastografia Hepática</Text>
+                            <Text as="span" opacity={0.9}>
+                              R$ 700
+                            </Text>
+                          </Button>
+                          <Button
+                            as={RouterLink}
+                            to="/exames/avaliacao-multiparametrica-figado"
+                            size="sm"
+                            bg="#d4af37"
+                            color="white"
+                            _hover={{ bg: '#b8941f' }}
+                            fontSize="xs"
+                            fontWeight="600"
+                            borderRadius="md"
+                            justifyContent="space-between"
+                            whiteSpace="normal"
+                            height="auto"
+                            py={2}
+                          >
+                            <Text as="span" textAlign="left">
+                              Avaliação Multiparamétrica do Fígado
+                            </Text>
+                            <Text as="span" opacity={0.9} ml={2}>
+                              R$ 1.000
+                            </Text>
+                          </Button>
+                        </VStack>
                       </Box>
                     )}
                   </VStack>

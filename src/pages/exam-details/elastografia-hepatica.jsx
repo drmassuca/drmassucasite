@@ -1,16 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
-import {
-  Box,
-  Heading,
-  Text,
-  VStack,
-  List,
-  ListItem,
-  Stat,
-  StatLabel,
-  StatNumber,
-} from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
 import {
   ExamBreadcrumb,
   ExamImage,
@@ -44,11 +34,6 @@ const ElastografiaHepatica = () => {
               '@type': 'Person',
               name: 'Dr. Antonio Massucatti Neto',
               medicalSpecialty: 'Ultrassom',
-            },
-            offers: {
-              '@type': 'Offer',
-              price: '700.00',
-              priceCurrency: 'BRL',
             },
           })}
         </script>
@@ -202,25 +187,6 @@ const ElastografiaHepatica = () => {
                 <ListItem>• Exames laboratoriais recentes</ListItem>
                 <ListItem>• Exames de imagem prévios, se houver</ListItem>
               </List>
-            </Box>
-
-            <Box
-              w="full"
-              bg="green.50"
-              borderRadius="lg"
-              border="1px solid"
-              borderColor="green.200"
-              p={6}
-              textAlign="center"
-            >
-              <Stat>
-                <StatLabel fontSize="md" color="green.800">
-                  Valor do exame
-                </StatLabel>
-                <StatNumber fontSize="3xl" color="green.700">
-                  R$ 700,00
-                </StatNumber>
-              </Stat>
             </Box>
           </VStack>
 

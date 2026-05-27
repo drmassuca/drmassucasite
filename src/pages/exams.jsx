@@ -292,12 +292,8 @@ function Exams() {
                             fontSize="xs"
                             fontWeight="600"
                             borderRadius="md"
-                            justifyContent="space-between"
                           >
-                            <Text as="span">Elastografia Hepática</Text>
-                            <Text as="span" opacity={0.9}>
-                              R$ 700
-                            </Text>
+                            Elastografia Hepática →
                           </Button>
                           <Button
                             as={RouterLink}
@@ -309,17 +305,11 @@ function Exams() {
                             fontSize="xs"
                             fontWeight="600"
                             borderRadius="md"
-                            justifyContent="space-between"
                             whiteSpace="normal"
                             height="auto"
                             py={2}
                           >
-                            <Text as="span" textAlign="left">
-                              Avaliação Multiparamétrica do Fígado
-                            </Text>
-                            <Text as="span" opacity={0.9} ml={2}>
-                              R$ 1.000
-                            </Text>
+                            Avaliação Multiparamétrica do Fígado →
                           </Button>
                         </VStack>
                       </Box>

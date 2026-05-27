@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import SEO from '../../components/SEO';
-import { Box, Heading, Text, VStack, List, ListItem } from '@chakra-ui/react';
+import { Box, Heading, Text, VStack, List, ListItem, Image } from '@chakra-ui/react';
 import {
   ExamBreadcrumb,
   ExamImage,
@@ -187,19 +187,19 @@ const ElastografiaHepatica = () => {
                   color="green.800"
                   fontWeight="bold"
                   lineHeight="1"
-                  mb={1}
+                  mb={3}
                 >
                   HERA Z20
                 </Text>
-                <Text
-                  fontSize="sm"
-                  color="#b8941f"
-                  fontWeight="semibold"
-                  letterSpacing="0.05em"
-                  mb={4}
-                >
-                  SAMSUNG
-                </Text>
+                <Box display="flex" justifyContent="center" mb={4}>
+                  <Image
+                    src="/assets/samsung-wordmark.svg"
+                    alt="Samsung"
+                    height={{ base: '22px', md: '28px' }}
+                    width="auto"
+                    loading="lazy"
+                  />
+                </Box>
                 <Text fontSize="md" color="gray.700">
                   Plataforma top de linha da Samsung para ultrassonografia hepática, com tecnologia
                   dedicada de elastografia ponto a ponto e quantificação de gordura (Fat Fraction)

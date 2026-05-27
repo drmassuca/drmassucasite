@@ -29,7 +29,7 @@ const ElastografiaHepatica = () => {
             name: 'Elastografia Hepática e Quantificação de Esteatose',
             description,
             url: `https://drmassuca.com.br${canonical}`,
-            image: 'https://drmassuca.com.br/img-exams-webp/superior.webp',
+            image: 'https://drmassuca.com.br/img-exams-webp/elastografia-hepatica.webp',
             about: {
               '@type': 'Person',
               name: 'Dr. Antonio Massucatti Neto',
@@ -63,7 +63,7 @@ const ElastografiaHepatica = () => {
             resultados objetivos e quantitativos.
           </Text>
 
-          <ExamImage slug={SLUG} src="/img-exams-webp/superior.webp" alt="Elastografia Hepática" />
+          <ExamImage slug={SLUG} src="/img-exams-webp/elastografia-hepatica.webp" alt="Elastografia Hepática" />
 
           <VStack align="start" spacing={6}>
             <Box>

@@ -29,7 +29,7 @@ const AvaliacaoMultiparametricaFigado = () => {
             name: 'Avaliação Multiparamétrica do Fígado',
             description,
             url: `https://drmassuca.com.br${canonical}`,
-            image: 'https://drmassuca.com.br/img-exams-webp/superior.webp',
+            image: 'https://drmassuca.com.br/img-exams-webp/avaliacao-multiparametrica-figado.webp',
             about: {
               '@type': 'Person',
               name: 'Dr. Antonio Massucatti Neto',
@@ -65,7 +65,7 @@ const AvaliacaoMultiparametricaFigado = () => {
 
           <ExamImage
             slug={SLUG}
-            src="/img-exams-webp/superior.webp"
+            src="/img-exams-webp/avaliacao-multiparametrica-figado.webp"
             alt="Avaliação Multiparamétrica do Fígado"
           />
 

@@ -316,15 +316,24 @@ export async function deleteArticleChunks(slug, ctx) {
   return r.ok;
 }
 
-export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
-  const exams = examsData.map(e => ({
+// 1 chunk por paragrafo do exame, titulo em cada chunk. Chunks menores e
+// focados casam melhor com perguntas diretas do que 1 bloco gigante denso.
+function chunkExam(e) {
+  const paras = (e.paragraphs || []).map(p => stripHtml(p)).filter(Boolean);
+  if (paras.length === 0) {
+    return [{ source_type: 'exam', source_slug: e.slug, title: e.title, content: stripHtml(e.title) }];
+  }
+  return paras.map((para, i) => ({
     source_type: 'exam',
-    source_slug: e.slug,
+    source_slug: i === 0 ? e.slug : `${e.slug}#p${i}`,
     title: e.title,
-    content: stripHtml(`${e.title}. ${e.paragraphs.join(' ')}`),
+    content: `${e.title} — ${para}`,
   }));
-  const all = [...CURATED_CHUNKS, ...exams];
-  log.push(`Site chunks: ${all.length} (${CURATED_CHUNKS.length} curados + ${exams.length} exames)`);
+}
+
+export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force, log }) {
+  const examChunks = examsData.flatMap(chunkExam);
+  log.push(`Site chunks: ${CURATED_CHUNKS.length} curados + ${examChunks.length} chunks de exames`);
 
   if (force) {
     const r = await fetch(`${supaUrl}/rest/v1/site_chunks?source_type=neq.zzz`, {
@@ -334,12 +343,10 @@ export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force,
     if (r.ok) log.push('site_chunks limpos (force=1)');
   }
 
-  const texts = all.map(c => `${c.title}. ${c.content}`);
-  const embeddings = await embedBatch(texts, openaiKey);
-
-  // Pega existentes em paralelo
-  const existing = await Promise.all(
-    all.map(c =>
+  // Curated: upsert (fixos)
+  const curatedEmb = await embedBatch(CURATED_CHUNKS.map(c => `${c.title}. ${c.content}`), openaiKey);
+  const curatedExisting = await Promise.all(
+    CURATED_CHUNKS.map(c =>
       supa(
         supaUrl,
         serviceKey,
@@ -348,21 +355,41 @@ export async function processSiteChunks({ supaUrl, serviceKey, openaiKey, force,
       )
     )
   );
-
-  // POST novos / PATCH existentes em paralelo
   await Promise.all(
-    all.map((chunk, i) => {
-      const found = existing[i][0];
-      const body = { ...chunk, embedding: embeddings[i] };
-      if (found) {
-        return supa(supaUrl, serviceKey, 'PATCH', `site_chunks?id=eq.${found.id}`, body);
-      }
-      return supa(supaUrl, serviceKey, 'POST', 'site_chunks', body);
+    CURATED_CHUNKS.map((chunk, i) => {
+      const found = curatedExisting[i][0];
+      const body = { ...chunk, embedding: curatedEmb[i] };
+      return found
+        ? supa(supaUrl, serviceKey, 'PATCH', `site_chunks?id=eq.${found.id}`, body)
+        : supa(supaUrl, serviceKey, 'POST', 'site_chunks', body);
     })
   );
 
-  log.push(`Site chunks: ${all.length} embeddings populados`);
-  return all.length;
+  // Exames: delete-by-type + re-insert fresco (reflete json atual, zero orfaos).
+  // Se force, ja foi limpo acima; senao deleta so source_type=exam.
+  if (!force) {
+    await fetch(`${supaUrl}/rest/v1/site_chunks?source_type=eq.exam`, {
+      method: 'DELETE',
+      headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+    });
+  }
+  const EMBED_BATCH = 100;
+  const examEmb = [];
+  for (let i = 0; i < examChunks.length; i += EMBED_BATCH) {
+    const embs = await embedBatch(
+      examChunks.slice(i, i + EMBED_BATCH).map(c => `${c.title}. ${c.content}`),
+      openaiKey
+    );
+    examEmb.push(...embs);
+  }
+  const INSERT_BATCH = 50;
+  const examRows = examChunks.map((c, i) => ({ ...c, embedding: examEmb[i] }));
+  for (let i = 0; i < examRows.length; i += INSERT_BATCH) {
+    await supa(supaUrl, serviceKey, 'POST', 'site_chunks', examRows.slice(i, i + INSERT_BATCH));
+  }
+
+  log.push(`Site chunks: ${CURATED_CHUNKS.length} curados + ${examChunks.length} chunks de exames populados`);
+  return CURATED_CHUNKS.length + examChunks.length;
 }
 
 export default async function handler(req, res) {

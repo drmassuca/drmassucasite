@@ -128,16 +128,28 @@ async function embedFaqs() {
 }
 
 // ---------- Site chunks ----------
+// 1 chunk por paragrafo do exame, com o titulo em cada chunk. Chunks
+// menores e focados casam muito melhor com perguntas diretas ("faz
+// elastografia?") do que um bloco unico gigante (que dilui o embedding).
+// Slug base no 1o chunk; #p1, #p2... nos demais (unicidade pro upsert).
+function chunkExam(e) {
+  const paras = (e.paragraphs || []).map(p => stripHtml(p)).filter(Boolean);
+  if (paras.length === 0) {
+    return [{ source_type: 'exam', source_slug: e.slug, title: e.title, content: stripHtml(e.title) }];
+  }
+  return paras.map((para, i) => ({
+    source_type: 'exam',
+    source_slug: i === 0 ? e.slug : `${e.slug}#p${i}`,
+    title: e.title,
+    content: `${e.title} — ${para}`,
+  }));
+}
+
 function loadExams() {
   const p = path.join(__dirname, '..', 'src', 'data', 'exams-data.json');
   if (!fs.existsSync(p)) return [];
   const arr = JSON.parse(fs.readFileSync(p, 'utf-8'));
-  return arr.map(e => ({
-    source_type: 'exam',
-    source_slug: e.slug,
-    title: e.title,
-    content: stripHtml(`${e.title}. ${e.paragraphs.join(' ')}`),
-  }));
+  return arr.flatMap(chunkExam);
 }
 
 function curatedChunks() {
@@ -191,8 +203,7 @@ async function embedSiteChunks() {
   console.log('\n[SITE] Montando chunks...');
   const exams = loadExams();
   const curated = curatedChunks();
-  const all = [...curated, ...exams];
-  console.log(`[SITE] ${all.length} chunks (${curated.length} curados + ${exams.length} exames)`);
+  console.log(`[SITE] ${curated.length} curados + ${exams.length} chunks de exames`);
 
   if (FORCE) {
     console.log('[SITE] --force: deletando todos site_chunks existentes');
@@ -202,27 +213,41 @@ async function embedSiteChunks() {
     });
   }
 
+  // Curated: upsert (sao fixos, raramente mudam — skip se ja embedado)
   let i = 0;
-  for (const chunk of all) {
+  for (const chunk of curated) {
     i++;
     const existing = await supa(
       'GET',
       `site_chunks?select=id,embedding&source_type=eq.${chunk.source_type}&source_slug=eq.${encodeURIComponent(chunk.source_slug)}&limit=1`
     );
-
     const embedding = await embed(`${chunk.title}. ${chunk.content}`);
-
     if (existing.length === 0) {
       await supa('POST', 'site_chunks', { ...chunk, embedding });
     } else if (FORCE || !existing[0].embedding) {
       await supa('PATCH', `site_chunks?id=eq.${existing[0].id}`, { ...chunk, embedding });
     } else {
-      console.log(`[SITE ${i}/${all.length}] (skip ja embedado) ${chunk.title}`);
+      console.log(`[CURATED ${i}/${curated.length}] (skip ja embedado) ${chunk.title}`);
       continue;
     }
-    console.log(`[SITE ${i}/${all.length}] ${chunk.title}`);
+    console.log(`[CURATED ${i}/${curated.length}] ${chunk.title}`);
   }
-  console.log(`[SITE] OK: ${all.length} chunks processados`);
+
+  // Exames: delete-by-type + re-insert fresco. Reflete o exams-data.json
+  // atual (chunking por paragrafo) e remove orfaos #pN sem precisar de --force.
+  // So mexe em source_type=exam — articles/faq/curated intactos.
+  await fetch(`${SUPABASE_URL}/rest/v1/site_chunks?source_type=eq.exam`, {
+    method: 'DELETE',
+    headers: { apikey: SERVICE_KEY, Authorization: `Bearer ${SERVICE_KEY}` },
+  });
+  let j = 0;
+  for (const chunk of exams) {
+    j++;
+    const embedding = await embed(`${chunk.title}. ${chunk.content}`);
+    await supa('POST', 'site_chunks', { ...chunk, embedding });
+    if (j % 20 === 0 || j === exams.length) console.log(`[EXAM ${j}/${exams.length}] embedando...`);
+  }
+  console.log(`[SITE] OK: ${curated.length} curados + ${exams.length} chunks de exames`);
 }
 
 // ---------- main ----------

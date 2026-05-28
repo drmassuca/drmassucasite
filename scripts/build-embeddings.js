@@ -41,16 +41,27 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
-if (!OPENAI_API_KEY) die('OPENAI_API_KEY ausente. Coloque em .env.local ou export.');
-if (!SUPABASE_URL) die('SUPABASE_URL ausente.');
-if (!SERVICE_KEY) die('SUPABASE_SERVICE_KEY ausente (precisa ser service_role, nao anon).');
-
 const args = process.argv.slice(2);
 const ONLY = (args.find(a => a.startsWith('--only=')) || '').split('=')[1] || 'all';
 const FORCE = args.includes('--force');
+// --soft: erros nao quebram (exit 0). Usado no `npm run build` pra que falha
+// de embedding (key ausente, OpenAI/Supabase fora) nao derrube o deploy do
+// site inteiro. Sem --soft (uso manual/CLI), erro continua sendo exit 1.
+const SOFT = args.includes('--soft');
 
 // ---------- helpers ----------
-function die(msg) { console.error(`ERRO: ${msg}`); process.exit(1); }
+function die(msg) {
+  console.error(`ERRO: ${msg}`);
+  if (SOFT) {
+    console.warn('[soft] seguindo sem reembedar (exit 0).');
+    process.exit(0);
+  }
+  process.exit(1);
+}
+
+if (!OPENAI_API_KEY) die('OPENAI_API_KEY ausente. Coloque em .env.local ou export.');
+if (!SUPABASE_URL) die('SUPABASE_URL ausente.');
+if (!SERVICE_KEY) die('SUPABASE_SERVICE_KEY ausente (precisa ser service_role, nao anon).');
 
 function stripHtml(s) {
   return (s || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
@@ -222,6 +233,6 @@ async function embedSiteChunks() {
     console.log('\n[OK] Embeddings prontas. Bot pode usar /api/chat agora.');
   } catch (e) {
     console.error('\n[FALHA]', e.message);
-    process.exit(1);
+    process.exit(SOFT ? 0 : 1);
   }
 })();

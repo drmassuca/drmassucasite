@@ -1,5 +1,30 @@
 [
   {
+    "slug": "elastografia-hepatica",
+    "title": "Elastografia Hepática e Quantificação de Esteatose",
+    "image": "/img-exams-webp/elastografia-hepatica.webp",
+    "paragraphs": [
+      "Exame de ultrassonografia avançada que combina duas medidas quantitativas do fígado: a <strong>rigidez hepática</strong> (que reflete a presença e o grau de fibrose) e a <strong>quantidade de gordura</strong> armazenada no parênquima hepático (esteatose). Os resultados saem em números objetivos, comparáveis ao longo do tempo, sem necessidade de biópsia.",
+      "<strong>Quando é indicado:</strong> estadiamento de fibrose hepática (MASLD, hepatite C, hepatite B, doença hepática alcoólica, doenças autoimunes, hemocromatose); monitoramento de resposta ao tratamento (cura da hepatite C, abstinência alcoólica, perda de peso, terapia para MASH como resmetirom ou semaglutida); avaliação inicial de alteração de transaminases ou esteatose; acompanhamento de pacientes com obesidade ou diabetes com risco hepático.",
+      "<strong>O que fornece:</strong> rigidez hepática em kPa (classificada pela Regra dos 4 da SRU); estágio histológico estimado METAVIR (F0 a F4); quantificação de gordura hepática em percentual (Fat Fraction, validado contra ressonância magnética PDFF); classificação de esteatose (S0 a S3).",
+      "<strong>Preparo:</strong> jejum mínimo de 4 horas (água permitida); não consumir álcool nas 24 horas anteriores; trazer exames laboratoriais recentes (hemograma com plaquetas, AST, ALT, GGT, fosfatase alcalina, bilirrubinas, INR, albumina) e exames de imagem prévios; informar medicações em uso.",
+      "<strong>Como é feito:</strong> exame não invasivo, indolor, em decúbito dorsal, duração de 20 a 30 minutos. Sem contraste, radiação ou agulhas. Realizado no aparelho premium Samsung HERA Z20, com tecnologia dedicada de elastografia ponto a ponto e quantificação de gordura. Laudo entregue em até 3 dias úteis, em PDF e impresso."
+    ]
+  },
+  {
+    "slug": "avaliacao-multiparametrica-figado",
+    "title": "Avaliação Multiparamétrica do Fígado",
+    "image": "/img-exams-webp/avaliacao-multiparametrica-figado.webp",
+    "paragraphs": [
+      "Exame de ultrassonografia hepática de alta complexidade, baseado no padrão da Society of Radiologists in Ultrasound (SRU), Diretrizes EASL e Consenso Baveno VII. Integra múltiplas medidas quantitativas e qualitativas do fígado, baço e circulação portal em uma única sessão, com interpretação clínica integrada. Indicado quando o caso exige avaliação completa, não apenas estadiamento isolado de fibrose ou esteatose.",
+      "<strong>O que está incluso:</strong> Modo B completo do fígado (morfologia, contornos, calibre da veia porta, esplenomegalia); Doppler portal completo (veia porta, veia esplênica, veia cava inferior, artéria hepática, índice de resistividade da artéria esplênica); elastografia hepática (LSM) com classificação SRU Regra dos 4; quantificação de esteatose (Fat Fraction em %); elastografia esplênica (SSM) nos casos de hipertensão portal; Índice Hepato-Renal (IHR); interpretação clínica integrada.",
+      "<strong>Quando é indicado:</strong> suspeita de doença hepática crônica de qualquer etiologia; cirrose compensada (cACLD) para estratificação de risco de varizes esofágicas e hipertensão portal; investigação de hipertensão portal (cirrótica ou não cirrótica, como esquistossomose); monitoramento longitudinal após cura da hepatite C, abstinência alcoólica, perda de peso ou terapia farmacológica; avaliação pré-cirúrgica ou pré-transplante hepático.",
+      "<strong>Diferencial em relação à elastografia simples:</strong> não se limita a números isolados — inclui interpretação clínica direcionada ao caso, com revisão integrada dos exames laboratoriais e da história do paciente. Em casos complexos (múltiplas etiologias, hipertensão portal não cirrótica, monitoramento sob terapia hepatológica), o médico solicitante pode discutir junto a interpretação.",
+      "<strong>Preparo:</strong> jejum de 4 a 6 horas (água permitida); não consumir álcool nas 24 horas anteriores; trazer exames laboratoriais recentes e de imagem prévios; informar medicações em uso, especialmente betabloqueador (carvedilol, propranolol, nadolol).",
+      "<strong>Como é feito:</strong> exame não invasivo, indolor, em decúbito dorsal e lateral, duração de 40 a 60 minutos. Sem contraste, radiação ou agulhas. Realizado por médico com formação específica em elastografia e avaliação hepatológica."
+    ]
+  },
+  {
     "slug": "doppler-obstetrico",
     "title": "Ultrassom Doppler Obstétrico",
     "image": "/img-exams-webp/dopplerobstetrico.webp",

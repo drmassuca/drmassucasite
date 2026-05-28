@@ -1,22 +1,5 @@
 [
   {
-    "slug": "avaliacao-multiparametrica-figado",
-    "title": "Avaliação Multiparamétrica do Fígado",
-    "image": "/img-exams-webp/avaliacao-multiparametrica-figado.webp",
-    "paragraphs": [
-      "Exame hepático integrado e sofisticado, combinando múltiplas técnicas de ultrassonografia avançada com interpretação clínica direcionada.",
-      "O que é: Exame de ultrassonografia hepática de alta complexidade, baseado no padrão atual da Society of Radiologists in Ultrasound (SRU), das Diretrizes EASL e do Consenso Baveno VII. Integra múltiplas medidas quantitativas e qualitativas do fígado, do baço e da circulação portal em uma única sessão, com interpretação clínica integrada. Indicado quando o caso exige avaliação completa, não apenas estadiamento isolado de fibrose ou esteatose.",
-      "O que está incluso: Modo B completo do fígado (morfologia, contornos, calibre da veia porta, esplenomegalia) Doppler portal completo (veia porta, veia esplênica, eixo da veia cava inferior, artéria hepática, índice de resistividade da artéria esplênica) Elastografia hepática (LSM) com classificação SRU Regra dos 4 Quantificação de esteatose hepática (Fat Fraction em %) Elastografia esplênica (SSM) nos casos de hipertensão portal cirrótica ou não cirrótica, conforme indicação clínica Índice Hepato-Renal (IHR) Interpretação clínica integrada, com revisão dos exames laboratoriais e da história clínica do paciente",
-      "Quando é indicado: Suspeita de doença hepática crônica de qualquer etiologia Cirrose hepática compensada (cACLD), para estratificação de risco de varizes esofágicas e hipertensão portal clinicamente significativa Investigação de hipertensão portal (cirrótica ou não cirrótica, como esquistossomose) Monitoramento longitudinal após cura da hepatite C, abstinência alcoólica, perda de peso ou terapia farmacológica Avaliação pré-cirúrgica ou pré-transplante hepático Casos complexos em que o solicitante deseja uma avaliação ultrassonográfica integrada com interpretação clínica",
-      "Diferencial em relação à elastografia simples: Este exame não se limita a entregar números isolados. Inclui interpretação clínica direcionada ao caso, com revisão integrada dos exames laboratoriais e da história do paciente. Para casos em que envolve raciocínio clínico mais complexo (paciente com múltiplas etiologias, suspeita de hipertensão portal não cirrótica, monitoramento sob terapia hepatológica específica), o médico solicitante pode entrar em contato para discutirmos juntos a interpretação do resultado.",
-      "Como se preparar: Jejum mínimo de 4 a 6 horas (água permitida) Não consumir álcool nas 24 horas anteriores ao exame Trazer exames laboratoriais recentes (hemograma com plaquetas, AST, ALT, GGT, fosfatase alcalina, bilirrubinas, INR, albumina) Trazer exames de imagem prévios do abdome ou fígado, se houver Informar todas as medicações em uso, especialmente betabloqueador (carvedilol, propranolol, nadolol), com dose e tempo de uso",
-      "Como é feito: Exame não invasivo, indolor, realizado em decúbito dorsal e lateral conforme cada etapa, com duração aproximada de 40 a 60 minutos. Não há uso de contraste, radiação ou agulhas. Realizado por médico ultrassonografista com formação específica em elastografia e em avaliação hepatológica.",
-      "Equipamento: Aparelho premium HERA Z20 Plataforma top de linha da Samsung para ultrassonografia hepática, integrando elastografia hepática, elastografia esplênica, quantificação de gordura, Doppler portal completo e índice hepato-renal em um único aparelho.",
-      "Resultado e laudo: Laudo entregue em até 5 dias úteis, com interpretação clínica integrada, comentários direcionados ao contexto do paciente e referências bibliográficas atualizadas. Disponível em formato digital (PDF) e impresso. Em casos complexos, o resultado pode incluir discussão conjunta com o médico solicitante.",
-      "Para o médico solicitante: Para que o laudo tenha máxima utilidade clínica, é essencial enviar: Hipótese diagnóstica e contexto clínico detalhado Etiologia presumida e comorbidades Medicações em uso, especialmente betabloqueador, drogas hepatotóxicas, terapias específicas para doença hepática Exames laboratoriais recentes Exames de imagem prévios, se houver Quanto mais informação clínica chegar no momento do exame, mais relevante e direcionado fica o laudo. Para casos selecionados, o médico solicitante pode entrar em contato direto para discussão conjunta do caso."
-    ]
-  },
-  {
     "slug": "elastografia-hepatica",
     "title": "Elastografia Hepática e Quantificação de Esteatose",
     "image": "/img-exams-webp/elastografia-hepatica.webp",
@@ -33,33 +16,20 @@
     ]
   },
   {
-    "slug": "ultrassonografia-avaliacao-pre-cirurgia-plastica",
-    "title": "Ultrassom para Avaliação Pré-Cirurgia Plástica",
-    "image": "/img-exams-webp/cirurgiaplastica.webp",
+    "slug": "avaliacao-multiparametrica-figado",
+    "title": "Avaliação Multiparamétrica do Fígado",
+    "image": "/img-exams-webp/avaliacao-multiparametrica-figado.webp",
     "paragraphs": [
-      "Objetivo do exame: Fornecer ao cirurgião plástico informações detalhadas sobre estruturas subcutâneas, musculares e possíveis hérnias, aumentando a segurança e previsibilidade do procedimento estético.",
-      "Preparo: Geralmente sem preparo. Caso o cirurgião solicite algo específico, orientaremos previamente.",
-      "Duração estimada: Entre 20 e 40 minutos , variando conforme a extensão das áreas avaliadas."
-    ]
-  },
-  {
-    "slug": "ultrassonografia-bolsa-escrotal-e-testiculos",
-    "title": "Ultrassom da Bolsa Escrotal e Testículos",
-    "image": "/img-exams-webp/testiculos.webp",
-    "paragraphs": [
-      "Objetivo do exame: Avaliar estruturas escrotais para investigação de dor, inchaço, trauma, infertilidade ou suspeita de torção, com ou sem Doppler conforme indicação clínica.",
-      "Preparo: Não há preparo específico. Recomenda-se higiene íntima adequada no dia do exame.",
-      "Duração estimada: Aproximadamente 15 – 30 minutos , podendo variar com inclusão de Doppler."
-    ]
-  },
-  {
-    "slug": "ultrassonografia-rins-e-vias-urinarias",
-    "title": "Ultrassom dos Rins e Vias Urinárias",
-    "image": "/img-exams-webp/viasurinarias.webp",
-    "paragraphs": [
-      "Objetivo do exame: Investigar dor lombar, infecções urinárias, hipertensão, alterações de creatinina e sintomas urinários avaliando detalhadamente rins, ureteres proximais e bexiga.",
-      "Preparo: Ingerir cerca de 1 L de água uma hora antes do exame e não urinar. A bexiga cheia melhora a visualização das vias urinárias.",
-      "Duração estimada: Entre 15 e 25 minutos , conforme complexidade."
+      "Exame hepático integrado e sofisticado, combinando múltiplas técnicas de ultrassonografia avançada com interpretação clínica direcionada.",
+      "O que é: Exame de ultrassonografia hepática de alta complexidade, baseado no padrão atual da Society of Radiologists in Ultrasound (SRU), das Diretrizes EASL e do Consenso Baveno VII. Integra múltiplas medidas quantitativas e qualitativas do fígado, do baço e da circulação portal em uma única sessão, com interpretação clínica integrada. Indicado quando o caso exige avaliação completa, não apenas estadiamento isolado de fibrose ou esteatose.",
+      "O que está incluso: Modo B completo do fígado (morfologia, contornos, calibre da veia porta, esplenomegalia) Doppler portal completo (veia porta, veia esplênica, eixo da veia cava inferior, artéria hepática, índice de resistividade da artéria esplênica) Elastografia hepática (LSM) com classificação SRU Regra dos 4 Quantificação de esteatose hepática (Fat Fraction em %) Elastografia esplênica (SSM) nos casos de hipertensão portal cirrótica ou não cirrótica, conforme indicação clínica Índice Hepato-Renal (IHR) Interpretação clínica integrada, com revisão dos exames laboratoriais e da história clínica do paciente",
+      "Quando é indicado: Suspeita de doença hepática crônica de qualquer etiologia Cirrose hepática compensada (cACLD), para estratificação de risco de varizes esofágicas e hipertensão portal clinicamente significativa Investigação de hipertensão portal (cirrótica ou não cirrótica, como esquistossomose) Monitoramento longitudinal após cura da hepatite C, abstinência alcoólica, perda de peso ou terapia farmacológica Avaliação pré-cirúrgica ou pré-transplante hepático Casos complexos em que o solicitante deseja uma avaliação ultrassonográfica integrada com interpretação clínica",
+      "Diferencial em relação à elastografia simples: Este exame não se limita a entregar números isolados. Inclui interpretação clínica direcionada ao caso, com revisão integrada dos exames laboratoriais e da história do paciente. Para casos em que envolve raciocínio clínico mais complexo (paciente com múltiplas etiologias, suspeita de hipertensão portal não cirrótica, monitoramento sob terapia hepatológica específica), o médico solicitante pode entrar em contato para discutirmos juntos a interpretação do resultado.",
+      "Como se preparar: Jejum mínimo de 4 a 6 horas (água permitida) Não consumir álcool nas 24 horas anteriores ao exame Trazer exames laboratoriais recentes (hemograma com plaquetas, AST, ALT, GGT, fosfatase alcalina, bilirrubinas, INR, albumina) Trazer exames de imagem prévios do abdome ou fígado, se houver Informar todas as medicações em uso, especialmente betabloqueador (carvedilol, propranolol, nadolol), com dose e tempo de uso",
+      "Como é feito: Exame não invasivo, indolor, realizado em decúbito dorsal e lateral conforme cada etapa, com duração aproximada de 40 a 60 minutos. Não há uso de contraste, radiação ou agulhas. Realizado por médico ultrassonografista com formação específica em elastografia e em avaliação hepatológica.",
+      "Equipamento: Aparelho premium HERA Z20 Plataforma top de linha da Samsung para ultrassonografia hepática, integrando elastografia hepática, elastografia esplênica, quantificação de gordura, Doppler portal completo e índice hepato-renal em um único aparelho.",
+      "Resultado e laudo: Laudo entregue em até 5 dias úteis, com interpretação clínica integrada, comentários direcionados ao contexto do paciente e referências bibliográficas atualizadas. Disponível em formato digital (PDF) e impresso. Em casos complexos, o resultado pode incluir discussão conjunta com o médico solicitante.",
+      "Para o médico solicitante: Para que o laudo tenha máxima utilidade clínica, é essencial enviar: Hipótese diagnóstica e contexto clínico detalhado Etiologia presumida e comorbidades Medicações em uso, especialmente betabloqueador, drogas hepatotóxicas, terapias específicas para doença hepática Exames laboratoriais recentes Exames de imagem prévios, se houver Quanto mais informação clínica chegar no momento do exame, mais relevante e direcionado fica o laudo. Para casos selecionados, o médico solicitante pode entrar em contato direto para discussão conjunta do caso."
     ]
   },
   {
@@ -255,7 +225,7 @@
     ]
   },
   {
-    "slug": "ultrassonografia-partes-moles",
+    "slug": "partes-moles",
     "title": "Ultrassom de Partes Moles",
     "image": "/img-exams-webp/partesmoles.webp",
     "paragraphs": [

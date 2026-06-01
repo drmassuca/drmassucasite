@@ -24,6 +24,7 @@ const Testimonials = lazy(() => import('./pages/testimonials'));
 const Contact = lazy(() => import('./pages/contact'));
 const Ultrassom3D = lazy(() => import('./pages/ultrassom-3d'));
 const Memo3dLanding = lazy(() => import('./pages/memo3d-landing/Memo3dLanding'));
+const Mostruario = lazy(() => import('./pages/memo3d-landing/Mostruario'));
 
 /* >>> NOVO: página-mestra do FAQ em lazy load (resolve para src/pages/faq/index.jsx) */
 const FaqIndex = lazy(() => import('./pages/faq'));
@@ -232,6 +233,7 @@ function App() {
             <Route path="/contato" element={<Contact />} />
             <Route path="/ultrassom-3d" element={<Ultrassom3D />} />
             <Route path="/memo3d" element={<Memo3dLanding />} />
+            <Route path="/memo3d/mostruario" element={<Mostruario />} />
 
             {/* >>> NOVAS ROTAS DO FAQ */}
             <Route path="/faq" element={<FaqIndex />} />

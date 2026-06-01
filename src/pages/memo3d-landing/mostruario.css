@@ -1,0 +1,334 @@
+/* ─── Memo3D · Mostruário (apresentação guiada) ──
+   Surface boutique pra recepção apresentar página por página, e pra
+   mandar como link. Reusa os tokens de memo3d-tokens.css.
+*/
+
+.m3d-show {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  min-height: min(680px, 82vh);
+  display: flex;
+  flex-direction: column;
+  background: var(--m3d-bg);
+  background-image:
+    radial-gradient(circle at 18% 6%, rgba(232, 213, 204, 0.35), transparent 55%),
+    radial-gradient(circle at 88% 60%, rgba(184, 146, 58, 0.06), transparent 55%);
+  color: var(--m3d-ink);
+  font-family: var(--m3d-font-sans);
+  border-radius: 16px;
+  box-shadow: var(--m3d-shadow-card-hover);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Barra de progresso */
+.m3d-show-progress {
+  height: 4px;
+  background: var(--m3d-rule);
+  flex-shrink: 0;
+}
+.m3d-show-progress-bar {
+  height: 100%;
+  background: var(--m3d-gold);
+  transition: width 0.45s var(--m3d-ease);
+}
+
+/* Palco do slide */
+.m3d-show-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: clamp(28px, 5vw, 64px);
+  animation: m3dShowIn 0.5s var(--m3d-ease) both;
+}
+
+@keyframes m3dShowIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Eyebrow + título + lead */
+.m3d-show-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--m3d-gold);
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+.m3d-show-eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--m3d-gold);
+}
+
+.m3d-show-title {
+  font-family: var(--m3d-font-sans);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.04;
+  font-size: clamp(30px, 5vw, 52px);
+  margin: 0 0 22px;
+  color: var(--m3d-ink);
+}
+.m3d-show-title em {
+  font-family: var(--m3d-font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--m3d-forest);
+}
+
+.m3d-show-lead {
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.65;
+  color: var(--m3d-text-muted);
+  max-width: 540px;
+  margin: 0 0 12px;
+}
+
+/* Layout split (capa, impressão) */
+.m3d-show-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 5vw, 60px);
+  align-items: center;
+  width: 100%;
+}
+.m3d-show-media {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--m3d-shadow-card-hover);
+}
+.m3d-show-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.m3d-show-media-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: rgba(15, 61, 46, 0.85);
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* Layout centrado (texto) */
+.m3d-show-centered {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* Preço */
+.m3d-show-price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 6px 0 20px;
+}
+.m3d-show-price-value {
+  font-family: var(--m3d-font-serif);
+  font-size: clamp(48px, 8vw, 84px);
+  line-height: 1;
+  font-weight: 500;
+  color: var(--m3d-forest);
+}
+.m3d-show-price-unit {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--m3d-text-muted);
+  text-transform: uppercase;
+}
+
+/* Passos */
+.m3d-show-steps {
+  display: grid;
+  gap: 18px;
+  margin-top: 10px;
+}
+.m3d-show-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.m3d-show-step-num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--m3d-gold);
+  color: var(--m3d-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--m3d-font-serif);
+  font-size: 18px;
+  font-weight: 500;
+}
+.m3d-show-step-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--m3d-ink);
+}
+.m3d-show-step-detail {
+  font-size: 14px;
+  color: var(--m3d-text-muted);
+  line-height: 1.55;
+}
+
+/* Bullets */
+.m3d-show-bullets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 28px;
+  margin-top: 12px;
+}
+.m3d-show-bullet {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.m3d-show-bullet-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--m3d-forest);
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.m3d-show-bullet-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--m3d-ink);
+}
+.m3d-show-bullet-detail {
+  font-size: 13px;
+  color: var(--m3d-text-muted);
+  line-height: 1.5;
+}
+
+/* CTA */
+.m3d-show-cta {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.m3d-show-cta-meta {
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--m3d-text-muted);
+  text-transform: uppercase;
+}
+
+/* Controles */
+.m3d-show-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(20px, 4vw, 40px) 8px;
+  flex-shrink: 0;
+}
+.m3d-show-nav {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--m3d-rule);
+  background: #fff;
+  color: var(--m3d-ink);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s var(--m3d-ease);
+  box-shadow: var(--m3d-shadow-soft);
+}
+.m3d-show-nav:hover:not(:disabled) {
+  background: var(--m3d-forest);
+  color: #fff;
+  border-color: var(--m3d-forest);
+  transform: scale(1.05);
+}
+.m3d-show-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.m3d-show-dots {
+  display: flex;
+  gap: 10px;
+}
+.m3d-show-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--m3d-rule);
+  cursor: pointer;
+  transition: all 0.25s var(--m3d-ease);
+}
+.m3d-show-dot.is-active {
+  background: var(--m3d-gold);
+  transform: scale(1.3);
+}
+
+.m3d-show-counter {
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--m3d-text-muted);
+  padding-bottom: 18px;
+}
+
+/* ─── Mobile ─────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .m3d-show {
+    min-height: calc(100vh - 120px);
+    border-radius: 12px;
+  }
+  .m3d-show-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  /* Imagem primeiro no mobile, depois texto */
+  .m3d-show-media {
+    order: -1;
+    aspect-ratio: 16 / 11;
+  }
+  .m3d-show-bullets {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .m3d-show-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m3d-show-stage { animation: none; }
+}

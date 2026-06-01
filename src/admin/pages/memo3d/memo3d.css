@@ -909,6 +909,12 @@
   min-width: 0;
 }
 
+.exam-pay-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 /* ─── Generic muted helper ────────────────────────────────── */
 .muted {
   color: #64748b;

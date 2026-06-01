@@ -153,11 +153,16 @@ export async function createExam(payload) {
   return data.exam;
 }
 
-/** Marca exame como pago. amountCents default 5000 (R$50,00 — assinatura anual). */
-export async function markExamPaid(examId, amountCents = 5000) {
+/**
+ * Libera um exame. Por padrão cobra R$30 (3000 centavos).
+ * Passe { courtesy: true } pra liberar como cortesia (R$0, fora da receita).
+ * Em ambos os casos a paciente ganha +100 créditos de IA na liberação.
+ */
+export async function markExamPaid(examId, amountCents = 3000, opts = {}) {
+  const body = opts.courtesy ? { examId, courtesy: true } : { examId, amountCents };
   const res = await authedFetch('/api/memo3d/exames/mark-paid', {
     method: 'POST',
-    body: JSON.stringify({ examId, amountCents }),
+    body: JSON.stringify(body),
   });
   const data = await asJson(res);
   return data.exam;

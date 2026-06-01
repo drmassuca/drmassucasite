@@ -24,6 +24,7 @@ import {
   Share2,
   LogIn,
   Eye,
+  Gift,
 } from 'lucide-react';
 import {
   getPatient,
@@ -438,7 +439,7 @@ export default function Memo3dPacienteDetalhe() {
                     <span className={`badge ${exam.paid ? 'badge-active' : 'badge-pending'}`}>
                       {exam.paid ? (
                         <>
-                          <CircleCheck size={12} /> Pago
+                          <CircleCheck size={12} /> {exam.courtesy ? 'Cortesia' : 'Pago'}
                         </>
                       ) : (
                         <>
@@ -463,34 +464,63 @@ export default function Memo3dPacienteDetalhe() {
                     {!exam.paid && (
                       <div className="exam-pay-cta">
                         <span>
-                          Esse exame ainda não foi pago. Acesso da paciente continua bloqueado até
-                          marcar como pago.
+                          Esse exame ainda não foi liberado. Acesso da paciente continua bloqueado
+                          até liberar. Toda liberação dá +100 créditos de IA.
                         </span>
-                        <button
-                          type="button"
-                          className="btn btn-primary"
-                          onClick={async () => {
-                            const ok = window.confirm(
-                              `Marcar exame de ${new Date(exam.exam_date).toLocaleDateString(
-                                'pt-BR'
-                              )} como pago (R$ 50,00 — assinatura anual)?`
-                            );
-                            if (!ok) return;
-                            try {
-                              await markExamPaid(exam.id, 5000);
-                              recordAudit({
-                                action: 'exam.mark_paid.client',
-                                resourceType: 'exam',
-                                resourceId: exam.id,
-                              });
-                              reload();
-                            } catch (err) {
-                              alert(`Erro: ${err.message}`);
-                            }
-                          }}
-                        >
-                          <CircleCheck size={14} /> Marcar como pago
-                        </button>
+                        <div className="exam-pay-actions">
+                          <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={async () => {
+                              const ok = window.confirm(
+                                `Liberar exame de ${new Date(exam.exam_date).toLocaleDateString(
+                                  'pt-BR'
+                                )} como PAGO (R$ 30,00)?`
+                              );
+                              if (!ok) return;
+                              try {
+                                await markExamPaid(exam.id, 3000);
+                                recordAudit({
+                                  action: 'exam.mark_paid.client',
+                                  resourceType: 'exam',
+                                  resourceId: exam.id,
+                                });
+                                reload();
+                              } catch (err) {
+                                alert(`Erro: ${err.message}`);
+                              }
+                            }}
+                          >
+                            <CircleCheck size={14} /> Marcar como pago (R$30)
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-secondary"
+                            onClick={async () => {
+                              const ok = window.confirm(
+                                `Liberar exame de ${new Date(exam.exam_date).toLocaleDateString(
+                                  'pt-BR'
+                                )} como CORTESIA (gratuito)?\n\n` +
+                                  'A paciente vê o exame normalmente e ganha os 100 créditos, ' +
+                                  'mas não entra na receita do mês.'
+                              );
+                              if (!ok) return;
+                              try {
+                                await markExamPaid(exam.id, 0, { courtesy: true });
+                                recordAudit({
+                                  action: 'exam.mark_paid.client',
+                                  resourceType: 'exam',
+                                  resourceId: exam.id,
+                                });
+                                reload();
+                              } catch (err) {
+                                alert(`Erro: ${err.message}`);
+                              }
+                            }}
+                          >
+                            <Gift size={14} /> Marcar como cortesia
+                          </button>
+                        </div>
                       </div>
                     )}
 

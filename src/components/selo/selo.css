@@ -1,0 +1,102 @@
+/* Selo "Conteúdo Validado" — distintivo com a logo do site.
+   Pares de cor validados (WCAG AA):
+   - #0f3d2e sobre #fffdf7: 11.9:1
+   - #806320 sobre #f7f4ec/#fffdf7: >= 5.1:1
+   - #b8923a é usado APENAS como decoração (bordas/filetes), nunca texto. */
+
+.selo-validado {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  background: #fffdf7;
+  border: 1px solid #b8923a;
+  border-left: 5px solid #b8923a;
+  color: #0f3d2e;
+  text-align: left;
+}
+
+.selo-validado__medalha {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px solid #b8923a;
+  box-shadow: inset 0 0 0 4px #fffdf7, inset 0 0 0 5px rgba(184, 146, 58, 0.55);
+  background: #fff;
+}
+
+.selo-validado__medalha img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.selo-validado__corpo {
+  min-width: 0;
+}
+
+.selo-validado__titulo {
+  margin: 0 0 2px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #806320;
+}
+
+.selo-validado__revisor {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #0f3d2e;
+}
+
+.selo-validado__datas {
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: #3a5c4c;
+}
+
+.selo-validado__nota {
+  margin: 6px 0 0;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #3a5c4c;
+}
+
+/* Prévia de demonstração (/v1): mesmo distintivo, borda tracejada discreta. */
+.selo-validado--previa {
+  border-style: dashed;
+  border-left-style: solid;
+}
+
+/* Chip compacto para cards e listas. */
+.selo-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px 4px 6px;
+  border: 1px solid #b8923a;
+  border-radius: 999px;
+  background: #fffdf7;
+  color: #806320;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.selo-chip__logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #b8923a;
+  background: #fff;
+  object-fit: contain;
+}

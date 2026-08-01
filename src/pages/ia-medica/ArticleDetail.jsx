@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import SEOHead from '../../components/SEOHead';
 import FloatingAccessibilityMenu from '../../components/FloatingAccessibilityMenu';
+import SeloConteudoValidado from '../../components/selo/SeloConteudoValidado';
 import { getArticleById, getPublishedArticles, incrementViews } from '../../lib/articles';
 import './ArticleDetail.css';
 
@@ -454,6 +455,11 @@ const ArticleDetail = () => {
         <article className="article-content">
           <div className="content-body" dangerouslySetInnerHTML={{ __html: article.content }} />
         </article>
+
+        {/* Selo Conteúdo Validado — só aparece se liberaConteudoValidado()
+            aprovar (assinatura ativa + revisor + data de revisão + fontes).
+            Artigo sem selo continua visível, apenas sem o distintivo. */}
+        <SeloConteudoValidado artigo={article} />
 
         {/* Sources */}
         {article.sources && article.sources.length > 0 && (

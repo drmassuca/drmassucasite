@@ -595,6 +595,57 @@
   opacity: 1;
 }
 
+.post-editor .alert-warning {
+  padding: 0.75rem 1rem;
+  border: 1px solid #f0c36d;
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: #fdf6e3;
+  color: #7a5b12;
+}
+
+/* Selo Conteúdo Validado (sidebar) */
+.post-editor .selo-status {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+.post-editor .selo-status--ativo {
+  background: #ecfdf5;
+  color: #047857;
+  font-weight: 600;
+}
+
+.post-editor .selo-faltas {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.75rem 0.5rem 1.75rem;
+  border-radius: 6px;
+  background: #fdf6e3;
+  color: #7a5b12;
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.post-editor .selo-assinar-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.post-editor .selo-assinar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.post-editor .selo-dica {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
 /* Autosave Indicator */
 .autosave-indicator {
   display: flex;

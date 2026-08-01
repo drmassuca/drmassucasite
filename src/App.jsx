@@ -24,6 +24,9 @@ const Testimonials = lazy(() => import('./pages/testimonials'));
 const Contact = lazy(() => import('./pages/contact'));
 const Ultrassom3D = lazy(() => import('./pages/ultrassom-3d'));
 
+/* >>> DEMO: home em conceito de revista editorial (/v1, noindex) */
+const V1Home = lazy(() => import('./pages/v1'));
+
 /* >>> NOVO: página-mestra do FAQ em lazy load (resolve para src/pages/faq/index.jsx) */
 const FaqIndex = lazy(() => import('./pages/faq'));
 
@@ -44,7 +47,9 @@ const SDConfiguracao = lazy(
 const SDExemplos = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/exemplos'));
 const SDProblemas = lazy(() => import('./pages/ia-medica/stable-diffusion-3d-fetal/problemas'));
 const ReviewZ20Expert22 = lazy(() => import('./pages/ia-medica/review-z20-expert22'));
-const ReviewZ20Expert22EN = lazy(() => import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN })));
+const ReviewZ20Expert22EN = lazy(() =>
+  import('./pages/ia-medica/review-z20-expert22').then(m => ({ default: m.ReviewZ20Expert22EN }))
+);
 
 /* >>> ADMIN: Lazy load do painel administrativo */
 const AdminRoutes = lazy(() => import('./admin/AdminRoutes'));
@@ -157,6 +162,15 @@ function App() {
     );
   }
 
+  // Página de demonstração /v1: layout editorial próprio, sem Header/Footer do site
+  if (location.pathname === '/v1' || location.pathname === '/v1/') {
+    return (
+      <Suspense fallback={null}>
+        <V1Home />
+      </Suspense>
+    );
+  }
+
   // Determina se estamos em uma página de IA
   const isIAPage = location.pathname.startsWith('/ia-medica');
 
@@ -238,14 +252,8 @@ function App() {
               path="/ia-medica/stable-diffusion-3d-fetal/problemas"
               element={<SDProblemas />}
             />
-            <Route
-              path="/ia-medica/review-z20-expert22"
-              element={<ReviewZ20Expert22 />}
-            />
-            <Route
-              path="/ia-medica/review-z20-expert22/en"
-              element={<ReviewZ20Expert22EN />}
-            />
+            <Route path="/ia-medica/review-z20-expert22" element={<ReviewZ20Expert22 />} />
+            <Route path="/ia-medica/review-z20-expert22/en" element={<ReviewZ20Expert22EN />} />
 
             {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
             <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />

@@ -20,8 +20,10 @@ import {
   CloudOff,
   Layout,
   FileJson,
+  BadgeCheck,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import { liberaConteudoValidado } from '../../lib/validacao';
 import { ContentEditor } from '../components/Editor';
 import { ImageUpload } from '../components/ImageUpload';
 import { AIWritingAssistant } from '../components/AIWritingAssistant';
@@ -64,6 +66,8 @@ const PostEditor = () => {
     meta_title: '',
     meta_description: '',
     template: 'classic',
+    revisado_por: '',
+    data_revisao: '',
   });
 
   // UI state
@@ -81,6 +85,11 @@ const PostEditor = () => {
 
   // New source form
   const [newSource, setNewSource] = useState({ title: '', url: '', type: 'Estudo' });
+
+  // Selo Conteúdo Validado (estado do banco, nunca editado direto no form)
+  const [selo, setSelo] = useState({ assinado: false, assinadaEm: null });
+  const [assinando, setAssinando] = useState(false);
+  const [seloAviso, setSeloAviso] = useState('');
 
   // Autosave state
   const [autoSaveStatus, setAutoSaveStatus] = useState('idle');
@@ -112,7 +121,10 @@ const PostEditor = () => {
         meta_title: data.meta_title || '',
         meta_description: data.meta_description || '',
         template: data.template || 'classic',
+        revisado_por: data.revisado_por || '',
+        data_revisao: data.data_revisao || '',
       });
+      setSelo({ assinado: data.selo_assinado === true, assinadaEm: data.assinada_em || null });
     } catch (error) {
       console.error('Erro ao carregar post:', error);
       setError('Post não encontrado');
@@ -146,16 +158,33 @@ const PostEditor = () => {
         // Converte strings vazias para null em campos que esperam inteiros
         category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
         read_time: formData.read_time || null,
+        revisado_por: formData.revisado_por?.trim() || null,
+        data_revisao: formData.data_revisao || null,
       };
 
       delete postData.id;
       delete postData.created_at;
       delete postData.updated_at;
+      // Campos do selo nunca vão em salvamentos comuns: assinar é ato
+      // explícito (handleAssinar) e a queda é decidida pelo trigger no banco.
+      delete postData.selo_assinado;
+      delete postData.assinada_em;
 
       if (isEditing) {
-        const { error } = await supabase.from('articles').update(postData).eq('id', id);
+        const { data, error } = await supabase
+          .from('articles')
+          .update(postData)
+          .eq('id', id)
+          .select('selo_assinado, assinada_em')
+          .single();
 
         if (error) throw error;
+
+        if (data) {
+          const caiu = selo.assinado && data.selo_assinado !== true;
+          setSelo({ assinado: data.selo_assinado === true, assinadaEm: data.assinada_em || null });
+          if (caiu) setSeloAviso('O selo caiu porque o conteúdo mudou. Revise e assine de novo.');
+        }
       } else if (formData.title.trim() && formData.slug) {
         const { data, error } = await supabase.from('articles').insert(postData).select().single();
 
@@ -176,7 +205,7 @@ const PostEditor = () => {
       setAutoSaveStatus('error');
       setTimeout(() => setAutoSaveStatus('idle'), 5000);
     }
-  }, [formData, isEditing, id, navigate]);
+  }, [formData, isEditing, id, navigate, selo.assinado]);
 
   // Autosave effect
   useEffect(() => {
@@ -434,34 +463,45 @@ const PostEditor = () => {
   };
 
   // Save post
+  // Monta o payload de escrita a partir do formulário. Os campos do selo
+  // (selo_assinado/assinada_em) NUNCA entram: assinar é ato explícito em
+  // handleAssinar e a queda do selo é decidida pelo trigger no banco.
+  const montarPostData = (publishNow = false) => {
+    const postData = {
+      ...formData,
+      status: publishNow ? 'published' : formData.status,
+      published_at: publishNow
+        ? formData.published_at
+          ? new Date(formData.published_at).toISOString()
+          : new Date().toISOString()
+        : formData.published_at
+          ? new Date(formData.published_at).toISOString()
+          : null,
+      scheduled_for: formData.scheduled_for ? new Date(formData.scheduled_for).toISOString() : null,
+      metadata: Object.keys(formData.metadata).length > 0 ? formData.metadata : {},
+      // Converte strings vazias para null em campos que esperam inteiros
+      category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
+      read_time: formData.read_time || null,
+      revisado_por: formData.revisado_por?.trim() || null,
+      data_revisao: formData.data_revisao || null,
+    };
+
+    delete postData.id;
+    delete postData.created_at;
+    delete postData.updated_at;
+    delete postData.selo_assinado;
+    delete postData.assinada_em;
+
+    return postData;
+  };
+
   const handleSave = async (publishNow = false) => {
     setSaving(true);
     setError('');
     setSuccess('');
 
     try {
-      const postData = {
-        ...formData,
-        status: publishNow ? 'published' : formData.status,
-        published_at: publishNow
-          ? formData.published_at
-            ? new Date(formData.published_at).toISOString()
-            : new Date().toISOString()
-          : formData.published_at
-            ? new Date(formData.published_at).toISOString()
-            : null,
-        scheduled_for: formData.scheduled_for
-          ? new Date(formData.scheduled_for).toISOString()
-          : null,
-        metadata: Object.keys(formData.metadata).length > 0 ? formData.metadata : {},
-        // Converte strings vazias para null em campos que esperam inteiros
-        category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
-        read_time: formData.read_time || null,
-      };
-
-      delete postData.id;
-      delete postData.created_at;
-      delete postData.updated_at;
+      const postData = montarPostData(publishNow);
 
       let result;
       if (isEditing) {
@@ -471,6 +511,15 @@ const PostEditor = () => {
       }
 
       if (result.error) throw result.error;
+
+      if (result.data) {
+        const caiu = isEditing && selo.assinado && result.data.selo_assinado !== true;
+        setSelo({
+          assinado: result.data.selo_assinado === true,
+          assinadaEm: result.data.assinada_em || null,
+        });
+        if (caiu) setSeloAviso('O selo caiu porque o conteúdo mudou. Revise e assine de novo.');
+      }
 
       setSuccess(publishNow ? 'Post publicado com sucesso!' : 'Post salvo com sucesso!');
 
@@ -482,6 +531,52 @@ const PostEditor = () => {
       setError(error.message || 'Erro ao salvar post');
     } finally {
       setSaving(false);
+    }
+  };
+
+  // Requisitos que ainda faltam para poder assinar (decisão central em
+  // src/lib/validacao.js): simula a assinatura ativa para listar o resto.
+  const faltasParaAssinar = liberaConteudoValidado({
+    selo_assinado: true,
+    assinada_em: new Date().toISOString(),
+    revisado_por: formData.revisado_por,
+    data_revisao: formData.data_revisao,
+    sources: formData.sources,
+  }).faltas;
+
+  const handleAssinar = async () => {
+    if (!isEditing || faltasParaAssinar.length > 0) return;
+    setAssinando(true);
+    setError('');
+    setSuccess('');
+    setSeloAviso('');
+
+    try {
+      // 1) Salva o formulário atual, para assinar exatamente o que está na tela.
+      const { error: saveError } = await supabase
+        .from('articles')
+        .update(montarPostData(false))
+        .eq('id', id);
+      if (saveError) throw saveError;
+
+      // 2) Assinatura em UPDATE separado, que só liga o selo — o trigger do
+      //    banco valida o lastro e carimba assinada_em.
+      const { data, error: signError } = await supabase
+        .from('articles')
+        .update({ selo_assinado: true })
+        .eq('id', id)
+        .select('selo_assinado, assinada_em')
+        .single();
+      if (signError) throw signError;
+
+      setSelo({ assinado: data.selo_assinado === true, assinadaEm: data.assinada_em || null });
+      hasUnsavedChanges.current = false;
+      setSuccess('Conteúdo assinado e validado!');
+    } catch (error) {
+      console.error('Erro ao assinar:', error);
+      setError(error.message || 'Erro ao assinar o conteúdo');
+    } finally {
+      setAssinando(false);
     }
   };
 
@@ -598,6 +693,15 @@ const PostEditor = () => {
           <Check size={18} />
           {success}
           <button onClick={() => setSuccess('')}>
+            <X size={16} />
+          </button>
+        </div>
+      )}
+      {seloAviso && (
+        <div className="alert alert-warning">
+          <AlertCircle size={18} />
+          {seloAviso}
+          <button onClick={() => setSeloAviso('')}>
             <X size={16} />
           </button>
         </div>
@@ -975,6 +1079,80 @@ const PostEditor = () => {
                 <span>Post em destaque</span>
               </label>
             </div>
+          </div>
+
+          {/* Selo Conteúdo Validado */}
+          <div className="sidebar-card">
+            <h3>
+              <BadgeCheck size={16} />
+              Conteúdo Validado
+            </h3>
+            {selo.assinado ? (
+              <p className="selo-status selo-status--ativo">
+                Selo ativo — assinado em{' '}
+                {selo.assinadaEm ? new Date(selo.assinadaEm).toLocaleDateString('pt-BR') : '—'}
+              </p>
+            ) : (
+              <p className="selo-status">
+                Sem selo. O artigo continua visível, apenas sem o distintivo.
+              </p>
+            )}
+
+            <div className="form-group">
+              <label className="form-label">Revisado por (nome e registro)</label>
+              <input
+                type="text"
+                name="revisado_por"
+                value={formData.revisado_por}
+                onChange={handleChange}
+                className="form-input"
+                placeholder="Dr. Antonio Massucatti Neto, CRM-GO 17475"
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                <Calendar size={14} />
+                Data de revisão
+              </label>
+              <input
+                type="date"
+                name="data_revisao"
+                value={formData.data_revisao}
+                onChange={handleChange}
+                className="form-input"
+              />
+            </div>
+
+            {faltasParaAssinar.length > 0 && (
+              <ul className="selo-faltas">
+                {faltasParaAssinar.map(falta => (
+                  <li key={falta}>{falta}</li>
+                ))}
+              </ul>
+            )}
+
+            <button
+              type="button"
+              onClick={handleAssinar}
+              className="btn btn-primary selo-assinar-btn"
+              disabled={!isEditing || assinando || faltasParaAssinar.length > 0}
+              title={
+                !isEditing
+                  ? 'Salve o artigo antes de assinar'
+                  : faltasParaAssinar.length > 0
+                    ? 'Complete os requisitos acima para assinar'
+                    : 'Salva a edição atual e assina o conteúdo'
+              }
+            >
+              {assinando ? (
+                <Loader2 size={18} className="spinner-icon" />
+              ) : (
+                <BadgeCheck size={18} />
+              )}
+              <span>Assinar e validar</span>
+            </button>
+            {!isEditing && <p className="selo-dica">Salve o artigo antes de assinar.</p>}
           </div>
 
           {/* Category */}

@@ -254,6 +254,12 @@ const transformArticle = article => {
     // Metadados extras
     ...article.metadata,
     sources: article.sources || [],
+    // Conteúdo Validado (ver src/lib/validacao.js e migration 0002)
+    selo_assinado: article.selo_assinado === true,
+    assinada_em: article.assinada_em || null,
+    revisado_por: article.revisado_por || null,
+    data_revisao: article.data_revisao || null,
+    updatedAt: article.updated_at || null,
     // SEO
     metaTitle: article.meta_title,
     metaDescription: article.meta_description,

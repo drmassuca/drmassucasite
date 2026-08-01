@@ -33,7 +33,13 @@ export default function Faq_qual_o_momento_certo_para_fazer_ultrassonografia() {
         description="É definido pela queixa e pelo objetivo. Na gestação, usualmente: 5–8 semanas (inicial), 11–14 (1º tri) e 20–24 (2º tri). Urgências (dor/sangramento) indicam..."
         canonical="https://drmassuca.com.br/faq/qual-o-momento-certo-para-fazer-ultrassonografia"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

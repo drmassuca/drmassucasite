@@ -33,7 +33,13 @@ export default function Faq_modos_ultrassom_b_m_doppler() {
         description="Principais: modo B (brilho/2D), modo M (movimento, ex. válvulas), Doppler (color, power, espectral para fluxo sanguíneo) e 3D/4D (volume e tempo real, útil e..."
         canonical="https://drmassuca.com.br/faq/modos-ultrassom-b-m-doppler"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

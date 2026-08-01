@@ -33,7 +33,13 @@ export default function Faq_como_o_ultrassom_age_no_corpo() {
         description="Emite ondas sonoras pelo transdutor; parte é refletida pelos tecidos e captada de volta, formando imagens em tempo real. Não usa radiação ionizante."
         canonical="https://drmassuca.com.br/faq/como-o-ultrassom-age-no-corpo"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

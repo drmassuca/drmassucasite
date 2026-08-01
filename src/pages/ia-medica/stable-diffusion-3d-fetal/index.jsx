@@ -24,7 +24,6 @@ import {
   FaImages,
   FaQuestionCircle,
   FaCheckCircle,
-  FaPlay,
   FaBrain,
   FaHeart,
   FaRocket,

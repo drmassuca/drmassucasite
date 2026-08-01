@@ -33,7 +33,13 @@ export default function Faq_o_ultrassom_e_100_confiavel() {
         description="Não há exame 100% em todas as situações. A acurácia do ultrassom é alta para diversas indicações, mas depende de preparo, biotipo, técnica e experiência; às..."
         canonical="https://drmassuca.com.br/faq/o-ultrassom-e-100-confiavel"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

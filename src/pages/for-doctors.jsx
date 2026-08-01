@@ -46,7 +46,13 @@ function ForDoctors() {
 
       {/* Conteúdo */}
       <Box maxW="900px" mx="auto" px={4} py={10}>
-        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+        <Box
+          className="ed-materia"
+          bg="white"
+          borderRadius="xl"
+          p={{ base: 6, md: 10 }}
+          boxShadow="2xl"
+        >
           <Heading
             as="h1"
             size="lg"

@@ -35,7 +35,13 @@ export default function Faq_precisa_de_pedido_medico_para_fazer_ultrassom_morfol
         description="Normalmente, sim. O morfológico costuma exigir pedido médico (privado e planos). No SUS, é feito mediante solicitação e regulação."
         canonical="https://drmassuca.com.br/faq/precisa-de-pedido-medico-para-fazer-ultrassom-morfologico"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

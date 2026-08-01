@@ -14,17 +14,6 @@ const WHATSAPP_AGENDAR =
 const WHATSAPP = 'https://wa.me/5562996602117';
 const INSTAGRAM = 'https://instagram.com/drmassuca';
 
-const NAV = [
-  ['Início', '/'],
-  ['Sobre', '/sobre'],
-  ['Ultrassonografias', '/exames'],
-  ['Área do Paciente', '/area-do-paciente'],
-  ['IA Médica', '/ia-medica'],
-  ['Depoimentos', '/depoimentos'],
-  ['FAQ', '/faq'],
-  ['Contato', '/contato'],
-];
-
 /* As 10 seções de exames da página /exames (índice da edição). */
 const SECOES_EXAMES = [
   {
@@ -94,9 +83,9 @@ const formataData = valor => {
 };
 
 const CtaButtons = () => (
-  <div className="v1-ctas">
+  <div className="ed-ctas">
     <a
-      className="v1-btn v1-btn--cheio"
+      className="ed-btn ed-btn--cheio"
       href={WHATSAPP_AGENDAR}
       target="_blank"
       rel="noopener noreferrer"
@@ -105,7 +94,7 @@ const CtaButtons = () => (
       <FaWhatsapp aria-hidden="true" /> Agendar pelo WhatsApp
     </a>
     <a
-      className="v1-btn v1-btn--contorno"
+      className="ed-btn ed-btn--contorno"
       href={INSTAGRAM}
       target="_blank"
       rel="noopener noreferrer"
@@ -135,26 +124,6 @@ export default function V1Home() {
     };
   }, []);
 
-  // Fontes editoriais carregadas só na /v1 (mesmo padrão de injeção usado
-  // em review-z20-expert22.jsx; injeção direta em vez de Helmet para não
-  // depender do flush assíncrono do head).
-  useEffect(() => {
-    if (document.getElementById('v1-fontes')) return;
-    const preApi = document.createElement('link');
-    preApi.rel = 'preconnect';
-    preApi.href = 'https://fonts.googleapis.com';
-    const preStatic = document.createElement('link');
-    preStatic.rel = 'preconnect';
-    preStatic.href = 'https://fonts.gstatic.com';
-    preStatic.crossOrigin = 'anonymous';
-    const css = document.createElement('link');
-    css.id = 'v1-fontes';
-    css.rel = 'stylesheet';
-    css.href =
-      'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap';
-    document.head.append(preApi, preStatic, css);
-  }, []);
-
   const [artigoPrincipal, ...artigosSecundarios] = artigos;
 
   return (
@@ -165,41 +134,12 @@ export default function V1Home() {
         canonical="/v1"
         noindex
       />
-      {/* ── Cabeçalho de jornal ─────────────────────────────────────── */}
-      <header className="v1-masthead">
-        <div className="v1-masthead__alta">
-          <span>Itaberaí-GO · Goiás</span>
-          <span className="v1-masthead__edicao">Edição de demonstração · conceito editorial</span>
-          <span className="v1-masthead__sociais">
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-              <FaWhatsapp aria-hidden="true" />
-            </a>
-            <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <FaInstagram aria-hidden="true" />
-            </a>
-          </span>
-        </div>
-        <RouterLink to="/" className="v1-masthead__marca">
-          <img src="/logo.webp" alt="" width="54" height="54" />
-          <span className="v1-masthead__nome">Dr. Massuca</span>
-          <span className="v1-masthead__sub">
-            Antonio Massucatti Neto · CRM-GO 17475 · médico pós-graduado
-          </span>
-        </RouterLink>
-        <nav className="v1-masthead__nav" aria-label="Navegação principal">
-          {NAV.map(([rotulo, rota]) => (
-            <RouterLink key={rota} to={rota}>
-              {rotulo}
-            </RouterLink>
-          ))}
-        </nav>
-      </header>
 
       <main>
         {/* ── Manchete + foto editorial ─────────────────────────────── */}
         <section className="v1-manchete" aria-labelledby="v1-titulo">
           <div className="v1-manchete__texto">
-            <p className="v1-chapeu">Ultrassonografia em Itaberaí-GO</p>
+            <p className="ed-chapeu">Ultrassonografia em Itaberaí-GO</p>
             <h1 id="v1-titulo" className="v1-titulo">
               Ultrassom com precisão, propósito e alma médica.
             </h1>
@@ -242,7 +182,7 @@ export default function V1Home() {
               <p className="v1-manifesto__selo-nome">Conteúdo Validado</p>
             </div>
             <div className="v1-manifesto__texto">
-              <p className="v1-chapeu v1-chapeu--sobre-verde">O compromisso desta edição</p>
+              <p className="ed-chapeu ed-chapeu--sobre-verde">O compromisso desta edição</p>
               <h2 id="v1-manifesto-titulo">Todo conteúdo assinado tem lastro.</h2>
               <p>
                 O selo <strong>Conteúdo Validado</strong> marca os textos revisados por{' '}
@@ -255,31 +195,31 @@ export default function V1Home() {
         </section>
 
         {/* ── Seções numeradas (contador CSS: nunca pula número) ────── */}
-        <div className="v1-secoes">
+        <div className="ed-secoes">
           {/* 01 · IA Médica */}
-          <section className="v1-secao" aria-labelledby="v1-sec-ia">
-            <header className="v1-secao__cab">
-              <span className="v1-secao__numero" aria-hidden="true" />
-              <div className="v1-secao__titulos">
-                <p className="v1-chapeu">Curadoria</p>
+          <section className="ed-secao" aria-labelledby="v1-sec-ia">
+            <header className="ed-secao__cab">
+              <span className="ed-secao__numero" aria-hidden="true" />
+              <div className="ed-secao__titulos">
+                <p className="ed-chapeu">Curadoria</p>
                 <h2 id="v1-sec-ia">IA Médica</h2>
               </div>
-              <RouterLink to="/ia-medica" className="v1-secao__link">
+              <RouterLink to="/ia-medica" className="ed-secao__link">
                 Ver toda a curadoria →
               </RouterLink>
             </header>
 
             {curadoriaCarregando ? (
-              <p className="v1-vazio">Carregando a curadoria…</p>
+              <p className="ed-vazio">Carregando a curadoria…</p>
             ) : artigos.length === 0 ? (
-              <p className="v1-vazio">
+              <p className="ed-vazio">
                 A curadoria completa está na página{' '}
                 <RouterLink to="/ia-medica">IA Médica</RouterLink>.
               </p>
             ) : (
               <div className="v1-ia">
                 <article className="v1-ia__principal">
-                  <p className="v1-meta">
+                  <p className="ed-meta">
                     {artigoPrincipal.category}
                     {artigoPrincipal.date && ` · ${formataData(artigoPrincipal.date)}`}
                     {artigoPrincipal.readTime && ` · ${artigoPrincipal.readTime}`}
@@ -300,7 +240,7 @@ export default function V1Home() {
                 <div className="v1-ia__lista">
                   {artigosSecundarios.map(artigo => (
                     <article key={artigo.slug || artigo.id} className="v1-ia__item">
-                      <p className="v1-meta">
+                      <p className="ed-meta">
                         {artigo.category}
                         {artigo.date && ` · ${formataData(artigo.date)}`}
                       </p>
@@ -318,31 +258,31 @@ export default function V1Home() {
           </section>
 
           {/* 02 · Exames: índice da edição */}
-          <section className="v1-secao" aria-labelledby="v1-sec-exames">
-            <header className="v1-secao__cab">
-              <span className="v1-secao__numero" aria-hidden="true" />
-              <div className="v1-secao__titulos">
-                <p className="v1-chapeu">Índice da edição</p>
+          <section className="ed-secao" aria-labelledby="v1-sec-exames">
+            <header className="ed-secao__cab">
+              <span className="ed-secao__numero" aria-hidden="true" />
+              <div className="ed-secao__titulos">
+                <p className="ed-chapeu">Índice da edição</p>
                 <h2 id="v1-sec-exames">Exames de Ultrassom Realizados</h2>
               </div>
-              <RouterLink to="/exames" className="v1-secao__link">
+              <RouterLink to="/exames" className="ed-secao__link">
                 Índice completo →
               </RouterLink>
             </header>
             {/* role explícito: list-style:none faz o Safari/VoiceOver rebaixar
                 a lista para Group sem ele */}
-            <ol className="v1-indice" role="list">
+            <ol className="ed-indice" role="list">
               {SECOES_EXAMES.map((secao, i) => (
-                <li key={secao.titulo} className="v1-indice__item">
-                  <span className="v1-indice__ordinal" aria-hidden="true">
+                <li key={secao.titulo} className="ed-indice__item">
+                  <span className="ed-indice__ordinal" aria-hidden="true">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <div className="v1-indice__conteudo">
+                  <div className="ed-indice__conteudo">
                     <h3>
                       <RouterLink to={secao.link || '/exames'}>{secao.titulo}</RouterLink>
                     </h3>
                     {secao.subitens && (
-                      <p className="v1-indice__sub">
+                      <p className="ed-indice__sub">
                         {secao.subitens.map(([nome, href], j) => (
                           <span key={href}>
                             {j > 0 && ' · '}
@@ -358,14 +298,14 @@ export default function V1Home() {
           </section>
 
           {/* 03 · Depoimentos */}
-          <section className="v1-secao" aria-labelledby="v1-sec-depoimentos">
-            <header className="v1-secao__cab">
-              <span className="v1-secao__numero" aria-hidden="true" />
-              <div className="v1-secao__titulos">
-                <p className="v1-chapeu">Vozes dos pacientes</p>
+          <section className="ed-secao" aria-labelledby="v1-sec-depoimentos">
+            <header className="ed-secao__cab">
+              <span className="ed-secao__numero" aria-hidden="true" />
+              <div className="ed-secao__titulos">
+                <p className="ed-chapeu">Vozes dos pacientes</p>
                 <h2 id="v1-sec-depoimentos">Depoimentos</h2>
               </div>
-              <RouterLink to="/depoimentos" className="v1-secao__link">
+              <RouterLink to="/depoimentos" className="ed-secao__link">
                 Ler todos →
               </RouterLink>
             </header>
@@ -391,14 +331,14 @@ export default function V1Home() {
           </section>
 
           {/* 04 · Contato */}
-          <section className="v1-secao" aria-labelledby="v1-sec-contato">
-            <header className="v1-secao__cab">
-              <span className="v1-secao__numero" aria-hidden="true" />
-              <div className="v1-secao__titulos">
-                <p className="v1-chapeu">Fale com o consultório</p>
+          <section className="ed-secao" aria-labelledby="v1-sec-contato">
+            <header className="ed-secao__cab">
+              <span className="ed-secao__numero" aria-hidden="true" />
+              <div className="ed-secao__titulos">
+                <p className="ed-chapeu">Fale com o consultório</p>
                 <h2 id="v1-sec-contato">Contato</h2>
               </div>
-              <RouterLink to="/contato" className="v1-secao__link">
+              <RouterLink to="/contato" className="ed-secao__link">
                 Página de contato →
               </RouterLink>
             </header>
@@ -436,45 +376,6 @@ export default function V1Home() {
           </section>
         </div>
       </main>
-
-      {/* ── Colofão ─────────────────────────────────────────────────── */}
-      <footer className="v1-colofao">
-        <p className="v1-colofao__marca">Dr. Massuca</p>
-        <p className="v1-colofao__credencial">
-          Dr. Antonio Massucatti Neto · CRM-GO 17475
-          <br />
-          Pós-graduação em Ultrassonografia Geral e Ecocardiografia Fetal
-        </p>
-        <nav className="v1-colofao__nav" aria-label="Navegação do rodapé">
-          {NAV.map(([rotulo, rota]) => (
-            <RouterLink key={rota} to={rota}>
-              {rotulo}
-            </RouterLink>
-          ))}
-        </nav>
-        <p className="v1-colofao__links">
-          <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
-            Instagram
-          </a>
-          {' · '}
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-            WhatsApp
-          </a>
-          {' · '}
-          <a href="https://x.com/massucas" target="_blank" rel="noopener noreferrer">
-            X
-          </a>
-          {' · '}
-          <RouterLink to="/privacy-policy">Política de Privacidade</RouterLink>
-        </p>
-        <p className="v1-colofao__nota">
-          © 2026{' '}
-          <a href="https://xdiag.com.br" target="_blank" rel="noopener noreferrer">
-            Xdiag Tecnologias Ltda.
-          </a>{' '}
-          · Página de demonstração (/v1) — a home oficial continua no endereço principal.
-        </p>
-      </footer>
 
       <Chatbot />
     </div>

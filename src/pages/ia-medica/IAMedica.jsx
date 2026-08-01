@@ -13,6 +13,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import SEOHead from '../../components/SEOHead';
 import { getPublishedArticles } from '../../lib/articles';
+import { injetaFontesEditoriais } from '../../lib/fontesEditoriais';
 import './IAMedica.css?v=2';
 
 // Helper para formatar data com segurança
@@ -311,6 +312,7 @@ const IAMedica = () => {
 
   // Carregar artigos ao montar
   useEffect(() => {
+    injetaFontesEditoriais(); // fontes da pele "edição tech"
     const loadArticles = async () => {
       try {
         setLoading(true);
@@ -440,6 +442,7 @@ const IAMedica = () => {
         <section className="hero-section">
           <div className="hero-content">
             <div className="hero-text">
+              <p className="ia-chapeu">Curadoria · Edição Tech</p>
               <h1>
                 <div className="title-stack">
                   <span className="gradient-text">IA Médica</span>

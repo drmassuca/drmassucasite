@@ -120,7 +120,13 @@ export default function FaqDynamic() {
   if (loading) {
     return (
       <Box maxW="900px" mx="auto" px={4} py={10}>
-        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+        <Box
+          className="ed-materia"
+          bg="white"
+          borderRadius="xl"
+          p={{ base: 6, md: 10 }}
+          boxShadow="2xl"
+        >
           <Skeleton height="36px" mb={4} width="80%" />
           <Skeleton height="20px" mb={6} width="60%" />
           <SkeletonText noOfLines={8} spacing={3} skeletonHeight="16px" />
@@ -132,7 +138,13 @@ export default function FaqDynamic() {
   if (notFound) {
     return (
       <Box maxW="900px" mx="auto" px={4} py={10}>
-        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+        <Box
+          className="ed-materia"
+          bg="white"
+          borderRadius="xl"
+          p={{ base: 6, md: 10 }}
+          boxShadow="2xl"
+        >
           <Heading size="lg" color="green.700" mb={4}>
             Pergunta não encontrada
           </Heading>
@@ -176,7 +188,13 @@ export default function FaqDynamic() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Heading
           as="h1"
           size="lg"

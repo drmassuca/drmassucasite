@@ -765,3 +765,70 @@
     transform: rotate(360deg);
   }
 }
+/* ============================================================
+   EDIÇÃO TECH — gramática editorial na identidade neon roxa.
+   Paleta preservada: fundo #667eea→#764ba2, neon #00f5ff /
+   #9370db / #ff6b9d, accent #667eea. Só estrutura editorial:
+   chapéu, display serifada, filetes e seções numeradas.
+   ============================================================ */
+
+.ia-chapeu {
+  display: inline-flex;
+  align-self: center;
+  width: fit-content;
+  margin: 0 auto 14px;
+  padding: 6px 16px;
+  background: rgba(20, 20, 40, 0.75);
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  color: #00f5ff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.hero-text h1,
+.hero-text .gradient-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+}
+
+/* filete duplo fechando o hero, como o masthead da edição impressa */
+.hero-section {
+  border-bottom: 4px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 6px 0 -5px rgba(255, 255, 255, 0.5);
+}
+
+/* seções numeradas (01 Destaques, 02 Todos os Artigos) */
+.ia-medica-container {
+  counter-reset: iasecao;
+}
+
+.featured-section,
+.articles-section {
+  counter-increment: iasecao;
+}
+
+.featured-section .section-title,
+.articles-section .section-title {
+  position: relative;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #667eea;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 700;
+}
+
+.featured-section .section-title::before,
+.articles-section .section-title::before {
+  content: counter(iasecao, decimal-leading-zero);
+  position: absolute;
+  top: -34px;
+  left: -10px;
+  z-index: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(5rem, 10vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(102, 126, 234, 0.14);
+  pointer-events: none;
+}

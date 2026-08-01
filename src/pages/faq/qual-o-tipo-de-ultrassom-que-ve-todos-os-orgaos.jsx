@@ -33,7 +33,13 @@ export default function Faq_qual_o_tipo_de_ultrassom_que_ve_todos_os_orgaos() {
         description="Não existe um ultrassom único que veja “todos os órgãos” com detalhe. O ideal é por região/indicação (abdome total, pélvico, mamas, tireoide, doppler), confo..."
         canonical="https://drmassuca.com.br/faq/qual-o-tipo-de-ultrassom-que-ve-todos-os-orgaos"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

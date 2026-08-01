@@ -30,7 +30,7 @@ export default function ExamBreadcrumb({ slug }) {
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
-      <Box mb={6} fontSize="sm" color="gray.500">
+      <Box className="ed-breadcrumb" mb={6} fontSize="sm" color="gray.500">
         <Link as={RouterLink} to="/" _hover={{ color: 'green.600' }}>
           Início
         </Link>

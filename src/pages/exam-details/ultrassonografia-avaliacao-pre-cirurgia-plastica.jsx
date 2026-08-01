@@ -55,7 +55,13 @@ function AvaliacaoPreCirurgiaPlastica() {
 
       <Box maxW="900px" mx="auto" px={4} py={10}>
         <ExamBreadcrumb slug={SLUG} />
-        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+        <Box
+          className="ed-materia"
+          bg="white"
+          borderRadius="xl"
+          p={{ base: 6, md: 10 }}
+          boxShadow="2xl"
+        >
           <Heading
             as="h1"
             fontSize={{ base: '2xl', md: '4xl' }}

@@ -33,7 +33,13 @@ export default function Faq_quantos_dias_vale_um_ultrassom() {
         description="Não há validade única. A “validade” prática depende do objetivo clínico (ex.: pré-operatório, gestação, dor aguda) e de exigências de convênios/solicitações."
         canonical="https://drmassuca.com.br/faq/quantos-dias-vale-um-ultrassom"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

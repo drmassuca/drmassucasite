@@ -33,7 +33,13 @@ export default function Faq_pode_ter_relacao_antes_de_fazer_ultrassonografia() {
         description="Na maioria dos exames, pode sim. Em pélvico/prostático, pode haver orientações específicas (ex.: evitar ejaculação por 24–48h, conforme o serviço). Siga o pr..."
         canonical="https://drmassuca.com.br/faq/pode-ter-relacao-antes-de-fazer-ultrassonografia"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

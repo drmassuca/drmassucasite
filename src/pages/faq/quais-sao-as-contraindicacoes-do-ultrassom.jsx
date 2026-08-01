@@ -33,7 +33,13 @@ export default function Faq_quais_sao_as_contraindicacoes_do_ultrassom() {
         description="Não há contraindicações absolutas para o ultrassom diagnóstico. Situações locais (feridas, dor intensa) podem limitar ou exigir adaptação técnica."
         canonical="https://drmassuca.com.br/faq/quais-sao-as-contraindicacoes-do-ultrassom"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

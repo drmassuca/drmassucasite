@@ -33,7 +33,13 @@ export default function Faq_e_possivel_fazer_ultrassom_sem_pedido_medico() {
         description="No setor privado, alguns serviços realizam ultrassons sem pedido, porém é recomendável avaliação médica. Planos e SUS normalmente exigem solicitação formal."
         canonical="https://drmassuca.com.br/faq/e-possivel-fazer-ultrassom-sem-pedido-medico"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

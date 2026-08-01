@@ -35,7 +35,13 @@ export default function Faq_qual_o_preparo_para_fazer_ultrassonografia_abdominal
         description="Geralmente pede-se jejum (6–8 h) e evitar gases; alguns serviços solicitam bexiga cheia para melhor avaliação. Siga as orientações do pedido/local."
         canonical="https://drmassuca.com.br/faq/qual-o-preparo-para-fazer-ultrassonografia-abdominal-total"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

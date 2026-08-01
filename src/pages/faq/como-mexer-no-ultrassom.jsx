@@ -33,7 +33,13 @@ export default function Faq_como_mexer_no_ultrassom() {
         description="A operação do aparelho é atribuição profissional (médico treinado). Para o paciente, interessa preparo adequado, posicionamento e compreensão do laudo."
         canonical="https://drmassuca.com.br/faq/como-mexer-no-ultrassom"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

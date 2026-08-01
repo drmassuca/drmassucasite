@@ -33,7 +33,13 @@ export default function Faq_qual_o_primeiro_ultrassom_que_deve_ser_feito() {
         description="Na gestação, o primeiro é o ultrassom obstétrico inicial (5–8 semanas). Em outras situações, o médico define o exame inicial conforme a queixa (abdome, pélvi..."
         canonical="https://drmassuca.com.br/faq/qual-o-primeiro-ultrassom-que-deve-ser-feito"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

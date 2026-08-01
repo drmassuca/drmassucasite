@@ -34,7 +34,13 @@ export default function Faq_qual_a_melhor_semana_para_fazer_ultrassonografia_3d(
         description="Normalmente 26–30 semanas. Depende de líquido, posição fetal e placenta; há bons resultados entre 24–32 semanas."
         canonical="https://drmassuca.com.br/faq/qual-a-melhor-semana-para-fazer-ultrassonografia-3d"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

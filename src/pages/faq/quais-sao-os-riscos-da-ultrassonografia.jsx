@@ -33,7 +33,13 @@ export default function Faq_quais_sao_os_riscos_da_ultrassonografia() {
         description="A ultrassonografia não usa radiação ionizante e é considerada segura em níveis diagnósticos. Riscos são mínimos quando feita por profissional habilitado."
         canonical="https://drmassuca.com.br/faq/quais-sao-os-riscos-da-ultrassonografia"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

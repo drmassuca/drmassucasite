@@ -33,7 +33,13 @@ export default function Faq_quais_exames_de_ultrassonografia_na_gravidez() {
         description="Usualmente: inicial (5–8 semanas), morfológico do 1º tri (11–14), morfológico do 2º tri (20–24) e crescimento/Doppler no 3º trimestre; outros conforme o obst..."
         canonical="https://drmassuca.com.br/faq/quais-exames-de-ultrassonografia-na-gravidez"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

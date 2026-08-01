@@ -75,7 +75,13 @@ function Testimonials() {
       </Helmet>
 
       <Box maxW="1200px" mx="auto" px={4} py={10}>
-        <Box bg="whiteAlpha.900" borderRadius="lg" p={{ base: 6, md: 10 }} boxShadow="lg">
+        <Box
+          className="ed-materia"
+          bg="whiteAlpha.900"
+          borderRadius="lg"
+          p={{ base: 6, md: 10 }}
+          boxShadow="lg"
+        >
           <Heading as="h1" size="lg" mb={8} textAlign="center" color="green.700">
             Depoimentos dos nossos pacientes 💚
           </Heading>

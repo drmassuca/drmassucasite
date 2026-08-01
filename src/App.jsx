@@ -1,10 +1,12 @@
 import { useEffect, lazy, Suspense } from 'react';
+import PropTypes from 'prop-types';
 import { Box } from '@chakra-ui/react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import CookieConsent from 'react-cookie-consent';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import EditorialShell from './components/editorial/EditorialShell';
 import ScrollToTop from './components/ScrollToTop';
 import AdvancedAnalytics from './components/AdvancedAnalytics';
 import LinkOptimizer from './components/LinkOptimizer';
@@ -102,6 +104,33 @@ const UltrassonografiaAvaliacaoPreCirurgiaPlastica = lazy(
   () => import('./pages/exam-details/ultrassonografia-avaliacao-pre-cirurgia-plastica')
 );
 
+/* ─────────────── Rotas no sistema editorial (EditorialShell) ───────────────
+   Recebem masthead/colofão de jornal em vez do Header/Footer do site.
+   Ficam FORA: a home atual ("/"), o /admin e as rotas /ia-medica (que
+   mantêm a identidade roxa/neon própria). */
+const EDITORIAL_PATHS = [
+  '/v1',
+  '/sobre',
+  '/exames',
+  '/area-do-paciente',
+  '/para-medicos',
+  '/depoimentos',
+  '/contato',
+  '/ultrassom-3d',
+  '/faq',
+  '/privacy-policy',
+];
+
+function MolduraEditorial({ ativa, children }) {
+  if (!ativa) return children;
+  return <EditorialShell>{children}</EditorialShell>;
+}
+
+MolduraEditorial.propTypes = {
+  ativa: PropTypes.bool,
+  children: PropTypes.node,
+};
+
 /* ────────────────────────── GA page-view helper ────────────────────────── */
 function usePageTracking() {
   const location = useLocation();
@@ -162,14 +191,10 @@ function App() {
     );
   }
 
-  // Página de demonstração /v1: layout editorial próprio, sem Header/Footer do site
-  if (location.pathname === '/v1' || location.pathname === '/v1/') {
-    return (
-      <Suspense fallback={null}>
-        <V1Home />
-      </Suspense>
-    );
-  }
+  // Página em estilo editorial? (masthead/colofão próprios, sem Header/Footer)
+  const isEditorialPage = EDITORIAL_PATHS.some(
+    p => location.pathname === p || location.pathname.startsWith(`${p}/`)
+  );
 
   // Determina se estamos em uma página de IA
   const isIAPage = location.pathname.startsWith('/ia-medica');
@@ -184,136 +209,146 @@ function App() {
       minHeight="100vh"
       display="flex"
       flexDirection="column"
-      bgImage={backgroundImage}
+      bgImage={isEditorialPage ? 'none' : backgroundImage}
+      bg={isEditorialPage ? '#f7f4ec' : undefined}
       bgRepeat="repeat"
       bgSize="auto"
       bgAttachment="fixed"
     >
-      <Header />
+      {!isEditorialPage && <Header />}
       <ScrollToTop />
 
-      <Box flex="1" p={4}>
-        <Suspense
-          fallback={
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              minH={{ base: '80vh', md: '70vh' }}
-              color="white"
-            >
+      <Box flex="1" p={isEditorialPage ? 0 : 4}>
+        <MolduraEditorial ativa={isEditorialPage}>
+          <Suspense
+            fallback={
               <Box
-                w="40px"
-                h="40px"
-                border="3px solid rgba(255,255,255,0.3)"
-                borderTopColor="white"
-                borderRadius="50%"
-                animation="spin 1s linear infinite"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                minH={{ base: '80vh', md: '70vh' }}
+                color="white"
+              >
+                <Box
+                  w="40px"
+                  h="40px"
+                  border="3px solid rgba(255,255,255,0.3)"
+                  borderTopColor="white"
+                  borderRadius="50%"
+                  animation="spin 1s linear infinite"
+                />
+              </Box>
+            }
+          >
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/v1" element={<V1Home />} />
+              <Route path="/sobre" element={<About />} />
+              <Route path="/exames" element={<Exams />} />
+              <Route path="/area-do-paciente" element={<PatientArea />} />
+              <Route path="/para-medicos" element={<ForDoctors />} />
+              <Route path="/depoimentos" element={<Testimonials />} />
+              <Route path="/contato" element={<Contact />} />
+              <Route path="/ultrassom-3d" element={<Ultrassom3D />} />
+
+              {/* >>> NOVAS ROTAS DO FAQ */}
+              <Route path="/faq" element={<FaqIndex />} />
+              {faqRouteObjects.map(r => (
+                <Route key={r.path} path={r.path} element={r.element} />
+              ))}
+
+              {/* Rota dinâmica: só ativada para slugs sem página estática */}
+              <Route path="/faq/:slug" element={<FaqDynamic />} />
+
+              {/* >>> ROTAS DA IA MÉDICA */}
+              <Route path="/ia-medica" element={<IAMedica />} />
+              <Route path="/ia-medica/artigo/:slug" element={<ArticleDetail />} />
+              <Route
+                path="/ia-medica/stable-diffusion-3d-fetal"
+                element={<StableDiffusion3DFetal />}
               />
-            </Box>
-          }
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<About />} />
-            <Route path="/exames" element={<Exams />} />
-            <Route path="/area-do-paciente" element={<PatientArea />} />
-            <Route path="/para-medicos" element={<ForDoctors />} />
-            <Route path="/depoimentos" element={<Testimonials />} />
-            <Route path="/contato" element={<Contact />} />
-            <Route path="/ultrassom-3d" element={<Ultrassom3D />} />
+              <Route
+                path="/ia-medica/stable-diffusion-3d-fetal/instalacao"
+                element={<SDInstalacao />}
+              />
+              <Route
+                path="/ia-medica/stable-diffusion-3d-fetal/configuracao"
+                element={<SDConfiguracao />}
+              />
+              <Route
+                path="/ia-medica/stable-diffusion-3d-fetal/exemplos"
+                element={<SDExemplos />}
+              />
+              <Route
+                path="/ia-medica/stable-diffusion-3d-fetal/problemas"
+                element={<SDProblemas />}
+              />
+              <Route path="/ia-medica/review-z20-expert22" element={<ReviewZ20Expert22 />} />
+              <Route path="/ia-medica/review-z20-expert22/en" element={<ReviewZ20Expert22EN />} />
 
-            {/* >>> NOVAS ROTAS DO FAQ */}
-            <Route path="/faq" element={<FaqIndex />} />
-            {faqRouteObjects.map(r => (
-              <Route key={r.path} path={r.path} element={r.element} />
-            ))}
+              {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
+              <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />
+              <Route
+                path="/exames/morfologico-primeiro-trimestre"
+                element={<MorfologicoPrimeiroTrimestre />}
+              />
+              <Route
+                path="/exames/morfologico-segundo-trimestre"
+                element={<MorfologicoSegundoTrimestre />}
+              />
+              <Route path="/exames/doppler-obstetrico" element={<DopplerObstetrico />} />
+              <Route path="/exames/ecocardiografia-fetal" element={<EcocardiografiaFetal />} />
+              <Route path="/exames/endovaginal" element={<Endovaginal />} />
+              <Route path="/exames/mamas" element={<Mamas />} />
+              <Route path="/exames/pelvico-via-abdominal" element={<PelvicoViaAbdominal />} />
+              <Route
+                path="/exames/pesquisa-de-endometriose-com-preparo"
+                element={<PesquisaDeEndometrioseComPreparo />}
+              />
+              <Route
+                path="/exames/monitorizacao-da-ovulacao"
+                element={<MonitorizacaoDaOvulacao />}
+              />
+              <Route path="/exames/total" element={<Total />} />
+              <Route path="/exames/superior" element={<Superior />} />
+              <Route path="/exames/inferior" element={<Inferior />} />
+              <Route path="/exames/parede-abdominal" element={<ParedeAbdominal />} />
+              <Route path="/exames/via-abdominal" element={<ViaAbdominal />} />
+              <Route path="/exames/via-transretal" element={<ViaTransretal />} />
+              <Route
+                path="/exames/pesquisa-de-puberdade-precoce"
+                element={<PesquisaDePuberdadePrecoce />}
+              />
+              <Route path="/exames/transfontanela" element={<Transfontanela />} />
+              <Route
+                path="/exames/ultrassonografia-de-tireoide-com-ou-sem-doppler"
+                element={<UltrassonografiaDeTireoideComOuSemDoppler />}
+              />
+              <Route
+                path="/exames/ultrassonografia-cervical-com-ou-sem-doppler"
+                element={<UltrassonografiaCervicalComOuSemDoppler />}
+              />
+              <Route
+                path="/exames/bolsa-escrotal-e-testiculos"
+                element={<UltrassonografiaBolsaEscrotalETesticulos />}
+              />
+              <Route
+                path="/exames/rins-e-vias-urinarias"
+                element={<UltrassonografiaRinsEViasUrinarias />}
+              />
+              <Route path="/exames/partes-moles" element={<UltrassonografiaPartesMoles />} />
+              <Route
+                path="/exames/avaliacao-pre-cirurgia-plastica"
+                element={<UltrassonografiaAvaliacaoPreCirurgiaPlastica />}
+              />
 
-            {/* Rota dinâmica: só ativada para slugs sem página estática */}
-            <Route path="/faq/:slug" element={<FaqDynamic />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-            {/* >>> ROTAS DA IA MÉDICA */}
-            <Route path="/ia-medica" element={<IAMedica />} />
-            <Route path="/ia-medica/artigo/:slug" element={<ArticleDetail />} />
-            <Route
-              path="/ia-medica/stable-diffusion-3d-fetal"
-              element={<StableDiffusion3DFetal />}
-            />
-            <Route
-              path="/ia-medica/stable-diffusion-3d-fetal/instalacao"
-              element={<SDInstalacao />}
-            />
-            <Route
-              path="/ia-medica/stable-diffusion-3d-fetal/configuracao"
-              element={<SDConfiguracao />}
-            />
-            <Route path="/ia-medica/stable-diffusion-3d-fetal/exemplos" element={<SDExemplos />} />
-            <Route
-              path="/ia-medica/stable-diffusion-3d-fetal/problemas"
-              element={<SDProblemas />}
-            />
-            <Route path="/ia-medica/review-z20-expert22" element={<ReviewZ20Expert22 />} />
-            <Route path="/ia-medica/review-z20-expert22/en" element={<ReviewZ20Expert22EN />} />
-
-            {/* Rotas estáticas antigas (podem ser eliminadas futuramente) */}
-            <Route path="/exames/obstetrico-de-rotina" element={<ObstetricoDeRotina />} />
-            <Route
-              path="/exames/morfologico-primeiro-trimestre"
-              element={<MorfologicoPrimeiroTrimestre />}
-            />
-            <Route
-              path="/exames/morfologico-segundo-trimestre"
-              element={<MorfologicoSegundoTrimestre />}
-            />
-            <Route path="/exames/doppler-obstetrico" element={<DopplerObstetrico />} />
-            <Route path="/exames/ecocardiografia-fetal" element={<EcocardiografiaFetal />} />
-            <Route path="/exames/endovaginal" element={<Endovaginal />} />
-            <Route path="/exames/mamas" element={<Mamas />} />
-            <Route path="/exames/pelvico-via-abdominal" element={<PelvicoViaAbdominal />} />
-            <Route
-              path="/exames/pesquisa-de-endometriose-com-preparo"
-              element={<PesquisaDeEndometrioseComPreparo />}
-            />
-            <Route path="/exames/monitorizacao-da-ovulacao" element={<MonitorizacaoDaOvulacao />} />
-            <Route path="/exames/total" element={<Total />} />
-            <Route path="/exames/superior" element={<Superior />} />
-            <Route path="/exames/inferior" element={<Inferior />} />
-            <Route path="/exames/parede-abdominal" element={<ParedeAbdominal />} />
-            <Route path="/exames/via-abdominal" element={<ViaAbdominal />} />
-            <Route path="/exames/via-transretal" element={<ViaTransretal />} />
-            <Route
-              path="/exames/pesquisa-de-puberdade-precoce"
-              element={<PesquisaDePuberdadePrecoce />}
-            />
-            <Route path="/exames/transfontanela" element={<Transfontanela />} />
-            <Route
-              path="/exames/ultrassonografia-de-tireoide-com-ou-sem-doppler"
-              element={<UltrassonografiaDeTireoideComOuSemDoppler />}
-            />
-            <Route
-              path="/exames/ultrassonografia-cervical-com-ou-sem-doppler"
-              element={<UltrassonografiaCervicalComOuSemDoppler />}
-            />
-            <Route
-              path="/exames/bolsa-escrotal-e-testiculos"
-              element={<UltrassonografiaBolsaEscrotalETesticulos />}
-            />
-            <Route
-              path="/exames/rins-e-vias-urinarias"
-              element={<UltrassonografiaRinsEViasUrinarias />}
-            />
-            <Route path="/exames/partes-moles" element={<UltrassonografiaPartesMoles />} />
-            <Route
-              path="/exames/avaliacao-pre-cirurgia-plastica"
-              element={<UltrassonografiaAvaliacaoPreCirurgiaPlastica />}
-            />
-
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-            {/* Nova rota dinâmica */}
-            <Route path="exams/:slug" element={<ExamTemplate />} />
-          </Routes>
-        </Suspense>
+              {/* Nova rota dinâmica */}
+              <Route path="exams/:slug" element={<ExamTemplate />} />
+            </Routes>
+          </Suspense>
+        </MolduraEditorial>
       </Box>
 
       {/* ───────────── Banner de cookies com contraste AA ───────────── */}
@@ -367,14 +402,14 @@ function App() {
         <span style={{ fontWeight: 700 }}>Usamos cookies</span>&nbsp; para melhorar sua experiência,
         medir estatísticas e otimizar nossos serviços. Você pode aceitar ou recusar.
         <a
-          href="/politica-de-privacidade"
+          href="/privacy-policy"
           style={{ color: '#d4af37', textDecoration: 'underline', marginLeft: 8 }}
         >
           Saiba mais
         </a>
       </CookieConsent>
 
-      <Footer />
+      {!isEditorialPage && <Footer />}
       <AdvancedAnalytics />
       <LinkOptimizer />
       <PerformanceMonitoring />

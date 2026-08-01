@@ -33,7 +33,13 @@ export default function Faq_o_resultado_da_ultrassonografia_sai_na_hora() {
         description="Frequentemente sim, no mesmo dia. O tempo de liberação do laudo depende da complexidade, da necessidade de comparação com exames prévios e do fluxo do serviço."
         canonical="https://drmassuca.com.br/faq/o-resultado-da-ultrassonografia-sai-na-hora"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

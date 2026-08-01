@@ -33,7 +33,13 @@ export default function Faq_quando_fazer_a_primeira_ultrassonografia() {
         description="Na gestação, geralmente entre 5–8 semanas (confirmar intrauterina, vitalidade e datar). Se houver dor/sangramento, avalia-se mais cedo conforme orientação mé..."
         canonical="https://drmassuca.com.br/faq/quando-fazer-a-primeira-ultrassonografia"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

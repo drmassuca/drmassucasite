@@ -33,7 +33,13 @@ export default function Faq_ultrassom_mais_completo() {
         description="Não há um exame único “mais completo” para tudo. O melhor é o indicado para a sua queixa/região, combinando modos (B, Doppler, etc.) e protocolo adequado (ex..."
         canonical="https://drmassuca.com.br/faq/ultrassom-mais-completo"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

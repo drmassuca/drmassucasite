@@ -33,7 +33,13 @@ export default function Faq_o_que_o_ultrassom_abdominal_total_detecta() {
         description="Avalia fígado, vesícula e vias biliares, pâncreas, baço, rins, aorta e bexiga (varia por serviço). Detecta cálculos, inflamações, dilatações, massas e altera..."
         canonical="https://drmassuca.com.br/faq/o-que-o-ultrassom-abdominal-total-detecta"
       />
-      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
+      <Box
+        className="ed-materia"
+        bg="white"
+        borderRadius="xl"
+        p={{ base: 6, md: 10 }}
+        boxShadow="2xl"
+      >
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

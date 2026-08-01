@@ -165,14 +165,19 @@ export default function ChatbotGrok({ onClose }) {
               border="1px solid"
               borderColor={interactionCount >= MAX_INTERACTIONS ? 'green.200' : 'blue.200'}
             >
-              <Text fontSize="sm" color={interactionCount >= MAX_INTERACTIONS ? 'green.800' : 'blue.800'}>
+              <Text
+                fontSize="sm"
+                color={interactionCount >= MAX_INTERACTIONS ? 'green.800' : 'blue.800'}
+              >
                 {interactionCount >= MAX_INTERACTIONS ? (
                   <>
-                    <strong>Continue no WhatsApp:</strong> chegamos ao limite. Clique no botao verde abaixo.
+                    <strong>Continue no WhatsApp:</strong> chegamos ao limite. Clique no botao verde
+                    abaixo.
                   </>
                 ) : (
                   <>
-                    <strong>Quase no limite:</strong> para atendimento mais completo, use o WhatsApp.
+                    <strong>Quase no limite:</strong> para atendimento mais completo, use o
+                    WhatsApp.
                   </>
                 )}
               </Text>

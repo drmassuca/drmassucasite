@@ -112,6 +112,7 @@ const EDITORIAL_PATHS = [
   '/v1',
   '/sobre',
   '/exames',
+  '/exams', // rota dinâmica legada /exams/:slug (ExamTemplate)
   '/area-do-paciente',
   '/para-medicos',
   '/depoimentos',
@@ -229,11 +230,17 @@ function App() {
                 minH={{ base: '80vh', md: '70vh' }}
                 color="white"
               >
+                {/* spinner verde sobre papel no modo editorial; branco sobre a
+                    textura escura no layout antigo */}
                 <Box
                   w="40px"
                   h="40px"
-                  border="3px solid rgba(255,255,255,0.3)"
-                  borderTopColor="white"
+                  border={
+                    isEditorialPage
+                      ? '3px solid rgba(15,61,46,0.25)'
+                      : '3px solid rgba(255,255,255,0.3)'
+                  }
+                  borderTopColor={isEditorialPage ? '#0f3d2e' : 'white'}
                   borderRadius="50%"
                   animation="spin 1s linear infinite"
                 />

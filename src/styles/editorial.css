@@ -410,6 +410,16 @@
   font-weight: 600;
 }
 
+/* Exceção: h2/h3 do Accordion são wrappers de botão, não títulos de seção —
+   sem filete nem espaçamento de matéria (senão cada pergunta ganha uma
+   linha e ~24px de vão, como aconteceu na Área do Paciente). */
+.editorial .ed-materia .chakra-accordion h2,
+.editorial .ed-materia .chakra-accordion h3 {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .editorial .ed-materia .chakra-card,
 .editorial .ed-materia .chakra-linkbox {
   background: var(--ed-papel-alto);

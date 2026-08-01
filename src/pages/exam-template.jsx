@@ -56,7 +56,7 @@ export default function ExamTemplate() {
       </Helmet>
 
       {/* Conteúdo ---------------------------------------------------------------- */}
-      <VStack spacing={6} p={8} maxW="800px" mx="auto">
+      <VStack className="ed-materia" spacing={6} p={8} maxW="800px" mx="auto">
         <Heading as="h1" size="xl" textAlign="center" color="green.700">
           {exam.title}
         </Heading>

@@ -95,6 +95,7 @@ const PostEditor = () => {
   const [autoSaveStatus, setAutoSaveStatus] = useState('idle');
   const [, setLastSaved] = useState(null);
   const autoSaveTimer = useRef(null);
+  const autoSaveEmVoo = useRef(null); // promise do autosave em andamento
   const hasUnsavedChanges = useRef(false);
 
   useEffect(() => {
@@ -146,64 +147,84 @@ const PostEditor = () => {
 
     setAutoSaveStatus('saving');
 
-    try {
-      const postData = {
-        ...formData,
-        status: formData.status === 'published' ? 'published' : 'draft',
-        published_at: formData.published_at ? new Date(formData.published_at).toISOString() : null,
-        scheduled_for: formData.scheduled_for
-          ? new Date(formData.scheduled_for).toISOString()
-          : null,
-        metadata: Object.keys(formData.metadata).length > 0 ? formData.metadata : {},
-        // Converte strings vazias para null em campos que esperam inteiros
-        category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
-        read_time: formData.read_time || null,
-        revisado_por: formData.revisado_por?.trim() || null,
-        data_revisao: formData.data_revisao || null,
-      };
+    // A execução fica registrada em autoSaveEmVoo para o handleAssinar
+    // poder esperar um autosave pendente antes de assinar (evita corrida
+    // em que um payload antigo derruba o selo recém-assinado).
+    const execucao = (async () => {
+      try {
+        const postData = {
+          ...formData,
+          status: formData.status === 'published' ? 'published' : 'draft',
+          published_at: formData.published_at
+            ? new Date(formData.published_at).toISOString()
+            : null,
+          scheduled_for: formData.scheduled_for
+            ? new Date(formData.scheduled_for).toISOString()
+            : null,
+          metadata: Object.keys(formData.metadata).length > 0 ? formData.metadata : {},
+          // Converte strings vazias para null em campos que esperam inteiros
+          category_id: formData.category_id ? parseInt(formData.category_id, 10) : null,
+          read_time: formData.read_time || null,
+          revisado_por: formData.revisado_por?.trim() || null,
+          data_revisao: formData.data_revisao || null,
+        };
 
-      delete postData.id;
-      delete postData.created_at;
-      delete postData.updated_at;
-      // Campos do selo nunca vão em salvamentos comuns: assinar é ato
-      // explícito (handleAssinar) e a queda é decidida pelo trigger no banco.
-      delete postData.selo_assinado;
-      delete postData.assinada_em;
+        delete postData.id;
+        delete postData.created_at;
+        delete postData.updated_at;
+        // Campos do selo nunca vão em salvamentos comuns: assinar é ato
+        // explícito (handleAssinar) e a queda é decidida pelo trigger no banco.
+        delete postData.selo_assinado;
+        delete postData.assinada_em;
 
-      if (isEditing) {
-        const { data, error } = await supabase
-          .from('articles')
-          .update(postData)
-          .eq('id', id)
-          .select('selo_assinado, assinada_em')
-          .single();
+        if (isEditing) {
+          const { data, error } = await supabase
+            .from('articles')
+            .update(postData)
+            .eq('id', id)
+            .select('selo_assinado, assinada_em')
+            .single();
 
-        if (error) throw error;
+          if (error) throw error;
 
-        if (data) {
-          const caiu = selo.assinado && data.selo_assinado !== true;
-          setSelo({ assinado: data.selo_assinado === true, assinadaEm: data.assinada_em || null });
-          if (caiu) setSeloAviso('O selo caiu porque o conteúdo mudou. Revise e assine de novo.');
+          if (data) {
+            const caiu = selo.assinado && data.selo_assinado !== true;
+            setSelo({
+              assinado: data.selo_assinado === true,
+              assinadaEm: data.assinada_em || null,
+            });
+            if (caiu) setSeloAviso('O selo caiu porque o conteúdo mudou. Revise e assine de novo.');
+          }
+        } else if (formData.title.trim() && formData.slug) {
+          const { data, error } = await supabase
+            .from('articles')
+            .insert(postData)
+            .select()
+            .single();
+
+          if (error) throw error;
+
+          if (data?.id) {
+            navigate(`/admin/posts/${data.id}`, { replace: true });
+          }
         }
-      } else if (formData.title.trim() && formData.slug) {
-        const { data, error } = await supabase.from('articles').insert(postData).select().single();
 
-        if (error) throw error;
+        setAutoSaveStatus('saved');
+        setLastSaved(new Date());
+        hasUnsavedChanges.current = false;
 
-        if (data?.id) {
-          navigate(`/admin/posts/${data.id}`, { replace: true });
-        }
+        setTimeout(() => setAutoSaveStatus('idle'), 3000);
+      } catch (error) {
+        console.error('Erro no autosave:', error);
+        setAutoSaveStatus('error');
+        setTimeout(() => setAutoSaveStatus('idle'), 5000);
       }
+    })();
 
-      setAutoSaveStatus('saved');
-      setLastSaved(new Date());
-      hasUnsavedChanges.current = false;
-
-      setTimeout(() => setAutoSaveStatus('idle'), 3000);
-    } catch (error) {
-      console.error('Erro no autosave:', error);
-      setAutoSaveStatus('error');
-      setTimeout(() => setAutoSaveStatus('idle'), 5000);
+    autoSaveEmVoo.current = execucao;
+    await execucao;
+    if (autoSaveEmVoo.current === execucao) {
+      autoSaveEmVoo.current = null;
     }
   }, [formData, isEditing, id, navigate, selo.assinado]);
 
@@ -550,6 +571,20 @@ const PostEditor = () => {
     setError('');
     setSuccess('');
     setSeloAviso('');
+
+    // Nunca assinar por cima de um autosave em voo: cancela o timer
+    // pendente e espera o request em andamento terminar, para que a
+    // assinatura carimbe exatamente o que está na tela.
+    if (autoSaveTimer.current) {
+      clearTimeout(autoSaveTimer.current);
+    }
+    if (autoSaveEmVoo.current) {
+      try {
+        await autoSaveEmVoo.current;
+      } catch {
+        // o próprio autosave já reporta o erro
+      }
+    }
 
     try {
       // 1) Salva o formulário atual, para assinar exatamente o que está na tela.
@@ -1136,13 +1171,20 @@ const PostEditor = () => {
               type="button"
               onClick={handleAssinar}
               className="btn btn-primary selo-assinar-btn"
-              disabled={!isEditing || assinando || faltasParaAssinar.length > 0}
+              disabled={
+                !isEditing ||
+                assinando ||
+                autoSaveStatus === 'saving' ||
+                faltasParaAssinar.length > 0
+              }
               title={
                 !isEditing
                   ? 'Salve o artigo antes de assinar'
-                  : faltasParaAssinar.length > 0
-                    ? 'Complete os requisitos acima para assinar'
-                    : 'Salva a edição atual e assina o conteúdo'
+                  : autoSaveStatus === 'saving'
+                    ? 'Aguarde o salvamento automático terminar'
+                    : faltasParaAssinar.length > 0
+                      ? 'Complete os requisitos acima para assinar'
+                      : 'Salva a edição atual e assina o conteúdo'
               }
             >
               {assinando ? (

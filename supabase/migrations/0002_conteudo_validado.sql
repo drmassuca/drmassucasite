@@ -2,6 +2,8 @@
 -- 0002_conteudo_validado.sql
 -- Sistema "Conteúdo Validado": lastro do selo na tabela articles.
 -- Execute no SQL Editor do Supabase (mesmo fluxo do 0001).
+-- IMPORTANTE: execute ANTES do deploy do front — o admin passa a enviar
+-- revisado_por/data_revisao em todo save e falha (PGRST204) sem as colunas.
 --
 -- Regras implementadas AQUI, no banco, de propósito — assim pegam
 -- qualquer caminho de escrita (admin, script, SQL direto), não só a UI:
@@ -36,13 +38,17 @@ BEGIN
     RETURN NEW;
   END IF;
 
-  -- Conteúdo mudou? O selo cai — mesmo que o UPDATE tente ligá-lo
-  -- no mesmo comando (assinar é sempre um ato separado do editar).
+  -- Conteúdo OU lastro mudou? O selo cai — mesmo que o UPDATE tente
+  -- ligá-lo no mesmo comando (assinar é sempre um ato separado do editar).
+  -- revisado_por/data_revisao entram na lista: trocar o revisor ou a data
+  -- de um artigo assinado exige nova assinatura.
   IF NEW.title IS DISTINCT FROM OLD.title
      OR NEW.subtitle IS DISTINCT FROM OLD.subtitle
      OR NEW.excerpt IS DISTINCT FROM OLD.excerpt
      OR NEW.content IS DISTINCT FROM OLD.content
-     OR NEW.sources IS DISTINCT FROM OLD.sources THEN
+     OR NEW.sources IS DISTINCT FROM OLD.sources
+     OR NEW.revisado_por IS DISTINCT FROM OLD.revisado_por
+     OR NEW.data_revisao IS DISTINCT FROM OLD.data_revisao THEN
     NEW.selo_assinado := FALSE;
     NEW.assinada_em := NULL;
     RETURN NEW;
@@ -62,6 +68,12 @@ BEGIN
       RAISE EXCEPTION 'Assinatura rejeitada: cite ao menos uma fonte (sources).';
     END IF;
     NEW.assinada_em := NOW();
+  END IF;
+
+  -- Selo permanece ativo (true -> true): o carimbo original é imutável —
+  -- ninguém forja assinada_em por UPDATE direto.
+  IF NEW.selo_assinado AND OLD.selo_assinado THEN
+    NEW.assinada_em := OLD.assinada_em;
   END IF;
 
   -- Selo desligado (manual ou por queda): nunca fica data de assinatura.

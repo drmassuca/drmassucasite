@@ -17,7 +17,9 @@
   --v1-verde-meta: #3a5c4c;
   --v1-dourado: #d4af37;
   --v1-dourado-deco: #b8923a;
-  --v1-dourado-tinta: #806320;
+  /* #755b16: passa 4.5:1 até sobre o pior fundo da página (papel tingido
+     pelo numeral translúcido, #e9dec5) — validado por script */
+  --v1-dourado-tinta: #755b16;
   --v1-dourado-display: #a8862c;
   --v1-filete: rgba(15, 61, 46, 0.22);
   --v1-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;

@@ -118,6 +118,7 @@ const CtaButtons = () => (
 
 export default function V1Home() {
   const [artigos, setArtigos] = useState([]);
+  const [curadoriaCarregando, setCuradoriaCarregando] = useState(true);
 
   useEffect(() => {
     let ativo = true;
@@ -125,7 +126,10 @@ export default function V1Home() {
       .then(lista => {
         if (ativo) setArtigos((lista || []).slice(0, 4));
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (ativo) setCuradoriaCarregando(false);
+      });
     return () => {
       ativo = false;
     };
@@ -265,8 +269,13 @@ export default function V1Home() {
               </RouterLink>
             </header>
 
-            {artigos.length === 0 ? (
+            {curadoriaCarregando ? (
               <p className="v1-vazio">Carregando a curadoria…</p>
+            ) : artigos.length === 0 ? (
+              <p className="v1-vazio">
+                A curadoria completa está na página{' '}
+                <RouterLink to="/ia-medica">IA Médica</RouterLink>.
+              </p>
             ) : (
               <div className="v1-ia">
                 <article className="v1-ia__principal">
@@ -320,7 +329,9 @@ export default function V1Home() {
                 Índice completo →
               </RouterLink>
             </header>
-            <ol className="v1-indice">
+            {/* role explícito: list-style:none faz o Safari/VoiceOver rebaixar
+                a lista para Group sem ele */}
+            <ol className="v1-indice" role="list">
               {SECOES_EXAMES.map((secao, i) => (
                 <li key={secao.titulo} className="v1-indice__item">
                   <span className="v1-indice__ordinal" aria-hidden="true">
@@ -359,11 +370,18 @@ export default function V1Home() {
               </RouterLink>
             </header>
             <div className="v1-depoimentos">
-              {[1, 2, 3].map(n => (
+              {/* width/height reais de cada webp: reserva de espaço, zero CLS */}
+              {[
+                { n: 1, w: 649, h: 113 },
+                { n: 2, w: 661, h: 241 },
+                { n: 3, w: 649, h: 117 },
+              ].map(({ n, w, h }) => (
                 <figure key={n} className="v1-depoimentos__quadro">
                   <img
                     src={`/img-depoimentos/depoimento${n}.webp`}
                     alt={`Depoimento de paciente ${n}`}
+                    width={w}
+                    height={h}
                     loading="lazy"
                   />
                 </figure>

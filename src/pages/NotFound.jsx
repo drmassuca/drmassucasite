@@ -9,7 +9,9 @@ export default function NotFound() {
 
   return (
     <Box as="main" maxW="960px" mx="auto" px={6} py={16} textAlign="center">
-      <SEO title={title} description={description} canonical={canonical} />
+      {/* noindex: o Vercel reescreve toda URL desconhecida para index.html
+          (HTTP 200), então sem isso o Google indexaria soft-404s. */}
+      <SEO title={title} description={description} canonical={canonical} noindex />
       <Heading as="h1" size="xl" mb={4}>
         Página não encontrada
       </Heading>

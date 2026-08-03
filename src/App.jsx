@@ -13,6 +13,7 @@ import PerformanceMonitoring from './components/PerformanceMonitoring';
 // Lazy load para TODAS as páginas (incluindo as antes estáticas)
 const PrivacyPolicy = lazy(() => import('./pages/privacy-policy'));
 const ExamTemplate = lazy(() => import('./pages/exam-template'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 /* Lazy load das páginas principais */
 const Home = lazy(() => import('./pages/home'));
@@ -330,6 +331,10 @@ function App() {
 
             {/* Nova rota dinâmica */}
             <Route path="exams/:slug" element={<ExamTemplate />} />
+
+            {/* 404: qualquer URL desconhecida (o react-router v6 ranqueia por
+                especificidade, então "*" nunca rouba rota real) */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Box>

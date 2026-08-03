@@ -28,13 +28,7 @@ const PrivacyPolicy = () => {
       </Helmet>
 
       <Box maxW="900px" mx="auto" px={4} py={{ base: 8, md: 12 }}>
-        <Box
-          className="ed-materia"
-          bg="white"
-          borderRadius="xl"
-          p={{ base: 6, md: 10 }}
-          boxShadow="2xl"
-        >
+        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <VStack spacing={6} align="start">
             <Heading as="h1" size="xl" textShadow="1px 1px 2px rgba(0, 0, 0, 0.2)">
               Política de Privacidade e LGPD

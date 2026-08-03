@@ -33,13 +33,7 @@ export default function Faq_qual_o_nome_do_ultrassonografista_para_ver_o_bebe() 
         description="É o médico ultrassonografista; muitas vezes um gineco-obstetra com treinamento em obstetrícia/feto-materna. Ele realiza o exame e lauda."
         canonical="https://drmassuca.com.br/faq/qual-o-nome-do-ultrassonografista-para-ver-o-bebe"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

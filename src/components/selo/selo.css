@@ -100,30 +100,3 @@
   background: #fff;
   object-fit: contain;
 }
-
-/* Credencial de exame no mesmo padrão do distintivo. */
-.selo-credencial {
-  margin-top: 32px;
-  flex-wrap: wrap;
-}
-
-.selo-credencial__isuog {
-  flex-shrink: 0;
-  display: block;
-  margin-left: auto;
-  padding: 8px 12px;
-  background: #fff;
-  border: 1px solid rgba(15, 61, 46, 0.15);
-}
-
-.selo-credencial__isuog img {
-  display: block;
-  height: 32px;
-  width: auto;
-}
-
-@media (max-width: 640px) {
-  .selo-credencial__isuog {
-    margin-left: 0;
-  }
-}

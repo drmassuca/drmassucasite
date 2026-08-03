@@ -33,13 +33,7 @@ export default function Faq_qual_ultrassom_e_mais_importante() {
         description="Não há “o mais importante” para todos. Importância depende da indicação clínica (ex.: obstétrico morfológico em janela certa; doppler em suspeita vascular; a..."
         canonical="https://drmassuca.com.br/faq/qual-ultrassom-e-mais-importante"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

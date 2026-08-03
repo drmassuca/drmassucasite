@@ -33,13 +33,7 @@ export default function Faq_qual_ultrassom_e_feito_pelo_sus() {
         description="O SUS oferta diversos ultrassons (abdome, pélvico, obstétrico, tireoide, mamas, vascular/Doppler, partes moles), conforme indicação clínica e fila/regulação..."
         canonical="https://drmassuca.com.br/faq/qual-ultrassom-e-feito-pelo-sus"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

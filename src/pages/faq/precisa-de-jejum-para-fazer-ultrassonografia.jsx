@@ -33,13 +33,7 @@ export default function Faq_precisa_de_jejum_para_fazer_ultrassonografia() {
         description="Para abdome e vias biliares, costuma-se pedir jejum (6–8h) e controle de gases. Tireoide, mamas, partes moles e Doppler geralmente não exigem jejum."
         canonical="https://drmassuca.com.br/faq/precisa-de-jejum-para-fazer-ultrassonografia"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

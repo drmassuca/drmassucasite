@@ -33,13 +33,7 @@ export default function Faq_em_quais_partes_do_corpo_se_faz_ultrassonografia() {
         description="Quase todo o corpo pode ser avaliado: abdome e pelve, mamas e tireoide, músculos e articulações, vasos (Doppler) e gestação. A escolha depende da queixa e do..."
         canonical="https://drmassuca.com.br/faq/em-quais-partes-do-corpo-se-faz-ultrassonografia"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

@@ -33,13 +33,7 @@ export default function Faq_qual_o_nome_do_medico_que_faz_ultrassonografia() {
         description="É o médico ultrassonografista (muitas vezes radiologista, gineco-obstetra ou especialista da área), responsável por executar o exame e emitir o laudo."
         canonical="https://drmassuca.com.br/faq/qual-o-nome-do-medico-que-faz-ultrassonografia"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

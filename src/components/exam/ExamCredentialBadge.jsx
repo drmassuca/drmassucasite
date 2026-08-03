@@ -1,52 +1,54 @@
-import PropTypes from 'prop-types';
-import '../selo/selo.css';
+import { Box, HStack, Text, Image, Link } from '@chakra-ui/react';
 
 /**
- * Credencial do exame no padrão visual do distintivo "Conteúdo Validado"
- * (logo do site em medalha com anel dourado — ver selo.css).
- * - variant "obstetric": inclui logo/link ISUOG (dimensões preservadas do
- *   fix de SEO aee4e89: 200x60 + aspect-ratio, zero CLS)
- * - variant "general": credencial CRM
+ * Selo de credenciais.
+ * - Exames obstétricos: mostra logo ISUOG + protocolo + CRM
+ * - Demais exames: mostra CRM + experiência
+ *
+ * @param {{ variant?: 'obstetric' | 'general' }} props
  */
 export default function ExamCredentialBadge({ variant = 'general' }) {
+  if (variant === 'obstetric') {
+    return (
+      <Box mt={8} p={4} bg="green.50" borderRadius="lg" border="1px solid" borderColor="green.200">
+        <HStack spacing={4} align="center" flexWrap="wrap" justify="center">
+          <Link href="https://www.isuog.org" isExternal>
+            <Box bg="white" borderRadius="lg" px={3} py={2} shadow="sm">
+              <Image
+                src="/assets/isuog-logo.png"
+                alt="ISUOG – International Society of Ultrasound in Obstetrics and Gynecology"
+                htmlWidth="200"
+                htmlHeight="60"
+                style={{ aspectRatio: '10 / 3' }}
+                h="32px"
+                objectFit="contain"
+                loading="lazy"
+              />
+            </Box>
+          </Link>
+          <Text fontSize="sm" color="green.800" textAlign="center">
+            <strong>Protocolo ISUOG</strong> · CRM-GO 17475 · Referência em ultrassonografia há mais
+            de 20 anos
+          </Text>
+        </HStack>
+      </Box>
+    );
+  }
+
+  /* Variante genérica */
   return (
-    <aside className="selo-validado selo-credencial" aria-label="Credenciais do exame">
-      <div className="selo-validado__medalha">
-        <img src="/logo.webp" alt="Logotipo Dr. Massuca" width="58" height="58" />
-      </div>
-      <div className="selo-validado__corpo">
-        <p className="selo-validado__titulo">Credencial do exame</p>
-        <p className="selo-validado__revisor">
-          CRM-GO 17475 · Referência em ultrassonografia há mais de 20 anos
-        </p>
-        {variant === 'obstetric' && (
-          <p className="selo-validado__datas">
-            <strong>Protocolo ISUOG</strong> · International Society of Ultrasound in Obstetrics and
-            Gynecology
-          </p>
-        )}
-      </div>
-      {variant === 'obstetric' && (
-        <a
-          className="selo-credencial__isuog"
-          href="https://www.isuog.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/assets/isuog-logo.png"
-            alt="ISUOG – International Society of Ultrasound in Obstetrics and Gynecology"
-            width="200"
-            height="60"
-            style={{ aspectRatio: '10 / 3' }}
-            loading="lazy"
-          />
-        </a>
-      )}
-    </aside>
+    <Box
+      mt={8}
+      p={4}
+      bg="green.50"
+      borderRadius="lg"
+      border="1px solid"
+      borderColor="green.200"
+      textAlign="center"
+    >
+      <Text fontSize="sm" color="green.800">
+        <strong>CRM-GO 17475</strong> · Referência em ultrassonografia há mais de 20 anos
+      </Text>
+    </Box>
   );
 }
-
-ExamCredentialBadge.propTypes = {
-  variant: PropTypes.oneOf(['obstetric', 'general']),
-};

@@ -88,13 +88,7 @@ function Exams() {
 
       {/* Conteúdo ----------------------------------------------------------------- */}
       <Box maxW="1200px" mx="auto" px={4} py={10}>
-        <Box
-          className="ed-materia"
-          bg="whiteAlpha.900"
-          borderRadius="2xl"
-          p={{ base: 6, md: 10 }}
-          boxShadow="2xl"
-        >
+        <Box bg="whiteAlpha.900" borderRadius="2xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
             size="xl"

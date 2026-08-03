@@ -33,13 +33,7 @@ export default function Faq_o_que_um_ultrassom_de_4_semanas_pode_indicar() {
         description="Por volta de 4 semanas, pode-se identificar o saco gestacional (melhor por transvaginal). A vesícula vitelínica surge em geral 5–6 semanas e o embrião/batime..."
         canonical="https://drmassuca.com.br/faq/o-que-um-ultrassom-de-4-semanas-pode-indicar"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

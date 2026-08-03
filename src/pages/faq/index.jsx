@@ -23,11 +23,11 @@ import SEO from '../../components/SEO';
 
 export default function FaqIndex() {
   const [faqItems, setFaqItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [question, setQuestion] = useState('');
+  const [loading, setLoading]   = useState(true);
+  const [question, setQuestion]     = useState('');
   const [generating, setGenerating] = useState(false);
-  const [genResult, setGenResult] = useState(null);
-  const [genError, setGenError] = useState(null);
+  const [genResult, setGenResult]   = useState(null);
+  const [genError, setGenError]     = useState(null);
   const resultRef = useRef(null);
 
   async function handleGenerate() {
@@ -112,13 +112,7 @@ export default function FaqIndex() {
       </Helmet>
 
       <Box maxW="900px" mx="auto" px={4} py={10}>
-        <Box
-          className="ed-materia"
-          bg="white"
-          borderRadius="xl"
-          p={{ base: 6, md: 10 }}
-          boxShadow="2xl"
-        >
+        <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <Heading
             as="h1"
             size="lg"
@@ -167,30 +161,15 @@ export default function FaqIndex() {
 
             {genError && (
               <Alert status="error" mt={3} borderRadius="md" fontSize="sm">
-                <AlertIcon />
-                {genError}
+                <AlertIcon />{genError}
               </Alert>
             )}
 
             {genResult && (
-              <Box
-                ref={resultRef}
-                mt={4}
-                p={4}
-                bg="green.50"
-                borderRadius="lg"
-                border="1px solid"
-                borderColor="green.200"
-              >
-                <Text fontSize="xs" color="green.700" fontWeight="bold" mb={1}>
-                  ✨ Resposta gerada pela IA — aguardando aprovação da clínica
-                </Text>
-                <Text fontWeight="semibold" mb={1}>
-                  {genResult.question}
-                </Text>
-                <Text fontSize="sm" color="gray.700" mb={3}>
-                  {genResult.short_answer}
-                </Text>
+              <Box ref={resultRef} mt={4} p={4} bg="green.50" borderRadius="lg" border="1px solid" borderColor="green.200">
+                <Text fontSize="xs" color="green.700" fontWeight="bold" mb={1}>✨ Resposta gerada pela IA — aguardando aprovação da clínica</Text>
+                <Text fontWeight="semibold" mb={1}>{genResult.question}</Text>
+                <Text fontSize="sm" color="gray.700" mb={3}>{genResult.short_answer}</Text>
                 <Button
                   as={RouterLink}
                   to={`/faq/${genResult.slug}`}

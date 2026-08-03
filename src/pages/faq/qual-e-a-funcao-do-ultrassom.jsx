@@ -36,13 +36,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
       />
       <Seo title={title} description={description} jsonLd={jsonLd} />
 
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Heading
           as="h1"
           size="lg"

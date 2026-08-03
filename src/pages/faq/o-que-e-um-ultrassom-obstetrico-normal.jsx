@@ -33,13 +33,7 @@ export default function Faq_o_que_e_um_ultrassom_obstetrico_normal() {
         description="É o exame compatível com a idade gestacional, mostrando localização intrauterina, vitalidade, biometrias esperadas e sem achados patológicos relevantes."
         canonical="https://drmassuca.com.br/faq/o-que-e-um-ultrassom-obstetrico-normal"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

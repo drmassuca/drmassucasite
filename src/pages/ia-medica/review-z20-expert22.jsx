@@ -34,7 +34,7 @@ function ReviewLoader({ htmlFile, seoTitle, seoDescription }) {
           }
         });
 
-        styles.forEach(css => {
+        styles.forEach((css) => {
           const style = document.createElement('style');
           style.textContent = css;
           document.head.appendChild(style);
@@ -43,8 +43,7 @@ function ReviewLoader({ htmlFile, seoTitle, seoDescription }) {
         if (!document.querySelector('link[href*="Playfair+Display"]')) {
           const link = document.createElement('link');
           link.rel = 'stylesheet';
-          link.href =
-            'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap';
+          link.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap';
           document.head.appendChild(link);
         }
 
@@ -74,9 +73,7 @@ function ReviewLoader({ htmlFile, seoTitle, seoDescription }) {
     }
 
     loadArticle();
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, [htmlFile]);
 
   if (error) {
@@ -92,10 +89,7 @@ function ReviewLoader({ htmlFile, seoTitle, seoDescription }) {
         article={true}
         author="Dr. Massuca"
       />
-      <div
-        ref={containerRef}
-        style={{ background: '#fff', borderRadius: 12, maxWidth: 900, margin: '0 auto' }}
-      />
+      <div ref={containerRef} style={{ background: '#fff', borderRadius: 12, maxWidth: 900, margin: '0 auto' }} />
     </>
   );
 }

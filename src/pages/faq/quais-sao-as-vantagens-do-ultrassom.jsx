@@ -33,13 +33,7 @@ export default function Faq_quais_sao_as_vantagens_do_ultrassom() {
         description="É seguro, sem radiação, dinâmico, acessível e portátil. Permite diagnóstico em tempo real e guiar procedimentos com precisão."
         canonical="https://drmassuca.com.br/faq/quais-sao-as-vantagens-do-ultrassom"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

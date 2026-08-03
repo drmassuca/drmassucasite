@@ -150,13 +150,6 @@ const STATIC_ROUTES = [
     priority: 0.3,
     changefreq: 'yearly',
   },
-  {
-    path: '/v1',
-    title: 'Dr. Massuca — Edição de Demonstração | Conteúdo Validado',
-    description:
-      'Prévia editorial da home do Dr. Massuca com o sistema Conteúdo Validado. Página de demonstração, sem indexação.',
-    noindex: true, // demonstração: meta robots noindex e fora do sitemap
-  },
 ];
 
 // ============================================================
@@ -311,15 +304,6 @@ function rewriteHtml(template, route) {
     );
   }
 
-  // O template não tem <meta name="robots">: para rotas noindex a tag é
-  // inserida antes do </head> (replace simples, não regex de tag existente).
-  if (route.noindex) {
-    html = html.replace(
-      '</head>',
-      '  <meta name="robots" content="noindex, nofollow" />\n  </head>'
-    );
-  }
-
   return html;
 }
 
@@ -378,10 +362,10 @@ async function main() {
     written++;
   }
 
-  // Generate sitemap (root + all routes, exceto rotas noindex como /v1)
+  // Generate sitemap (root + all routes)
   const sitemapRoutes = [
     { path: '/', priority: 1.0, changefreq: 'weekly', lastmod: TODAY },
-    ...allRoutes.filter(r => !r.noindex),
+    ...allRoutes,
   ];
   const sitemap = generateSitemap(sitemapRoutes);
   fs.writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap);

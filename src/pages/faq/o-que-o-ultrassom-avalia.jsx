@@ -33,13 +33,7 @@ export default function Faq_o_que_o_ultrassom_avalia() {
         description="Avalia morfologia e função de órgãos, vasos e tecidos em tempo real, incluindo fluxo com Doppler. Ajuda no diagnóstico, seguimento e guia procedimentos."
         canonical="https://drmassuca.com.br/faq/o-que-o-ultrassom-avalia"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

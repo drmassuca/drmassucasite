@@ -33,13 +33,7 @@ export default function Faq_o_que_o_ultrassom_total_pode_mostrar() {
         description="“Ultrassom total” não é termo técnico padronizado; normalmente refere-se a avaliações amplas por região (ex.: abdome total). Cada protocolo tem limites e ind..."
         canonical="https://drmassuca.com.br/faq/o-que-o-ultrassom-total-pode-mostrar"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

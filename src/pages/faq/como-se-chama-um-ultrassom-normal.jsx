@@ -33,13 +33,7 @@ export default function Faq_como_se_chama_um_ultrassom_normal() {
         description="Costuma-se dizer exame sem alterações significativas ou sem sinais de doença para a indicação. O laudo descreve estruturas e conclui se há ou não achados rel..."
         canonical="https://drmassuca.com.br/faq/como-se-chama-um-ultrassom-normal"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

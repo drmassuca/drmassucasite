@@ -33,13 +33,7 @@ export default function Faq_o_resultado_da_ultrassonografia_sai_na_hora_3() {
         description="Geralmente no mesmo dia. Pode variar com a complexidade, necessidade de comparar exames anteriores e movimento do serviço."
         canonical="https://drmassuca.com.br/faq/o-resultado-da-ultrassonografia-sai-na-hora-3"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

@@ -33,13 +33,7 @@ export default function Faq_qual_ultrassom_e_mais_caro() {
         description="Tendem a ser mais caros os exames com protocolo detalhado ou tecnologia adicional: obstétrico morfológico, Doppler vascular/obstétrico e 3D/4D. O preço varia..."
         canonical="https://drmassuca.com.br/faq/qual-ultrassom-e-mais-caro"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

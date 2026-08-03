@@ -35,13 +35,7 @@ export default function Faq_quais_sao_os_4_tipos_de_ecogenicidade_na_ultrassonog
         description="Em geral falamos em anecoico (sem ecos, ex.: líquido), hipoecoico (mais escuro), isoecoico (semelhante) e hiperecoico (mais brilhante). O significado depende..."
         canonical="https://drmassuca.com.br/faq/quais-sao-os-4-tipos-de-ecogenicidade-na-ultrassonografia"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

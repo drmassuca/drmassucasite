@@ -33,13 +33,7 @@ export default function Faq_qual_ultrassom_indica_gravidez() {
         description="O ultrassom obstétrico inicial confirma a gestação: primeiro saco gestacional e vesícula vitelínica; depois, embrião com batimentos conforme a idade gestacio..."
         canonical="https://drmassuca.com.br/faq/qual-ultrassom-indica-gravidez"
       />
-      <Box
-        className="ed-materia"
-        bg="white"
-        borderRadius="xl"
-        p={{ base: 6, md: 10 }}
-        boxShadow="2xl"
-      >
+      <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
         <Seo title={title} description={description} jsonLd={jsonLd} />
         <Heading
           as="h1"

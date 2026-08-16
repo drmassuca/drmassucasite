@@ -178,7 +178,12 @@ const Header = () => {
         </Menu>
 
         {topItems.slice(2).map(item => (
-          <Link key={item.path} as={RouterLink} to={item.path} {...navLinkStyle(isActive(item.path))}>
+          <Link
+            key={item.path}
+            as={RouterLink}
+            to={item.path}
+            {...navLinkStyle(isActive(item.path))}
+          >
             {item.name}
           </Link>
         ))}

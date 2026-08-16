@@ -19,13 +19,7 @@ import { Link as RouterLink } from 'react-router-dom';
 const Footer = () => {
   return (
     <Box bg="brand.900" color="white" pt={12} pb={6} borderTop="3px solid" borderColor="accent.500">
-      <SimpleGrid
-        columns={{ base: 1, sm: 2, lg: 4 }}
-        spacing={8}
-        maxW="1200px"
-        mx="auto"
-        px={4}
-      >
+      <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={8} maxW="1200px" mx="auto" px={4}>
         {/* Coluna 1: identidade */}
         <VStack align="start" spacing={2}>
           <Text fontWeight={700} fontSize="lg" letterSpacing="-0.02em">
@@ -43,19 +37,49 @@ const Footer = () => {
         {/* Coluna 2: consultório */}
         <VStack align="start" spacing={2}>
           <Text fontWeight={700}>Consultório</Text>
-          <ChakraLink as={RouterLink} to="/exames" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/exames"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Exames de ultrassom
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/ultrassom-3d" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/ultrassom-3d"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Ultrassom 3D
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/area-do-paciente" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/area-do-paciente"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Área do paciente
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/faq" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/faq"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Perguntas frequentes
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/contato" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/contato"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Contato e agendamento
           </ChakraLink>
         </VStack>
@@ -63,16 +87,40 @@ const Footer = () => {
         {/* Coluna 3: IA na medicina */}
         <VStack align="start" spacing={2}>
           <Text fontWeight={700}>IA na medicina</Text>
-          <ChakraLink as={RouterLink} to="/xdiag" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/xdiag"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Produtos Xdiag
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/curso-medicina-com-ia" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/curso-medicina-com-ia"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Curso Medicina com IA
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/palestras" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/palestras"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Palestras
           </ChakraLink>
-          <ChakraLink as={RouterLink} to="/ia-medica" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+          <ChakraLink
+            as={RouterLink}
+            to="/ia-medica"
+            color="var(--brand-on-navy)"
+            fontSize="sm"
+            _hover={{ color: 'white' }}
+          >
             Blog de IA médica
           </ChakraLink>
         </VStack>
@@ -82,13 +130,24 @@ const Footer = () => {
           <Text fontWeight={700}>Contato</Text>
           <HStack spacing={2}>
             <FaPhone size={14} />
-            <ChakraLink href="https://wa.me/5562996602117" isExternal color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+            <ChakraLink
+              href="https://wa.me/5562996602117"
+              isExternal
+              color="var(--brand-on-navy)"
+              fontSize="sm"
+              _hover={{ color: 'white' }}
+            >
               (62) 99660-2117 (WhatsApp)
             </ChakraLink>
           </HStack>
           <HStack spacing={2}>
             <FaEnvelope size={14} />
-            <ChakraLink href="mailto:drmassucatti@gmail.com" color="var(--brand-on-navy)" fontSize="sm" _hover={{ color: 'white' }}>
+            <ChakraLink
+              href="mailto:drmassucatti@gmail.com"
+              color="var(--brand-on-navy)"
+              fontSize="sm"
+              _hover={{ color: 'white' }}
+            >
               drmassucatti@gmail.com
             </ChakraLink>
           </HStack>

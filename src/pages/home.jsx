@@ -50,7 +50,7 @@ const CAMADAS = [
   {
     icon: FaMicrochip,
     title: 'Produtos Xdiag',
-    text: 'AILA e Xdiag Privacy: software de IA para medicina, criado por quem atende paciente todos os dias.',
+    text: 'AILA, Xdiag Privacy e a plataforma ICS Academy: software de IA para medicina, criado por quem atende paciente todos os dias.',
     to: '/xdiag',
     cta: 'Ver os produtos',
   },

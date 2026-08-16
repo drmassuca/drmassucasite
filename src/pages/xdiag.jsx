@@ -10,7 +10,7 @@ import {
   Tag,
   Link as ChakraLink,
 } from '@chakra-ui/react';
-import { FaExternalLinkAlt, FaLock, FaMobileAlt } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaLock, FaMobileAlt, FaGraduationCap } from 'react-icons/fa';
 import { useScrollToTop } from '../utils/useScrollToTop';
 
 /**
@@ -39,6 +39,15 @@ const PRODUTOS = [
     url: 'https://xdiag.com.br/xdiag-privacy',
     urlLabel: 'Ver o Xdiag Privacy',
   },
+  {
+    icon: FaGraduationCap,
+    nome: 'ICS Academy',
+    tag: 'Educação médica',
+    resumo:
+      'Plataforma de ensino do curso Medicina com IA: área do professor com wiki curada e grafo de conceitos, e área do aluno com assistente de IA ancorado na wiki, quiz gamificado, fórum e certificado.',
+    url: 'https://academy.icscursos.com.br',
+    urlLabel: 'Ver a ICS Academy',
+  },
 ];
 
 function XdiagPage() {
@@ -48,9 +57,9 @@ function XdiagPage() {
     <>
       <SEO
         title="Produtos Xdiag | Software de IA para Medicina | Dr. Massuca"
-        description="Xdiag Tecnologias: AILA e Xdiag Privacy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista. IA que amplia o médico, feita por quem atende paciente todos os dias."
+        description="Xdiag Tecnologias: AILA, Xdiag Privacy e ICS Academy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista. IA que amplia o médico, feita por quem atende paciente todos os dias."
         canonical="/xdiag"
-        keywords="Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, IA para médicos Brasil"
+        keywords="Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, ICS Academy plataforma, IA para médicos Brasil"
       />
 
       <Helmet>
@@ -100,7 +109,7 @@ function XdiagPage() {
         </Box>
 
         {/* Produtos */}
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mb={12} maxW="820px">
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={12}>
           {PRODUTOS.map(produto => (
             <Box
               key={produto.nome}

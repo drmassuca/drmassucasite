@@ -81,7 +81,7 @@ const STATIC_ROUTES = [
     path: '/xdiag',
     title: 'Produtos Xdiag | Software de IA para Medicina | Dr. Massuca',
     description:
-      'Xdiag Tecnologias: AILA e Xdiag Privacy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista.',
+      'Xdiag Tecnologias: AILA, Xdiag Privacy e ICS Academy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista.',
     keywords:
       'Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, IA para médicos Brasil',
     priority: 0.8,

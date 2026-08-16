@@ -214,8 +214,9 @@ function CursoMedicinaComIA() {
           <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={3}>
             As matrículas acontecem na plataforma da ICS Academy
           </Heading>
-          <Text color="var(--brand-muted)" mb={6} maxW="520px" mx="auto">
-            Turmas, datas e valores são publicados diretamente na plataforma do curso.
+          <Text color="var(--brand-muted)" mb={6} maxW="560px" mx="auto">
+            Turmas, datas e valores são publicados diretamente na plataforma do curso. A ICS Academy
+            é desenvolvida pela Xdiag: até a infraestrutura de ensino pratica o que o curso prega.
           </Text>
           <Button
             as="a"

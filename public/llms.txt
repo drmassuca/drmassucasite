@@ -38,7 +38,9 @@
 
 - [Sobre o Dr. Massuca](https://drmassuca.com.br/sobre): as quatro frentes de atuação
 - [Produtos Xdiag](https://drmassuca.com.br/xdiag): AILA (app de saúde com IA para
-  pacientes) e Xdiag Privacy (anonimização local e open source de documentos médicos)
+  pacientes), Xdiag Privacy (anonimização local e open source de documentos médicos)
+  e ICS Academy (plataforma de ensino do curso Medicina com IA, com assistente de IA
+  ancorado em wiki curada, quiz gamificado, fórum e certificado)
 - [Curso Medicina com IA](https://drmassuca.com.br/curso-medicina-com-ia): método
   prático de IA para médicos, matrículas na ICS Academy
 - [Palestras](https://drmassuca.com.br/palestras): temas e formulário de convite
@@ -57,4 +59,5 @@
 ## Sites da mesma família
 
 - [Xdiag Tecnologias](https://xdiag.com.br): empresa de software de IA para medicina
-- [ICS Academy](https://academy.icscursos.com.br): plataforma do curso Medicina com IA
+- [ICS Academy](https://academy.icscursos.com.br): plataforma do curso Medicina com IA,
+  desenvolvida pela Xdiag

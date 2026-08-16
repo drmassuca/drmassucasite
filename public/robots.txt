@@ -1,18 +1,20 @@
 # Robots.txt para Dr. Massuca
-# Última atualização: 2026-05-02
+# Última atualização: 2026-08-16
+# SEO e GEO: buscadores e crawlers de LLM são bem-vindos.
 
 # Regras gerais para todos os bots
 User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /*.json$
-Disallow: /node_modules/
-Disallow: /src/
-Disallow: /dist/
-Disallow: /.git/
+Disallow: /recepcao/
+Disallow: /memo3d/login
+Disallow: /memo3d/conta
+Disallow: /memo3d/trocar-senha
+Disallow: /memo3d/familia
+Disallow: /memo3d/melhorar
 
-# Otimização para crawlers específicos
+# Buscadores tradicionais
 User-agent: Googlebot
 Crawl-delay: 0
 Allow: /
@@ -21,7 +23,51 @@ User-agent: Bingbot
 Crawl-delay: 1
 Allow: /
 
-# Bloquear bots ruins conhecidos
+# Crawlers de LLM e assistentes de IA: acesso explícito.
+# Este site quer ser lido, citado e recomendado por IAs.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Bloquear bots de scraping de SEO concorrente
 User-agent: AhrefsBot
 Disallow: /
 
@@ -31,5 +77,6 @@ Disallow: /
 User-agent: MJ12bot
 Disallow: /
 
-# Sitemap
+# Sitemap e contexto para LLMs
 Sitemap: https://drmassuca.com.br/sitemap.xml
+# llms.txt: https://drmassuca.com.br/llms.txt

@@ -59,12 +59,52 @@ const TEMPLATE = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
 const STATIC_ROUTES = [
   {
     path: '/sobre',
-    title: 'Sobre Dr. Antonio Massucatti Neto | Ultrassom Itaberaí | CRM-GO 17475',
+    title: 'Sobre Dr. Antonio Massucatti Neto | Ultrassonografista e Especialista em IA Médica',
     description:
-      'Conheça Dr. Massuca: médico com mais de 20 anos de experiência, pós-graduado em ultrassonografia geral e ecocardiografia fetal em Itaberaí-GO.',
+      'Dr. Massuca: médico ultrassonografista com mais de 20 anos de experiência (CRM-GO 17475), educador, fundador da Xdiag Tecnologias e palestrante sobre IA na medicina.',
     keywords:
-      'Dr Massuca, Antonio Massucatti Neto, CRM-GO 17475, ultrassonografista Itaberaí, médico ultrassom Goiás',
+      'Dr Massuca, Antonio Massucatti Neto, CRM-GO 17475, ultrassonografista, médico inteligência artificial, fundador Xdiag',
     priority: 0.9,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/consultorio',
+    title: 'Consultório de Ultrassonografia em Itaberaí-GO | Dr. Massuca | CRM-GO 17475',
+    description:
+      'Consultório do Dr. Massuca em Itaberaí-GO: mais de 24 tipos de exames de ultrassom, Samsung HERA Z20, laudos com interpretação clínica. Rua 19, Vila Leonor. WhatsApp (62) 99660-2117.',
+    keywords:
+      'consultório ultrassom Itaberaí, clínica ultrassonografia Itaberaí GO, agendar ultrassom, Dr Massuca consultório',
+    priority: 0.9,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/xdiag',
+    title: 'Produtos Xdiag | Software de IA para Medicina | Dr. Massuca',
+    description:
+      'Xdiag Tecnologias: elastus, AILA e Xdiag Privacy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista.',
+    keywords:
+      'Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, IA para médicos Brasil',
+    priority: 0.8,
+    changefreq: 'monthly',
+  },
+  {
+    path: '/curso-medicina-com-ia',
+    title: 'Curso Medicina com IA para Médicos | Dr. Massuca e ICS Academy',
+    description:
+      'Medicina com IA: o método prático para o médico moderno. Curso do Dr. Massuca em parceria com a ICS Academy. A IA amplia o médico e depende do fundamento dele.',
+    keywords:
+      'curso IA para médicos, curso inteligência artificial medicina, Medicina com IA, ICS Academy',
+    priority: 0.9,
+    changefreq: 'weekly',
+  },
+  {
+    path: '/palestras',
+    title: 'Palestras sobre IA na Medicina | Dr. Massuca | Convites para Eventos',
+    description:
+      'Convide o Dr. Massuca para palestras sobre inteligência artificial na medicina: IA sem hype, SEO e GEO para médicos, IA no ultrassom. Congressos, faculdades e sociedades médicas.',
+    keywords:
+      'palestrante IA medicina, palestra inteligência artificial médicos, convite palestra medicina',
+    priority: 0.7,
     changefreq: 'monthly',
   },
   {

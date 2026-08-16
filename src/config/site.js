@@ -8,9 +8,9 @@ export const SITE_CONFIG = {
   baseUrl: 'https://drmassuca.com.br',
 
   // Informações do site
-  siteName: 'Dr. Massuca',
+  siteName: 'Dr. Massuca | Ultrassonografia e IA na Medicina',
   siteDescription:
-    'Acompanhe as últimas inovações em Inteligência Artificial na medicina brasileira. Notícias, pesquisas e análises especializadas sobre IA médica.',
+    'Dr. Antonio Massucatti Neto (CRM-GO 17475): ultrassonografia em Itaberaí-GO, curso Medicina com IA em parceria com a ICS Academy, produtos Xdiag e palestras. A IA amplia o médico e depende do fundamento dele.',
 
   // Imagens padrão
   defaultImage: '/images/dr-massuca-og-image.jpg',

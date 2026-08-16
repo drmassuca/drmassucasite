@@ -1,4 +1,29 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.drmassuca.com.br" }],
+      "destination": "https://drmassuca.com.br/$1",
+      "permanent": true
+    },
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/home.html", "destination": "/", "permanent": true },
+    { "source": "/ultrassom-itaberai", "destination": "/", "permanent": true },
+    { "source": "/dr-massuca", "destination": "/", "permanent": true },
+    { "source": "/antonio-massucatti-neto", "destination": "/sobre", "permanent": true },
+    { "source": "/politica-de-privacidade", "destination": "/privacy-policy", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/share/review-z20-expert22", "destination": "/api/og/review-z20-expert22" },

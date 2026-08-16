@@ -27,8 +27,9 @@ const SEO = ({
   // Garantir que imagem seja URL absoluta
   const fullImageUrl = image?.startsWith('http') ? image : `https://drmassuca.com.br${image}`;
 
-  // Keywords padrão para todas as páginas
-  const defaultKeywords = 'ultrassom, ultrassonografia, Itaberaí, GO, Goiás, Dr Massuca, exame';
+  // Keywords padrão para todas as páginas: local (ultrassom) + nacional (IA médica)
+  const defaultKeywords =
+    'ultrassom, ultrassonografia, Itaberaí, GO, Goiás, Dr Massuca, exame, IA na medicina, inteligência artificial médica';
   const finalKeywords = keywords ? `${keywords}, ${defaultKeywords}` : defaultKeywords;
 
   return (
@@ -61,7 +62,7 @@ const SEO = ({
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={title} />
       <meta property="og:locale" content="pt_BR" />
-      <meta property="og:site_name" content="Dr. Massuca | Ultrassom" />
+      <meta property="og:site_name" content="Dr. Massuca | Ultrassonografia e IA na Medicina" />
 
       {/* Twitter Card otimizado */}
       <meta name="twitter:card" content="summary_large_image" />

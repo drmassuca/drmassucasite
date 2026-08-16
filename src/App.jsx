@@ -26,6 +26,12 @@ const Ultrassom3D = lazy(() => import('./pages/ultrassom-3d'));
 const Memo3dLanding = lazy(() => import('./pages/memo3d-landing/Memo3dLanding'));
 const Mostruario = lazy(() => import('./pages/memo3d-landing/Mostruario'));
 
+/* >>> REPOSICIONAMENTO 2026: páginas das quatro camadas */
+const Consultorio = lazy(() => import('./pages/consultorio'));
+const XdiagPage = lazy(() => import('./pages/xdiag'));
+const CursoMedicinaComIA = lazy(() => import('./pages/curso-medicina-com-ia'));
+const Palestras = lazy(() => import('./pages/palestras'));
+
 /* >>> NOVO: página-mestra do FAQ em lazy load (resolve para src/pages/faq/index.jsx) */
 const FaqIndex = lazy(() => import('./pages/faq'));
 
@@ -212,6 +218,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<About />} />
+            {/* Reposicionamento 2026 */}
+            <Route path="/consultorio" element={<Consultorio />} />
+            <Route path="/xdiag" element={<XdiagPage />} />
+            <Route path="/curso-medicina-com-ia" element={<CursoMedicinaComIA />} />
+            <Route path="/palestras" element={<Palestras />} />
             <Route path="/exames" element={<Exams />} />
             <Route path="/area-do-paciente" element={<PatientArea />} />
             <Route path="/para-medicos" element={<ForDoctors />} />

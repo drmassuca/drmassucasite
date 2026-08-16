@@ -1,0 +1,111 @@
+/* ============================================================
+   BRAND TOKENS: drmassuca.com.br, reposicionamento 2026
+   ============================================================
+
+   Fonte da verdade da nova identidade visual do site.
+   Decisões registradas na Fase 2 do reposicionamento, extraídas
+   diretamente do código dos repositórios da família:
+
+   - drmassuca/ics-site      (academy.icscursos.com.br, paleta @theme)
+   - drmassuca/xdiag         (xdiag.com.br, tailwind.config.js + globals.css)
+
+   PRINCÍPIO: os três sites (drmassuca, Xdiag, ICS Academy) devem
+   parecer a mesma família. A base é o navy + azul da ICS, com o
+   ciano da Xdiag como acento de produto. O verde oliva e o dourado
+   do site antigo saem de cena.
+
+   O QUE HERDAMOS (e de onde):
+   - Navy institucional #0A2540 e derivados: ICS (--color-primary)
+   - Azul de ação #0693E3 e derivados: ICS (--color-accent)
+   - Ciano de produto #06B6D4 e derivados: Xdiag (xdiag.accent)
+   - Neutros slate (#F8FAFC a #0F172A): idênticos nos dois repos
+   - Tipografia Inter, 400/500 corpo, 600/700 títulos,
+     tracking -0.02em em títulos: padrão da família ICS
+     (documentado em xdiag/lib/fonts/ics.ts)
+   - Gradiente de hero navy (#071A2E ao topo): ICS
+   - Status success/warning: idênticos nos dois repos
+
+   O QUE NÃO COPIAMOS (decisão consciente):
+   - Nome, marca e copy do Instituto Carlos Stéfano: a ICS é
+     parceira, não é este site. Nada de "Instituto", "Escola de
+     Ultrassonografia" ou depoimentos/professores/parceiros deles.
+   - IDs de analytics, GTM e pixel da ICS.
+   - O dark UI completo do app Xdiag (AILA chat): é linguagem de
+     aplicativo, não de site institucional. Aqui o fundo é claro,
+     navy fica reservado para hero, header e footer.
+   - Glow shadows ciano em contexto clínico: o brilho neon fica
+     restrito a contextos de produto/tecnologia (páginas Xdiag,
+     blog técnico), nunca em páginas de exames e agendamento.
+   - Verde #0f3d2e e dourado #d4af37 do site atual: aposentados.
+
+   NOMENCLATURA HERDADA (escrita exata):
+   - "Xdiag" (nunca "xDiag" ou "XDIAG")
+   - "ICS Academy" (plataforma do curso)
+   - "Medicina com IA: O Método Prático para o Médico Moderno"
+     (nome oficial do curso, definido em xdiag/app/ics-academy)
+   - Produtos: "elastus", "AILA", "Xdiag Privacy"
+
+   TOM DE TEXTO (regras de escrita, valem para todo o site):
+   - Português do Brasil, direto e técnico, sem hype.
+   - Nunca usar travessão. Vírgula, ponto, dois pontos, parênteses.
+   - A tese: a IA amplia o médico e depende do fundamento dele.
+   - Nunca descrever o autor como programador, nem imagens de código.
+   ============================================================ */
+
+:root {
+  /* ---------- Núcleo institucional (herdado da ICS) ---------- */
+  --brand-navy: #0a2540;          /* cor principal, títulos, header, footer */
+  --brand-navy-light: #0d3b66;    /* variação clara do navy, gradientes */
+  --brand-navy-deep: #071a2e;     /* topo do gradiente de hero */
+
+  /* ---------- Azul de ação (herdado da ICS) ---------- */
+  --brand-accent: #0693e3;        /* botões primários, links */
+  --brand-accent-light: #3db4f2;  /* destaque em título, hover claro */
+  --brand-accent-dark: #0570b0;   /* hover de botão */
+  --brand-accent-soft: #e8f4fd;   /* tiles de ícone, fundos suaves */
+
+  /* ---------- Ciano de produto (herdado da Xdiag) ---------- */
+  /* Uso restrito: contextos Xdiag, IA e blog técnico */
+  --brand-cyan: #06b6d4;
+  --brand-cyan-light: #22d3ee;
+  --brand-cyan-dark: #0891b2;
+
+  /* ---------- Neutros slate (idênticos nos dois repos) ---------- */
+  --brand-bg: #ffffff;            /* fundo padrão do site: claro */
+  --brand-surface: #f8fafc;       /* superfícies, cards alternados */
+  --brand-card: #f1f5f9;          /* cards, blocos de destaque */
+  --brand-border: #e2e8f0;        /* bordas e divisores */
+  --brand-text: #0f172a;          /* texto principal sobre claro */
+  --brand-text-soft: #334155;     /* corpo de artigo */
+  --brand-muted: #64748b;         /* texto secundário */
+  --brand-on-navy: #b9cbe0;       /* corpo de texto sobre navy */
+
+  /* ---------- Status (idênticos nos dois repos) ---------- */
+  --brand-success: #10b981;
+  --brand-warning: #f59e0b;
+  --brand-danger: #ef4444;
+
+  /* ---------- Gradientes ---------- */
+  --brand-hero-gradient: linear-gradient(160deg, #071a2e 0%, #0a2540 55%, #0d3b66 100%);
+  --brand-cyan-gradient: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);
+
+  /* ---------- Tipografia (família ICS: Inter em tudo) ---------- */
+  --brand-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --brand-weight-body: 400;
+  --brand-weight-medium: 500;
+  --brand-weight-semibold: 600;
+  --brand-weight-title: 700;
+  --brand-tracking-title: -0.02em; /* títulos, como na plataforma ICS */
+
+  /* ---------- Forma ---------- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 12px;
+  --brand-radius-lg: 16px;
+  --brand-radius-pill: 999px;
+
+  /* ---------- Sombras ---------- */
+  --brand-shadow-card: 0 1px 3px rgba(10, 37, 64, 0.08), 0 4px 16px rgba(10, 37, 64, 0.06);
+  --brand-shadow-lifted: 0 8px 30px rgba(10, 37, 64, 0.12);
+  /* Glow ciano: SOMENTE em contexto de produto/tecnologia */
+  --brand-shadow-glow: 0 0 20px rgba(6, 182, 212, 0.3);
+}

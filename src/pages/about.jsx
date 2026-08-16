@@ -53,7 +53,7 @@ const CAMADAS = [
     icon: FaMicrochip,
     titulo: 'Criador de produtos de IA médica',
     texto:
-      'Fundador e CEO da Xdiag Tecnologias. Cada produto (elastus, AILA, Xdiag Privacy) nasce de um problema real que enfrento atendendo pacientes. Software de saúde desenhado por quem vive a rotina clínica, com LGPD como premissa.',
+      'Fundador e CEO da Xdiag Tecnologias. Cada produto (AILA, Xdiag Privacy) nasce de um problema real que enfrento atendendo pacientes. Software de saúde desenhado por quem vive a rotina clínica, com LGPD como premissa.',
     link: { to: '/xdiag', label: 'Ver os produtos' },
   },
   {

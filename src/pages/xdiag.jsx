@@ -10,26 +10,17 @@ import {
   Tag,
   Link as ChakraLink,
 } from '@chakra-ui/react';
-import { FaExternalLinkAlt, FaLock, FaMobileAlt, FaChartLine } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaLock, FaMobileAlt } from 'react-icons/fa';
 import { useScrollToTop } from '../utils/useScrollToTop';
 
 /**
  * Página dos produtos Xdiag.
  * Copy de AILA e Xdiag Privacy extraído do site oficial xdiag.com.br
- * (repositório drmassuca/xdiag). O texto do elastus é provisório e
- * aguarda validação do fundador.
+ * (repositório drmassuca/xdiag). O elastus fica fora do site por
+ * enquanto, por decisão do fundador; entra quando for lançado.
  */
 
 const PRODUTOS = [
-  {
-    icon: FaChartLine,
-    nome: 'elastus',
-    tag: 'Para médicos',
-    resumo:
-      'Ferramenta de apoio à elastografia hepática: organiza medidas, classificações e critérios atuais (Regra dos 4 da SRU, Baveno) para transformar números em interpretação clínica.',
-    url: 'https://xdiag.com.br',
-    urlLabel: 'Conhecer no site da Xdiag',
-  },
   {
     icon: FaMobileAlt,
     nome: 'AILA',
@@ -57,9 +48,9 @@ function XdiagPage() {
     <>
       <SEO
         title="Produtos Xdiag | Software de IA para Medicina | Dr. Massuca"
-        description="Xdiag Tecnologias: elastus, AILA e Xdiag Privacy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista. IA que amplia o médico, feita por quem atende paciente todos os dias."
+        description="Xdiag Tecnologias: AILA e Xdiag Privacy. Software de inteligência artificial para medicina criado pelo Dr. Massuca, médico ultrassonografista. IA que amplia o médico, feita por quem atende paciente todos os dias."
         canonical="/xdiag"
-        keywords="Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, elastus elastografia, IA para médicos Brasil"
+        keywords="Xdiag, software IA médica, AILA app saúde, Xdiag Privacy anonimização, IA para médicos Brasil"
       />
 
       <Helmet>
@@ -109,7 +100,7 @@ function XdiagPage() {
         </Box>
 
         {/* Produtos */}
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} mb={12}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6} mb={12} maxW="820px">
           {PRODUTOS.map(produto => (
             <Box
               key={produto.nome}

@@ -50,6 +50,32 @@ const TEMAS = [
   },
 ];
 
+/**
+ * AGENDA: próximas palestras confirmadas.
+ * Campos data/tema podem ficar como "a confirmar" até os detalhes
+ * oficiais chegarem; basta preencher aqui que a página atualiza.
+ */
+const AGENDA = [
+  {
+    data: '22 de agosto de 2026',
+    nome: 'Congresso Regional SBUS',
+    local: 'Montes Claros, MG',
+    detalhe: 'Sociedade Brasileira de Ultrassonografia, edição regional.',
+  },
+  {
+    data: 'Setembro de 2026 (data a confirmar)',
+    nome: 'CBIAS 2026',
+    local: 'A confirmar',
+    detalhe: 'Congresso Brasileiro de Inteligência Artificial na Saúde.',
+  },
+  {
+    data: 'Outubro de 2026 (data a confirmar)',
+    nome: 'SBUS Brasil 2026',
+    local: 'São Paulo, SP',
+    detalhe: 'Congresso nacional da Sociedade Brasileira de Ultrassonografia.',
+  },
+];
+
 const EVENTOS = [
   {
     ano: '2026',
@@ -100,12 +126,57 @@ function Palestras() {
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            '@id': 'https://drmassuca.com.br/palestras#page',
-            name: 'Palestras do Dr. Massuca sobre IA na medicina',
-            about: { '@id': 'https://drmassuca.com.br/#person' },
-            description:
-              'Temas de palestras, histórico de eventos e formulário de convite para palestras do Dr. Antonio Massucatti Neto sobre inteligência artificial aplicada à medicina.',
+            '@graph': [
+              {
+                '@type': 'WebPage',
+                '@id': 'https://drmassuca.com.br/palestras#page',
+                name: 'Palestras do Dr. Massuca sobre IA na medicina',
+                about: { '@id': 'https://drmassuca.com.br/#person' },
+                description:
+                  'Temas de palestras, agenda de eventos e formulário de convite para palestras do Dr. Antonio Massucatti Neto sobre inteligência artificial aplicada à medicina.',
+              },
+              {
+                '@type': 'Event',
+                name: 'Congresso Regional SBUS 2026',
+                startDate: '2026-08-22',
+                location: {
+                  '@type': 'Place',
+                  name: 'Montes Claros',
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'Montes Claros',
+                    addressRegion: 'MG',
+                    addressCountry: 'BR',
+                  },
+                },
+                performer: { '@id': 'https://drmassuca.com.br/#person' },
+                eventStatus: 'https://schema.org/EventScheduled',
+              },
+              {
+                '@type': 'Event',
+                name: 'CBIAS 2026 (Congresso Brasileiro de Inteligência Artificial na Saúde)',
+                startDate: '2026-09',
+                performer: { '@id': 'https://drmassuca.com.br/#person' },
+                eventStatus: 'https://schema.org/EventScheduled',
+              },
+              {
+                '@type': 'Event',
+                name: 'SBUS Brasil 2026',
+                startDate: '2026-10',
+                location: {
+                  '@type': 'Place',
+                  name: 'São Paulo',
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'São Paulo',
+                    addressRegion: 'SP',
+                    addressCountry: 'BR',
+                  },
+                },
+                performer: { '@id': 'https://drmassuca.com.br/#person' },
+                eventStatus: 'https://schema.org/EventScheduled',
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -162,6 +233,45 @@ function Palestras() {
             </Box>
           ))}
         </SimpleGrid>
+
+        {/* Agenda: próximas palestras */}
+        <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={6}>
+          Próximas palestras
+        </Heading>
+        <VStack align="stretch" spacing={4} mb={14}>
+          {AGENDA.map(evento => (
+            <HStack
+              key={evento.nome}
+              bg="var(--brand-accent-soft)"
+              border="1px solid"
+              borderColor="accent.200"
+              borderRadius="12px"
+              p={5}
+              spacing={5}
+              align="start"
+            >
+              <Box
+                bg="accent.500"
+                color="white"
+                borderRadius="10px"
+                px={3}
+                py={2}
+                minW="130px"
+                textAlign="center"
+              >
+                <Text fontSize="xs" fontWeight={700} lineHeight="1.3">
+                  {evento.data}
+                </Text>
+              </Box>
+              <Box>
+                <Text fontWeight={600}>{evento.nome}</Text>
+                <Text fontSize="sm" color="var(--brand-muted)">
+                  {evento.local} · {evento.detalhe}
+                </Text>
+              </Box>
+            </HStack>
+          ))}
+        </VStack>
 
         {/* Histórico */}
         <Heading as="h2" fontSize={{ base: 'xl', md: '2xl' }} mb={6}>

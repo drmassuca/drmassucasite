@@ -37,9 +37,8 @@
 ## IA na medicina
 
 - [Sobre o Dr. Massuca](https://drmassuca.com.br/sobre): as quatro frentes de atuação
-- [Produtos Xdiag](https://drmassuca.com.br/xdiag): elastus (apoio à elastografia
-  hepática), AILA (app de saúde com IA para pacientes) e Xdiag Privacy (anonimização
-  local e open source de documentos médicos)
+- [Produtos Xdiag](https://drmassuca.com.br/xdiag): AILA (app de saúde com IA para
+  pacientes) e Xdiag Privacy (anonimização local e open source de documentos médicos)
 - [Curso Medicina com IA](https://drmassuca.com.br/curso-medicina-com-ia): método
   prático de IA para médicos, matrículas na ICS Academy
 - [Palestras](https://drmassuca.com.br/palestras): temas e formulário de convite

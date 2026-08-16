@@ -181,24 +181,10 @@ function App() {
     );
   }
 
-  // Determina se estamos em uma página de IA
-  const isIAPage = location.pathname.startsWith('/ia-medica');
-
-  // Seleciona o background baseado na rota
-  const backgroundImage = isIAPage
-    ? "url('/assets/seamless-neon.webp')"
-    : "url('/assets/texture_olive_dark_seamless.webp')";
-
+  // Fundo claro da nova identidade (família ICS/Xdiag).
+  // Navy fica reservado para hero, header e footer.
   return (
-    <Box
-      minHeight="100vh"
-      display="flex"
-      flexDirection="column"
-      bgImage={backgroundImage}
-      bgRepeat="repeat"
-      bgSize="auto"
-      bgAttachment="fixed"
-    >
+    <Box minHeight="100vh" display="flex" flexDirection="column" bg="var(--brand-bg)">
       <Header />
       <ScrollToTop />
 
@@ -343,7 +329,7 @@ function App() {
         enableDeclineButton
         overlay
         style={{
-          background: '#0f3d2e', // verde escuro Massuca
+          background: '#0a2540', // navy da família ICS/Xdiag
           color: '#ffffff',
           boxShadow: '0 -2px 12px rgba(0,0,0,.25)',
           fontSize: 14,
@@ -359,8 +345,8 @@ function App() {
           flexWrap: 'wrap',
         }}
         buttonStyle={{
-          background: '#d4af37', // dourado Massuca
-          color: '#0f3d2e',
+          background: '#0693e3', // azul de ação da família
+          color: '#ffffff',
           borderRadius: 10,
           padding: '10px 16px',
           fontWeight: 700,
@@ -385,8 +371,8 @@ function App() {
         <span style={{ fontWeight: 700 }}>Usamos cookies</span>&nbsp; para melhorar sua experiência,
         medir estatísticas e otimizar nossos serviços. Você pode aceitar ou recusar.
         <a
-          href="/politica-de-privacidade"
-          style={{ color: '#d4af37', textDecoration: 'underline', marginLeft: 8 }}
+          href="/privacy-policy"
+          style={{ color: '#3db4f2', textDecoration: 'underline', marginLeft: 8 }}
         >
           Saiba mais
         </a>

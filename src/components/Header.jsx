@@ -15,66 +15,89 @@ import {
   DrawerCloseButton,
   Button,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from '@chakra-ui/react';
-import { FaWhatsapp, FaInstagram, FaBars } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaBars, FaChevronDown } from 'react-icons/fa';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
-const menuItems = [
+/**
+ * Navegação do reposicionamento 2026.
+ * A parte clínica inteira vive sob "Consultório"; as camadas novas
+ * (Xdiag, Curso, Palestras, Blog) ficam no nível de cima.
+ */
+const consultorioItems = [
+  { name: 'Exames de Ultrassom', path: '/exames' },
+  { name: 'Ultrassom 3D', path: '/ultrassom-3d' },
+  { name: 'Memo3D', path: '/memo3d' },
+  { name: 'Área do Paciente', path: '/area-do-paciente' },
+  { name: 'Para Médicos', path: '/para-medicos' },
+  { name: 'Depoimentos', path: '/depoimentos' },
+  { name: 'FAQ', path: '/faq' },
+  { name: 'Contato e Agendamento', path: '/contato' },
+];
+
+const topItems = [
   { name: 'Início', path: '/' },
   { name: 'Sobre', path: '/sobre' },
-  { name: 'Ultrassonografias', path: '/exames' },
-  { name: 'Área do Paciente', path: '/area-do-paciente' },
-  { name: 'Memo3D', path: '/memo3d' },
-  { name: 'IA Médica', path: '/ia-medica' },
-  { name: 'Depoimentos', path: '/depoimentos' },
-  // >>> NOVO item do menu
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contato', path: '/contato' },
+  // Consultório entra aqui como dropdown (renderizado à parte)
+  { name: 'Xdiag', path: '/xdiag' },
+  { name: 'Curso', path: '/curso-medicina-com-ia' },
+  { name: 'Palestras', path: '/palestras' },
+  { name: 'Blog', path: '/ia-medica' },
+];
+
+// Rotas que acendem o item "Consultório"
+const CONSULTORIO_PREFIXES = [
+  '/consultorio',
+  '/exames',
+  '/ultrassom-3d',
+  '/memo3d',
+  '/area-do-paciente',
+  '/para-medicos',
+  '/depoimentos',
+  '/faq',
+  '/contato',
 ];
 
 const Header = () => {
   const location = useLocation();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [currentIALogo, setCurrentIALogo] = useState(1);
 
-  // Destaca o item ativo inclusive em rotas filhas (/faq/slug, /exames/algum-exame)
-  const isActive = path => location.pathname === path || location.pathname.startsWith(`${path}/`);
+  const isActive = path =>
+    path === '/'
+      ? location.pathname === '/'
+      : location.pathname === path || location.pathname.startsWith(`${path}/`);
 
-  // Detecta se está na seção IA Médica
-  const isIAMedicaSection = location.pathname.startsWith('/ia-medica');
+  const isConsultorioActive = CONSULTORIO_PREFIXES.some(
+    p => location.pathname === p || location.pathname.startsWith(`${p}/`)
+  );
 
-  // Define cores do header baseado na seção
-  const textColor = 'white'; // Sempre branco para contraste
-
-  // Rotação automática dos logos IA a cada 5 segundos
-  useEffect(() => {
-    if (isIAMedicaSection) {
-      const interval = setInterval(() => {
-        setCurrentIALogo(prev => (prev % 3) + 1);
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isIAMedicaSection]);
-
-  // Seleciona o logo baseado na seção
-  const logoSrc = isIAMedicaSection ? `/logo-ia-${currentIALogo}.webp` : '/logo.webp';
+  const navLinkStyle = active => ({
+    fontWeight: active ? 700 : 500,
+    fontSize: 'md',
+    color: active ? 'white' : 'whiteAlpha.800',
+    borderBottom: active ? '2px solid' : '2px solid transparent',
+    borderColor: active ? 'accent.400' : 'transparent',
+    pb: '2px',
+  });
 
   return (
     <Flex
       as="header"
-      bg={isIAMedicaSection ? undefined : 'green.900'}
-      bgGradient={isIAMedicaSection ? 'linear(135deg, #4c1d95 0%, #3730a3 100%)' : undefined}
-      color={textColor}
-      p={4}
+      bg="brand.900"
+      color="white"
+      px={{ base: 4, lg: 6 }}
+      py={3}
       align="center"
       position="sticky"
       top="0"
       zIndex="1000"
-      boxShadow="md"
-      transition="all 0.3s ease"
+      boxShadow="0 2px 12px rgba(7, 26, 46, 0.35)"
     >
-      {/* Logo e Nome */}
+      {/* Logo e nome */}
       <Link
         as={RouterLink}
         to="/"
@@ -82,63 +105,80 @@ const Header = () => {
         zIndex="10"
         position="relative"
       >
-        <HStack spacing={4}>
+        <HStack spacing={3}>
           <Image
-            src={logoSrc}
-            alt={isIAMedicaSection ? 'Logo IA Médica' : 'Logo Dr. Massuca'}
-            // Dimensões explícitas e fixas para zero CLS
-            width="70"
-            height="70"
-            w="70px"
-            h="70px"
-            minW="70px"
-            minH="70px"
+            src="/logo.webp"
+            alt="Logo Dr. Massuca"
+            width="56"
+            height="56"
+            w="56px"
+            h="56px"
+            minW="56px"
+            minH="56px"
             borderRadius="full"
             objectFit="cover"
             loading="eager"
             decoding="sync"
-            transition="all 0.5s ease"
-            // CSS inline para garantir zero layout shift
-            style={{
-              aspectRatio: '1 / 1',
-              flexShrink: 0,
-            }}
+            style={{ aspectRatio: '1 / 1', flexShrink: 0 }}
           />
-          <Box minW="160px" minH="72px">
-            <Text
-              fontWeight="bold"
-              fontSize="3xl"
-              lineHeight="1.2"
-              textShadow="2px 2px 4px rgba(0,0,0,0.6)"
-              minH="36px"
-            >
+          <Box>
+            <Text fontWeight={700} fontSize="xl" lineHeight="1.2" letterSpacing="-0.02em">
               Dr. Massuca
             </Text>
-            <Text
-              fontSize="md"
-              lineHeight="1.2"
-              textShadow="1px 1px 3px rgba(0,0,0,0.6)"
-              minH="36px"
-            >
-              Antonio Massucatti Neto - CRM GO 17475
+            <Text fontSize="xs" lineHeight="1.2" color="whiteAlpha.700">
+              Ultrassonografia e IA na medicina · CRM-GO 17475
             </Text>
           </Box>
         </HStack>
       </Link>
 
       {/* Menu desktop */}
-      <HStack spacing={6} ml={10} display={{ base: 'none', md: 'flex' }}>
-        {menuItems.map(item => (
-          <Link
-            key={item.name}
-            as={RouterLink}
-            to={item.path}
-            _hover={{ color: 'yellow.300' }}
-            fontWeight={isActive(item.path) ? 'bold' : 'semibold'}
-            fontSize="lg"
-            textShadow="1px 1px 2px rgba(0,0,0,0.6)"
-            aria-current={isActive(item.path) ? 'page' : undefined}
+      <HStack spacing={5} ml={8} display={{ base: 'none', lg: 'flex' }}>
+        <Link as={RouterLink} to="/" {...navLinkStyle(isActive('/'))}>
+          Início
+        </Link>
+        <Link as={RouterLink} to="/sobre" {...navLinkStyle(isActive('/sobre'))}>
+          Sobre
+        </Link>
+
+        {/* Dropdown Consultório: toda a parte clínica preservada */}
+        <Menu isLazy>
+          <MenuButton
+            as={Button}
+            variant="link"
+            rightIcon={<FaChevronDown size={11} />}
+            {...navLinkStyle(isConsultorioActive)}
+            _hover={{ textDecoration: 'none', color: 'white' }}
+            _active={{ color: 'white' }}
           >
+            Consultório
+          </MenuButton>
+          <MenuList bg="brand.900" borderColor="whiteAlpha.300" py={2}>
+            <MenuItem
+              as={RouterLink}
+              to="/consultorio"
+              bg="transparent"
+              fontWeight={600}
+              _hover={{ bg: 'brand.800' }}
+            >
+              Visão geral do consultório
+            </MenuItem>
+            {consultorioItems.map(item => (
+              <MenuItem
+                key={item.path}
+                as={RouterLink}
+                to={item.path}
+                bg="transparent"
+                _hover={{ bg: 'brand.800' }}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
+
+        {topItems.slice(2).map(item => (
+          <Link key={item.path} as={RouterLink} to={item.path} {...navLinkStyle(isActive(item.path))}>
             {item.name}
           </Link>
         ))}
@@ -146,25 +186,32 @@ const Header = () => {
 
       <Spacer />
 
-      {/* Ícones sociais desktop */}
-      <HStack spacing={2} display={{ base: 'none', md: 'flex' }}>
-        <IconButton
+      {/* Ações desktop */}
+      <HStack spacing={2} display={{ base: 'none', lg: 'flex' }}>
+        <Button
           as="a"
           href="https://wa.me/5562996602117"
           target="_blank"
-          icon={<FaWhatsapp />}
-          aria-label="WhatsApp"
-          colorScheme="whatsapp"
-        />
+          rel="noopener noreferrer"
+          leftIcon={<FaWhatsapp />}
+          size="sm"
+          bg="accent.500"
+          color="white"
+          _hover={{ bg: 'accent.600' }}
+        >
+          Agendar
+        </Button>
         <IconButton
           as="a"
           href="https://instagram.com/drmassuca"
           target="_blank"
+          rel="noopener noreferrer"
           icon={<FaInstagram />}
           aria-label="Instagram"
-          bgGradient="linear(to-r, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)"
-          color="white"
-          _hover={{ opacity: 0.8 }}
+          size="sm"
+          variant="ghost"
+          color="whiteAlpha.800"
+          _hover={{ bg: 'brand.800', color: 'white' }}
         />
       </HStack>
 
@@ -172,57 +219,134 @@ const Header = () => {
       <IconButton
         aria-label="Abrir menu"
         icon={<FaBars />}
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: 'flex', lg: 'none' }}
         onClick={onOpen}
         ml={2}
+        bg="brand.800"
+        color="white"
+        _hover={{ bg: 'brand.700' }}
       />
 
       {/* Drawer mobile */}
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent
-          bg={isIAMedicaSection ? undefined : 'green.900'}
-          bgGradient={isIAMedicaSection ? 'linear(135deg, #4c1d95 0%, #3730a3 100%)' : undefined}
-          color={textColor}
-        >
+        <DrawerContent bg="brand.900" color="white">
           <DrawerCloseButton />
           <DrawerBody>
-            <Stack spacing={4} mt={10}>
-              {menuItems.map(item => (
+            <Stack spacing={2} mt={10}>
+              {topItems.slice(0, 2).map(item => (
                 <Button
-                  key={item.name}
+                  key={item.path}
                   as={RouterLink}
                   to={item.path}
-                  variant="solid"
-                  bg="white"
-                  color="green.800"
-                  _hover={{ bg: 'yellow.300', color: 'black' }}
+                  variant="ghost"
+                  color="white"
+                  justifyContent="flex-start"
+                  _hover={{ bg: 'brand.800' }}
                   onClick={onClose}
-                  fontWeight={isActive(item.path) ? 'bold' : 'normal'}
-                  width="100%"
+                  fontWeight={isActive(item.path) ? 700 : 500}
                   aria-current={isActive(item.path) ? 'page' : undefined}
                 >
                   {item.name}
                 </Button>
               ))}
-              <HStack pt={4}>
-                <IconButton
+
+              {/* Grupo Consultório */}
+              <Text
+                fontSize="xs"
+                fontWeight={700}
+                textTransform="uppercase"
+                letterSpacing="wider"
+                color="accent.400"
+                pt={3}
+                pl={4}
+              >
+                Consultório
+              </Text>
+              <Button
+                as={RouterLink}
+                to="/consultorio"
+                variant="ghost"
+                color="white"
+                justifyContent="flex-start"
+                _hover={{ bg: 'brand.800' }}
+                onClick={onClose}
+                size="sm"
+              >
+                Visão geral
+              </Button>
+              {consultorioItems.map(item => (
+                <Button
+                  key={item.path}
+                  as={RouterLink}
+                  to={item.path}
+                  variant="ghost"
+                  color="whiteAlpha.900"
+                  justifyContent="flex-start"
+                  _hover={{ bg: 'brand.800' }}
+                  onClick={onClose}
+                  size="sm"
+                  fontWeight={isActive(item.path) ? 700 : 400}
+                  aria-current={isActive(item.path) ? 'page' : undefined}
+                >
+                  {item.name}
+                </Button>
+              ))}
+
+              {/* Camadas novas */}
+              <Text
+                fontSize="xs"
+                fontWeight={700}
+                textTransform="uppercase"
+                letterSpacing="wider"
+                color="accent.400"
+                pt={3}
+                pl={4}
+              >
+                IA na medicina
+              </Text>
+              {topItems.slice(2).map(item => (
+                <Button
+                  key={item.path}
+                  as={RouterLink}
+                  to={item.path}
+                  variant="ghost"
+                  color="white"
+                  justifyContent="flex-start"
+                  _hover={{ bg: 'brand.800' }}
+                  onClick={onClose}
+                  fontWeight={isActive(item.path) ? 700 : 500}
+                  aria-current={isActive(item.path) ? 'page' : undefined}
+                >
+                  {item.name}
+                </Button>
+              ))}
+
+              <HStack pt={4} pl={4}>
+                <Button
                   as="a"
                   href="https://wa.me/5562996602117"
                   target="_blank"
-                  icon={<FaWhatsapp />}
-                  aria-label="WhatsApp"
-                  colorScheme="whatsapp"
-                />
+                  rel="noopener noreferrer"
+                  leftIcon={<FaWhatsapp />}
+                  size="sm"
+                  bg="accent.500"
+                  color="white"
+                  _hover={{ bg: 'accent.600' }}
+                >
+                  Agendar pelo WhatsApp
+                </Button>
                 <IconButton
                   as="a"
                   href="https://instagram.com/drmassuca"
                   target="_blank"
+                  rel="noopener noreferrer"
                   icon={<FaInstagram />}
                   aria-label="Instagram"
-                  bgGradient="linear(to-r, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)"
-                  color="white"
-                  _hover={{ opacity: 0.8 }}
+                  size="sm"
+                  variant="ghost"
+                  color="whiteAlpha.800"
+                  _hover={{ bg: 'brand.800' }}
                 />
               </HStack>
             </Stack>

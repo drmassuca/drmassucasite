@@ -47,7 +47,7 @@ const ElastografiaHepatica = () => {
             fontSize={{ base: '2xl', md: '4xl' }}
             textAlign="center"
             mb={3}
-            textShadow="1px 1px 2px rgba(0,0,0,0.2)"
+
           >
             Elastografia Hepática e Quantificação de Esteatose
           </Heading>
@@ -174,7 +174,7 @@ const ElastografiaHepatica = () => {
               >
                 <Text
                   fontSize="xs"
-                  color="green.700"
+                  color="brand.800"
                   letterSpacing="0.2em"
                   textTransform="uppercase"
                   fontWeight="semibold"
@@ -184,7 +184,7 @@ const ElastografiaHepatica = () => {
                 </Text>
                 <Text
                   fontSize={{ base: '3xl', md: '4xl' }}
-                  color="green.800"
+                  color="brand.900"
                   fontWeight="bold"
                   lineHeight="1"
                   mb={3}

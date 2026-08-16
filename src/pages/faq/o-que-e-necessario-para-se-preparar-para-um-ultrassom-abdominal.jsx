@@ -41,8 +41,7 @@ export default function Faq_o_que_e_necessario_para_se_preparar_para_um_ultrasso
           as="h1"
           size="lg"
           mb={4}
-          color="green.700"
-          textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+          color="brand.800"
         >
           O que é necessário para se preparar para um ultrassom abdominal?
         </Heading>
@@ -107,9 +106,9 @@ export default function Faq_o_que_e_necessario_para_se_preparar_para_um_ultrasso
             target="_blank"
             rel="noopener noreferrer"
             leftIcon={<FaWhatsapp />}
-            bg="green.700"
+            bg="accent.500"
             color="white"
-            _hover={{ bg: 'green.800' }}
+            _hover={{ bg: 'accent.600' }}
             px={{ base: 4, md: 6 }}
             py={{ base: 3, md: 4 }}
             fontSize={{ base: 'sm', md: 'md' }}

@@ -40,8 +40,7 @@ export default function Faq_qual_a_melhor_semana_para_fazer_ultrassonografia_3d(
           as="h1"
           size="lg"
           mb={4}
-          color="green.700"
-          textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+          color="brand.800"
         >
           Qual a melhor semana para fazer ultrassonografia 3D?
         </Heading>
@@ -104,9 +103,9 @@ export default function Faq_qual_a_melhor_semana_para_fazer_ultrassonografia_3d(
             target="_blank"
             rel="noopener noreferrer"
             leftIcon={<FaWhatsapp />}
-            bg="green.700"
+            bg="accent.500"
             color="white"
-            _hover={{ bg: 'green.800' }}
+            _hover={{ bg: 'accent.600' }}
             px={{ base: 4, md: 6 }}
             py={{ base: 3, md: 4 }}
             fontSize={{ base: 'sm', md: 'md' }}

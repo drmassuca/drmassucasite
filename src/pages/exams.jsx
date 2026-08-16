@@ -96,8 +96,8 @@ function Exams() {
             size="xl"
             mb={10}
             textAlign="center"
-            color="green.700"
-            textShadow="1px 1px #c3e3d6"
+            color="brand.800"
+
           >
             Exames de Ultrassom Realizados
           </Heading>
@@ -200,15 +200,15 @@ function Exams() {
               <Card key={idx} boxShadow="xl" rounded="2xl">
                 <CardBody>
                   <VStack align="start" spacing={3}>
-                    <Icon as={section.icon} boxSize={6} color="green.700" />
+                    <Icon as={section.icon} boxSize={6} color="brand.800" />
                     {section.link ? (
                       <Link as={RouterLink} to={section.link}>
-                        <Heading size="sm" color="green.800">
+                        <Heading size="sm" color="brand.900">
                           {section.title}
                         </Heading>
                       </Link>
                     ) : (
-                      <Heading size="sm" color="green.800">
+                      <Heading size="sm" color="brand.900">
                         {section.title}
                       </Heading>
                     )}
@@ -217,8 +217,8 @@ function Exams() {
                       <List spacing={1}>
                         {section.items.map(([label, path], i) => (
                           <ListItem key={i}>
-                            <ListIcon as={FaCheckCircle} color="green.600" />
-                            <Link as={RouterLink} to={path} color="green.800" fontWeight="semibold">
+                            <ListIcon as={FaCheckCircle} color="accent.500" />
+                            <Link as={RouterLink} to={path} color="brand.900" fontWeight="semibold">
                               {label}
                             </Link>
                           </ListItem>
@@ -242,10 +242,10 @@ function Exams() {
                         mt={3}
                         w="full"
                       >
-                        <Text fontSize="sm" color="green.800" mb={2} fontWeight="semibold">
+                        <Text fontSize="sm" color="brand.900" mb={2} fontWeight="semibold">
                           ✨ <strong>Diferencial exclusivo:</strong>
                         </Text>
-                        <Text fontSize="sm" color="green.700" mb={3} lineHeight="1.4">
+                        <Text fontSize="sm" color="brand.800" mb={3} lineHeight="1.4">
                           Oferecemos <strong>imagens 3D/4D</strong> durante os exames obstétricos
                           quando as condições técnicas permitem.
                         </Text>
@@ -253,9 +253,9 @@ function Exams() {
                           as={RouterLink}
                           to="/ultrassom-3d"
                           size="sm"
-                          bg="#d4af37"
+                          bg="#0693e3"
                           color="white"
-                          _hover={{ bg: '#b8941f' }}
+                          _hover={{ bg: '#0570b0' }}
                           fontSize="xs"
                           fontWeight="600"
                           borderRadius="md"
@@ -275,10 +275,10 @@ function Exams() {
                         mt={3}
                         w="full"
                       >
-                        <Text fontSize="sm" color="green.800" mb={2} fontWeight="semibold">
+                        <Text fontSize="sm" color="brand.900" mb={2} fontWeight="semibold">
                           ✨ <strong>Avaliação hepática avançada:</strong>
                         </Text>
-                        <Text fontSize="sm" color="green.700" mb={3} lineHeight="1.4">
+                        <Text fontSize="sm" color="brand.800" mb={3} lineHeight="1.4">
                           Quantificação objetiva de fibrose e esteatose hepática, sem biópsia.
                         </Text>
                         <VStack spacing={2} align="stretch">
@@ -286,9 +286,9 @@ function Exams() {
                             as={RouterLink}
                             to="/exames/elastografia-hepatica"
                             size="sm"
-                            bg="#d4af37"
+                            bg="#0693e3"
                             color="white"
-                            _hover={{ bg: '#b8941f' }}
+                            _hover={{ bg: '#0570b0' }}
                             fontSize="xs"
                             fontWeight="600"
                             borderRadius="md"
@@ -299,9 +299,9 @@ function Exams() {
                             as={RouterLink}
                             to="/exames/avaliacao-multiparametrica-figado"
                             size="sm"
-                            bg="#d4af37"
+                            bg="#0693e3"
                             color="white"
-                            _hover={{ bg: '#b8941f' }}
+                            _hover={{ bg: '#0570b0' }}
                             fontSize="xs"
                             fontWeight="600"
                             borderRadius="md"
@@ -334,13 +334,13 @@ function Exams() {
               target="_blank"
               rel="noopener noreferrer"
               leftIcon={<FaWhatsapp />}
-              bg="green.700"
+              bg="accent.500"
               color="white"
               size="lg"
               rounded="full"
               px={8}
               py={6}
-              _hover={{ bg: 'green.800' }}
+              _hover={{ bg: 'accent.600' }}
               boxShadow="md"
             >
               Agendar Exame

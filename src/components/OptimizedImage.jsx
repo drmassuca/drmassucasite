@@ -130,7 +130,7 @@ const OptimizedImage = ({
             height="40px"
             border="3px solid"
             borderColor="gray.300"
-            borderTopColor="green.500"
+            borderTopColor="accent.500"
             borderRadius="50%"
             animation="spin 1s linear infinite"
           />

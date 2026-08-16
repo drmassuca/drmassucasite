@@ -223,7 +223,7 @@ function applyExamHeadlineVariant(variant) {
 
   if (variant.id === 'emotional') {
     // Adiciona elementos emocionais
-    heading.style.color = '#d4af37';
+    heading.style.color = '#0693e3';
 
     // Adiciona ícones ou elementos visuais se for emotional
     const icon = document.createElement('span');

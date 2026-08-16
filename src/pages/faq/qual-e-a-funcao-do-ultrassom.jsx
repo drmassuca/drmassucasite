@@ -41,8 +41,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
           as="h1"
           size="lg"
           mb={4}
-          color="green.700"
-          textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+          color="brand.800"
         >
           Qual é a função do ultrassom?
         </Heading>
@@ -55,7 +54,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
 
         <Stack spacing={6} color="gray.700">
           <Stack spacing={2}>
-            <Heading as="h2" size="md" color="green.700">
+            <Heading as="h2" size="md" color="brand.800">
               Quando é indicado / O que mostra
             </Heading>
             <List styleType="disc" pl={6}>
@@ -71,7 +70,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
           </Stack>
 
           <Stack spacing={2}>
-            <Heading as="h2" size="md" color="green.700">
+            <Heading as="h2" size="md" color="brand.800">
               Como é feito / Preparo
             </Heading>
             <List styleType="disc" pl={6}>
@@ -84,7 +83,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
           </Stack>
 
           <Stack spacing={2}>
-            <Heading as="h2" size="md" color="green.700">
+            <Heading as="h2" size="md" color="brand.800">
               Duração e resultado
             </Heading>
             <List styleType="disc" pl={6}>
@@ -96,7 +95,7 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
           </Stack>
 
           <Stack spacing={2}>
-            <Heading as="h2" size="md" color="green.700">
+            <Heading as="h2" size="md" color="brand.800">
               Vantagens e limitações
             </Heading>
             <List styleType="disc" pl={6}>
@@ -154,9 +153,9 @@ export default function Faq_qual_e_a_funcao_do_ultrassom() {
               target="_blank"
               rel="noopener noreferrer"
               leftIcon={<FaWhatsapp />}
-              bg="green.700"
+              bg="accent.500"
               color="white"
-              _hover={{ bg: 'green.800' }}
+              _hover={{ bg: 'accent.600' }}
               px={{ base: 4, md: 6 }}
               py={{ base: 3, md: 4 }}
               fontSize={{ base: 'sm', md: 'md' }}

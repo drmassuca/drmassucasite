@@ -52,8 +52,7 @@ function ForDoctors() {
             size="lg"
             mb={6}
             textAlign="center"
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             🤝 Para Médicos e Parceiros
           </Heading>
@@ -73,8 +72,7 @@ function ForDoctors() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             🚩 Como Encaminhar Pacientes
           </Heading>
@@ -87,7 +85,7 @@ function ForDoctors() {
               'O laudo é entregue, na maioria dos casos, logo após o exame.',
             ].map(item => (
               <ListItem key={item}>
-                <ListIcon as={FaCheckCircle} color="green.600" />
+                <ListIcon as={FaCheckCircle} color="accent.500" />
                 {item}
               </ListItem>
             ))}
@@ -98,8 +96,7 @@ function ForDoctors() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             🎯 Por que encaminhar para mim
           </Heading>
@@ -133,8 +130,7 @@ function ForDoctors() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             📲 Canal Direto
           </Heading>
@@ -152,9 +148,9 @@ function ForDoctors() {
               rel="noopener noreferrer"
               leftIcon={<FaWhatsapp />}
               display="inline-flex"
-              bg="green.700"
+              bg="accent.500"
               color="white"
-              _hover={{ bg: 'green.800' }}
+              _hover={{ bg: 'accent.600' }}
               px={{ base: 4, md: 6 }}
               py={{ base: 3, md: 4 }}
               fontSize={{ base: 'sm', md: 'md' }}

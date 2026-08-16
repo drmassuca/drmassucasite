@@ -47,7 +47,7 @@ const Mamas = () => {
             fontSize={{ base: '2xl', md: '4xl' }}
             textAlign="center"
             mb={6}
-            textShadow="1px 1px 2px rgba(0,0,0,0.2)"
+
           >
             Ultrassom de Mamas
           </Heading>

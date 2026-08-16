@@ -31,19 +31,19 @@ export default function ExamBreadcrumb({ slug }) {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Box mb={6} fontSize="sm" color="gray.500">
-        <Link as={RouterLink} to="/" _hover={{ color: 'green.600' }}>
+        <Link as={RouterLink} to="/" _hover={{ color: 'accent.500' }}>
           Início
         </Link>
         <Text as="span" mx={2}>
           ›
         </Text>
-        <Link as={RouterLink} to="/exames" _hover={{ color: 'green.600' }}>
+        <Link as={RouterLink} to="/exames" _hover={{ color: 'accent.500' }}>
           Exames
         </Link>
         <Text as="span" mx={2}>
           ›
         </Text>
-        <Text as="span" color="green.700" fontWeight="semibold">
+        <Text as="span" color="brand.800" fontWeight="semibold">
           {label}
         </Text>
       </Box>

@@ -114,7 +114,7 @@ export default function ChatbotGrok({ onClose }) {
         flexDirection="column"
         overflow="hidden"
       >
-        <HStack bg="#0f3d2e" p={3} justify="space-between" borderTopRadius="lg">
+        <HStack bg="#0a2540" p={3} justify="space-between" borderTopRadius="lg">
           <HStack>
             <Avatar
               src="/assets/face.webp"
@@ -159,13 +159,13 @@ export default function ChatbotGrok({ onClose }) {
         >
           {interactionCount >= MAX_INTERACTIONS - 1 && (
             <Box
-              bg={interactionCount >= MAX_INTERACTIONS ? 'green.100' : 'blue.100'}
+              bg={interactionCount >= MAX_INTERACTIONS ? 'accent.100' : 'blue.100'}
               p={3}
               borderRadius="md"
               border="1px solid"
-              borderColor={interactionCount >= MAX_INTERACTIONS ? 'green.200' : 'blue.200'}
+              borderColor={interactionCount >= MAX_INTERACTIONS ? 'accent.200' : 'blue.200'}
             >
-              <Text fontSize="sm" color={interactionCount >= MAX_INTERACTIONS ? 'green.800' : 'blue.800'}>
+              <Text fontSize="sm" color={interactionCount >= MAX_INTERACTIONS ? 'brand.900' : 'blue.800'}>
                 {interactionCount >= MAX_INTERACTIONS ? (
                   <>
                     <strong>Continue no WhatsApp:</strong> chegamos ao limite. Clique no botao verde abaixo.
@@ -182,7 +182,7 @@ export default function ChatbotGrok({ onClose }) {
           {messages.map((msg, i) => (
             <Box key={i} alignSelf={msg.role === 'user' ? 'flex-end' : 'flex-start'} maxW="85%">
               <Box
-                bg={msg.role === 'user' ? '#0f3d2e' : 'white'}
+                bg={msg.role === 'user' ? '#0a2540' : 'white'}
                 color={msg.role === 'user' ? 'white' : 'gray.800'}
                 p={3}
                 borderRadius="lg"
@@ -201,7 +201,7 @@ export default function ChatbotGrok({ onClose }) {
             <Box alignSelf="flex-start" maxW="85%">
               <Box bg="white" p={3} borderRadius="lg" boxShadow="sm" borderBottomLeftRadius="0">
                 <HStack spacing={2}>
-                  <Spinner size="xs" color="#0f3d2e" />
+                  <Spinner size="xs" color="#0a2540" />
                   <Text fontSize="sm" color="gray.500">
                     Pensando...
                   </Text>
@@ -225,7 +225,7 @@ export default function ChatbotGrok({ onClose }) {
             }
             size="sm"
             borderRadius="full"
-            focusBorderColor="#0f3d2e"
+            focusBorderColor="#0a2540"
             disabled={isTyping || interactionCount >= MAX_INTERACTIONS}
             bg={interactionCount >= MAX_INTERACTIONS ? 'gray.200' : 'white'}
             _placeholder={{ fontSize: 'sm' }}
@@ -234,9 +234,9 @@ export default function ChatbotGrok({ onClose }) {
             icon={<FaPaperPlane />}
             size="sm"
             borderRadius="full"
-            bg="#d4af37"
+            bg="#0693e3"
             color="white"
-            _hover={{ bg: '#b8941f' }}
+            _hover={{ bg: '#0570b0' }}
             _active={{ transform: 'scale(0.95)' }}
             onClick={sendMessage}
             isLoading={isTyping}
@@ -245,7 +245,7 @@ export default function ChatbotGrok({ onClose }) {
           />
         </HStack>
 
-        <Box p={2} bg="green.50" borderTop="1px" borderColor="green.200" textAlign="center">
+        <Box p={2} bg="accent.50" borderTop="1px" borderColor="accent.200" textAlign="center">
           <Button
             as="a"
             href="https://wa.me/5562996602117?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20ultrassom."
@@ -254,7 +254,7 @@ export default function ChatbotGrok({ onClose }) {
             leftIcon={<FaWhatsapp />}
             size="xs"
             variant="link"
-            color="green.700"
+            color="brand.800"
             fontWeight="bold"
           >
             WhatsApp (62) 99660-2117

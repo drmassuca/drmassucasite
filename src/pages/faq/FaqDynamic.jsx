@@ -24,17 +24,17 @@ import SEO from '../../components/SEO';
 // com as FAQs hardcoded em src/pages/faq/*.jsx (Heading verde, UnorderedList, etc).
 const markdownComponents = {
   h1: ({ children }) => (
-    <Heading as="h1" size="lg" color="green.700" mt={6} mb={3}>
+    <Heading as="h1" size="lg" color="brand.800" mt={6} mb={3}>
       {children}
     </Heading>
   ),
   h2: ({ children }) => (
-    <Heading as="h2" size="md" color="green.700" mt={6} mb={2}>
+    <Heading as="h2" size="md" color="brand.800" mt={6} mb={2}>
       {children}
     </Heading>
   ),
   h3: ({ children }) => (
-    <Heading as="h3" size="sm" color="green.700" mt={4} mb={2}>
+    <Heading as="h3" size="sm" color="brand.800" mt={4} mb={2}>
       {children}
     </Heading>
   ),
@@ -65,7 +65,7 @@ const markdownComponents = {
     </Text>
   ),
   a: ({ href, children }) => (
-    <CLink href={href} color="green.700" textDecoration="underline" isExternal>
+    <CLink href={href} color="brand.800" textDecoration="underline" isExternal>
       {children}
     </CLink>
   ),
@@ -133,7 +133,7 @@ export default function FaqDynamic() {
     return (
       <Box maxW="900px" mx="auto" px={4} py={10}>
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
-          <Heading size="lg" color="green.700" mb={4}>
+          <Heading size="lg" color="brand.800" mb={4}>
             Pergunta não encontrada
           </Heading>
           <Text color="gray.600" mb={6}>
@@ -181,8 +181,7 @@ export default function FaqDynamic() {
           as="h1"
           size="lg"
           mb={4}
-          color="green.700"
-          textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+          color="brand.800"
         >
           {item.question}
         </Heading>
@@ -230,9 +229,9 @@ export default function FaqDynamic() {
             target="_blank"
             rel="noopener noreferrer"
             leftIcon={<FaWhatsapp />}
-            bg="green.700"
+            bg="accent.500"
             color="white"
-            _hover={{ bg: 'green.800' }}
+            _hover={{ bg: 'accent.600' }}
             px={{ base: 4, md: 6 }}
             py={{ base: 3, md: 4 }}
             fontSize={{ base: 'sm', md: 'md' }}

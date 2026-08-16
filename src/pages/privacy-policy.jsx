@@ -45,14 +45,14 @@ const PrivacyPolicy = () => {
       <Box maxW="900px" mx="auto" px={4} py={{ base: 8, md: 12 }}>
         <Box bg="white" borderRadius="xl" p={{ base: 6, md: 10 }} boxShadow="2xl">
           <VStack spacing={6} align="start">
-            <Heading as="h1" size="xl" textShadow="1px 1px 2px rgba(0, 0, 0, 0.2)">
+            <Heading as="h1" size="xl">
               Política de Privacidade e LGPD
             </Heading>
 
             <Text>
               Esta Política de Privacidade descreve como as informações pessoais são coletadas,
               utilizadas, armazenadas e protegidas no site{' '}
-              <Link href="https://drmassuca.com.br" color="green.600" fontWeight="bold">
+              <Link href="https://drmassuca.com.br" color="accent.500" fontWeight="bold">
                 drmassuca.com.br
               </Link>
               , em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 —
@@ -60,11 +60,11 @@ const PrivacyPolicy = () => {
             </Text>
 
             {/* ── 1. Controlador ──────────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               1. Controlador dos dados
             </Heading>
             <Text>O controlador dos dados pessoais tratados por meio deste site é:</Text>
-            <Box pl={4} borderLeft="3px solid" borderColor="green.400">
+            <Box pl={4} borderLeft="3px solid" borderColor="accent.400">
               <Text>
                 <strong>Dr. Antonio Massucatti Neto</strong>
               </Text>
@@ -72,27 +72,27 @@ const PrivacyPolicy = () => {
               <Text>Rua 19, Qd. 33, Lt. 01 – Vila Leonor, Itaberaí – GO, CEP 76630-000</Text>
               <Text>
                 E-mail:{' '}
-                <Link href="mailto:drmassucatti@gmail.com" color="green.600">
+                <Link href="mailto:drmassucatti@gmail.com" color="accent.500">
                   drmassucatti@gmail.com
                 </Link>
               </Text>
               <Text>
                 WhatsApp:{' '}
-                <Link href="https://wa.me/5562996602117" isExternal color="green.600">
+                <Link href="https://wa.me/5562996602117" isExternal color="accent.500">
                   (62) 99660-2117
                 </Link>
               </Text>
             </Box>
             <Text>
               O desenvolvimento e a manutenção tecnológica do site são realizados pela{' '}
-              <Link href="https://xdiag.com.br" isExternal color="green.600" fontWeight="bold">
+              <Link href="https://xdiag.com.br" isExternal color="accent.500" fontWeight="bold">
                 Xdiag Tecnologias Ltda.
               </Link>
               , que atua como operadora de dados nos termos da LGPD.
             </Text>
 
             {/* ── 2. Dados coletados ──────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               2. Camadas do serviço e dados coletados
             </Heading>
             <Text>O site oferece diferentes camadas de serviço, com tratamentos distintos:</Text>
@@ -113,7 +113,7 @@ const PrivacyPolicy = () => {
                 <strong>Assistente virtual (chatbot)</strong>: as perguntas digitadas são enviadas à
                 API do Google Gemini para geração de respostas. Não são armazenadas pelo site, mas
                 são processadas nos servidores do Google conforme a{' '}
-                <Link href="https://policies.google.com/privacy" isExternal color="green.600">
+                <Link href="https://policies.google.com/privacy" isExternal color="accent.500">
                   Política de Privacidade do Google
                 </Link>
                 . Recomendamos não inserir dados pessoais sensíveis no chatbot.
@@ -126,7 +126,7 @@ const PrivacyPolicy = () => {
             </List>
 
             {/* ── 3. Cookies ──────────────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               3. Cookies e tecnologias de rastreamento
             </Heading>
             <Text>
@@ -151,7 +151,7 @@ const PrivacyPolicy = () => {
             </List>
 
             {/* ── 4. Subprocessadores ─────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               4. Subprocessadores e infraestrutura
             </Heading>
             <Text>
@@ -220,7 +220,7 @@ const PrivacyPolicy = () => {
             </Text>
 
             {/* ── 5. Armazenamento ────────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               5. Armazenamento e segurança
             </Heading>
             <Text>
@@ -239,7 +239,7 @@ const PrivacyPolicy = () => {
             </Text>
 
             {/* ── 6. Direitos do titular ──────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               6. Seus direitos como titular de dados
             </Heading>
             <Text>Em conformidade com os artigos 17 a 22 da LGPD, você tem direito a:</Text>
@@ -259,18 +259,18 @@ const PrivacyPolicy = () => {
             </List>
             <Text>
               Para exercer qualquer desses direitos, entre em contato pelo e-mail{' '}
-              <Link href="mailto:drmassucatti@gmail.com" color="green.600">
+              <Link href="mailto:drmassucatti@gmail.com" color="accent.500">
                 drmassucatti@gmail.com
               </Link>{' '}
               ou pelo WhatsApp{' '}
-              <Link href="https://wa.me/5562996602117" isExternal color="green.600">
+              <Link href="https://wa.me/5562996602117" isExternal color="accent.500">
                 (62) 99660-2117
               </Link>
               . Responderemos em até 15 dias úteis.
             </Text>
 
             {/* ── 7. Menores ──────────────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               7. Crianças e adolescentes
             </Heading>
             <Text>
@@ -282,7 +282,7 @@ const PrivacyPolicy = () => {
             </Text>
 
             {/* ── 8. Alterações ───────────────────────────── */}
-            <Heading as="h2" size="md" textShadow="1px 1px 1px rgba(0, 0, 0, 0.1)">
+            <Heading as="h2" size="md">
               8. Alterações nesta política
             </Heading>
             <Text>

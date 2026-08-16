@@ -18,7 +18,7 @@ export default function ChatbotLauncher() {
           w={{ base: '60px', sm: '70px' }}
           h={{ base: '60px', sm: '70px' }}
           borderRadius="full"
-          bg="#0f3d2e"
+          bg="#0a2540"
           _hover={{ bg: '#0a2d22', transform: 'scale(1.05)' }}
           _active={{ transform: 'scale(0.95)' }}
           boxShadow="lg"

@@ -91,19 +91,19 @@ export default function StableDiffusion3DFetal() {
 
                   <VStack align="stretch" spacing={2}>
                     <HStack>
-                      <Icon as={FaCheckCircle} color="green.500" />
+                      <Icon as={FaCheckCircle} color="accent.500" />
                       <Text fontSize="sm">Instalação passo a passo</Text>
                     </HStack>
                     <HStack>
-                      <Icon as={FaCheckCircle} color="green.500" />
+                      <Icon as={FaCheckCircle} color="accent.500" />
                       <Text fontSize="sm">Configuração de modelos</Text>
                     </HStack>
                     <HStack>
-                      <Icon as={FaCheckCircle} color="green.500" />
+                      <Icon as={FaCheckCircle} color="accent.500" />
                       <Text fontSize="sm">Geração de imagens</Text>
                     </HStack>
                     <HStack>
-                      <Icon as={FaCheckCircle} color="green.500" />
+                      <Icon as={FaCheckCircle} color="accent.500" />
                       <Text fontSize="sm">Dicas e truques</Text>
                     </HStack>
                   </VStack>
@@ -149,7 +149,7 @@ export default function StableDiffusion3DFetal() {
             <Card bg="rgba(255,255,255,0.9)" borderRadius="xl" p={6}>
               <VStack spacing={4} textAlign="center">
                 <Icon as={FaBrain} color="#a855f7" boxSize={12} />
-                <Heading size="md" color="#0f3d2e">
+                <Heading size="md" color="#0a2540">
                   Tecnologia Avançada
                 </Heading>
                 <Text color="gray.600" fontSize="sm">
@@ -162,7 +162,7 @@ export default function StableDiffusion3DFetal() {
             <Card bg="rgba(255,255,255,0.9)" borderRadius="xl" p={6}>
               <VStack spacing={4} textAlign="center">
                 <Icon as={FaRocket} color="#a855f7" boxSize={12} />
-                <Heading size="md" color="#0f3d2e">
+                <Heading size="md" color="#0a2540">
                   Diferencial Competitivo
                 </Heading>
                 <Text color="gray.600" fontSize="sm">
@@ -223,7 +223,7 @@ export default function StableDiffusion3DFetal() {
               <CardBody>
                 <VStack spacing={4} textAlign="center">
                   <Icon as={FaCog} color="#667eea" boxSize={8} />
-                  <Heading size="md" color="#0f3d2e">
+                  <Heading size="md" color="#0a2540">
                     Configuração
                   </Heading>
                   <Text color="gray.600" fontSize="sm">
@@ -232,7 +232,7 @@ export default function StableDiffusion3DFetal() {
                   <Button
                     as={RouterLink}
                     to="/ia-medica/stable-diffusion-3d-fetal/configuracao"
-                    bg="#0f3d2e"
+                    bg="#0a2540"
                     color="white"
                     _hover={{ bg: '#1a5c42' }}
                     size="sm"
@@ -255,7 +255,7 @@ export default function StableDiffusion3DFetal() {
               <CardBody>
                 <VStack spacing={4} textAlign="center">
                   <Icon as={FaImages} color="#667eea" boxSize={8} />
-                  <Heading size="md" color="#0f3d2e">
+                  <Heading size="md" color="#0a2540">
                     Exemplos
                   </Heading>
                   <Text color="gray.600" fontSize="sm">
@@ -264,7 +264,7 @@ export default function StableDiffusion3DFetal() {
                   <Button
                     as={RouterLink}
                     to="/ia-medica/stable-diffusion-3d-fetal/exemplos"
-                    bg="#0f3d2e"
+                    bg="#0a2540"
                     color="white"
                     _hover={{ bg: '#1a5c42' }}
                     size="sm"
@@ -287,7 +287,7 @@ export default function StableDiffusion3DFetal() {
               <CardBody>
                 <VStack spacing={4} textAlign="center">
                   <Icon as={FaQuestionCircle} color="#667eea" boxSize={8} />
-                  <Heading size="md" color="#0f3d2e">
+                  <Heading size="md" color="#0a2540">
                     Problemas
                   </Heading>
                   <Text color="gray.600" fontSize="sm">
@@ -296,7 +296,7 @@ export default function StableDiffusion3DFetal() {
                   <Button
                     as={RouterLink}
                     to="/ia-medica/stable-diffusion-3d-fetal/problemas"
-                    bg="#0f3d2e"
+                    bg="#0a2540"
                     color="white"
                     _hover={{ bg: '#1a5c42' }}
                     size="sm"

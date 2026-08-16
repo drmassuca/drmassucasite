@@ -118,8 +118,7 @@ export default function FaqIndex() {
             size="lg"
             mb={6}
             textAlign="center"
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             FAQ – Dúvidas Frequentes
           </Heading>
@@ -135,7 +134,7 @@ export default function FaqIndex() {
                 value={question}
                 onChange={e => setQuestion(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleGenerate()}
-                focusBorderColor="green.500"
+                focusBorderColor="accent.500"
                 bg="gray.50"
                 borderRadius="lg"
                 pr="7rem"
@@ -145,9 +144,9 @@ export default function FaqIndex() {
                 <Button
                   h="1.9rem"
                   size="sm"
-                  bg="green.700"
+                  bg="accent.500"
                   color="white"
-                  _hover={{ bg: 'green.800' }}
+                  _hover={{ bg: 'accent.600' }}
                   borderRadius="md"
                   onClick={handleGenerate}
                   isLoading={generating}
@@ -171,12 +170,12 @@ export default function FaqIndex() {
                 ref={resultRef}
                 mt={4}
                 p={4}
-                bg="green.50"
+                bg="accent.50"
                 borderRadius="lg"
                 border="1px solid"
-                borderColor="green.200"
+                borderColor="accent.200"
               >
-                <Text fontSize="xs" color="green.700" fontWeight="bold" mb={1}>
+                <Text fontSize="xs" color="brand.800" fontWeight="bold" mb={1}>
                   ✨ Resposta gerada pela IA — aguardando aprovação da clínica
                 </Text>
                 <Text fontWeight="semibold" mb={1}>
@@ -189,9 +188,9 @@ export default function FaqIndex() {
                   as={RouterLink}
                   to={`/faq/${genResult.slug}`}
                   size="sm"
-                  bg="green.700"
+                  bg="accent.500"
                   color="white"
-                  _hover={{ bg: 'green.800' }}
+                  _hover={{ bg: 'accent.600' }}
                   borderRadius="md"
                 >
                   Ver resposta completa
@@ -220,10 +219,9 @@ export default function FaqIndex() {
                   as="h2"
                   size="md"
                   mb={4}
-                  color="green.700"
-                  textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                  color="brand.800"
                   borderBottom="1px solid"
-                  borderColor="green.200"
+                  borderColor="accent.200"
                   pb={2}
                 >
                   {section}
@@ -234,7 +232,7 @@ export default function FaqIndex() {
                     <AccordionItem key={item.slug} border="none" mb={2}>
                       <h3>
                         <AccordionButton
-                          _expanded={{ bg: 'green.50', color: 'green.800' }}
+                          _expanded={{ bg: 'accent.50', color: 'brand.900' }}
                           px={4}
                           py={3}
                           borderRadius="md"
@@ -243,7 +241,7 @@ export default function FaqIndex() {
                           textAlign="left"
                           boxShadow="sm"
                           _hover={{
-                            bg: 'green.100',
+                            bg: 'accent.100',
                             transform: 'translateY(-2px)',
                             boxShadow: 'md',
                           }}
@@ -262,9 +260,9 @@ export default function FaqIndex() {
                           as={RouterLink}
                           to={`/faq/${item.slug}`}
                           size="sm"
-                          bg="green.700"
+                          bg="accent.500"
                           color="white"
-                          _hover={{ bg: 'green.800' }}
+                          _hover={{ bg: 'accent.600' }}
                           borderRadius="md"
                         >
                           Saiba mais

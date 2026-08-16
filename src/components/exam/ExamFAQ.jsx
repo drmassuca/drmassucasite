@@ -52,7 +52,7 @@ export default function ExamFAQ({ slug }) {
               <AccordionButton
                 py={3}
                 px={4}
-                _expanded={{ bg: 'green.50', fontWeight: 'bold' }}
+                _expanded={{ bg: 'accent.50', fontWeight: 'bold' }}
                 _hover={{ bg: 'gray.50' }}
                 borderRadius="md"
               >

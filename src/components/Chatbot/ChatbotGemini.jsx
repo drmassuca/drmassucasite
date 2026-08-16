@@ -370,7 +370,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
           w={{ base: '60px', sm: '70px' }}
           h={{ base: '60px', sm: '70px' }}
           borderRadius="full"
-          bg="#0f3d2e"
+          bg="#0a2540"
           _hover={{ bg: '#0a2d22', transform: 'scale(1.05)' }}
           _active={{ transform: 'scale(0.95)' }}
           boxShadow="lg"
@@ -417,7 +417,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
           overflow="hidden"
         >
           {/* Header - MANTENDO O MESMO LAYOUT */}
-          <HStack bg="#0f3d2e" p={3} justify="space-between" borderTopRadius="lg">
+          <HStack bg="#0a2540" p={3} justify="space-between" borderTopRadius="lg">
             <HStack>
               <Avatar
                 src="/assets/face.webp"
@@ -470,14 +470,14 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
             {/* Card de aviso de limite */}
             {interactionCount >= 4 && (
               <Box
-                bg={interactionCount >= 5 ? 'green.100' : 'blue.100'}
+                bg={interactionCount >= 5 ? 'accent.100' : 'blue.100'}
                 p={3}
                 borderRadius="md"
                 border="1px solid"
-                borderColor={interactionCount >= 5 ? 'green.200' : 'blue.200'}
+                borderColor={interactionCount >= 5 ? 'accent.200' : 'blue.200'}
                 w="100%"
               >
-                <Text fontSize="sm" color={interactionCount >= 5 ? 'green.800' : 'blue.800'}>
+                <Text fontSize="sm" color={interactionCount >= 5 ? 'brand.900' : 'blue.800'}>
                   {interactionCount >= 5 ? (
                     <>
                       ✅ <strong>Continue no WhatsApp:</strong> Agora é só clicar no botão verde do
@@ -500,7 +500,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
                 maxW="85%"
               >
                 <Box
-                  bg={message.role === 'user' ? '#0f3d2e' : 'white'}
+                  bg={message.role === 'user' ? '#0a2540' : 'white'}
                   color={message.role === 'user' ? 'white' : 'gray.800'}
                   p={3}
                   borderRadius="lg"
@@ -519,7 +519,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
               <Box alignSelf="flex-start" maxW="85%">
                 <Box bg="white" p={3} borderRadius="lg" boxShadow="sm" borderBottomLeftRadius="0">
                   <HStack spacing={1}>
-                    <Spinner size="xs" color="#0f3d2e" />
+                    <Spinner size="xs" color="#0a2540" />
                     <Text fontSize="sm" color="gray.500">
                       Digitando...
                     </Text>
@@ -543,7 +543,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
               }
               size="sm"
               borderRadius="full"
-              focusBorderColor="#0f3d2e"
+              focusBorderColor="#0a2540"
               disabled={isTyping || interactionCount >= 5}
               bg={interactionCount >= 5 ? 'gray.200' : 'white'}
               _placeholder={{ fontSize: 'sm' }}
@@ -552,9 +552,9 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
               icon={<FaPaperPlane />}
               size="sm"
               borderRadius="full"
-              bg="#d4af37"
+              bg="#0693e3"
               color="white"
-              _hover={{ bg: '#b8941f' }}
+              _hover={{ bg: '#0570b0' }}
               _active={{ transform: 'scale(0.95)' }}
               onClick={sendMessage}
               isLoading={isTyping}
@@ -564,8 +564,8 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
           </HStack>
 
           {/* Link para WhatsApp - MANTENDO O MESMO LAYOUT */}
-          <Box p={2} bg="green.50" borderTop="1px" borderColor="green.200" textAlign="center">
-            <Text fontSize="xs" color="green.700">
+          <Box p={2} bg="accent.50" borderTop="1px" borderColor="accent.200" textAlign="center">
+            <Text fontSize="xs" color="brand.800">
               Para agendamentos:{' '}
               <Button
                 as="a"
@@ -574,7 +574,7 @@ IMPORTANTE: Se você já mencionou alguma curiosidade sobre o Dr. Massuca no his
                 rel="noopener noreferrer"
                 size="xs"
                 variant="link"
-                color="green.600"
+                color="accent.500"
                 fontWeight="bold"
               >
                 WhatsApp (62) 99660-2117

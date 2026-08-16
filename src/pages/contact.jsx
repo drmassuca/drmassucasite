@@ -76,8 +76,8 @@ function Contact() {
             size="lg"
             mb={6}
             textAlign="center"
-            color="green.700"
-            textShadow="1px 1px 2px rgba(0,0,0,0.5)"
+            color="brand.800"
+
           >
             Informações de Contato
           </Heading>
@@ -89,14 +89,13 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 Telefone Fixo
               </Heading>
               <Text fontSize="lg">
-                <Icon as={FaPhone} mr={2} color="green.600" />
-                <Link href="tel:+556233752614" color="green.700" fontWeight="bold">
+                <Icon as={FaPhone} mr={2} color="accent.500" />
+                <Link href="tel:+556233752614" color="brand.800" fontWeight="bold">
                   (62) 3375-2614
                 </Link>
               </Text>
@@ -108,18 +107,17 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 WhatsApp
               </Heading>
               <Text fontSize="lg">
-                <Icon as={FaWhatsapp} mr={2} color="green.600" />
+                <Icon as={FaWhatsapp} mr={2} color="accent.500" />
                 <Link
                   href="https://wa.me/5562996602117"
                   target="_blank"
                   rel="noopener noreferrer"
-                  color="green.700"
+                  color="brand.800"
                   fontWeight="bold"
                 >
                   (62) 99660-2117
@@ -133,14 +131,13 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 E-mail
               </Heading>
               <Text fontSize="lg">
-                <Icon as={FaEnvelope} mr={2} color="green.600" />
-                <Link href="mailto:drmassucatti@gmail.com" color="green.700" fontWeight="bold">
+                <Icon as={FaEnvelope} mr={2} color="accent.500" />
+                <Link href="mailto:drmassucatti@gmail.com" color="brand.800" fontWeight="bold">
                   drmassucatti@gmail.com
                 </Link>
               </Text>
@@ -152,21 +149,20 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 Localização
               </Heading>
               <Link
                 href="https://maps.app.goo.gl/yERHkLaxiicVrKH27"
                 isExternal
-                color="green.700"
+                color="brand.800"
                 fontWeight="bold"
                 display="flex"
                 alignItems="center"
                 fontSize="lg"
               >
-                <Icon as={FaMapMarkerAlt} mr={2} color="green.600" />
+                <Icon as={FaMapMarkerAlt} mr={2} color="accent.500" />
                 Rua 19, Qd. 33, Lt. 01 – Vila Leonor – Itaberaí – GO
               </Link>
             </Box>
@@ -177,13 +173,12 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 Instagram
               </Heading>
               <Text fontSize="lg">
-                <Icon as={FaInstagram} mr={2} color="green.600" />
+                <Icon as={FaInstagram} mr={2} color="accent.500" />
                 <Link
                   href="https://instagram.com/drmassuca"
                   target="_blank"
@@ -203,22 +198,21 @@ function Contact() {
                 as="h2"
                 size="md"
                 mb={2}
-                color="green.700"
-                textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+                color="brand.800"
               >
                 Horário de Funcionamento
               </Heading>
               <List spacing={1}>
                 <ListItem>
-                  <ListIcon as={FaClock} color="green.600" />
+                  <ListIcon as={FaClock} color="accent.500" />
                   Segunda a Sexta: 7h – 18h
                 </ListItem>
                 <ListItem>
-                  <ListIcon as={FaClock} color="green.600" />
+                  <ListIcon as={FaClock} color="accent.500" />
                   Sábado: 8h – 12h
                 </ListItem>
                 <ListItem>
-                  <ListIcon as={FaClock} color="green.600" />
+                  <ListIcon as={FaClock} color="accent.500" />
                   Domingo: Fechado
                 </ListItem>
               </List>
@@ -232,12 +226,12 @@ function Contact() {
               href="https://wa.me/5562996602117"
               target="_blank"
               rel="noopener noreferrer"
-              bg="green.700"
+              bg="accent.500"
               color="white"
               px={{ base: 6, md: 8 }}
               py={{ base: 4, md: 5 }}
               borderRadius="full"
-              _hover={{ bg: 'green.800', transform: 'scale(1.05)' }}
+              _hover={{ bg: 'accent.600', transform: 'scale(1.05)' }}
               boxShadow="lg"
               fontSize="lg"
               fontWeight="bold"
@@ -254,9 +248,9 @@ function Contact() {
                 as="a"
                 href="/para-medicos"
                 variant="outline"
-                borderColor="#d4af37"
-                color="#d4af37"
-                _hover={{ bg: '#d4af37', color: 'white', transform: 'scale(1.05)' }}
+                borderColor="#0693e3"
+                color="#0693e3"
+                _hover={{ bg: '#0693e3', color: 'white', transform: 'scale(1.05)' }}
                 borderRadius="full"
                 px={6}
                 py={3}

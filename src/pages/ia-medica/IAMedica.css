@@ -1,7 +1,7 @@
 /* IA Médica - Estilos CSS */
 .ia-medica-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0693e3 0%, #0d3b66 100%);
   position: relative;
   overflow-x: hidden;
 }
@@ -51,7 +51,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #00f5ff 0%, #9370db 50%, #ff6b9d 100%);
+  background: linear-gradient(135deg, #00f5ff 0%, #3db4f2 50%, #ff6b9d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -128,7 +128,7 @@
 }
 
 .search-input:focus {
-  border-color: #667eea;
+  border-color: #0693e3;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -154,15 +154,15 @@
 }
 
 .category-btn:hover {
-  background: #667eea;
+  background: #0693e3;
   color: white;
-  border-color: #667eea;
+  border-color: #0693e3;
 }
 
 .category-btn.active {
-  background: #667eea;
+  background: #0693e3;
   color: white;
-  border-color: #667eea;
+  border-color: #0693e3;
 }
 
 .category-icon {
@@ -192,7 +192,7 @@
 .title-icon {
   width: 32px;
   height: 32px;
-  color: #667eea;
+  color: #0693e3;
 }
 
 .featured-grid {
@@ -241,7 +241,7 @@
   top: 16px;
   right: 16px;
   background: rgba(255, 255, 255, 0.95);
-  color: #667eea;
+  color: #0693e3;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -367,7 +367,7 @@
 }
 
 .article-card:hover {
-  border-color: #667eea;
+  border-color: #0693e3;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
 }
@@ -380,7 +380,7 @@
 }
 
 .article-category {
-  background: #667eea;
+  background: #0693e3;
   color: white;
   padding: 4px 12px;
   border-radius: 12px;
@@ -434,7 +434,7 @@
 }
 
 .read-more-btn {
-  background: #667eea;
+  background: #0693e3;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -445,7 +445,7 @@
 }
 
 .read-more-btn:hover {
-  background: #5a6fd8;
+  background: #0570b0;
   transform: translateX(3px);
 }
 
@@ -471,7 +471,7 @@
 
 /* Upcoming Content Section */
 .upcoming-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #0693e3 0%, #0d3b66 100%);
   padding: 60px 20px;
   text-align: center;
 }

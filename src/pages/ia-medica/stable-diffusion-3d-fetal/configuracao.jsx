@@ -260,7 +260,7 @@ const ConfigurationPage = () => {
 
                 <Card variant="outline">
                   <CardHeader pb={2}>
-                    <Heading size="md" color="#0f3d2e">
+                    <Heading size="md" color="#0a2540">
                       ControlNet Unit 1
                     </Heading>
                   </CardHeader>
@@ -297,10 +297,10 @@ const ConfigurationPage = () => {
           <CardBody>
             <VStack spacing={6} align="stretch">
               <Box>
-                <Text fontWeight="semibold" mb={2} color="green.600">
+                <Text fontWeight="semibold" mb={2} color="accent.500">
                   ✅ Prompt Positivo (Copie exatamente)
                 </Text>
-                <Code display="block" p={4} bg="green.50" borderRadius="md" whiteSpace="pre-wrap">
+                <Code display="block" p={4} bg="accent.50" borderRadius="md" whiteSpace="pre-wrap">
                   Hyper-realistic 3D ultrasound baby face enhancement, preserve anatomical accuracy,
                   soft natural skin texture, gentle warm lighting, cinematic depth, clean shading,
                   realistic proportions

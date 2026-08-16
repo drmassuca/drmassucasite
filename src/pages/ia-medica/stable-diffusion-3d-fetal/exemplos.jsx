@@ -181,7 +181,7 @@ const ExamplesPage = () => {
 
                     {/* After Image */}
                     <Box w="full">
-                      <Text fontWeight="semibold" mb={2} color="green.600">
+                      <Text fontWeight="semibold" mb={2} color="accent.500">
                         ✅ DEPOIS (Com Enhancement)
                       </Text>
                       <AspectRatio ratio={1} w="full">
@@ -189,9 +189,9 @@ const ExamplesPage = () => {
                           borderRadius="md"
                           overflow="hidden"
                           border="2px solid"
-                          borderColor="green.200"
+                          borderColor="accent.200"
                           cursor="pointer"
-                          _hover={{ borderColor: 'green.400' }}
+                          _hover={{ borderColor: 'accent.400' }}
                           onClick={() => openImageModal(example.after, `${example.title} - Depois`)}
                         >
                           <Image
@@ -275,7 +275,7 @@ const ExamplesPage = () => {
               </Box>
 
               <Box>
-                <Heading size="md" mb={3} color="green.600">
+                <Heading size="md" mb={3} color="accent.500">
                   Preservação Anatômica
                 </Heading>
                 <VStack align="start" spacing={2}>
@@ -376,7 +376,7 @@ const ExamplesPage = () => {
           <Button
             as={RouterLink}
             to="/ia-medica/stable-diffusion-3d-fetal/problemas"
-            bg="#0f3d2e"
+            bg="#0a2540"
             color="white"
             _hover={{ bg: '#1a5c42' }}
             rightIcon={<Icon as={FaQuestionCircle} />}

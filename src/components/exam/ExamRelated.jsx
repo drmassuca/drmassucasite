@@ -26,13 +26,13 @@ export default function ExamRelated({ slug }) {
             border="1px solid"
             borderColor="gray.200"
             transition="all 0.2s"
-            _hover={{ borderColor: 'green.400', shadow: 'md', transform: 'translateY(-2px)' }}
+            _hover={{ borderColor: 'accent.400', shadow: 'md', transform: 'translateY(-2px)' }}
           >
             <Text fontSize="2xl" mb={2}>
               {icon}
             </Text>
             <LinkOverlay as={RouterLink} to={`/exames/${s}`}>
-              <Text fontWeight="bold" fontSize="lg" color="green.700">
+              <Text fontWeight="bold" fontSize="lg" color="brand.800">
                 {label}
               </Text>
             </LinkOverlay>

@@ -72,19 +72,19 @@ export default function Instalacao() {
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>Windows 10/11 (64-bit)</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>NVIDIA GPU com 6GB+ VRAM (recomendado: RTX 3060 ou superior)</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>16GB+ RAM (recomendado: 32GB)</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>50GB+ espaço livre em disco</Text>
                   </HStack>
                 </VStack>
@@ -96,21 +96,21 @@ export default function Instalacao() {
               <Box>
                 <HStack mb={3}>
                   <Icon as={FaLinux} color="#fcc624" boxSize={6} />
-                  <Heading size="md" color="#0f3d2e">
+                  <Heading size="md" color="#0a2540">
                     Linux
                   </Heading>
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>Ubuntu 20.04+ ou distribuição compatível</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>NVIDIA GPU com drivers CUDA instalados</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>Python 3.8+ e pip instalados</Text>
                   </HStack>
                 </VStack>
@@ -122,17 +122,17 @@ export default function Instalacao() {
               <Box>
                 <HStack mb={3}>
                   <Icon as={FaApple} color="#000000" boxSize={6} />
-                  <Heading size="md" color="#0f3d2e">
+                  <Heading size="md" color="#0a2540">
                     macOS
                   </Heading>
                 </HStack>
                 <VStack align="stretch" spacing={2} pl={8}>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>macOS 12.0+ com Apple Silicon (M1/M2)</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FaCheckCircle} color="green.500" boxSize={4} />
+                    <Icon as={FaCheckCircle} color="accent.500" boxSize={4} />
                     <Text>16GB+ Unified Memory</Text>
                   </HStack>
                   <HStack>
@@ -148,7 +148,7 @@ export default function Instalacao() {
         {/* Instalação Passo a Passo */}
         <Card bg="rgba(255,255,255,0.95)" borderRadius="2xl" mb={8} boxShadow="xl">
           <CardHeader>
-            <Heading size="lg" color="#0f3d2e">
+            <Heading size="lg" color="#0a2540">
               🚀 Instalação Passo a Passo
             </Heading>
           </CardHeader>
@@ -188,7 +188,7 @@ export default function Instalacao() {
 
                 <ListItem>
                   <VStack align="stretch" spacing={3}>
-                    <Text fontWeight="bold" color="#0f3d2e">
+                    <Text fontWeight="bold" color="#0a2540">
                       2. Instalar Git
                     </Text>
                     <Text color="gray.600">Download do Git para Windows:</Text>
@@ -200,7 +200,7 @@ export default function Instalacao() {
 
                 <ListItem>
                   <VStack align="stretch" spacing={3}>
-                    <Text fontWeight="bold" color="#0f3d2e">
+                    <Text fontWeight="bold" color="#0a2540">
                       3. Baixar Stable Diffusion WebUI
                     </Text>
                     <Text color="gray.600">Abra o terminal/prompt de comando e execute:</Text>
@@ -213,7 +213,7 @@ cd stable-diffusion-webui`}
 
                 <ListItem>
                   <VStack align="stretch" spacing={3}>
-                    <Text fontWeight="bold" color="#0f3d2e">
+                    <Text fontWeight="bold" color="#0a2540">
                       4. Primeira Execução
                     </Text>
                     <Text color="gray.600">
@@ -234,7 +234,7 @@ cd stable-diffusion-webui`}
 
                 <ListItem>
                   <VStack align="stretch" spacing={3}>
-                    <Text fontWeight="bold" color="#0f3d2e">
+                    <Text fontWeight="bold" color="#0a2540">
                       5. Acessar a Interface
                     </Text>
                     <Text color="gray.600">Após a instalação, abra seu navegador e acesse:</Text>
@@ -242,8 +242,8 @@ cd stable-diffusion-webui`}
                       http://localhost:7860
                     </Code>
                     <HStack>
-                      <Icon as={FaCheckCircle} color="green.500" />
-                      <Text color="green.600" fontWeight="bold">
+                      <Icon as={FaCheckCircle} color="accent.500" />
+                      <Text color="accent.500" fontWeight="bold">
                         Se ver a interface web, a instalação foi bem-sucedida!
                       </Text>
                     </HStack>
@@ -257,7 +257,7 @@ cd stable-diffusion-webui`}
         {/* Problemas Comuns */}
         <Card bg="rgba(255,255,255,0.95)" borderRadius="2xl" mb={8} boxShadow="xl">
           <CardHeader>
-            <Heading size="lg" color="#0f3d2e">
+            <Heading size="lg" color="#0a2540">
               ⚠️ Problemas Comuns
             </Heading>
           </CardHeader>
@@ -276,7 +276,7 @@ cd stable-diffusion-webui`}
               <Divider />
 
               <Box>
-                <Text fontWeight="bold" color="#0f3d2e" mb={2}>
+                <Text fontWeight="bold" color="#0a2540" mb={2}>
                   Erro: &ldquo;CUDA out of memory&rdquo;
                 </Text>
                 <Text color="gray.600" mb={2}>
@@ -290,7 +290,7 @@ cd stable-diffusion-webui`}
               <Divider />
 
               <Box>
-                <Text fontWeight="bold" color="#0f3d2e" mb={2}>
+                <Text fontWeight="bold" color="#0a2540" mb={2}>
                   Interface web não carrega
                 </Text>
                 <Text color="gray.600" mb={2}>

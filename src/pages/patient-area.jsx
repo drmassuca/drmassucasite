@@ -98,8 +98,7 @@ function PatientArea() {
             size="lg"
             mb={6}
             textAlign="center"
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             👩‍⚕️ Área do Paciente
           </Heading>
@@ -115,8 +114,7 @@ function PatientArea() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             🗒️ Orientações Pré-Exame
           </Heading>
@@ -152,7 +150,7 @@ function PatientArea() {
               },
             ].map(({ name, info }) => (
               <ListItem key={name}>
-                <ListIcon as={FaCheckCircle} color="green.600" />
+                <ListIcon as={FaCheckCircle} color="accent.500" />
                 <Text as="span" fontWeight="bold">
                   {name}
                 </Text>{' '}
@@ -166,8 +164,7 @@ function PatientArea() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             📄 Retirada dos Resultados
           </Heading>
@@ -188,8 +185,7 @@ function PatientArea() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             ❓ Dúvidas Frequentes
           </Heading>
@@ -197,7 +193,7 @@ function PatientArea() {
             {faqs.map(({ q, a }) => (
               <AccordionItem key={q} border="none">
                 <h2>
-                  <AccordionButton _expanded={{ bg: 'green.50' }}>
+                  <AccordionButton _expanded={{ bg: 'accent.50' }}>
                     <Box flex="1" textAlign="left" fontWeight="medium">
                       {q}
                     </Box>
@@ -216,8 +212,7 @@ function PatientArea() {
             as="h2"
             size="md"
             mb={4}
-            color="green.700"
-            textShadow="1px 1px 1px rgba(0,0,0,0.4)"
+            color="brand.800"
           >
             📲 Fale Conosco
           </Heading>
@@ -231,9 +226,9 @@ function PatientArea() {
               target="_blank"
               rel="noopener noreferrer"
               leftIcon={<FaWhatsapp />}
-              bg="green.700"
+              bg="accent.500"
               color="white"
-              _hover={{ bg: 'green.800' }}
+              _hover={{ bg: 'accent.600' }}
               px={{ base: 4, md: 6 }}
               py={{ base: 3, md: 4 }}
               fontSize={{ base: 'sm', md: 'md' }}

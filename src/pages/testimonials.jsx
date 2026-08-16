@@ -76,7 +76,7 @@ function Testimonials() {
 
       <Box maxW="1200px" mx="auto" px={4} py={10}>
         <Box bg="whiteAlpha.900" borderRadius="lg" p={{ base: 6, md: 10 }} boxShadow="lg">
-          <Heading as="h1" size="lg" mb={8} textAlign="center" color="green.700">
+          <Heading as="h1" size="lg" mb={8} textAlign="center" color="brand.800">
             Depoimentos dos nossos pacientes 💚
           </Heading>
 
@@ -161,10 +161,10 @@ function Testimonials() {
                   href="https://wa.me/5562996602117"
                   isExternal
                   leftIcon={<FaWhatsapp />}
-                  bg="green.700"
+                  bg="accent.500"
                   color="white"
                   fontWeight="bold"
-                  _hover={{ bg: 'green.800' }}
+                  _hover={{ bg: 'accent.600' }}
                   size="lg"
                 >
                   Entre em Contato

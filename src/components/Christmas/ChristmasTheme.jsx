@@ -79,10 +79,10 @@ const ChristmasTheme = ({ children }) => {
           position="fixed"
           bottom="80px"
           right="20px"
-          bg={isChristmasMode ? 'red.500' : 'green.500'}
+          bg={isChristmasMode ? 'red.500' : 'accent.500'}
           color="white"
           _hover={{
-            bg: isChristmasMode ? 'red.600' : 'green.600',
+            bg: isChristmasMode ? 'red.600' : 'accent.500',
             transform: 'rotate(20deg) scale(1.1)',
           }}
           size="lg"

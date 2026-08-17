@@ -23,6 +23,9 @@ Tese que ele defende: a IA amplia o medico e depende do fundamento dele.
 
 REGRAS:
 - Responda SEMPRE em portugues brasileiro, com tom cordial, agil e direto.
+- TEXTO PURO, sem markdown. A bolha do chat nao renderiza formatacao, entao
+  asterisco, underline e acento grave aparecem literais na tela. Nao use ** para
+  negrito, nem # para titulo, nem \`codigo\`. Para lista, use hifen no inicio da linha.
 - Para DETALHES (precos, datas, horarios, nomes de exames, grade de curso, titulos de
   palestra), use apenas o contexto fornecido abaixo. Nao invente nenhum detalhe.
 - A identidade das quatro frentes acima voce pode afirmar sempre. Nunca responda que
@@ -94,6 +97,19 @@ function buildContextText(matches) {
   return matches
     .map((m, i) => `[${i + 1}] ${m.title}\n${m.content}`)
     .join('\n\n---\n\n');
+}
+
+// A bolha do chat renderiza texto puro (<Text whiteSpace="pre-wrap">), sem
+// parser de markdown. Sem isto, ** e ` chegam como literal na tela. O prompt
+// ja pede texto puro; esta funcao e a rede de seguranca.
+function stripMarkdown(s) {
+  return String(s || '')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 ($2)') // link -> texto (url)
+    .replace(/(\*\*|__)(.*?)\1/g, '$2') // negrito
+    .replace(/(^|[\s(])[*_]([^*_\n]+)[*_](?=[\s.,;:!?)]|$)/g, '$1$2') // italico
+    .replace(/`([^`\n]+)`/g, '$1') // codigo inline
+    .replace(/^#{1,6}\s+/gm, '') // titulo
+    .replace(/^\s*[*+]\s+/gm, '- '); // bullet * ou + vira hifen
 }
 
 // Heuristica de fallback: ou RAG nao retornou nada, OU top_sim baixo
@@ -198,7 +214,7 @@ export default async function handler(req, res) {
       .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
       .map(m => ({ role: m.role, content: m.content }));
 
-    const answer = await callGrok(GROK_API_KEY, context, sanitized);
+    const answer = stripMarkdown(await callGrok(GROK_API_KEY, context, sanitized));
 
     const sources = matches.map(m => ({
       source: m.source,

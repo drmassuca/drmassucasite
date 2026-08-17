@@ -28,12 +28,13 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
  * A parte clínica inteira vive sob "Consultório"; as camadas novas
  * (Xdiag, Curso, Palestras, Blog) ficam no nível de cima.
  */
+// Ultrassom 3D e Para Médicos ficam de fora: já são alcançados de dentro
+// de /exames e /contato, respectivamente. As rotas seguem em
+// CONSULTORIO_PREFIXES para acender o item quando o usuário chega nelas.
 const consultorioItems = [
   { name: 'Exames de Ultrassom', path: '/exames' },
-  { name: 'Ultrassom 3D', path: '/ultrassom-3d' },
   { name: 'Memo3D', path: '/memo3d' },
   { name: 'Área do Paciente', path: '/area-do-paciente' },
-  { name: 'Para Médicos', path: '/para-medicos' },
   { name: 'Depoimentos', path: '/depoimentos' },
   { name: 'FAQ', path: '/faq' },
   { name: 'Contato e Agendamento', path: '/contato' },

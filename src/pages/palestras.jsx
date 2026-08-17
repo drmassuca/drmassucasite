@@ -9,6 +9,8 @@ import {
   SimpleGrid,
   VStack,
   HStack,
+  Stack,
+  Link,
   Input,
   Textarea,
   FormControl,
@@ -51,28 +53,53 @@ const TEMAS = [
 ];
 
 /**
- * AGENDA: próximas palestras confirmadas.
- * Campos data/tema podem ficar como "a confirmar" até os detalhes
- * oficiais chegarem; basta preencher aqui que a página atualiza.
+ * AGENDA: próximas palestras.
+ *
+ * `palestras` lista os slots já confirmados pela organização (horário e
+ * título oficiais). Quando a grade ainda não saiu, usar `nota` no lugar,
+ * para a página não anunciar título que o evento ainda não confirmou.
+ *
+ * Só entra aqui informação pública do evento. Logística de viagem,
+ * material em preparo e conversas com a organização ficam fora.
  */
 const AGENDA = [
   {
-    data: '22 de agosto de 2026',
-    nome: 'Congresso Regional SBUS',
-    local: 'Montes Claros, MG',
-    detalhe: 'Sociedade Brasileira de Ultrassonografia, edição regional.',
+    dia: '22',
+    mes: 'AGO',
+    ano: '2026',
+    data: 'Sábado, 22 de agosto de 2026',
+    nome: 'XI Jornada Mineira de Ultrassonografia da AMUS',
+    local: 'Clínica Lifescan',
+    endereco: 'Av. Dr. José Corrêa Machado, 1.070, Jardim São Luiz',
+    cidade: 'Montes Claros, MG',
+    link: 'https://sbus.org.br/eventos/xi-jornada-mineira/',
+    palestras: [
+      { horario: '08h40', titulo: 'Introdução à Inteligência Artificial na medicina' },
+      { horario: '14h00', titulo: 'IA na prática: do aparelho ao laudo' },
+    ],
   },
   {
-    data: 'Setembro de 2026 (data a confirmar)',
-    nome: 'CBIAS 2026',
-    local: 'A confirmar',
-    detalhe: 'Congresso Brasileiro de Inteligência Artificial na Saúde.',
+    dia: '17 a 19',
+    mes: 'SET',
+    ano: '2026',
+    data: 'De 17 a 19 de setembro de 2026',
+    nome: '2º CBIAS, Congresso Brasileiro de Inteligência Artificial na Saúde',
+    local: 'Centro de Eventos de Chapecó',
+    cidade: 'Chapecó, SC',
+    link: 'https://cbias.com.br/',
+    nota: 'Título e horário da palestra a confirmar com a organização.',
   },
   {
-    data: 'Outubro de 2026 (data a confirmar)',
-    nome: 'SBUS Brasil 2026',
-    local: 'São Paulo, SP',
-    detalhe: 'Congresso nacional da Sociedade Brasileira de Ultrassonografia.',
+    dia: '14 a 17',
+    mes: 'OUT',
+    ano: '2026',
+    data: 'De 14 a 17 de outubro de 2026',
+    nome: '30º Congresso Brasileiro de Ultrassonografia da SBUS',
+    local: 'Centro de Convenções Frei Caneca',
+    endereco: 'Rua Frei Caneca, 569',
+    cidade: 'São Paulo, SP',
+    link: 'https://sbus.org.br/eventos/30o-congresso-brasileiro-de-ultrassonografia-da-sbus/',
+    nota: 'Tema previsto: a Resolução CFM 2.454, legislação e ética no uso da IA em medicina. Programação do congresso a ser divulgada.',
   },
 ];
 
@@ -137,15 +164,57 @@ function Palestras() {
               },
               {
                 '@type': 'Event',
-                name: 'Congresso Regional SBUS 2026',
+                name: 'XI Jornada Mineira de Ultrassonografia da AMUS',
                 startDate: '2026-08-22',
+                endDate: '2026-08-22',
+                url: 'https://sbus.org.br/eventos/xi-jornada-mineira/',
+                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
                 location: {
                   '@type': 'Place',
-                  name: 'Montes Claros',
+                  name: 'Clínica Lifescan',
                   address: {
                     '@type': 'PostalAddress',
+                    streetAddress: 'Av. Dr. José Corrêa Machado, 1.070, Jardim São Luiz',
                     addressLocality: 'Montes Claros',
                     addressRegion: 'MG',
+                    addressCountry: 'BR',
+                  },
+                },
+                performer: { '@id': 'https://drmassuca.com.br/#person' },
+                eventStatus: 'https://schema.org/EventScheduled',
+                subEvent: [
+                  {
+                    '@type': 'Event',
+                    name: 'Introdução à Inteligência Artificial na medicina',
+                    startDate: '2026-08-22T08:40:00-03:00',
+                    endDate: '2026-08-22T09:10:00-03:00',
+                    performer: { '@id': 'https://drmassuca.com.br/#person' },
+                    eventStatus: 'https://schema.org/EventScheduled',
+                  },
+                  {
+                    '@type': 'Event',
+                    name: 'IA na prática: do aparelho ao laudo',
+                    startDate: '2026-08-22T14:00:00-03:00',
+                    endDate: '2026-08-22T14:30:00-03:00',
+                    performer: { '@id': 'https://drmassuca.com.br/#person' },
+                    eventStatus: 'https://schema.org/EventScheduled',
+                  },
+                ],
+              },
+              {
+                '@type': 'Event',
+                name: '2º CBIAS, Congresso Brasileiro de Inteligência Artificial na Saúde',
+                startDate: '2026-09-17',
+                endDate: '2026-09-19',
+                url: 'https://cbias.com.br/',
+                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+                location: {
+                  '@type': 'Place',
+                  name: 'Centro de Eventos de Chapecó',
+                  address: {
+                    '@type': 'PostalAddress',
+                    addressLocality: 'Chapecó',
+                    addressRegion: 'SC',
                     addressCountry: 'BR',
                   },
                 },
@@ -154,20 +223,17 @@ function Palestras() {
               },
               {
                 '@type': 'Event',
-                name: 'CBIAS 2026 (Congresso Brasileiro de Inteligência Artificial na Saúde)',
-                startDate: '2026-09',
-                performer: { '@id': 'https://drmassuca.com.br/#person' },
-                eventStatus: 'https://schema.org/EventScheduled',
-              },
-              {
-                '@type': 'Event',
-                name: 'SBUS Brasil 2026',
-                startDate: '2026-10',
+                name: '30º Congresso Brasileiro de Ultrassonografia da SBUS',
+                startDate: '2026-10-14',
+                endDate: '2026-10-17',
+                url: 'https://sbus.org.br/eventos/30o-congresso-brasileiro-de-ultrassonografia-da-sbus/',
+                eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
                 location: {
                   '@type': 'Place',
-                  name: 'São Paulo',
+                  name: 'Centro de Convenções Frei Caneca',
                   address: {
                     '@type': 'PostalAddress',
+                    streetAddress: 'Rua Frei Caneca, 569',
                     addressLocality: 'São Paulo',
                     addressRegion: 'SP',
                     addressCountry: 'BR',
@@ -240,8 +306,9 @@ function Palestras() {
         </Heading>
         <VStack align="stretch" spacing={4} mb={14}>
           {AGENDA.map(evento => (
-            <HStack
+            <Stack
               key={evento.nome}
+              direction={{ base: 'column', sm: 'row' }}
               bg="var(--brand-accent-soft)"
               border="1px solid"
               borderColor="accent.200"
@@ -255,21 +322,67 @@ function Palestras() {
                 color="white"
                 borderRadius="10px"
                 px={3}
-                py={2}
-                minW="130px"
+                py={3}
+                minW="92px"
                 textAlign="center"
+                flexShrink={0}
               >
-                <Text fontSize="xs" fontWeight={700} lineHeight="1.3">
-                  {evento.data}
+                <Text fontSize="xl" fontWeight={700} lineHeight="1.1">
+                  {evento.dia}
+                </Text>
+                <Text fontSize="xs" fontWeight={700} letterSpacing="0.12em">
+                  {evento.mes}
+                </Text>
+                <Text fontSize="xs" color="whiteAlpha.800">
+                  {evento.ano}
                 </Text>
               </Box>
-              <Box>
+
+              <Box flex="1">
                 <Text fontWeight={600}>{evento.nome}</Text>
-                <Text fontSize="sm" color="var(--brand-muted)">
-                  {evento.local} · {evento.detalhe}
+                <Text fontSize="sm" color="var(--brand-muted)" mb={evento.palestras ? 3 : 0}>
+                  {evento.data} · {evento.local}
+                  {evento.endereco ? `, ${evento.endereco}` : ''} · {evento.cidade}
                 </Text>
+
+                {evento.palestras && (
+                  <VStack align="stretch" spacing={1.5} mb={3}>
+                    {evento.palestras.map(p => (
+                      <HStack key={p.titulo} align="start" spacing={3}>
+                        <Text
+                          fontSize="sm"
+                          fontWeight={700}
+                          color="accent.600"
+                          minW="46px"
+                          flexShrink={0}
+                        >
+                          {p.horario}
+                        </Text>
+                        <Text fontSize="sm" color="var(--brand-text-soft)">
+                          {p.titulo}
+                        </Text>
+                      </HStack>
+                    ))}
+                  </VStack>
+                )}
+
+                {evento.nota && (
+                  <Text fontSize="sm" color="var(--brand-text-soft)" fontStyle="italic" mb={3}>
+                    {evento.nota}
+                  </Text>
+                )}
+
+                <Link
+                  href={evento.link}
+                  isExternal
+                  fontSize="sm"
+                  fontWeight={600}
+                  color="accent.600"
+                >
+                  Página oficial do evento
+                </Link>
               </Box>
-            </HStack>
+            </Stack>
           ))}
         </VStack>
 

@@ -108,74 +108,27 @@ function Home() {
         type="website"
       />
 
-      {/* Schema.org: WebSite + MedicalBusiness + Person das quatro camadas */}
+      {/*
+        Schema.org da home. WebSite, Person e o consultório NÃO ficam aqui:
+        moraram para o @graph estático do index.html, que vale para o site
+        inteiro e chega a crawler que não executa JavaScript. Aqui fica só
+        o que é específico desta página, referenciando os ids globais.
+      */}
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
             '@graph': [
               {
-                '@type': 'WebSite',
-                '@id': 'https://drmassuca.com.br/#website',
-                name: 'Dr. Massuca | Ultrassonografia e IA na Medicina',
+                '@type': 'WebPage',
+                '@id': 'https://drmassuca.com.br/#webpage',
                 url: 'https://drmassuca.com.br/',
+                name: 'Dr. Massuca | Ultrassonografia e IA na Medicina',
                 description:
-                  'Site do Dr. Antonio Massucatti Neto: ultrassonografia em Itaberaí-GO, curso Medicina com IA, produtos Xdiag e palestras sobre IA na medicina.',
-              },
-              {
-                '@type': 'Person',
-                '@id': 'https://drmassuca.com.br/#person',
-                name: 'Dr. Antonio Massucatti Neto',
-                alternateName: 'Dr. Massuca',
-                identifier: 'CRM-GO 17475',
-                url: 'https://drmassuca.com.br/sobre',
-                image: 'https://drmassuca.com.br/foto-home.webp',
-                jobTitle: 'Médico ultrassonografista',
-                description:
-                  'Médico ultrassonografista com mais de 20 anos de experiência, pós-graduado em ultrassonografia geral e ecocardiografia fetal. Educador médico, fundador e CEO da Xdiag Tecnologias e palestrante sobre inteligência artificial aplicada à medicina.',
-                hasOccupation: [
-                  { '@type': 'Occupation', name: 'Médico ultrassonografista' },
-                  { '@type': 'Occupation', name: 'Educador médico' },
-                  { '@type': 'Occupation', name: 'Criador de produtos de IA médica' },
-                  { '@type': 'Occupation', name: 'Palestrante' },
-                ],
-                worksFor: {
-                  '@type': 'Organization',
-                  name: 'Xdiag Tecnologias',
-                  url: 'https://xdiag.com.br',
-                },
-                knowsAbout: [
-                  'Ultrassonografia',
-                  'Ecocardiografia fetal',
-                  'Elastografia hepática',
-                  'Inteligência artificial na medicina',
-                  'Educação médica',
-                ],
-                sameAs: [
-                  'https://instagram.com/drmassuca',
-                  'https://x.com/massucas',
-                  'https://xdiag.com.br',
-                ],
-              },
-              {
-                '@type': 'MedicalBusiness',
-                '@id': 'https://drmassuca.com.br/#medicalbusiness',
-                name: 'Dr. Massuca Ultrassom',
-                url: 'https://drmassuca.com.br/consultorio',
-                telephone: '+55-62-99660-2117',
-                medicalSpecialty: ['Ultrassom', 'Medicina Fetal', 'Ecocardiografia Fetal'],
-                address: {
-                  '@type': 'PostalAddress',
-                  streetAddress: 'Rua 19, Qd. 33, Lt. 01, Vila Leonor',
-                  addressLocality: 'Itaberaí',
-                  addressRegion: 'GO',
-                  postalCode: '76630-000',
-                  addressCountry: 'BR',
-                },
-                geo: { '@type': 'GeoCoordinates', latitude: -15.95, longitude: -49.95 },
-                founder: { '@id': 'https://drmassuca.com.br/#person' },
-                openingHours: ['Mo-Fr 08:00-18:00', 'Sa 08:00-12:00'],
-                priceRange: '$$',
+                  'Médico ultrassonografista em Itaberaí-GO, fundador da Xdiag Tecnologias, professor do curso Medicina com IA e palestrante sobre inteligência artificial na medicina.',
+                isPartOf: { '@id': 'https://drmassuca.com.br/#website' },
+                about: { '@id': 'https://drmassuca.com.br/#person' },
+                primaryImageOfPage: 'https://drmassuca.com.br/foto-home.webp',
               },
               {
                 '@type': 'FAQPage',

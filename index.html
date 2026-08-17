@@ -210,36 +210,102 @@
       };
     </script>
 
-    <!-- Dados estruturados Schema.org -->
+    <!-- Dados estruturados Schema.org: grafo de identidade do site.
+         Mora aqui, estatico, por dois motivos:
+         1) Crawler que nao executa JavaScript (GPTBot, ClaudeBot,
+            PerplexityBot) le so o HTML servido. O prerender grava
+            apenas tags de <head>, entao o que estiver em <Helmet>
+            nao chega a eles. Isto chega.
+         2) Todas as paginas referenciam #person como performer/author.
+            Definido aqui, o id resolve em qualquer pagina.
+         A identidade do site e uma PESSOA com quatro frentes. O
+         consultorio (#clinic) e um no do grafo, algo que ela dirige,
+         nao a identidade do site. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "MedicalClinic",
-        "name": "Dr. Massuca - Ultrassonografia",
-        "description": "Ultrassom em Itaberaí-GO. Dr. Massuca, ultrassonografia obstétrica, geral e ecocardiografia fetal.",
-        "image": "https://drmassuca.com.br/logo-pe.webp",
-        "url": "https://drmassuca.com.br",
-        "telephone": "+55-62-99660-2117",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rua 19 Qd 33, Lt 01 - Vila Leonor, Itaberaí - GO",
-          "addressLocality": "Itaberaí",
-          "addressRegion": "GO",
-          "postalCode": "76630-000",
-          "addressCountry": "BR"
-        },
-        "openingHoursSpecification": [
+        "@graph": [
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-            "opens": "08:00",
-            "closes": "18:00"
+            "@type": "WebSite",
+            "@id": "https://drmassuca.com.br/#website",
+            "url": "https://drmassuca.com.br/",
+            "name": "Dr. Massuca | Ultrassonografia e IA na Medicina",
+            "description": "Site do Dr. Antonio Massucatti Neto: ultrassonografia em Itaberaí-GO, curso Medicina com IA, produtos Xdiag e palestras sobre inteligência artificial na medicina.",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://drmassuca.com.br/#person" }
           },
           {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "08:00",
-            "closes": "12:00"
+            "@type": "Person",
+            "@id": "https://drmassuca.com.br/#person",
+            "name": "Dr. Antonio Massucatti Neto",
+            "alternateName": "Dr. Massuca",
+            "identifier": "CRM-GO 17475",
+            "url": "https://drmassuca.com.br/sobre",
+            "image": "https://drmassuca.com.br/foto-home.webp",
+            "jobTitle": "Médico ultrassonografista",
+            "description": "Médico ultrassonografista com mais de 20 anos de experiência, pós-graduado em ultrassonografia geral e ecocardiografia fetal. Educador médico, fundador e CEO da Xdiag Tecnologias e palestrante sobre inteligência artificial aplicada à medicina.",
+            "hasOccupation": [
+              { "@type": "Occupation", "name": "Médico ultrassonografista" },
+              { "@type": "Occupation", "name": "Educador médico" },
+              { "@type": "Occupation", "name": "Criador de produtos de IA médica" },
+              { "@type": "Occupation", "name": "Palestrante" }
+            ],
+            "knowsAbout": [
+              "Ultrassonografia",
+              "Ecocardiografia fetal",
+              "Elastografia hepática",
+              "Inteligência artificial na medicina",
+              "Educação médica"
+            ],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Xdiag Tecnologias",
+              "url": "https://xdiag.com.br"
+            },
+            "sameAs": [
+              "https://instagram.com/drmassuca",
+              "https://x.com/massucas",
+              "https://xdiag.com.br"
+            ]
+          },
+          {
+            "@type": "MedicalClinic",
+            "@id": "https://drmassuca.com.br/#clinic",
+            "name": "Dr. Massuca Ultrassom",
+            "description": "Consultório de ultrassonografia em Itaberaí-GO: ultrassom obstétrico, geral, ecocardiografia fetal e elastografia hepática.",
+            "image": "https://drmassuca.com.br/logo-pe.webp",
+            "url": "https://drmassuca.com.br/consultorio",
+            "telephone": "+55-62-99660-2117",
+            "priceRange": "$$",
+            "medicalSpecialty": ["Ultrassom", "Medicina Fetal", "Ecocardiografia Fetal"],
+            "founder": { "@id": "https://drmassuca.com.br/#person" },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Rua 19, Qd. 33, Lt. 01, Vila Leonor",
+              "addressLocality": "Itaberaí",
+              "addressRegion": "GO",
+              "postalCode": "76630-000",
+              "addressCountry": "BR"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": -15.95,
+              "longitude": -49.95
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "08:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "08:00",
+                "closes": "12:00"
+              }
+            ]
           }
         ]
       }

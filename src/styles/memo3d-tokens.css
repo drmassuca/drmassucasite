@@ -1,27 +1,35 @@
-/* ─── Memo3D · Design tokens (Variação D — handoff-d) ──
-   Sistema de cor "Galeria Premium" com paleta quente, dourado refinado
-   só em filete, verde-floresta como acento dramático (rodapé/CTA).
-   Importado por memo3d-landing.css e paciente.css.
+/* ─── Memo3D · Design tokens ──
+   Alinhado ao reposicionamento 2026: a paleta quente (papel bege,
+   verde-floresta, dourado) foi aposentada em favor do navy + azul da
+   família ICS/Xdiag. Fonte da verdade das cores: src/styles/brand-tokens.css.
+
+   Os nomes --m3d-forest e --m3d-gold foram mantidos de propósito: são
+   usados em ~4 arquivos e renomear tudo agora só aumentaria o diff. Eles
+   passam a designar o papel na composição (acento dramático / filete),
+   não mais a cor literal.
+
+   Importado por memo3d-landing.css, mostruario.css, paciente.css e
+   ultrassom-3d.css — mexer aqui repinta a área Memo3D inteira.
 */
 
 :root {
-  /* Cores — paleta quente */
-  --m3d-bg:          #fbf8f2;             /* papel quente — fundo principal */
-  --m3d-bg-soft:     #f0ebe1;             /* fundo de seção alternada / cards */
-  --m3d-ink:         #2a2820;             /* tinta quente — texto principal */
-  --m3d-text-muted:  #6f6a5e;             /* texto secundário */
-  --m3d-rule:        rgba(42, 40, 32, 0.10); /* divisórias */
-  --m3d-forest:      #0f3d2e;             /* verde-floresta · rodapé · itálicos */
-  --m3d-forest-deep: #0a2b21;             /* hover do forest */
-  --m3d-gold:        #b8923a;             /* dourado refinado — só em filete */
-  --m3d-gold-soft:   #d6c08a;             /* dourado lavado (alt) */
+  /* Cores — paleta navy/azul */
+  --m3d-bg:          #f5f9fd;             /* papel azulado — fundo principal */
+  --m3d-bg-soft:     #e8f4fd;             /* fundo de seção alternada / cards */
+  --m3d-ink:         #0f172a;             /* tinta — texto principal */
+  --m3d-text-muted:  #64748b;             /* texto secundário */
+  --m3d-rule:        rgba(10, 37, 64, 0.12); /* divisórias */
+  --m3d-forest:      #0a2540;             /* navy · rodapé · CTA · itálicos */
+  --m3d-forest-deep: #071a2e;             /* hover do navy */
+  --m3d-gold:        #0693e3;             /* azul de ação — filete e destaque */
+  --m3d-gold-soft:   #3db4f2;             /* azul lavado (alt) */
 
   /* Tipografia */
   --m3d-font-sans:   'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --m3d-font-serif:  'Cormorant Garamond', Georgia, serif;
 
   /* Sombras */
-  --m3d-shadow-card-hover: 0 24px 50px -16px rgba(15, 30, 25, 0.30);
+  --m3d-shadow-card-hover: 0 24px 50px -16px rgba(10, 37, 64, 0.30);
   --m3d-shadow-soft:       0 1px 0 rgba(0, 0, 0, 0.02);
 
   /* Curvas de animação */

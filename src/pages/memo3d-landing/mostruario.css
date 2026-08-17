@@ -12,8 +12,8 @@
   flex-direction: column;
   background: var(--m3d-bg);
   background-image:
-    radial-gradient(circle at 18% 6%, rgba(232, 213, 204, 0.35), transparent 55%),
-    radial-gradient(circle at 88% 60%, rgba(184, 146, 58, 0.06), transparent 55%);
+    radial-gradient(circle at 18% 6%, rgba(6, 147, 227, 0.12), transparent 55%),
+    radial-gradient(circle at 88% 60%, rgba(10, 37, 64, 0.07), transparent 55%);
   color: var(--m3d-ink);
   font-family: var(--m3d-font-sans);
   border-radius: 16px;
@@ -116,7 +116,7 @@
   position: absolute;
   left: 14px;
   bottom: 14px;
-  background: rgba(15, 61, 46, 0.85);
+  background: rgba(10, 37, 64, 0.85);
   color: #fff;
   font-size: 11px;
   letter-spacing: 0.04em;

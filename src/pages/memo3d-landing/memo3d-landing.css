@@ -1,15 +1,15 @@
 @import '../../styles/memo3d-tokens.css';
 
-/* ─── Memo3D · Landing page (Variação D — Galeria Premium) ──
-   Paleta quente, layouts assimétricos editoriais, dourado em filete,
-   verde-floresta como acento (rodapé). Microinterações refinadas.
+/* ─── Memo3D · Landing page (Galeria Premium) ──
+   Layouts assimétricos editoriais, azul em filete, navy como acento
+   (rodapé/CTA). Microinterações refinadas.
 */
 
 .memo3d-landing {
   background: var(--m3d-bg);
   background-image:
-    radial-gradient(circle at 20% 8%, rgba(232, 213, 204, 0.30), transparent 55%),
-    radial-gradient(circle at 85% 55%, rgba(184, 146, 58, 0.05), transparent 55%);
+    radial-gradient(circle at 20% 8%, rgba(6, 147, 227, 0.10), transparent 55%),
+    radial-gradient(circle at 85% 55%, rgba(10, 37, 64, 0.06), transparent 55%);
   color: var(--m3d-ink);
   font-family: var(--m3d-font-sans);
   font-size: 14px;
@@ -100,7 +100,7 @@
 .memo3d-hero-right {
   position: relative;
   overflow: hidden;
-  background: #1a0e08;
+  background: #071a2e;
 }
 
 .memo3d-hero-right img {
@@ -120,7 +120,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 30, 25, 0.55), transparent 40%);
+  background: linear-gradient(to top, rgba(7, 26, 46, 0.55), transparent 40%);
   pointer-events: none;
   z-index: 1;
 }
@@ -201,7 +201,7 @@
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(184, 146, 58, 0.46) 50%,
+    rgba(61, 180, 242, 0.46) 50%,
     transparent 70%
   );
   transform: translateX(-120%);
@@ -398,7 +398,7 @@
   right: 0;
   bottom: 0;
   padding: 40px 22px 22px;
-  background: linear-gradient(to top, rgba(15, 30, 25, 0.85), transparent);
+  background: linear-gradient(to top, rgba(7, 26, 46, 0.85), transparent);
   color: #fff;
   font-size: 13px;
   line-height: 1.5;
@@ -645,11 +645,11 @@
   margin: 0;
 }
 
-/* ─── Forest CTA (full bleed) ─────────────────────────── */
+/* ─── CTA navy full bleed (classes .memo3d-forest-* mantidas) ─── */
 .memo3d-forest-cta {
   padding: 120px 64px;
   background: var(--m3d-forest);
-  color: #f7f3ec;
+  color: #f1f7fd;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -699,7 +699,7 @@
 }
 
 .memo3d-forest-btn {
-  background: #f7f3ec;
+  background: #f1f7fd;
   color: var(--m3d-forest);
   border: none;
   padding: 20px 40px;
@@ -717,8 +717,8 @@
 .memo3d-forest-btn + .memo3d-forest-btn {
   margin-left: 14px;
   background: transparent;
-  color: #f7f3ec;
-  border: 1px solid rgba(247, 243, 236, 0.4);
+  color: #f1f7fd;
+  border: 1px solid rgba(241, 247, 253, 0.4);
 }
 
 .memo3d-forest-btn:hover {
@@ -728,7 +728,7 @@
 .memo3d-forest-cta-meta {
   margin-top: 64px;
   padding-top: 32px;
-  border-top: 1px solid rgba(247, 243, 236, 0.15);
+  border-top: 1px solid rgba(241, 247, 253, 0.15);
   font-size: 11px;
   letter-spacing: 0.20em;
   text-transform: uppercase;
@@ -739,7 +739,7 @@
 .memo3d-lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(15, 25, 20, 0.94);
+  background: rgba(7, 26, 46, 0.94);
   z-index: 100;
   display: flex;
   align-items: center;

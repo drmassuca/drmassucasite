@@ -10,8 +10,8 @@
   min-height: 100vh;
   background: var(--m3d-bg);
   background-image:
-    radial-gradient(circle at 20% 8%, rgba(232, 213, 204, 0.30), transparent 55%),
-    radial-gradient(circle at 85% 55%, rgba(184, 146, 58, 0.05), transparent 55%);
+    radial-gradient(circle at 20% 8%, rgba(6, 147, 227, 0.10), transparent 55%),
+    radial-gradient(circle at 85% 55%, rgba(10, 37, 64, 0.06), transparent 55%);
   font-family: var(--m3d-font-sans);
   color: var(--m3d-ink);
   font-size: 14px;
@@ -111,8 +111,8 @@
   min-height: 100vh;
   background: var(--m3d-bg);
   background-image:
-    radial-gradient(circle at 20% 8%, rgba(232, 213, 204, 0.30), transparent 55%),
-    radial-gradient(circle at 85% 55%, rgba(184, 146, 58, 0.05), transparent 55%);
+    radial-gradient(circle at 20% 8%, rgba(6, 147, 227, 0.10), transparent 55%),
+    radial-gradient(circle at 85% 55%, rgba(10, 37, 64, 0.06), transparent 55%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,7 +274,7 @@
   background: linear-gradient(
     115deg,
     transparent 30%,
-    rgba(184, 146, 58, 0.46) 50%,
+    rgba(61, 180, 242, 0.46) 50%,
     transparent 70%
   );
   transform: translateX(-120%);
@@ -590,13 +590,13 @@
 .midia-card-thumb-icon {
   width: 32px;
   height: 32px;
-  color: rgba(15, 61, 46, 0.30);
+  color: rgba(10, 37, 64, 0.30);
 }
 
 .midia-play-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(15, 30, 25, 0.55), transparent 50%);
+  background: linear-gradient(to top, rgba(7, 26, 46, 0.55), transparent 50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -651,7 +651,7 @@
 .midia-modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 25, 20, 0.94);
+  background: rgba(7, 26, 46, 0.94);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -723,7 +723,7 @@
 .consent-modal {
   position: fixed;
   inset: 0;
-  background: rgba(15, 25, 20, 0.85);
+  background: rgba(7, 26, 46, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1374,7 +1374,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  background: rgba(15, 61, 46, 0.92);
+  background: rgba(10, 37, 64, 0.92);
   color: #fff;
   font-size: 9px;
   font-weight: 600;
@@ -1773,7 +1773,7 @@
 }
 
 .pix-banner.is-pending {
-  background: rgba(184, 146, 58, 0.08);
+  background: rgba(6, 147, 227, 0.10);
   color: #78350f;
   border-left-color: var(--m3d-gold);
 }

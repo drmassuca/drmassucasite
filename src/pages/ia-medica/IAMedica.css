@@ -14,8 +14,8 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(147, 112, 219, 0.3) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(61, 180, 242, 0.28) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -129,7 +129,7 @@
 
 .search-input:focus {
   border-color: #0693e3;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(6, 147, 227, 0.15);
 }
 
 .category-filters {

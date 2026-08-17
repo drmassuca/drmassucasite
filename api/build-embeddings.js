@@ -74,6 +74,40 @@ const CURATED_CHUNKS = [
     content:
       'Obstetrico de rotina: ideal entre 15-19 semanas e novamente entre 26-40 semanas. Morfologico 1o trimestre / Translucencia Nucal: 11+0 a 13+6 semanas (preferencia 12-13). Morfologico 2o trimestre: 20-24 semanas (ideal 22-23). Ecocardiografia fetal: 20-30 semanas. Monitorizacao da ovulacao: iniciar D10-D12 do ciclo, 3-4 exames alternados.',
   },
+
+  // ---- Camadas do reposicionamento 2026 ----
+  // Sem estes chunks o RAG so conhece o consultorio, e o assistente
+  // responde "nao encontrei informacao" para pergunta sobre curso,
+  // Xdiag ou palestras. Manter alinhado com /curso-medicina-com-ia,
+  // /xdiag e /palestras.
+  {
+    source_type: 'perfil',
+    source_slug: 'quatro-frentes',
+    title: 'As quatro frentes de atuacao do Dr. Massuca',
+    content:
+      'O Dr. Antonio Massucatti Neto (Dr. Massuca), CRM-GO 17475, atua em quatro frentes, nesta ordem de peso: 1) medico ultrassonografista no consultorio em Itaberai-GO; 2) educador medico, professor do curso Medicina com IA; 3) criador de produtos de inteligencia artificial para medicina, fundador e CEO da Xdiag Tecnologias; 4) palestrante sobre IA na medicina em congressos e sociedades medicas. Sim, o Dr. Massuca da aulas de IA na medicina: e professor do curso "Medicina com IA: O Metodo Pratico para o Medico Moderno". A tese que ele defende: a inteligencia artificial amplia o medico e depende do fundamento dele.',
+  },
+  {
+    source_type: 'curso',
+    source_slug: 'curso-medicina-com-ia',
+    title: 'Curso Medicina com IA',
+    content:
+      'O Dr. Massuca e professor do curso "Medicina com IA: O Metodo Pratico para o Medico Moderno", oferecido em parceria com a ICS Academy (academy.icscursos.com.br). E um curso de inteligencia artificial aplicada a pratica medica, voltado a medicos que querem usar essas ferramentas com criterio. A pagina do curso no site e drmassuca.com.br/curso-medicina-com-ia. Para valores, turmas e matricula, direcione para o WhatsApp.',
+  },
+  {
+    source_type: 'xdiag',
+    source_slug: 'xdiag',
+    title: 'Xdiag Tecnologias e seus produtos',
+    content:
+      'O Dr. Massuca e fundador e CEO da Xdiag Tecnologias (xdiag.com.br), empresa de produtos de inteligencia artificial para medicina. Produtos: AILA, Xdiag Privacy e ICS Academy (plataforma de ensino com wiki curada, grafo de conceitos, assistente de IA, quiz, forum e certificado). A pagina no site e drmassuca.com.br/xdiag. A Xdiag e a frente de tecnologia, separada do atendimento no consultorio.',
+  },
+  {
+    source_type: 'palestras',
+    source_slug: 'palestras',
+    title: 'Palestras do Dr. Massuca sobre IA na medicina',
+    content:
+      'O Dr. Massuca palestra sobre inteligencia artificial na medicina em congressos, faculdades de medicina, sociedades de especialidade e hospitais, presencial ou online. Temas: IA na medicina sem hype; o medico encontravel (SEO e GEO na saude); IA no ultrassom, da imagem ao laudo; construindo produtos de IA sendo medico. Agenda 2026: XI Jornada Mineira de Ultrassonografia da AMUS em 22 de agosto, em Montes Claros-MG, com duas palestras (08h40 "Introducao a Inteligencia Artificial na medicina" e 14h00 "IA na pratica: do aparelho ao laudo"); 2o CBIAS de 17 a 19 de setembro em Chapeco-SC; 30o Congresso Brasileiro de Ultrassonografia da SBUS de 14 a 17 de outubro em Sao Paulo-SP. Convites para palestra saem pela pagina drmassuca.com.br/palestras ou pelo WhatsApp.',
+  },
 ];
 
 function stripHtml(s) {

@@ -16,10 +16,23 @@ import './styles/brand-tokens.css';
 import theme from './theme';
 import App from './App';
 
+/**
+ * O site é light-only. Só o config do tema não basta: o Chakra lê
+ * 'chakra-ui-color-mode' do localStorage antes dele, então um visitante
+ * que tenha ficado em modo escuro numa versão anterior continuaria vendo
+ * as superfícies escuras. Este manager ignora o que estiver salvo.
+ */
+const lightOnlyColorMode = {
+  type: 'localStorage',
+  ssr: false,
+  get: () => 'light',
+  set: () => {},
+};
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
-      <ChakraProvider theme={theme}>
+      <ChakraProvider theme={theme} colorModeManager={lightOnlyColorMode}>
         <BrowserRouter
           future={{
             v7_startTransition: true,

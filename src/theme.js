@@ -8,6 +8,15 @@
 import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
+  // O reposicionamento é light-only por decisão de marca (brand-tokens.css:
+  // "aqui o fundo é claro"). Sem isto, quem navega com o sistema em modo
+  // escuro recebe as superfícies escuras do Chakra por baixo dos textos
+  // navy cravados aqui, e o contraste quebra.
+  config: {
+    initialColorMode: 'light',
+    useSystemColorMode: false,
+  },
+
   fonts: {
     heading: "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
     body: "'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",

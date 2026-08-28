@@ -59,6 +59,10 @@ const TEMAS = [
  * título oficiais). Quando a grade ainda não saiu, usar `nota` no lugar,
  * para a página não anunciar título que o evento ainda não confirmou.
  *
+ * `realizada: true` marca evento que já aconteceu: o card fica em tom
+ * neutro, o nome riscado e ganha um sobrescrito. O evento continua na
+ * página de propósito, como registro do que já foi apresentado.
+ *
  * Só entra aqui informação pública do evento. Logística de viagem,
  * material em preparo e conversas com a organização ficam fora.
  */
@@ -73,6 +77,7 @@ const AGENDA = [
     endereco: 'Av. Dr. José Corrêa Machado, 1.070, Jardim São Luiz',
     cidade: 'Montes Claros, MG',
     link: 'https://sbus.org.br/eventos/xi-jornada-mineira/',
+    realizada: true,
     palestras: [
       { horario: '08h40', titulo: 'Introdução à Inteligência Artificial na medicina' },
       { horario: '14h00', titulo: 'IA na prática: do aparelho ao laudo' },
@@ -309,16 +314,16 @@ function Palestras() {
             <Stack
               key={evento.nome}
               direction={{ base: 'column', sm: 'row' }}
-              bg="var(--brand-accent-soft)"
+              bg={evento.realizada ? 'var(--brand-surface)' : 'var(--brand-accent-soft)'}
               border="1px solid"
-              borderColor="accent.200"
+              borderColor={evento.realizada ? 'var(--brand-border)' : 'accent.200'}
               borderRadius="12px"
               p={5}
               spacing={5}
               align="start"
             >
               <Box
-                bg="accent.500"
+                bg={evento.realizada ? 'var(--brand-muted)' : 'accent.500'}
                 color="white"
                 borderRadius="10px"
                 px={3}
@@ -339,7 +344,27 @@ function Palestras() {
               </Box>
 
               <Box flex="1">
-                <Text fontWeight={600}>{evento.nome}</Text>
+                <Text
+                  fontWeight={600}
+                  textDecoration={evento.realizada ? 'line-through' : 'none'}
+                  color={evento.realizada ? 'var(--brand-muted)' : 'inherit'}
+                >
+                  {evento.nome}
+                  {evento.realizada && (
+                    <Text
+                      as="sup"
+                      ml={2}
+                      fontSize="0.62em"
+                      fontWeight={700}
+                      color="accent.600"
+                      textDecoration="none"
+                      textTransform="uppercase"
+                      letterSpacing="0.08em"
+                    >
+                      realizada
+                    </Text>
+                  )}
+                </Text>
                 <Text fontSize="sm" color="var(--brand-muted)" mb={evento.palestras ? 3 : 0}>
                   {evento.data} · {evento.local}
                   {evento.endereco ? `, ${evento.endereco}` : ''} · {evento.cidade}
@@ -352,7 +377,7 @@ function Palestras() {
                         <Text
                           fontSize="sm"
                           fontWeight={700}
-                          color="accent.600"
+                          color={evento.realizada ? 'var(--brand-muted)' : 'accent.600'}
                           minW="46px"
                           flexShrink={0}
                         >

@@ -11,6 +11,7 @@ import {
   HStack,
   Stack,
   Link,
+  Image,
   Input,
   Textarea,
   FormControl,
@@ -166,6 +167,7 @@ function Palestras() {
                 about: { '@id': 'https://drmassuca.com.br/#person' },
                 description:
                   'Temas de palestras, agenda de eventos e formulário de convite para palestras do Dr. Antonio Massucatti Neto sobre inteligência artificial aplicada à medicina.',
+                primaryImageOfPage: 'https://drmassuca.com.br/palestrante-dr-massuca.webp',
               },
               {
                 '@type': 'Event',
@@ -253,19 +255,64 @@ function Palestras() {
       </Helmet>
 
       <Box maxW="1200px" mx="auto" px={0} py={{ base: 6, md: 10 }}>
-        {/* Cabeçalho */}
-        <Box mb={12} maxW="720px">
-          <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} mb={4}>
-            Palestras
-          </Heading>
-          <Text color="var(--brand-text-soft)" fontSize="lg" mb={3}>
-            Falo sobre inteligência artificial na medicina do jeito que pratico: com demonstração ao
-            vivo, casos reais de consultório e zero promessa mágica.
-          </Text>
-          <Text color="var(--brand-muted)">
-            Formatos para congressos, faculdades de medicina, sociedades de especialidade, hospitais
-            e eventos corporativos de saúde, presencial ou online.
-          </Text>
+        {/*
+          Hero com a foto de palestra ao fundo. A foto tem fundo branco, entao
+          ela se dissolve sozinha no gradiente claro, sem precisar de recorte.
+          A mascara de degrade na esquerda tira a borda reta e garante que o
+          texto caia sempre sobre area limpa. No mobile ela vira marca d'agua
+          de baixa opacidade atras do texto, para nao disputar com a leitura.
+        */}
+        <Box
+          position="relative"
+          overflow="hidden"
+          borderRadius={{ base: '16px', md: '20px' }}
+          border="1px solid"
+          borderColor="var(--brand-border)"
+          bgGradient="linear(135deg, #ffffff 0%, #f5f9fd 45%, #e8f4fd 100%)"
+          mb={12}
+          px={{ base: 6, md: 10 }}
+          py={{ base: 8, md: 12 }}
+          minH={{ base: 'auto', md: '420px' }}
+          display="flex"
+          alignItems="center"
+        >
+          <Image
+            src="/palestrante-dr-massuca.webp"
+            alt="Dr. Massuca palestrando, de terno, com microfone na mao"
+            width="733"
+            height="1100"
+            position="absolute"
+            bottom="0"
+            right={{ base: '-14%', md: '0' }}
+            h="100%"
+            w={{ base: '78%', md: '400px' }}
+            maxW="none"
+            objectFit="cover"
+            objectPosition="50% 10%"
+            opacity={{ base: 0.16, md: 1 }}
+            pointerEvents="none"
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            sx={{
+              maskImage: 'linear-gradient(to right, transparent 0%, #000 34%)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 34%)',
+            }}
+          />
+
+          <Box position="relative" maxW={{ base: '100%', md: '60%' }}>
+            <Heading as="h1" fontSize={{ base: '3xl', md: '4xl' }} mb={4}>
+              Palestras
+            </Heading>
+            <Text color="var(--brand-text-soft)" fontSize="lg" mb={3}>
+              Falo sobre inteligência artificial na medicina do jeito que pratico: com demonstração
+              ao vivo, casos reais de consultório e zero promessa mágica.
+            </Text>
+            <Text color="var(--brand-muted)">
+              Formatos para congressos, faculdades de medicina, sociedades de especialidade,
+              hospitais e eventos corporativos de saúde, presencial ou online.
+            </Text>
+          </Box>
         </Box>
 
         {/* Temas */}
